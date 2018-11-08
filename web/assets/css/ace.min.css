@@ -13,16 +13,9 @@
     background-size: cover; 
     z-index:100;
 }
-
-.specific-block {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0px;
-    left:0px;
-    color: white;
-    background: black;
-    text-align: center;
-    line-height: 200px;
-    display: none;
+.disabled-li-menu{
+    pointer-events:none; /*Isso não torna clicável */
+    opacity:0.6; /* Isso fica cinzento para parecer desativado */ 
+    
 }
+

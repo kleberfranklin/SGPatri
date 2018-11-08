@@ -15,7 +15,7 @@
         </li>
         
         <!-- Menu Gabinete-->
-        <li class="">
+        <li class="disabled-li-menu">
             <a href="#" class="dropdown-toggle" title="Gabinete da Coordenadoria">
                 <i class="menu-icon fa fa-folder"></i>
                 <span class="menu-text">
@@ -95,7 +95,7 @@
         </li>
         
         <!-- Menu DIPI -->
-        <li class="">
+        <li class="disabled-li-menu">
             <a href="#" class="dropdown-toggle" title="Divisão de Informação do Patrimônio Imobiliário">
                 <i class="menu-icon fa fa-folder"></i>
                 <span class="menu-text"> DIPI </span>
@@ -113,7 +113,7 @@
         </li>
         
         <!-- Menu DEAPI -->
-        <li class="">
+        <li class="disabled-li-menu">
             <a href="#" class="dropdown-toggle" title="Divisão de Engenharia e Avaliação do Patrimônio Imobiliário">
                 <i class="menu-icon fa fa-folder"></i>
                 <span class="menu-text"> DEAPI </span>
@@ -131,7 +131,7 @@
         </li>
         
          <!-- Menu Avaliação -->
-        <li class="">
+        <li class="disabled-li-menu">
             <a href="#" class="dropdown-toggle" title="Avaliação de Imobiliário">
                 <i class="menu-icon fa fa-folder"></i>
                 <span class="menu-text">Avaliação</span>
@@ -148,7 +148,7 @@
             </ul>
         </li>
         <!-- Tarefas-->
-        <li class="">
+        <li class="disabled-li-menu">
             <a href="#" class="dropdown-toggle" title="">
                 <i class="menu-icon fa fa-tags"></i>
                 <span class="menu-text"> Tarefas 
@@ -162,7 +162,7 @@
         </li>
 
         <!-- Menu Calendario-->
-        <li class="">
+        <li class="disabled-li-menu">
             <a href="#">
                 <i class="menu-icon fa fa-calendar"></i>
                 <span class="menu-text"> Calendário </span>
@@ -170,7 +170,7 @@
            <b class="arrow"></b>
         </li>
         <!-- Wikipedia CGPatri-->
-        <li class="">
+        <li class="disabled-li-menu">
             <a href="#">
                 <i class="menu-icon fa fa-book"></i>
                 <span class="menu-text"> Wikipedia CGPatri </span>
