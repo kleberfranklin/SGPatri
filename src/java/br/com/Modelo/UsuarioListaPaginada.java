@@ -10,6 +10,7 @@ import br.com.Modelo.*;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,14 +34,16 @@ public class UsuarioListaPaginada implements Logica{
 *  maxPg = quantidade de paginação a ser exibida (1, 2 , 3 ...)
 *  sobraMaxPg = auxiliar para o calculdo da quantidade de pagina
 * */
-
+        HttpSession session = req.getSession();
+        
         int pg, pi, pf, qtdRegistro, qtdPg, offset;
-        String q, pgS, piS, pfS;
+        String q, sgDivisao, pgS, piS, pfS;
         int qtdLinha = 8;
         int maxPg = 10;
         int sobraMaxPg = 0;
 
-//Carregando atributos com a informações do formlário.        
+//Carregando atributos com a informações do formlário.  
+        sgDivisao = (String) session.getAttribute("sessionSgDivisao");
         q = req.getParameter("q");
         pgS = req.getParameter("pg");
         piS = req.getParameter("pi");
@@ -53,6 +56,9 @@ public class UsuarioListaPaginada implements Logica{
             q = Transformar.utf8(Transformar.priMaiuscula(q));
         }
         
+        if(session.getAttribute("sessionPerfil").equals("Administrador")){
+            sgDivisao = "";
+        }
         if (pgS == null) {
             pg = 0;
         } else {
@@ -72,7 +78,7 @@ public class UsuarioListaPaginada implements Logica{
         
         
 //Carregando a quantidade de registro para calculdo da quantidade de paginas
-        qtdRegistro = usDAO.qtdUsuarioQ(q);
+        qtdRegistro = usDAO.qtdUsuarioQ(q, sgDivisao);
         qtdPg = qtdRegistro / qtdLinha;
 
 //Logica da paginação         
@@ -104,9 +110,10 @@ public class UsuarioListaPaginada implements Logica{
         offset = ((pg * qtdLinha)- qtdLinha);
 
 //Populando o objeto lista
-        List<Usuario> lisUsuario = new UsuarioDAO().listPaginaUsuario(qtdLinha, offset, q);
+        List<Usuario> lisUsuario = new UsuarioDAO().listPaginaUsuario(qtdLinha, offset, q, sgDivisao);
             req.setAttribute("lisUsuario", lisUsuario);
             req.setAttribute("q", q);
+            req.setAttribute("sgDivisao", sgDivisao);
             
         return "UsuarioLista.jsp?pg="+pg+"&pi="+pi+"&pf="+pf+"&qtdPg="+qtdPg+"&totalRes="+qtdRegistro;
        

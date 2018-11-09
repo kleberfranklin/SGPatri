@@ -139,11 +139,13 @@ public class UsuarioDAO {
     
  
 //METODO quantidade de usuários encontratos um pesquisa por nome
- public int qtdUsuarioQ(String q){
-       String sql = ("SELECT COUNT(*) as total FROM tbl_usuario WHERE nm_nome  LIKE ?");
+ public int qtdUsuarioQ(String q, String sgDivisao){
+       String sql = ("SELECT COUNT(*) as total FROM vw_usuariocompleto "
+               + "WHERE nm_nome LIKE ? and sg_divisao LIKE ? ");
     	try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, '%'+q+'%');
+                stmt.setString(1, '%'+q+'%');
+                stmt.setString(2, '%'+sgDivisao+'%');
             
             ResultSet rs = stmt.executeQuery();
             int qtdUs = 0;
@@ -161,15 +163,19 @@ public class UsuarioDAO {
      } 
     
 //METODO quantidade de usuario cadastrado em um pesquisa por nome e paginada
-    public List<Usuario> listPaginaUsuario(int qtdLinha, int iniPosicao, String q) {
-    String sql = ("SELECT * FROM vw_usuariocompleto WHERE nm_nome LIKE ? ORDER BY nm_nome LIMIT ? OFFSET ?");
+    public List<Usuario> listPaginaUsuario(int qtdLinha, int iniPosicao, String q, String sgDivisao) {
+    String sql = ("SELECT * FROM vw_usuariocompleto "
+            + "WHERE nm_nome LIKE ? and sg_divisao LIKE ? "
+            + "ORDER BY nm_nome "
+            + "LIMIT ? OFFSET ?");
     try {
         List<Usuario> uslista = new ArrayList<Usuario>();
             PreparedStatement stmt = connection.prepareStatement(sql);
             
             stmt.setString(1, '%'+q+'%');
-            stmt.setInt(2, qtdLinha);
-            stmt.setInt(3, iniPosicao);
+            stmt.setString(2, '%'+sgDivisao+'%');
+            stmt.setInt(3, qtdLinha);
+            stmt.setInt(4, iniPosicao);
             
             ResultSet rs = stmt.executeQuery();  
                 

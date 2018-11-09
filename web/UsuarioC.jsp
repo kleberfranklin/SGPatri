@@ -23,6 +23,11 @@
     <jsp:useBean id="beanPerfil" class= "br.com.Modelo.PerfilDAO" />
     <jsp:useBean id="beanCargo" class= "br.com.Modelo.CargoDAO" />
     
+    <c:set var="pg" value="${param.pg}" />
+    <c:set var="pf" value="${param.pf}" />
+    <c:set var="pi" value="${param.pi}" />
+    <c:set var="q" value="${param.q}" />
+    <c:set var="sgDivisao" value="${param.sgDivisao}"/>
     
     <div class="breadcrumbs ace-save-state" id="breadcrumbs">
         <ul class="breadcrumb">
@@ -72,10 +77,19 @@
                                     <label class="col-sm-2 control-label no-padding-right" for="form-field-1">Divisões: </label>
                                     <div class="col-sm-10">
                                         <select class="form-control col-xs-12 col-sm-12" id="form-field-select-1" name="divisao" onChange="pkDivisao(this)"  required="required">
-                                            <option value=""></option>
-                                            <c:forEach var="d" items="${beanDivisao.selectLisDivisao()}">
-                                                <option value="${d.pkDivisao}" title="${d.nmDivisao}">${d.sgDivisao} - ${d.nmDivisao}</option>  
-                                            </c:forEach>
+                                            
+                                            <c:choose>
+                                                <c:when test="${sessionPkDivisao == '1'}">
+                                                    <option value=""></option>
+                                                    <c:forEach var="d" items="${beanDivisao.selectLisDivisao()}">
+                                                        <option value="${d.pkDivisao}" title="${d.nmDivisao}">${d.sgDivisao} - ${d.nmDivisao}</option>  
+                                                    </c:forEach>
+                                                </c:when>
+                                                <c:otherwise>
+                                                        <option value="${sessionPkDivisao}" title="">${sessionSgDivisao}</option>
+                                                </c:otherwise>    
+                                            </c:choose>
+                                            
                                         </select>
                                     </div>
                                     
@@ -116,7 +130,7 @@
                             </fieldset>
 
                             <div class="form-actions center">
-                                <button class="btn btn-yellow" type="reset" onclick=" location.href='ControllerServlet?acao=UsuarioListaPaginada';">
+                                <button class="btn btn-yellow" type="reset" onclick=" location.href='ControllerServlet?acao=UsuarioListaPaginada&pg=${pg}&pi=${pi}&pf=${pf}&q=${q}&sgDivisao=${sgDivisao}';">
                                     <i class="ace-icon fa fa-undo bigger-110"></i>
                                     Voltar
                                 </button>

@@ -159,7 +159,8 @@ public class PerfilDAO {
     
 //METODO lista os perfil cadastrados, utilizado no campo select da pagina cadastrado e alteração de usuário
     public List<Perfil> listSelectPerfil(){
-    String sql = "SELECT * FROM tbl_perfil";
+    String sql = "SELECT * FROM tbl_perfil "
+            + "WHERE id_perfil <> 3";
     
     try {
         List<Perfil> perLista = new ArrayList<Perfil>();

@@ -28,6 +28,7 @@
         <c:set var="qtdPg" value="${param.qtdPg}" />
         <c:set var="totalRes" value="${param.totalRes}" />
         <c:set var="q" value="${param.q}" />
+        <c:set var="sgDivisao" value="${param.sgDivisao}" />
     
     
     <div class="breadcrumbs ace-save-state" id="breadcrumbs">
@@ -70,7 +71,7 @@
                         <tr>
                             <td class="center hidden-480">
                             <div class="action-buttons ">
-                                <a href="ControllerServlet?acao=UsuarioDetalhe&pkUsuario=${uslist.pkUsuario}&pg=${pg}&pi=${pi}&pf=${pf}&q=${q}"><i class="ace-icon fa fa-search-plus"></i></a>
+                                <a href="ControllerServlet?acao=UsuarioDetalhe&pkUsuario=${uslist.pkUsuario}&pg=${pg}&pi=${pi}&pf=${pf}&q=${q}&sgDivisao=${sgDivisao}"><i class="ace-icon fa fa-search-plus"></i></a>
                             </div>
                             </td>
                             <td class="hidden-480">${uslist.nmLogin}</td>
@@ -98,7 +99,7 @@
                             </td>
                             <td>
                                 <div class="hidden-sm hidden-xs btn-group">
-                                    <button class="btn btn-xs btn-info" type="reset" onclick="location.href='ControllerServlet?acao=UsuarioDetalhe&pkUsuario=${uslist.pkUsuario}&pg=${pg}&pi=${pi}&pf=${pf}&q=${q}&alt=alt'">
+                                    <button class="btn btn-xs btn-info" type="reset" onclick="location.href='ControllerServlet?acao=UsuarioDetalhe&pkUsuario=${uslist.pkUsuario}&pg=${pg}&pi=${pi}&pf=${pf}&q=${q}&sgDivisao=${sgDivisao}&alt=alt'">
                                         <i class="ace-icon fa fa-pencil bigger-120"></i>
                                         <a href="#" class="btn-info">Editar</a>
                                     </button>
@@ -106,14 +107,14 @@
                                 <c:choose>
                                     <c:when test="${'0' == uslist.nrAtivo}">
                                         <label class="pull-left inline">
-                                          <input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" id="" name="" value="1" onclick="location.href='ControllerServlet?acao=UsuarioAltStatus&pkUs=${uslist.pkUsuario}&status=1&pg=${pg}&pi=${pi}&pf=${pf}&q=${q}';" >
+                                          <input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" id="" name="" value="1" onclick="location.href='ControllerServlet?acao=UsuarioAltStatus&pkUs=${uslist.pkUsuario}&status=1&pg=${pg}&pi=${pi}&pf=${pf}&q=${q}&sgDivisao=${sgDivisao}';" >
                                           <span class="lbl middle"></span>
                                         </label> 
                                         
                                     </c:when>
                                     <c:otherwise>
                                         <label class="pull-left inline">
-                                            <input id="id-button-borders" checked="checked"  type="checkbox" class="ace ace-switch ace-switch-5" id="" name="" value="0" onclick="location.href='ControllerServlet?acao=UsuarioAltStatus&pkUs=${uslist.pkUsuario}&status=0&pg=${pg}&pi=${pi}&pf=${pf}&q=${q}';" >
+                                            <input id="id-button-borders" checked="checked"  type="checkbox" class="ace ace-switch ace-switch-5" id="" name="" value="0" onclick="location.href='ControllerServlet?acao=UsuarioAltStatus&pkUs=${uslist.pkUsuario}&status=0&pg=${pg}&pi=${pi}&pf=${pf}&q=${q}&sgDivisao=${sgDivisao}';" >
                                             <span class="lbl middle"><a href="Index.jsp"></a></span>
                                         </label> 
                                     </c:otherwise>
@@ -128,7 +129,7 @@
 
                                         <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
                                             <li>
-                                                <a href="ControllerServlet?acao=UsuarioDetalhe&pkUsuario=${uslist.pkUsuario}&pg=${pg}&pi=${pi}&pf=${pf}&q=${q}&alt=alt" class="tooltip-success" data-rel="tooltip" title="" data-original-title="Edit">
+                                                <a href="ControllerServlet?acao=UsuarioDetalhe&pkUsuario=${uslist.pkUsuario}&pg=${pg}&pi=${pi}&pf=${pf}&q=${q}&sgDivisao=${sgDivisao}&alt=alt" class="tooltip-success" data-rel="tooltip" title="" data-original-title="Edit">
                                                     <span class="green">
                                                         <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
                                                     </span>
@@ -151,7 +152,7 @@
                 Voltar
             </button>            
 
-            <button class="btn btn-success" type="button" onclick=" location.href='UsuarioC.jsp';">
+            <button class="btn btn-success" type="button" onclick=" location.href='UsuarioC.jsp?pg=${pg}&pi=${pi}&pf=${pf}&q=${q}&sgDivisao=${sgDivisao}';">
                 <i class="ace-icon fa fa-user-plus bigger-110"></i>
                 Usuário
             </button>
@@ -172,7 +173,7 @@
                         <c:forEach var="i" begin="${pi}" end="${pf}">
                             <c:if test="${pi != 0 && pi == i}">
                                 <li>
-                                    <a href="ControllerServlet?acao=UsuarioListaPaginada&pg=${i}&pi=${pi}&pf=${pf}&q=${q}">
+                                    <a href="ControllerServlet?acao=UsuarioListaPaginada&pg=${i}&pi=${pi}&pf=${pf}&q=${q}&sgDivisao=${sgDivisao}">
                                         <i class="ace-icon fa fa-angle-double-left"></i></a>
                                 </li>
                             </c:if>    
@@ -185,14 +186,14 @@
                                     </c:when>
                                     <c:otherwise>
                                         <li>
-                                            <a href="ControllerServlet?acao=UsuarioListaPaginada&pg=${i}&pi=${pi}&pf=${pf}&q=${q}">${i}</a>
+                                            <a href="ControllerServlet?acao=UsuarioListaPaginada&pg=${i}&pi=${pi}&pf=${pf}&q=${q}&sgDivisao=${sgDivisao}">${i}</a>
                                         </li>
                                     </c:otherwise>
                                 </c:choose>
                             </c:if>
                             <c:if test="${i == pf && pf != qtdPg && i <= qtdPg  }">
                                 <li>
-                                    <a href="ControllerServlet?acao=UsuarioListaPaginada&pg=${i}&pi=${pi}&pf=${pf}&q=${q}">
+                                    <a href="ControllerServlet?acao=UsuarioListaPaginada&pg=${i}&pi=${pi}&pf=${pf}&q=${q}&sgDivisao=${sgDivisao}">
                                         <i class="ace-icon fa fa-angle-double-right"></i></a>
                                 </li>
                             </c:if>    

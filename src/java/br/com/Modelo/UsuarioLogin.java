@@ -47,9 +47,11 @@ public class UsuarioLogin implements Logica {
             if (!us.getNmLogin().isEmpty()) {
                 nome = us.getNmNome();
                 String[] partes = nome.split(" ");
+                session.setAttribute("sessionPkUs", us.getPkUsuario());
                 session.setAttribute("sessionLogin", us.getNmLogin());
                 session.setAttribute("sessionNome", partes[0]);
 //                session.setAttribute("sNome", partes[partes.length - 1]); //pega o ultimo nome.
+                session.setAttribute("sessionPkDivisao", us.getPkDivisao());
                 session.setAttribute("sessionSgDivisao", us.getSgDivisao());
                 session.setAttribute("sessionPerfil", us.getNmPerfil());
                 session.setAttribute("sessionFoto", us.getNmFoto());

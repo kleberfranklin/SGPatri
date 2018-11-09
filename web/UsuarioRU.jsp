@@ -30,6 +30,7 @@
     <c:set var="pf" value="${param.pf}" />
     <c:set var="pi" value="${param.pi}" />
     <c:set var="q" value="${param.q}" />
+    <c:set var="sgDivisao" value="${param.sgDivisao}"/>
     <c:set var="alt" value="${param.alt}" />
     <c:set var="idDivisaoCombo" value="${param.idDivisaoCombo}" />
 
@@ -161,7 +162,7 @@
 
                                             <div class="profile-info-value">
                                                  <c:choose>
-                                                    <c:when test="${alt == 'alt'}">
+                                                    <c:when test="${alt == 'alt' && sessionPerfil == 'Administrador'}">
                                                         <select class="form-control col-xs-12 col-sm-12" id="form-field-select-1" name="divisao" onChange="pkDivisao(this)"  required="required">
                                                             <option value="${us.pkDivisao}" title="${us.nmDivisao}" selected="selected">${us.sgDivisao} - ${us.nmDivisao}</option>
                                                                 <option></option>
@@ -171,6 +172,7 @@
                                                         </select>
                                                     </c:when>
                                                     <c:otherwise>
+                                                        <input type="hidden" name="divisao" value="${us.pkDivisao}" />
                                                         <span><c:out value="${us.sgDivisao}" /></span>
                                                         <span> <c:out value="${us.nmDivisao}" /></span>
                                                     </c:otherwise>
@@ -297,6 +299,10 @@
                                         </div>
                                     </div>
                                      <br />
+                                        <button class="btn btn-yellow" type="reset" onclick=" location.href='ControllerServlet?acao=UsuarioListaPaginada&pg=${pg}&pi=${pi}&pf=${pf}&q=${q}&sgDivisao=${sgDivisao}';">
+                                            <i class="ace-icon fa fa-undo bigger-110"></i>
+                                            Voltar
+                                        </button>
                                     <c:if test="${alt == 'alt'}">
                                         <button class="btn btn-success" type="submit">
                                             <i class="ace-icon fa fa-save bigger-110"></i>
@@ -1200,10 +1206,7 @@
                     </div>
                 </div>
             </div>
-        <button class="btn btn-yellow" type="reset" onclick=" location.href='ControllerServlet?acao=UsuarioListaPaginada&pg=${pg}&pi=${pi}&pf=${pf}&q=${q}';">
-            <i class="ace-icon fa fa-undo bigger-110"></i>
-            Voltar
-        </button>
+        <!-- Botão coloca aqui todos a tab visualização -->
         </div>
 <% if (request.getAttribute("msg") == "gravou") { %>
     <style>
