@@ -12,11 +12,11 @@
 </div><!-- /.main-content -->
 <div class="footer">
     <div class="footer-inner">
-            <div class="footer-content">
-                    <span class="bigger-120">
-                        <span class="bolder"> SISGI </span> - Sistema de Gestão da Informação
-                    </span>
-            </div>
+        <div class="footer-content">
+            <span class="bigger-120">
+                <span class="bolder">SG-PATRI</span> - Sistema de Gestão das Áreas Públicas
+            </span>
+        </div>
     </div>
 </div>
 
