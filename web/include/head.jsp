@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="Content-Language" content="pt-br">
     
-    <title>SISGI - Sistema de Gestão da informação</title>
+    <title>SG-PATRI - Sistema de Gestão das Áreas Públicas</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <meta name="description" content="Common form elements and layouts" />
@@ -61,10 +61,7 @@
 
     <!-- ace settings handler -->
     <script src="assets/js/ace-extra.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-   <script src="assets/js/sweetalert.min.js" type="text/javascript"></script>
-  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
  
     <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 
