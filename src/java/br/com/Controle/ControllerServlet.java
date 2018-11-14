@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author d732229
  */
+
 @MultipartConfig
 public class ControllerServlet extends HttpServlet {
 
@@ -24,7 +25,7 @@ public class ControllerServlet extends HttpServlet {
             throws ServletException, IOException {
             
             String acao = request.getParameter("acao");
-            String ClasseAcao = "br.com.Modelo." + acao;
+            String ClasseAcao = "br.com.Controle." + acao;
         
         try {
                Class classe = Class.forName(ClasseAcao);

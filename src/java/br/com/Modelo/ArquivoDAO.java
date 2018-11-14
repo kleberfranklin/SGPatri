@@ -27,17 +27,18 @@ public class ArquivoDAO {
     
 //METODO utilizado para inserir uma nova Arquivo no BANCO
     public void cArquivo(Arquivo ar){
-        String sql = "INSERT INTO tbl_arquivo (fk_tipo_arquivo, nm_origem, nm_tipo, nm_nome, nm_diretorio, nm_login, dthr_atualizacao) "
-                + "VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO tbl_arquivo (fk_tipo_arquivo, nm_origem, nm_tipo, nm_nome_arquivo, nm_diretorio, nm_nome, nm_login, dthr_atualizacao) "
+                + "VALUES (?,?,?,?,?,?,?,?)";
             try{
                 PreparedStatement stmt = connection.prepareStatement(sql);
                     stmt.setInt(1, ar.getFkTipoArquivo());
                     stmt.setString(2, ar.getNmOrigem());
                     stmt.setString(3, ar.getNmTipo());
-                    stmt.setString(4, ar.getNmNome());
+                    stmt.setString(4, ar.getNmNomeArquivo());
                     stmt.setString(5, ar.getNmDiretorio());
-                    stmt.setString(6, ar.getNmLogin());
-                    stmt.setTimestamp(7,java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
+                    stmt.setString(6, ar.getNmNome());
+                    stmt.setString(7, ar.getNmLogin());
+                    stmt.setTimestamp(8,java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
                 stmt.execute();
                 stmt.close();
             }catch (SQLException e){
@@ -47,18 +48,19 @@ public class ArquivoDAO {
     
 //METODO utilizado para atualizar  Arquivo no BANCO
     public void upArquivo(Arquivo ar){
-        String sql = "UPDATE tbl_arquivo SET fk_tipo_arquivo=?, nm_origem=?, nm_tipo=?, nm_nome=?, nm_diretorio=?, nm_login=?, dthr_atualizacao=? "
+        String sql = "UPDATE tbl_arquivo SET fk_tipo_arquivo=?, nm_origem=?, nm_tipo=?, nm_nome_arquivo=?, nm_diretorio=?, nm_nome=?, nm_login=?, dthr_atualizacao=? "
                 + "WHERE id_arquivo=? ";
             try{
                 PreparedStatement stmt = connection.prepareStatement(sql);
                     stmt.setInt(1, ar.getFkTipoArquivo());
                     stmt.setString(2, ar.getNmOrigem());
                     stmt.setString(3, ar.getNmTipo());
-                    stmt.setString(4, ar.getNmNome());
+                    stmt.setString(4, ar.getNmNomeArquivo());
                     stmt.setString(5, ar.getNmDiretorio());
-                    stmt.setString(6, ar.getNmLogin());
-                    stmt.setTimestamp(7,java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
-                    stmt.setInt(8, ar.getPkArquivo());
+                    stmt.setString(6, ar.getNmNome());
+                    stmt.setString(7, ar.getNmLogin());
+                    stmt.setTimestamp(8,java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
+                    stmt.setInt(9, ar.getPkArquivo());
                 stmt.execute();
                 stmt.close();
             }catch (SQLException e){
@@ -77,19 +79,18 @@ public class ArquivoDAO {
                 ResultSet rs = stmt.executeQuery();  
 
             while (rs.next()){
-
                 Arquivo arquivo = new Arquivo();   
                     arquivo.setPkArquivo(rs.getInt("id_arquivo"));
                     arquivo.setFkTipoArquivo(rs.getInt("fk_tipo_arquivo"));
                     arquivo.setNmOrigem(rs.getString("nm_origem"));
                     arquivo.setNmTipo(rs.getString("nm_tipo"));
+                    arquivo.setNmNomeArquivo(rs.getString("nm_nome_arquivo"));
                     arquivo.setNmNome(rs.getString("nm_nome"));
                     arquivo.setNmDiretorio(rs.getString("nm_diretorio"));
                 arList.add(arquivo);
             }       
             stmt.close();                                                                                                                                                                
         return arList;
-
     
     } catch (SQLException e) {
         throw new RuntimeException(e);
@@ -110,6 +111,7 @@ public class ArquivoDAO {
                 arquivo.setPkArquivo(rs.getInt("id_arquivo"));
                 arquivo.setNmOrigem(rs.getString("nm_origem"));
                 arquivo.setNmTipo(rs.getString("nm_tipo"));
+                arquivo.setNmNome(rs.getString("nm_nome"));
                 arquivo.setNmDiretorio(rs.getString("nm_diretorio"));
             }       
             stmt.close();                                                                                                                                                                

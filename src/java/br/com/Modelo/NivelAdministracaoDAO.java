@@ -29,20 +29,19 @@ public class NivelAdministracaoDAO {
     
 //METODO lista os NivelAdm select    
     public List<NivelAdministracao> listNivelAdm() {
-        String sql = ("SELECT * FROM niveladministracao ORDER BY nm_administracao");
+        String sql = ("SELECT * FROM tbl_niveladministracao ORDER BY nm_administracao");
     try {
-        List<NivelAdministracao> lisNivelAdm = new ArrayList<NivelAdministracao>();
+        List<NivelAdministracao> lisNivelAdm = new ArrayList<>();
             PreparedStatement stmt = connection.prepareStatement(sql);
-            
             ResultSet rs = stmt.executeQuery();  
                 
             while (rs.next()){
             NivelAdministracao nvadm = new NivelAdministracao();
-                nvadm.setPkNiveladm(rs.getInt("pk_niveladministracao"));
+                nvadm.setPkAdm(rs.getInt("id_niveladministracao"));
                 nvadm.setSgAdm(rs.getString("sg_administracao"));
-                nvadm.setNnAdm(rs.getString("nm_administracao"));
+                nvadm.setNmAdm(rs.getString("nm_administracao"));
                 nvadm.setNmLogin(rs.getString("nm_login"));
-                nvadm.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
+                nvadm.setDthrAtualizacao(rs.getString("dtth_atualizacao"));
             lisNivelAdm.add(nvadm);
             }       
             stmt.execute();

@@ -12,9 +12,22 @@ package br.com.Modelo;
 public class DispositivoLegal {
     
     
-    private int pkDisplegal, fkTipoDisplegal;
+    private int pkDisplegal,  fkAutoCessao, fkTipoDisplegal;
     private String nrDisp,  nmTitulo,  dtDisp, nmLogin, dthr_atualicacao;
 
+    public DispositivoLegal() {
+    }
+
+    public DispositivoLegal( int fkAutoCessao, int fkTipoDisplegal, String nrDisp, String dtDisp, String nmLogin) {
+        this.fkAutoCessao = fkAutoCessao;
+        this.fkTipoDisplegal = fkTipoDisplegal;
+        this.nrDisp = nrDisp;
+        this.dtDisp = dtDisp;
+        this.nmLogin = nmLogin;
+    }
+
+    
+    
     
     
     
@@ -33,7 +46,16 @@ public class DispositivoLegal {
     public void setFkTipoDisplegal(int fkTipoDisplegal) {
         this.fkTipoDisplegal = fkTipoDisplegal;
     }
+    
+      public int getFkAutoCessao() {
+        return fkAutoCessao;
+    }
 
+    public void setFkAutoCessao(int fkAutoCessao) {
+        this.fkAutoCessao = fkAutoCessao;
+    }
+        
+    
     public String getNrDisp() {
         return nrDisp;
     }

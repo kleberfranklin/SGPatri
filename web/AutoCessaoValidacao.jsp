@@ -1,5 +1,8 @@
-
-
+<%-- 
+    Document   : AutoCessaoValidacao
+    Created on : 08/11/2018, 18:58:46
+    Author     : d732229
+--%>
 
 
 <%@page contentType="text/html charset=UTF-8;" pageEncoding="UTF-8"%>
@@ -66,30 +69,107 @@
         <div class="form-horizontal">
             <div class="tabbable">
                 <ul class="nav nav-tabs padding-0">
-                    <li class="active">
+                    <li class="
+                    <c:choose>
+                        <c:when test="${auto.nrVerAc == '0'}">
+                            active
+                        </c:when>
+                        <c:otherwise>
+                            disabled
+                        </c:otherwise>    
+                    </c:choose>
+                    ">
                         <a data-toggle="tab" href="#auto-cessao" aria-expanded="true">
                             Validação do Auto Cessão 
+                            <c:choose>
+                                <c:when test="${auto.nrVerAc == '0'}">
+                                    <span class="badge badge-transparent" title="Conferir"><i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i></span>
+                                </c:when>
+                                <c:otherwise>
+                                    <span class="badge badge-transparent" title="Conferido"><i class="ace-icon fa fa-check-square-o green bigger-130"></i></span>
+                                </c:otherwise>    
+                            </c:choose>
                         </a>
                     </li>
-                    <li class="Dispositivos Legais">
+                    <li class="
+                        <c:choose>
+                            <c:when test="${auto.nrVerAc == '1' && auto.nrVerDispLegal == '0'}">
+                                active
+                            </c:when>
+                            <c:otherwise>
+                                disabled
+                            </c:otherwise>    
+                        </c:choose>
+                        ">
                         <a data-toggle="tab" href="#disp-legal" aria-expanded="true">
                            Dispositivos Legais
+                           <c:choose>
+                                <c:when test="${auto.nrVerDispLegal == '0'}">
+                                    <span class="badge badge-transparent" title="Conferir"><i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i></span>
+                                </c:when>
+                                <c:otherwise>
+                                    <span class="badge badge-transparent" title="Conferido"><i class="ace-icon fa fa-check-square-o green bigger-130"></i></span>
+                                </c:otherwise>    
+                            </c:choose>
                         </a>
                     </li>
-                    <li class="Dispositivos Legais">
+                    <li class="
+                        <c:choose>
+                            <c:when test="${auto.nrVerAc == '1' && auto.nrVerDispLegal == '1' && (auto.nrVerArqAc == '0'&& auto.nrVerArqPlanta == '0')}">
+                                active
+                            </c:when>
+                            <c:otherwise>
+                                disabled
+                            </c:otherwise>    
+                        </c:choose>
+                        ">
                         <a data-toggle="tab" href="#anexar-doc" aria-expanded="true">
                            Anexar documentos
+                           <c:choose>
+                                <c:when test="${auto.nrVerArqAc == '0'&& auto.nrVerArqPlanta == '0'}">
+                                    <span class="badge badge-transparent" title="Conferir"><i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i></span>
+                                </c:when>
+                                <c:otherwise>
+                                    <span class="badge badge-transparent" title="Conferido"><i class="ace-icon fa fa-check-square-o green bigger-130"></i></span>
+                                </c:otherwise>    
+                            </c:choose>
                         </a>
                     </li>
-                    <li class="Valiação">
+                    <li class="
+                        <c:choose>
+                            <c:when test="${auto.nrVerAc == '1' && auto.nrVerDispLegal == '1' && auto.nrVerArqAc == '1' && auto.nrVerArqPlanta == '1' && auto.nrVerValidacao == '0'}">
+                                active
+                            </c:when>
+                            <c:otherwise>
+                                disabled
+                            </c:otherwise>
+                        </c:choose>
+                        ">
                         <a data-toggle="tab" href="#validacao" aria-expanded="true">
                             Validação
+                            <c:choose>
+                                <c:when test="${auto.nrVerValidacao == '0'}">
+                                    <span class="badge badge-transparent" title="Conferir"><i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i></span>
+                                </c:when>
+                                <c:otherwise>
+                                    <span class="badge badge-transparent" title="Conferido"><i class="ace-icon fa fa-check-square-o green bigger-130"></i></span>
+                                </c:otherwise>    
+                            </c:choose>
                         </a>
                     </li>
                 </ul>
 
                 <div class="tab-content profile-edit-tab-content">
-                    <div id="auto-cessao" class="tab-pane  in active">
+                    <div id="auto-cessao" class="tab-pane d
+                    <c:choose>
+                        <c:when test="${auto.nrVerAc == '0'}">
+                            in active
+                        </c:when>
+                        <c:otherwise>
+                            disabled-li-menu
+                    </c:otherwise>    
+                    </c:choose>
+                    ">
                             <form action="" method="POST" >
                                 <div class="space-4"></div>
                                 <div class="space-2"></div>
@@ -100,7 +180,7 @@
                                             <span class="lbl"><strong>Nº AC:</strong></span>
                                     </div>
                                     <label class="inline col-md-3 col-xs-12">
-                                        <input type="text" id="form-field-1" class="col-xs-12 col-md-12" name="nrprocesso" value="" placeholder="nº do AC"  >
+                                        <input type="text" id="form-field-1" class="col-xs-12 col-md-12" name="nrprocesso" value="${auto.nmCodAc}" placeholder="nº do AC"  >
                                     </label>
                                     <label class="inline col-md-2 col-xs-12">
                                             <span class="lbl">
@@ -693,10 +773,6 @@
                                 </div>
                                  
                                 <div class="space-2"></div>
-
-
-                                
-                                
                                 
                                 <div class="form-actions center">
                                     <button class="btn btn-yellow other-block preview" type="reset" onclick="location.href='ControllerServlet?acao=AutoCessaoValidacaoLista&pg=${pg}&pi=${pi}&pf=${pf}&qProcesso=${qProcesso}&qAC=${qAC}&qVigor=${qVigor}';">
@@ -712,9 +788,20 @@
                     </div>
 
 <!--Inicio da tab-pane Dispositvo Legal-->              
-                    <div id="disp-legal" class="tab-pane">
+                    <div id="disp-legal" class="tab-pane 
+                         <c:choose>
+                             <c:when test="${auto.nrVerAc == '1' && auto.nrVerDispLegal=='0' }">
+                                 in active
+                             </c:when>
+                             <c:otherwise>
+                                 disabled-li-menu
+                             </c:otherwise>    
+                         </c:choose>
+                         " >
                         <h5 class="header smaller lbl"><strong>Dispositivos Legais</strong></h5>
-                                <div class="input_fields_wrap" >
+                        <form action="ControllerServlet?acao=AutoCessaoValidacaoDispLegalUC" method="POST" >
+                            <input type="hidden" name="pkAutoStage" value="${auto.pkAutoStage}" />
+                                <div class="input_fields_wrap">
                                     <div class="form-group">
                                         <label class="inline col-md-2 col-xs-12" >
                                                 <span class="lbl">
@@ -722,7 +809,7 @@
                                                 </span>
                                         </label>
                                         <label class="inline col-md-3 col-xs-12">
-                                            <select class="col-md-12 col-xs-12" name="tpDispLegal">
+                                            <select class="col-md-12 col-xs-12" name="tpDispositivo">
                                                 <option></option>
                                                 <c:forEach var="tpdis" items="${TpDis.listSelectTipoDisp()}">
                                                     <option value="${tpdis.pkTipoDispLegal}" title="${tpdis.nmTipoDispLegal}">${tpdis.nmTipoDispLegal}</option>  
@@ -733,7 +820,7 @@
                                                <span class="lbl"><strong>Número:</strong></span>
                                         </label>
                                         <label class="inline col-md-2 col-xs-12">
-                                            <input type="number" id="form-field-1" class="col-xs-12 col-md-12" placeholder="numero" name="subprefeitura" >
+                                            <input type="number" id="form-field-1" class="col-xs-12 col-md-12" placeholder="numero" name="numDispositivo" >
                                         </label>
 
                                         <label class="inline col-md-1 col-xs-12" >
@@ -741,7 +828,7 @@
                                         </label>
                                         <label class="inline col-md-2 col-xs-12">
                                             <div class="input-group">
-                                                <input class="form-control date-picker" id="id-date-picker-1" name="dtDispositivo" type="text" placeholder="dd/mm/aaaa" data-date-format="dd/mm/yyyy">
+                                                <input class="form-control date-picker" id="id-date-picker-1" name="dtDispositivo" type="date" placeholder="dd/mm/aaaa" data-date-format="dd/mm/yyyy">
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-calendar bigger-110"></i>
                                                 </span>
@@ -750,55 +837,172 @@
                                         <a href="#" class="add_field_button" title="Adicionar dispositivos"><span class="label label-success arrowed"><i class=" fa fa-plus"></i></span></a>
                                     </div>
                                 </div>
+                                <div class="space-2"></div>
+                                <div class="form-actions center">
+                                    <button class="btn btn-success" type="submit">
+                                        <i class="ace-icon fa fa-save bigger-110"></i>
+                                        Salvar
+                                    </button>
+                                </div>
+                            </form>
+                            <c:if test="${auto.nrVerDispLegal=='1'}">
+                            <div class="space-2"></div>
+                            <div class="form-group">
+                                <div class="alert alert-success col-md-offset-1 col-md-9">
+                                    <button type="button" class="close" data-dismiss="alert">
+                                        <i class="ace-icon fa fa-times"></i>
+                                    </button>
+                                    <strong>
+                                        <i class="ace-icon fa fa-times"></i>
+                                        Sucesso!
+                                    </strong>
+                                        O(s) Dispositivo(s) Legal(is) foi(ram) salvo(s).
+                                    <br>
+                                </div>
+                            </div>
+                            </c:if>
                         </div>
 
 <!--Inicico da tab-pane Anexer Documento -->
-                    <div id="anexar-doc" class="tab-pane">
+                    <div id="anexar-doc" class="tab-pane 
+                        <c:choose>
+                             <c:when test="${auto.nrVerAc == '1' && auto.nrVerDispLegal=='1' && (auto.nrVerArqAc == '0' || auto.nrVerArqPlanta == '0') }">
+                                 in active
+                             </c:when>
+                             <c:otherwise>
+                                 disabled-li-menu
+                             </c:otherwise>    
+                         </c:choose> 
+                         ">
                         <h5 class="header smaller lbl"><strong>Anexar documentos</strong></h5>
                         <div class="form-group">
-                            <label class="col-md-3 col-xs-12">
-                            <c:set var="idPlanta"  value="${Arquivo.pkArquivo(auto.pkAutoStage,'AutoCessao', 'planta')}"  />    
-                            <c:choose>
-                                <c:when test="${ idPlanta.pkArquivo != '0'}" >
-                                    <a href="#" id="id-btn-dialog1" class="btn btn-yellow"><i class="fa fa-upload"></i> Substituir Planta</a>
-                                </c:when>
-                                <c:otherwise>
-                                    <a href="#" id="id-btn-dialog1" class="btn btn-default"><i class="fa fa-upload"></i> Anexar Planta</a>
-                                </c:otherwise>
-                            </c:choose>
-                            </label>        
-                            <label class="col-md-8 col-xs-12">
-                                <c:forEach var="ar" items="${Arquivo.listArquivo(auto.pkAutoStage, 'AutoCessao')}">
-                                    <c:if test="${ar.nmTipo == 'planta'}">
-                                        <a href="/CGPatri/Arquivo/Planta/${ar.nmNome}" target="_blank"><img src="img/img-planta.png" title="${ar.nmNome}" width="7%" height="7%"/></a>
-                                    </c:if>    
-                                </c:forEach>
-                            </label>
-                        </div>        
-                        <div class="form-group">
-                            <label class="col-md-3 col-xs-12">
-                             <c:set var="idAC"  value="${Arquivo.pkArquivo(auto.pkAutoStage,'AutoCessao', 'AC')}"  /> 
-                             <c:choose>
-                                 <c:when test="${idAC.pkArquivo != '0'}">
-                                    <a href="#" id="id-btn-dialog2" class="btn btn-yellow"><i class="fa fa-upload"></i> Substituir Auto de Cessao</a>
-                                </c:when>
-                                <c:otherwise>
-                                    <a href="#" id="id-btn-dialog2" class="btn btn-default"><i class="fa fa-upload"></i> Anexar Auto de Cessao</a>
-                                </c:otherwise>
-                            </c:choose>
-                            </label>
-                            <label class="col-md-8 col-xs-12">
-                                <c:forEach var="ar" items="${Arquivo.listArquivo(auto.pkAutoStage, 'AutoCessao')}">
-                                    <c:if test="${ar.nmTipo == 'AC'}">
-                                        <a href="/CGPatri/Arquivo/AC/${ar.nmNome}" target="_blank"><img src="img/img-arquivo.png" title="${ar.nmNome}" width="7%" height="7%"/></a>
-                                    </c:if>
-                                </c:forEach>
-                            </label>        
-                        </div>
+                            <form action="ControllerServlet?acao=ArquivoUpload" enctype="multipart/form-data" method="POST" >
+                                <input type="hidden" name="pkAutoStage" value="${auto.pkAutoStage}" />
+                                <input type="hidden" name="tipoArquivo" value="planta" />
+                                <input type="hidden" name="Origem" value="AutoCessao" />
+                                <c:set var="arPlanta"  value="${Arquivo.pkArquivo(auto.pkAutoStage,'AutoCessao', 'planta')}"  />
+                                <input type="hidden" name="pkArquivo" value="<c:out value="${arPlanta.pkArquivo}" />" />   
+
+                                <label class="col-md-1 col-xs-12">
+                                    <c:forEach var="ar" items="${Arquivo.listArquivo(auto.pkAutoStage, 'AutoCessao')}">
+                                        <c:if test="${ar.nmTipo == 'planta'}">
+                                            <a href="/CGPatri/Arquivo/Planta/${ar.nmNomeArquivo}" target="_blank"><img src="img/img-planta.png" title="${ar.nmNome}" width="60%" height="60%"/></a>
+                                            </c:if>    
+                                    </c:forEach>
+                                </label>
+                                <label class="inline col-md-2 col-xs-12"><strong>Planta:</strong></label>
+                                <label class="inline col-md-3">
+                                    <input type="text" id="form-field-1" class="col-xs-12 col-md-12" name="nmNome" value="${arPlanta.nmNome}" placeholder="Nome da Planta" required="required" >
+                                </label>
+                                <label class="inline col-md-3 col-xs-12">
+                                    <input type="file" id="id-input-file-2" name="UploadPlanta" required="required"><span class="ace-file-container" data-title="Choose"><span class="ace-file-name" data-title="No File ..."></span></span>
+                                </label>
+                                <label class="inline col-md-2 col-xs-12">
+                                    <c:set var="idPlanta"  value="${Arquivo.pkArquivo(auto.pkAutoStage,'AutoCessao', 'planta')}"  />  
+                                    <c:choose>
+                                        <c:when test="${ idPlanta.pkArquivo != '0'}" >
+                                            <button class="btn btn-yellow"  type="submit">
+                                                <i class="ace-icon fa fa-save bigger-110"></i>
+                                                Substituir
+                                            </button>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <button class="btn btn-success"  type="submit">
+                                                <i class="ace-icon fa fa-save bigger-110"></i>
+                                                Salvar
+                                            </button>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </label>    
+                            </form>
+                            </div>
+                            <div class="space-2"></div>
+                            <div class="form-group">    
+                                <form action="ControllerServlet?acao=ArquivoUpload" method="POST"  enctype="multipart/form-data">
+                                    <input type="hidden" name="pkAutoStage" value="${auto.pkAutoStage}" />
+                                    <input type="hidden" name="tipoArquivo" value="AC" />
+                                    <input type="hidden" name="Origem" value="AutoCessao" />
+                                    <c:set var="arAC"  value="${Arquivo.pkArquivo(auto.pkAutoStage,'AutoCessao', 'AC')}"  />
+                                    <input type="hidden" name="pkArquivo" value="<c:out value="${arAC.pkArquivo}" />" />
+                                    <label class="col-md-1 col-xs-12">
+                                        <c:forEach var="ar" items="${Arquivo.listArquivo(auto.pkAutoStage, 'AutoCessao')}">
+                                            <c:if test="${ar.nmTipo == 'AC'}">
+                                                <a href="/CGPatri/Arquivo/AC/${ar.nmNomeArquivo}" target="_blank"><img src="img/img-arquivo.png" title="${ar.nmNome}" width="50%" height="50%"/></a>
+                                            </c:if>
+                                        </c:forEach>
+                                    </label>
+                                    <label class="inline col-md-2 col-xs-12"><strong>Auto Cessão:</strong></label>
+                                    <label class="inline col-md-3">
+                                        <input type="text" id="form-field-1" class="col-xs-12 col-md-12" name="nmNome" value="${arAC.nmNome}" placeholder="Nome do Auto de Cessão" required="required" >
+                                    </label>
+                                    <label class="inline col-md-3 col-xs-12">
+                                        <input type="file" id="id-input-file-2" name="UploadAC" required="required" ><span class="ace-file-container" data-title="Choose"><span class="ace-file-name" data-title="No File ..."></span></span>
+                                    </label>
+
+                                    <label class="inline col-md-2 col-xs-12">
+                                        <c:set var="idAC"  value="${Arquivo.pkArquivo(auto.pkAutoStage,'AutoCessao', 'AC')}"  /> 
+                                        <c:choose>
+                                            <c:when test="${idAC.pkArquivo != '0'}">
+                                                <button class="btn btn-yellow"  type="submit">
+                                                    <i class="ace-icon fa fa-save bigger-110"></i>
+                                                    Substituir
+                                                </button>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <button class="btn btn-success"  type="submit">
+                                                    <i class="ace-icon fa fa-save bigger-110"></i>
+                                                    Salvar
+                                                </button>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </label>
+                                
+                                </form>        
+                            </div>
+                            
+                            <div class="space-2"></div>
+                            <div class="form-group">
+                            <c:if test="${auto.nrVerArqPlanta == '1'}">
+                            <div class="alert alert-success col-md-offset-1 col-md-9">
+                                <button type="button" class="close" data-dismiss="alert">
+                                    <i class="ace-icon fa fa-times"></i>
+                                </button>
+                                <strong>
+                                    <i class="ace-icon fa fa-times"></i>
+                                    Sucesso! 
+                                </strong>
+                                    A Planta <strong><c:out value="${arPlanta.nmNome}"/></strong> foi anexado.
+                                <br>
+                            </div>
+                            </c:if>
+                            <c:if test="${auto.nrVerArqAc == '1'}">
+                            <div class="alert alert-success col-md-offset-1 col-md-9">
+                                <button type="button" class="close" data-dismiss="alert">
+                                    <i class="ace-icon fa fa-times"></i>
+                                </button>
+                                <strong>
+                                    <i class="ace-icon fa fa-times"></i>
+                                    Sucesso!
+                                </strong>
+                                    O documento do Auto Cessão <strong><c:out value="${arPlanta.nmNome}"/></strong> foi anexado.
+                                <br>
+                            </div>
+                            </c:if>
+                            </div>
+                           
                     </div>
                              
 <!-- Inicio do formulario Validação -->                             
-                    <div id="validacao" class="tab-pane">
+                    <div id="validacao" class="tab-pane
+                        <c:choose>
+                             <c:when test="${auto.nrVerAc == '1' && auto.nrVerDispLegal=='1' && auto.nrVerArqAc == '1' && auto.nrVerArqPlanta == '1' && auto.nrVerValidacao == '0'}">
+                                 in active
+                             </c:when>
+                             <c:otherwise>
+                                 disabled-li-menu
+                             </c:otherwise>    
+                         </c:choose> 
+                         ">
                         <form action="" method="POST">
                             <h5 class="header smaller lbl"><strong>VALIAÇÃO</strong></h5>
                                 <div class="form-group">
@@ -810,7 +1014,7 @@
                                     <label class="inline col-md-10 col-xs-12">
                                         <select class="col-md-3 col-xs-12" name="tpDispLegal">
                                             <option></option>
-                                            <option>Pendente</option>
+                                            <option>Corregir</option>
                                             <option>Validado</option>
                                         </select>
                                     </label>
@@ -863,6 +1067,13 @@
                                         <textarea id="form-field-11" class="autosize-transition form-control" name="Nota" style="height:200px; margin-left: 0px;  width: 650px;"></textarea>
                                     </label> 
                                 </div>
+                                <div class="space-2"></div>
+                                <div class="form-actions center">
+                                    <button class="btn btn-success" type="submit">
+                                        <i class="ace-icon fa fa-save bigger-110"></i>
+                                        Concluir 
+                                    </button>
+                                </div>
                         </form>
                     </div>
                              
@@ -881,55 +1092,15 @@
     
     </div><!-- /.main-container -->
     <div id="dialog-planta"style="display:none;">
-        <form action="ControllerServlet?acao=ArquivoUpload" enctype="multipart/form-data" method="POST" >
-            <input type="hidden" name="pkAutoStage" value="${auto.pkAutoStage}" />
-            <input type="hidden" name="tipoArquivo" value="planta" />
-            <input type="hidden" name="Origem" value="AutoCessao" />
-            <c:set var="arPlanta"  value="${Arquivo.pkArquivo(auto.pkAutoStage,'AutoCessao', 'planta')}"  />
-            <input type="hidden" name="pkArquivo" value="<c:out value="${arPlanta.pkArquivo}" />" />   
-            
-            <div class="form-group">
-               <label class="inline col-md-3 col-xs-12"><strong>Nome da Planta:</strong></label>
-               <label class="inline col-md-3">
-                   <input type="text" id="form-field-1" class="col-xs-12 col-md-12" name="nmPlantaAnexa" placeholder="Nome da Planta" required="required" >
-               </label>
-               <label class="inline col-md-4 col-xs-12">
-                   <input type="file" id="id-input-file-2" name="UploadPlanta" required="required"><span class="ace-file-container" data-title="Choose"><span class="ace-file-name" data-title="No File ..."></span></span>
-               </label>
-            </div>
-            <div class="form-group">
-                <label class="inline col-md-offset-4 col-md-2 col-xs-12">
-                    <button class="btn btn-success other-block" type="submit">
-                        <i class="ace-icon fa fa-save bigger-110"></i>
-                        Salvar
-                    </button>
-                </label>    
-           </div>
-       </form>
+        
     </div>
     
     <div id="dialog-auto-cessao"style="display:none;">
-        <form action="ControllerServlet?acao=ArquivoUpload" method="POST"  enctype="multipart/form-data">
-            <input type="hidden" name="pkAutoStage" value="${auto.pkAutoStage}" />
-            <input type="hidden" name="tipoArquivo" value="AC" />
-            <input type="text" name="Origem" value="AutoCessao" />
-            <c:set var="arAC"  value="${Arquivo.pkArquivo(auto.pkAutoStage,'AutoCessao', 'AC')}"  />
-            <input type="hidden" name="pkArquivo" value="<c:out value="${arAC.pkArquivo}" />" /> 
-            <div class="form-group">
-               <label class="inline col-md-8 col-xs-12">
-                   <input type="file" id="id-input-file-2" name="UploadAC" required="required" ><span class="ace-file-container" data-title="Choose"><span class="ace-file-name" data-title="No File ..."></span></span>
-               </label>
-                <label class="inline col-md-2 col-xs-12">
-                    <button class=""  type="submit">
-                        <i class="ace-icon fa fa-save bigger-110"></i>
-                        Salvar
-                    </button>
-                </label>   
-            </div>
-       </form>
+        
     </div>
     
     
     </body>
 </html>
+
 

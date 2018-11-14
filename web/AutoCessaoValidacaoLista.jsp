@@ -22,18 +22,15 @@
 
     <jsp:useBean id="TpCessao" class= "br.com.Modelo.TipoAutoCessaoDAO" />
     
-        <c:set var="ter" value="${param.ter}" />
         <c:set var="pg" value="${param.pg}" />
         <c:set var="pf" value="${param.pf}" />
         <c:set var="pi" value="${param.pi}" />
         <c:set var="qtdPg" value="${param.qtdPg}" />
-        <c:set var="totalRes" value="${param.totalRes}" />
-        <c:set var="qTpcessao" value="${param.qTpcessao}" />
+        <c:set var="qAC" value="${param.qAC}" />
         <c:set var="qProcesso" value="${param.qProcesso}" />
         <c:set var="qCessionario" value="${param.qCessionario}" />
-        <c:set var="qEndereco" value="${param.qEndereco}" />
         <c:set var="qVigor" value="${param.qVigor}" />
-        <c:set var="qCroqui" value="${param.qCroqui}" />
+        
     
     <div class="breadcrumbs ace-save-state" id="breadcrumbs">
         <ul class="breadcrumb">
@@ -103,7 +100,7 @@
                                     <a href="ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage=${autolist.pkAutoStage}&pg=${pg}&pi=${pi}&pf=${pf}&qProcesso=${qProcesso}&qVigor=${qVigor}" class="btn-info">Analisar</a>
                                 </button>
                             </td>
-                            <td class="hidden-480"></td>
+                            <td class="hidden-480">${autolist.nmCodAc}</td>
                             <td title="${autolist.nmProcesso}">${autolist.nmProcesso}</td>
                             <td class="hidden-480">
                                 <c:choose>
@@ -122,9 +119,28 @@
                                 </c:choose>
                             </td>
                             <td> 
-                                <span class="label label-warning label-white" title="Analisar">
-                                    Pendente Análise
-                                </span>
+                                <c:choose>
+                                    <c:when test="${autolist.nmStatus == 'Nao Verificado'}">
+                                        <span class="label label-warning label-white" title="Pendente Conferência">
+                                            Pendente Conferência
+                                        </span>
+                                    </c:when>
+                                    <c:when test="${autolist.nmStatus == 'EmConferencia'}">
+                                        <span class="label label-white label-white" title="Em conferência">
+                                            Em conferência
+                                        </span>
+                                    </c:when>
+                                    <c:when test="${autolist.nmStatus == 'EmCorrecao'}">
+                                        <span class="label label-danger label-white" title="Em correção">
+                                            Em correção
+                                        </span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <span class="label label-success label-white" title="Analisar">
+                                            Validado 
+                                        </span>
+                                    </c:otherwise>
+                                </c:choose>    
                             </td>
                         </tr>
                     </tbody>

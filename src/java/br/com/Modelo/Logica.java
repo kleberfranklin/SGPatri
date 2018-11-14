@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author d732229
  */
+
 public interface Logica {
     String executa(HttpServletRequest req,
                      HttpServletResponse res) throws Exception;

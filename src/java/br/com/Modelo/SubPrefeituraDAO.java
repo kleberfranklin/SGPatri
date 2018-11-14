@@ -26,7 +26,7 @@ public class SubPrefeituraDAO {
     
 //METODO lista as Subpreituras para campo select
     public List<SubPrefeitura> listSelectSubPref() {
-    String sql = "SELECT * FROM tbl_prefeituraregional ORDER BY nm_prefeituraregional ";
+    String sql = "SELECT * FROM tbl_subprefeitura ORDER BY nm_subprefeitura ";
     
     try {
         List<SubPrefeitura> subPref = new ArrayList<SubPrefeitura>();
@@ -35,9 +35,9 @@ public class SubPrefeituraDAO {
             
             while (rs.next()){
              SubPrefeitura subpref = new SubPrefeitura();
-                subpref.setPkSubPrefeitura(rs.getInt("id_prefeituraregional"));
-                subpref.setSgSbuPrefeitura(rs.getString("sg_prefeituraregional"));
-                subpref.setNmSubPrefeitura(rs.getString("nm_prefeituraregional"));
+                subpref.setPkSubPrefeitura(rs.getInt("id_subprefeitura"));
+                subpref.setSgSbuPrefeitura(rs.getString("sg_subprefeitura"));
+                subpref.setNmSubPrefeitura(rs.getString("nm_subprefeitura"));
              subPref.add(subpref);
             }       
             stmt.execute();

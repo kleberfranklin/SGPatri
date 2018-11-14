@@ -19,7 +19,7 @@
     <c:set var="acessoPerfil" value="${sessionPerfil}" />
     <jsp:directive.include file="include/ControleAcesso.jsp" />
     
-    
+      
 <!--Parametro para diferencia entre os Auto Cessão e Auto Cessão Terceiros -->    
     <c:set var="ter" value="${param.ter}" />
     
@@ -38,7 +38,18 @@
                 Auto de Cessão <c:if test="${ter=='terceiro'}"> Terceiro</c:if>
             </h1>
         </div>
+    
         <div class="col-sm-12 infobox-small" style=" padding-top:30px">
+            <div class="infobox">
+                <div class="btn-group-lg ">
+                    <!--<button class="btn btn-primary btn-white btn-block" onclick=" location.href='ControllerServlet?acao=AutoCessaoListaPagFiltro&ter=${ter}';">-->
+                    <button class="btn btn-primary btn-white btn-block" onclick="#">
+                        <i class="glyphicon glyphicon-search"></i>
+                        Pesquisa
+                    </button>
+                </div>
+            </div>
+            <c:if test="${sessionSgDivisao == 'DDPI' || sessionPainel == '1'}">
             <div class="infobox">
                 <div class="btn-group-lg">
                     <button class="btn btn-primary btn-white btn-block" onclick=" location.href='AutoCessaoInserir.jsp?ter=${ter}';">
@@ -47,19 +58,11 @@
                     </button>
                 </div>
             </div>
-            
-            <div class="infobox">
-                <div class="btn-group-lg ">
-                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href='ControllerServlet?acao=AutoCessaoListaPagFiltro&ter=${ter}';">
-                        <i class="glyphicon glyphicon-search"></i>
-                        Pesquisa
-                    </button>
-                </div>
-            </div>
 
             <div class="infobox">
                 <div class="btn-group-lg">
-                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href='ControllerServlet?acao=AutoCessaoPrazo&ter=${ter}';">
+                    <!--<button class="btn btn-primary btn-white btn-block" onclick=" location.href='ControllerServlet?acao=AutoCessaoPrazo&ter=${ter}';">-->
+                    <button class="btn btn-primary btn-white btn-block" onclick="#">
                         <i class="glyphicon glyphicon-search"></i>
                         Prazo
                     </button>
@@ -68,12 +71,14 @@
 
             <div class="infobox">
                 <div class="btn-group-lg">
-                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href='ControllerServlet?acao=AutoCessaoVencida&ter=${ter}';">
+                    <!--<button class="btn btn-primary btn-white btn-block" onclick="location.href='ControllerServlet?acao=AutoCessaoVencida&ter=${ter}';">-->
+                    <button class="btn btn-primary btn-white btn-block" onclick="#">
                         <i class="glyphicon glyphicon-search"></i>
                         Vencidos
                     </button>
                 </div>
             </div>
+            
             <!--<div class="infobox">
                 <div class="btn-group-lg">
                     <button class="btn btn-primary btn-white btn-block" onclick=" location.href='ControllerServlet?acao=AutoCessaoGraQtd&ter=${ter}';">
@@ -82,6 +87,7 @@
                     </button>
                 </div>
             </div>-->
+            </c:if>
         </div>
         
         <div class="col-sm-12 infobox-small" style=" padding-top:30px">

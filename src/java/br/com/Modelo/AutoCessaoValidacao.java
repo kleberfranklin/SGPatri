@@ -11,13 +11,14 @@ package br.com.Modelo;
  */
 public class AutoCessaoValidacao {
     
-    private int pkAutoStage, fkTipoCessaoStage, fkCatEntidadeStage, fkCatAutoStage, fkCatFinalidadeStage, fkDisplegalStage;
-    private String dtLavratura, nmProcesso, nmCessionario, nmCedente, nmPlanta, nmCroqui,nrArea, nrSetor, nrQuadra, nrLote,
+    private int pkAutoStage, fkTipoCessaoStage, fkCatEntidadeStage, fkCatAutoStage, fkCatFinalidadeStage, fkDisplegalStage, 
+            fkNivelAdm,fkSubpref, nrVerAc, nrVerDispLegal, nrVerArqAc, nrVerArqPlanta, nrVerValidacao;
+
+    private String nmCodAc, dtLavratura, nmProcesso, nmCessionario, nmCedente, nmPlanta, nmCroqui,nrArea, nrSetor, nrQuadra, nrLote,
             nmTipoEndereco, nmTituloEndereco, nmEndereco, nrEndereco, nmComplementoEndereco, nmReferencialEndereco, nmMunicipal,
-            nrPrazo, dtVencimento, dtEncerramento, dsContrapartida, nrVigor, dtCadastro, dsObservacao, nmLogin,  status, dthrAtualizacao;
+            nrPrazo, dtVencimento, dtEncerramento, dsContrapartida, nrVigor, dtCadastro, dsObservacao, nmLogin,  nmStatus, dthrAtualizacao;
 
-
-
+    
     public int getPkAutoStage() {
         return pkAutoStage;
     }
@@ -65,7 +66,71 @@ public class AutoCessaoValidacao {
     public void setFkDisplegalStage(int fkDisplegalStage) {
         this.fkDisplegalStage = fkDisplegalStage;
     }
+    
+     public int getFkNivelAdm() {
+        return fkNivelAdm;
+    }
 
+    public void setFkNivelAdm(int fkNivelAdm) {
+        this.fkNivelAdm = fkNivelAdm;
+    }
+
+    public int getFkSubpref() {
+        return fkSubpref;
+    }
+
+    public void setFkSubpref(int fkSubpref) {
+        this.fkSubpref = fkSubpref;
+    }
+
+    public int getNrVerAc() {
+        return nrVerAc;
+    }
+
+    public void setNrVerAc(int nrVerAc) {
+        this.nrVerAc = nrVerAc;
+    }
+
+    public int getNrVerDispLegal() {
+        return nrVerDispLegal;
+    }
+
+    public void setNrVerDispLegal(int nrVerDispLegal) {
+        this.nrVerDispLegal = nrVerDispLegal;
+    }
+
+    public int getNrVerArqAc() {
+        return nrVerArqAc;
+    }
+
+    public void setNrVerArqAc(int nrVerArqAc) {
+        this.nrVerArqAc = nrVerArqAc;
+    }
+
+    public int getNrVerArqPlanta() {
+        return nrVerArqPlanta;
+    }
+
+    public void setNrVerArqPlanta(int nrVerArqPlanta) {
+        this.nrVerArqPlanta = nrVerArqPlanta;
+    }
+        
+    public int getNrVerValidacao() {
+        return nrVerValidacao;
+    }
+
+    public void setNrVerValidacao(int nrVerValidacao) {
+        this.nrVerValidacao = nrVerValidacao;
+    }
+    
+    public String getNmCodAc() {
+        return nmCodAc;
+    }
+
+    public void setNmCodAc(String nmCodAc) {
+        this.nmCodAc = nmCodAc;
+    }
+    
     public String getDtLavratura() {
         return dtLavratura;
     }
@@ -266,12 +331,12 @@ public class AutoCessaoValidacao {
         this.nmLogin = nmLogin;
     }
 
-    public String getStatus() {
-        return status;
+    public String getNmStatus() {
+        return nmStatus;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setNmStatus(String nmStatus) {
+        this.nmStatus = nmStatus;
     }
 
     public String getDthrAtualizacao() {

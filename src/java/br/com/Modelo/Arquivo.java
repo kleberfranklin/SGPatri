@@ -12,23 +12,26 @@ package br.com.Modelo;
 public class Arquivo {
     
     private int pkArquivo, fkTipoArquivo;
-    private String nmOrigem, nmTipo, nmNome, nmDiretorio, dthrAtualizacao, nmLogin;
+    private String nmOrigem, nmTipo, nmNomeArquivo, nmDiretorio, nmNome, dthrAtualizacao, nmLogin;
 
     public Arquivo() {
     }
 
-    public Arquivo(int fkTipoArquivo, String nmOrigem, String nmTipo, String nmNome, String nmDiretorio, String nmLogin) {
+  
+
+    public Arquivo(int fkTipoArquivo, String nmOrigem, String nmTipo, String nmNomeArquivo, String nmDiretorio, String nmNome, String nmLogin) {
         this.fkTipoArquivo = fkTipoArquivo;
         this.nmOrigem = nmOrigem;
         this.nmTipo = nmTipo;
-        this.nmNome = nmNome;
+        this.nmNomeArquivo = nmNomeArquivo;
         this.nmDiretorio = nmDiretorio;
+        this.nmNome = nmNome;
         this.nmLogin = nmLogin;
     }
     
     
-    public Arquivo(int pkArquivo, int fkTipoArquivo, String nmOrigem, String nmTipo, String nmNome, String nmDiretorio, String nmLogin) {
-        this(fkTipoArquivo, nmOrigem, nmTipo,nmNome, nmDiretorio, nmLogin);
+    public Arquivo(int pkArquivo, int fkTipoArquivo, String nmOrigem, String nmTipo, String nmNomeArquivo, String nmDiretorio, String nmNome, String nmLogin) {
+        this(fkTipoArquivo, nmOrigem, nmTipo,nmNomeArquivo, nmDiretorio, nmNome, nmLogin);
         this.pkArquivo = pkArquivo;
     }
 
@@ -65,12 +68,12 @@ public class Arquivo {
         this.nmTipo = nmTipo;
     }
 
-    public String getNmNome() {
-        return nmNome;
+    public String getNmNomeArquivo() {
+        return nmNomeArquivo;
     }
 
-    public void setNmNome(String nmNome) {
-        this.nmNome = nmNome;
+    public void setNmNomeArquivo(String nmNomeArquivo) {
+        this.nmNomeArquivo = nmNomeArquivo;
     }
 
     public String getNmDiretorio() {
@@ -80,7 +83,15 @@ public class Arquivo {
     public void setNmDiretorio(String nmDiretorio) {
         this.nmDiretorio = nmDiretorio;
     }
+    
+      public String getNmNome() {
+        return nmNome;
+    }
 
+    public void setNmNome(String nmNome) {
+        this.nmNome = nmNome;
+    }
+    
     public String getDthrAtualizacao() {
         return dthrAtualizacao;
     }

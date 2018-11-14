@@ -17,7 +17,7 @@
                 </button>
                 <div class="navbar-header pull-left">
                     <a href="Index.jsp" class="navbar-brand">
-                        <small><img src="img/logo.png" height="6%" width="6%" title="CGPatri - Gerador de Indicadores"> CGPatri - Gestão da informação</small>
+                        <small><img src="img/logo.png" height="6%" width="6%" title="CGPatri - Gerador de Indicadores"> SG-PATRI - Sistema de Gestão das Áreas Públicas</small>
                     </a>
                 </div>
             <!--    <div class="navbar-buttons navbar-header pull-right" role="navigation">
@@ -102,11 +102,7 @@
                     <span class=" fa fa-undo bigger-110"></span>
                 </button>    
             </div>
-
             <hr>
-            
-             
-
             <div class="text-capitalize">
                 <jsp:scriptlet>
                           exception.printStackTrace(new java.io.PrintWriter(out));

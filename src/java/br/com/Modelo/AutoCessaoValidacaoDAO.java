@@ -21,18 +21,18 @@ public class AutoCessaoValidacaoDAO {
     
     private final Connection connection;
     
-    AutoCessaoValidacaoDAO(){
+    public AutoCessaoValidacaoDAO(){
         this.connection = new FabricaConexao().getConnetion();
-    
     }
     
     //METODO utilizado na Classe (AutoCessaolistaPagFiltro)
-    public int qtdAutoCessaoPesquisa(String qProcesso, String qVigor){
-          String sql = ("SELECT COUNT(*) as total FROM tbl_autocessao_stage WHERE nm_processo like ? and nr_vigor like ? ");
+    public int qtdAutoCessaoPesquisa(String qAC, String qProcesso, String qVigor){
+          String sql = ("SELECT COUNT(*) as total FROM tbl_autocessao_stage WHERE cod_ac like ? and nm_processo like ? and nr_vigor like ? ");
            try {
                PreparedStatement stmt = connection.prepareStatement(sql);
-                   stmt.setString(1, qProcesso+'%');
-                   stmt.setString(2, '%'+qVigor+'%');
+                   stmt.setString(1, qAC+'%');
+                   stmt.setString(2, qProcesso+'%');
+                   stmt.setString(3, '%'+qVigor+'%');
                ResultSet rs = stmt.executeQuery();
                int qtdAuto = 0;
 
@@ -47,27 +47,30 @@ public class AutoCessaoValidacaoDAO {
         }
     
 //METODO utilizado na Classe (AutoCessaolistaPagFiltro)
-    public List<AutoCessaoValidacao> listPagFiltro(String qProcesso, String qVigor, int qtdLinha, int OFFSET) {
+    public List<AutoCessaoValidacao> listPagFiltro(String qAC, String qProcesso, String qVigor, int qtdLinha, int OFFSET) {
             String sql = ("SELECT * FROM tbl_autocessao_stage "
-                    + "WHERE nm_processo like ? and nr_Vigor like ? "
-                    + "ORDER BY id_autocessao ASC "
+                    + "WHERE cod_ac like ? and nm_processo like ? and nr_Vigor like ? "
+                    + "ORDER BY cod_ac ASC "
                     + "LIMIT ? OFFSET ?");
             try {
                 List<AutoCessaoValidacao> AutoValidacaoLista = new ArrayList<AutoCessaoValidacao>();
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
-                   stmt.setString(1, qProcesso+'%');
-                   stmt.setString(2, '%'+qVigor+'%');
-                   stmt.setInt(3, qtdLinha);
-                   stmt.setInt(4, OFFSET);
+                   stmt.setString(1, qAC+'%');
+                   stmt.setString(2, qProcesso+'%');
+                   stmt.setString(3, '%'+qVigor+'%');
+                   stmt.setInt(4, qtdLinha);
+                   stmt.setInt(5, OFFSET);
 
                 ResultSet rs = stmt.executeQuery();
 
                 while (rs.next()) {
                 AutoCessaoValidacao autoVa = new AutoCessaoValidacao();
                     autoVa.setPkAutoStage(rs.getInt("id_autocessao"));
+                    autoVa.setNmCodAc(rs.getString("cod_ac"));
                     autoVa.setNmProcesso(rs.getString("nm_processo"));
                     autoVa.setNrVigor(rs.getString("nr_vigor"));
+                    autoVa.setNmStatus(rs.getString("status"));
                 AutoValidacaoLista.add(autoVa);
                 }
                 stmt.execute();
@@ -93,6 +96,7 @@ public class AutoCessaoValidacaoDAO {
                 AutoCessaoValidacao autoVa = new AutoCessaoValidacao();
                 if (rs.next()) {
                     autoVa.setPkAutoStage(rs.getInt("id_autocessao"));
+                    autoVa.setNmCodAc(rs.getString("cod_ac"));
                     autoVa.setFkTipoCessaoStage(rs.getInt("fk_tipocessao"));
                     autoVa.setFkCatEntidadeStage(rs.getInt("fk_categoriaentidade"));
                     autoVa.setFkCatAutoStage(rs.getInt("fk_categoriauto"));
@@ -122,9 +126,16 @@ public class AutoCessaoValidacaoDAO {
                     autoVa.setNrVigor(rs.getString("nr_vigor"));
                     autoVa.setDtCadastro(rs.getString("dt_cadastro"));
                     autoVa.setDsObservacao(rs.getString("ds_observacao"));
-                    autoVa.setStatus(rs.getString("status"));
+                    autoVa.setNmStatus(rs.getString("status"));
                     autoVa.setNmLogin(rs.getString("nm_login"));
                     autoVa.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
+                    autoVa.setFkNivelAdm(rs.getInt("fk_niveladm"));
+                    autoVa.setFkSubpref(rs.getInt("fk_subprefeitura"));
+                    autoVa.setNrVerAc(rs.getInt("nr_verificado_ac"));
+                    autoVa.setNrVerDispLegal(rs.getInt("nr_verificado_displegal"));
+                    autoVa.setNrVerArqAc(rs.getInt("nr_verificado_arquivo_ac"));
+                    autoVa.setNrVerArqPlanta(rs.getInt("nr_verificado_arquivo_planta"));
+                    autoVa.setNrVerValidacao(rs.getInt("nr_verificado_validacao"));
                 return autoVa;
                }
                 stmt.execute();

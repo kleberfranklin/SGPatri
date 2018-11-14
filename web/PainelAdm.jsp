@@ -59,7 +59,7 @@
             </div>
             
             <div class="infobox">
-                <div class="btn-group-lg">
+                <div class="btn-group-lg disabled-li-menu ">
                     <button class="btn btn-primary btn-white btn-block" onclick="location.href='ControllerServlet?acao=CargoLista';">
                         <i class="ace-icon fa fa-folder"></i>
                         Cargo
@@ -91,14 +91,8 @@
                     </button>
                 </div>
             </div>
-             <div class="infobox" title="Relizar alterações com campo Cat. da Entidade dos formulário de cadsatro de Auto de Cessão">
-                <div class="btn-group-lg ">
-                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href='ControllerServlet?acao=';">
-                        Categoria da Entidade
-                    </button>
-                </div>
-            </div>
-            <div class="infobox" title="Relizar alterações com campo Cat. Auto de Cessão dos formulário de cadsatro de Auto de Cessão">
+             
+            <div class="infobox" title="">
                 <div class="btn-group-lg ">
                     <button class="btn btn-primary btn-white btn-block" onclick=" location.href='ControllerServlet?acao=CatAutoCessaoLista';">
                         Categoria Auto de Cessão
@@ -135,9 +129,22 @@
                     </button>
                 </div>
             </div>
-            
             <div class="infobox">
-                <div class="btn-group-lg">
+                <div class="btn-group-lg disabled-li-menu">
+                    <button class="btn btn-primary btn-white btn-block" onclick="location.href='ControllerServlet?acao=';">
+                        Nível Administração
+                    </button>
+                </div>
+            </div>
+            <div class="infobox" title="">
+                <div class="btn-group-lg disabled-li-menu">
+                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href='ControllerServlet?acao=';">
+                        Categoria da Entidade
+                    </button>
+                </div>
+            </div>
+            <div class="infobox">
+                <div class="btn-group-lg disabled-li-menu">
                     <button class="btn btn-primary btn-white btn-block" onclick="location.href='ControllerServlet?acao=';">
                         Cessionário
                     </button>
@@ -145,7 +152,7 @@
             </div>
             
             <div class="infobox">
-                <div class="btn-group-lg">
+                <div class="btn-group-lg disabled-li-menu">
                     <button class="btn btn-primary btn-white btn-block" onclick="location.href='ControllerServlet?acao=';">
                         Cedente
                     </button>

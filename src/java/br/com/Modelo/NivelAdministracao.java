@@ -12,19 +12,15 @@ package br.com.Modelo;
 public class NivelAdministracao {
     //Atributos
     
-    private int pkNiveladm; 
-    private String sgAdm,  nnAdm, nmLogin, dthrAtualizacao;
+    private int pkAdm; 
+    private String sgAdm,  nmAdm, nmLogin, dthrAtualizacao;
     
 
-
-
-    //Getteres e Setteres
-    public int getPkNiveladm() {
-        return pkNiveladm;
+    public int getPkAdm() {
+        return pkAdm;
     }
-
-    public void setPkNiveladm(int pkNiveladm) {
-        this.pkNiveladm = pkNiveladm;
+    public void setPkAdm(int pkAdm) {   
+        this.pkAdm = pkAdm;
     }
 
     public String getSgAdm() {
@@ -35,12 +31,12 @@ public class NivelAdministracao {
         this.sgAdm = sgAdm;
     }
 
-    public String getNnAdm() {
-        return nnAdm;
+    public String getNmAdm() {
+        return nmAdm;
     }
 
-    public void setNnAdm(String nnAdm) {
-        this.nnAdm = nnAdm;
+    public void setNmAdm(String nmAdm) {
+        this.nmAdm = nmAdm;
     }
 
     public String getNmLogin() {
