@@ -5,6 +5,7 @@
  */
 package br.com.Controle;
 
+import br.com.Modelo.AutoCessaoValidacaoDAO;
 import br.com.Modelo.DispositivoLegal;
 import br.com.Modelo.DispositivoLegalDAO;
 import br.com.Modelo.Logica;
@@ -27,19 +28,23 @@ public class AutoCessaoValidacaoDispLegalUC implements Logica {
         HttpSession session = req.getSession();
         
         DispositivoLegalDAO dispDAO = new DispositivoLegalDAO();
+        AutoCessaoValidacaoDAO autoDAO = new AutoCessaoValidacaoDAO();
         List<DispositivoLegal> lisDis = new ArrayList<DispositivoLegal>();
    
         String[] tpDispositivo;
         String[] nrDispositivo;
         String[] dtDispositivo;
-        String loginSessio;
-        int pkAutoStage, cont;
+        String pgValidacao, execucao,loginSessio;
+        int pkAutoStage, cont, nrVerDisplegal;
         
+        execucao = req.getParameter("execucao");
+        pgValidacao = req.getParameter("pgValidacao");
         tpDispositivo = req.getParameterValues("tpDispositivo");
         nrDispositivo = req.getParameterValues("numDispositivo");
         dtDispositivo = req.getParameterValues("dtDispositivo");
         pkAutoStage = Integer.parseInt(req.getParameter("pkAutoStage"));
         loginSessio = (String) session.getAttribute("sessionLogin");
+        nrVerDisplegal = Integer.parseInt(req.getParameter("nrVerDisplegal"));
         cont = tpDispositivo.length;
         
         for (int i=0; i<cont; i++){
@@ -53,15 +58,16 @@ public class AutoCessaoValidacaoDispLegalUC implements Logica {
         lisDis.add(disp);             
         }
         
-//        for(int i=0; i<lisDis.size(); i++){
-//            dispDAO.cDisLegal(d);
-//            System.out.println(lisDis.get(i).getDtDisp());
-//        }
-            for(DispositivoLegal d : lisDis){
-                dispDAO.cDisLegal(d);
-                System.out.println(d);
-            }
+        for(DispositivoLegal d : lisDis){
+            dispDAO.cDisLegal(d);
+            System.out.println(d);
+        }
+        autoDAO.upAutoCessaoVerificadoDisLegal(pkAutoStage, nrVerDisplegal);
+       
+        if ((null==pgValidacao ||pgValidacao.equals("")) && execucao =="edit"){
+            return "ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage="+pkAutoStage+"&execucao=";
+        }
         
-        return "ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage="+pkAutoStage;  
+        return "ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage="+pkAutoStage+"&execucao="+execucao+"&pgValidacao"+pgValidacao;  
     }
 }

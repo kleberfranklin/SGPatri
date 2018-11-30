@@ -41,7 +41,7 @@ public class AutoCessaoValidacaoLista implements Logica {
         
         String pgS, piS, pfS, ter;
         
-        String  qAC, qProcesso, qVigor;
+        String  qAC, qProcesso, qVigor, qStatus;
         
 //Carregando atributos com a informações do formlário.           
         pgS = req.getParameter("pg");
@@ -51,6 +51,7 @@ public class AutoCessaoValidacaoLista implements Logica {
         qProcesso = req.getParameter("qProcesso");
         qAC = req.getParameter("qAC");
         qVigor = req.getParameter("qVigor");
+        qStatus = req.getParameter("qStatus");
 
         
 //Validação dos atributos carregdos com as informações do formulário.         
@@ -63,6 +64,9 @@ public class AutoCessaoValidacaoLista implements Logica {
         }
         if (qVigor == null){
             qVigor="";
+        }
+        if (qStatus == null){
+            qStatus="";
         }
         if (pgS == null) {
             pg = 0;
@@ -83,7 +87,7 @@ public class AutoCessaoValidacaoLista implements Logica {
         
 //Carregando a quantidade de registro para calculdo da quantidade de paginas     
      
-        qtdRegistro = autoVaDAO.qtdAutoCessaoPesquisa(qAC, qProcesso, qVigor);
+        qtdRegistro = autoVaDAO.qtdAutoCessaoPesquisa(qAC, qProcesso, qVigor, qStatus);
         qtdPg = qtdRegistro / qtdLinha;   
         
 //Logica da paginação         
@@ -118,11 +122,12 @@ public class AutoCessaoValidacaoLista implements Logica {
         offset = ((pg * qtdLinha)- qtdLinha);
         
 //Populando o objeto lista 
-        List<AutoCessaoValidacao>  listAuto = new AutoCessaoValidacaoDAO().listPagFiltro(qAC, qProcesso, qVigor, qtdLinha, offset);
+        List<AutoCessaoValidacao>  listAuto = new AutoCessaoValidacaoDAO().listPagFiltro(qAC, qProcesso, qVigor, qStatus, qtdLinha, offset);
         req.setAttribute("listAuto", listAuto);
         req.setAttribute("qAC", qAC);
         req.setAttribute("qProcesso", qProcesso);
         req.setAttribute("qVigor", qVigor);
+        req.setAttribute("qStatus", qStatus);
                    
         return  "AutoCessaoValidacaoLista.jsp?pg="+pg+"&pi="+pi+"&pf="+pf+"&qtdPg="+qtdPg+"&totalRes="+qtdRegistro; 
     

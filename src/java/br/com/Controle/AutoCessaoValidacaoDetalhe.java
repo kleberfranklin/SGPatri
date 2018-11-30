@@ -25,8 +25,10 @@ public class AutoCessaoValidacaoDetalhe implements Logica{
 
 //Atributos
         int pkAutoStage = 0;
+        String execucao;
 //Carregando atributos com a informações do formlário.        
         pkAutoStage = Integer.parseInt(req.getParameter("pkAutoStage"));
+        execucao = req.getParameter("execucao");
 
 //Validação dos atributos carregdos com as informações do formulário.  
         if (pkAutoStage == 0){
@@ -35,7 +37,7 @@ public class AutoCessaoValidacaoDetalhe implements Logica{
 //Consulta no banco e popula o objeto        
         AutoCessaoValidacao auto = autoVaDAO.detalheAutoCessao(pkAutoStage);
         req.setAttribute("auto", auto);
-        
+        req.setAttribute("execucao", execucao);
         return "AutoCessaoValidacao.jsp";
         
     }    

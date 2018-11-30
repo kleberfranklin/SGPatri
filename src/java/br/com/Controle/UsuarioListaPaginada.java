@@ -62,17 +62,17 @@ public class UsuarioListaPaginada implements Logica{
         if(session.getAttribute("sessionPerfil").equals("Administrador")){
             sgDivisao = "";
         }
-        if (pgS == null) {
+        if (pgS == null || pgS.equals("")) {
             pg = 0;
         } else {
             pg = Integer.parseInt(pgS);
         }
-        if (piS == null) {
+        if (piS == null || piS.equals("")) {
             pi = 0;
         } else {
             pi = Integer.parseInt(piS);
         }
-        if (pfS == null) {
+        if (pfS == null || pfS.equals("")) {
             pf = 0;
         } else {
             pf = Integer.parseInt(pfS);

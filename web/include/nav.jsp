@@ -75,11 +75,11 @@
                             <a href="AutoCessao.jsp" title="Auto de Cessão"> Autos de Cessão</a>
                             <b class="arrow"></b>
                         </li>
-                        <li class="">
-                            <a href="AutoCessao.jsp?ter=terceiro" title="Auto de Cessão de Terceiros"> Autos de Cessão de Terceiros</a>
-                            <b class="arrow"></b>
-                        </li>
-                        <c:if test="${sessionSgDivisao == 'DDPI' || sessionPainel == '1'}">
+                    <!--<li class="">
+                        <a href="AutoCessao.jsp?ter=terceiro" title="Auto de Cessão de Terceiros"> Autos de Cessão de Terceiros</a>
+                        <b class="arrow"></b>
+                    </li> -->
+                        <c:if test="${sessionSgDivisao == 'DDPI' && sessionPerfil == 'Supervisor'}">
                         <li class="">
                             <a href="ControllerServlet?acao=AutoCessaoValidacaoLista" title="Auto de Cessão Validação"> Validação Auto Cessão</a>
                             <b class="arrow"></b>

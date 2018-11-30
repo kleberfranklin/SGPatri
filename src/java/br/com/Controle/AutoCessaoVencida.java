@@ -6,10 +6,10 @@
 package br.com.Controle;
 
 
-import br.com.Modelo.AutoCessao;
-import br.com.Modelo.AutoCessao;
-import br.com.Modelo.AutoCessaoDAO;
-import br.com.Modelo.AutoCessaoDAO;
+import br.com.Modelo.AutoCessaoAntigo;
+import br.com.Modelo.AutoCessaoAntigo;
+import br.com.Modelo.AutoCessaoAntigoDAO;
+import br.com.Modelo.AutoCessaoAntigoDAO;
 import br.com.Modelo.Logica;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +24,7 @@ public class AutoCessaoVencida implements Logica{
     public String executa(HttpServletRequest req,
                      HttpServletResponse res) throws Exception {
          
-        AutoCessaoDAO autoDAO = new AutoCessaoDAO();
+        AutoCessaoAntigoDAO autoDAO = new AutoCessaoAntigoDAO();
 
 /**
 *  Atributos: 
@@ -106,11 +106,11 @@ public class AutoCessaoVencida implements Logica{
         offset = ((pg * qtdLinha)- qtdLinha);
 
 //Populando o objeto lista        
-        List<AutoCessao> listAuto;
+        List<AutoCessaoAntigo> listAuto;
         if("".equals(ter) || null == ter){
-            listAuto = new AutoCessaoDAO().listAutoCessaoVencida(qtdLinha, offset);
+            listAuto = new AutoCessaoAntigoDAO().listAutoCessaoVencida(qtdLinha, offset);
         }else{
-            listAuto = new AutoCessaoDAO().listAutoCessaoVencida(qtdLinha, offset);
+            listAuto = new AutoCessaoAntigoDAO().listAutoCessaoVencida(qtdLinha, offset);
         }
         
         req.setAttribute("listAuto", listAuto);

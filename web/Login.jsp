@@ -29,12 +29,12 @@
                             <div class="space-6"></div>
 
                             <div class="position-relative">
-                                <div id="login-box" class="login-box visible  widget-box no-border">
-                                    <div class="widget-body">
-                                        <div class="widget-main">
+                                <div id="login-box" class="login-box visible widget-box no-border  ">
+                                    <div class="widget-body ">
+                                        <div class="widget-main ">
                                             <h4 class="header blue lighter bigger">
-                                                <span class="red">SISGI</span><br />
-                                                <span class="grey" id="id-text2">Sistema de Gestão da informação</span>
+                                                <span class="red">SG-PATRI</span><br />
+                                                <span class="grey">Sistema de Gestão das Áreas Públicas</span>
                                             </h4>
 
                                             <div class="space-6"></div>
@@ -87,12 +87,14 @@
                                                     <i class="ace-icon fa fa-arrow-left"></i>
                                                     Esqueceu a senha.
                                                 </a> -->
+                                            <div class="space-8"></div>
                                             </div>
                                             <div>
-                                                <a href="#" data-target="#signup-box" class="user-signup-link">
+                                               <!-- <a href="#" data-target="#signup-box" class="user-signup-link">
                                                     Solicitar acesso
                                                     <i class="ace-icon fa fa-arrow-right"></i>
-                                                </a>
+                                                </a>-->
+                                            <div class="space-8"></div>
                                             </div>
                                         </div>
                                     </div><!-- /.widget-body -->

@@ -110,7 +110,7 @@ public class UsuarioDAO {
 //                us.setNmLoginAtualizacao(rs.getString("nm_loginAtualizacao"));
              uslista.add(us);
             }       
-                                                                                                                                                                           
+          stmt.close();
         return uslista;
     
     } catch (SQLException e) {
@@ -129,7 +129,7 @@ public class UsuarioDAO {
             if(rs.next()){
                 qtdUs = rs.getInt("total");
             }
-            
+            stmt.close();
             return qtdUs;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -268,6 +268,28 @@ public class UsuarioDAO {
         }
  }
  
+ //METODO retorna o nome e sigla da Divisão do usuário
+ public Usuario nomeUsuario (String NmLogin){
+     String sql = ("SELECT * FROM vw_usuariocompleto WHERE nm_login = ?");
+     try{
+         PreparedStatement stmt = connection.prepareStatement(sql);
+                stmt.setString(1, NmLogin);
+            ResultSet rs = stmt.executeQuery();  
+            
+            Usuario us = new Usuario();    
+            if (rs.next()){
+                us.setNmLogin(rs.getString("nm_login"));
+                us.setNmNome(rs.getString("nm_nome"));
+                us.setSgDivisao(rs.getString("sg_divisao"));
+            }       
+            stmt.close();
+        return us;
+     }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+ }
+ 
+ 
  
 //METODO retorna as informações de um usuário para pagina UsuarioDetalhe
  public Usuario detalheUsuario (int pkUsusario){
@@ -300,7 +322,7 @@ public class UsuarioDAO {
                 us.setNmLoginAtualizacao(rs.getString("nm_loginAtualizacao"));
 //                us.setNmNomeAtualizacao(rs.getString("nm_nomeAtualizacao"));
             }       
-                                                                                                                                                                
+            stmt.close();
         return us;
      }catch (SQLException e) {
             throw new RuntimeException(e);

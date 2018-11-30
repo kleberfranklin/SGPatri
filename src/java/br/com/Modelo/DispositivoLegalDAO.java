@@ -38,28 +38,43 @@ public class DispositivoLegalDAO {
                 stmt.setString(5, dis.getNmLogin());
                 stmt.setTimestamp(6, java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
             stmt.execute();
-            stmt.cancel();
+            stmt.close();
         }catch (SQLException e) {
         throw new RuntimeException(e);
       }
-     
-            
-        
-        
+    }
+    
+    
+//MEDOTO excluir o Dispositivo Legal 
+    public void delDispositivo (int pkDispLegal, int fkAutoCessao){
+        String sql= "DELETE FROM tbl_dispositivolegal WHERE id_displegal= ? and fk_autocessao = ?";
+        try{
+            PreparedStatement stmt = connection.prepareCall(sql);
+                stmt.setInt(1, pkDispLegal);
+                stmt.setInt(2, fkAutoCessao);
+            stmt.execute();
+            stmt.close();
+        }catch(SQLException e){
+          throw new RuntimeException(e);
+        }
+    
+    
+    
     }
     
 //METODO lista o Dispositivo Legal para Formulario Auto Cessao Validação
-    public List<DispositivoLegal> listDispositivo(int pkDisplegal) {
-    String sql = "SELECT * FROM tbl_dispositivolegal WHERE  id_displegal = ? ORDER BY nm_tipodisplegal";
+    public List<DispositivoLegal> listDispositivo(int fkAutoCessao) {
+    String sql = "SELECT * FROM tbl_dispositivolegal WHERE fk_autocessao = ? ORDER BY id_displegal";
     
     try {
         List<DispositivoLegal> lisDisp = new ArrayList<DispositivoLegal>();
             PreparedStatement stmt = connection.prepareStatement(sql);
-                stmt.setInt(1, pkDisplegal);
+                stmt.setInt(1, fkAutoCessao);
             ResultSet rs = stmt.executeQuery();  
             while (rs.next()){
             DispositivoLegal disp = new DispositivoLegal();
                 disp.setPkDisplegal(rs.getInt("id_displegal"));
+                disp.setFkTipoDisplegal(rs.getInt("fk_tipodisplegal"));
                 disp.setNmTitulo(rs.getString("nm_titulo"));
                 disp.setNrDisp(rs.getString("nr_disp"));
                 disp.setDtDisp(rs.getString("dt_disp"));

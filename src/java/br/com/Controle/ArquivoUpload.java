@@ -31,17 +31,21 @@ public class ArquivoUpload implements Logica{
         Arquivo ar = new Arquivo();
         HttpSession session = req.getSession();
 
-        String nomeDoArquivo = "", caminhoArquivo="";
-        int pkArquivo;
+        String nomeDoArquivo="", caminhoArquivo="", tipoArquivo, origem, nome, pgValidacao, execucao, finalizar, loginSessio;
+        int pkArquivo, pkAutoStage,nrVerArqAc, nrVerArqPlanta;
         InputStream arquivoCarregado;
                 
         
-        String loginSessio =(String) session.getAttribute("sessionLogin");
-        String tipoArquivo = req.getParameter("tipoArquivo");
-        String origem = req.getParameter("Origem");
-        String nome = req.getParameter("nmNome");
-        int pkAutoStage = Integer.parseInt(req.getParameter("pkAutoStage"));
+        
+        tipoArquivo = req.getParameter("tipoArquivo");
+        origem = req.getParameter("Origem");
+        nome = req.getParameter("nmNome");
+        pkAutoStage = Integer.parseInt(req.getParameter("pkAutoStage"));
         pkArquivo = Integer.parseInt(req.getParameter("pkArquivo"));
+        execucao = req.getParameter("execucao");
+        pgValidacao = req.getParameter("pgValidacao");
+        finalizar = req.getParameter("finalizar");
+        loginSessio =(String) session.getAttribute("sessionLogin");
         
 
         String pasta = "/Arquivo";
@@ -55,6 +59,8 @@ public class ArquivoUpload implements Logica{
                 nomeDoArquivo = uploadPlanta.getSubmittedFileName();
                 arquivoCarregado = uploadPlanta.getInputStream();
                 caminhoArquivo = up.upload(pastaArquivar, nomeDoArquivo, arquivoCarregado);
+                nrVerArqPlanta = Integer.parseInt(req.getParameter("nrVerArqPlanta"));
+                autoVaDAO.upAutoCessaoVerificadoArquivoPlanta(pkAutoStage, nrVerArqPlanta);
             break;
 
             case "AC":
@@ -63,6 +69,8 @@ public class ArquivoUpload implements Logica{
                 nomeDoArquivo = uploadAC.getSubmittedFileName();
                 arquivoCarregado = uploadAC.getInputStream();
                 caminhoArquivo = up.upload(pastaArquivar, nomeDoArquivo, arquivoCarregado);
+                nrVerArqAc = Integer.parseInt(req.getParameter("nrVerArqAc"));
+                autoVaDAO.upAutoCessaoVerificadoArquivoAc(pkAutoStage, nrVerArqAc);
             break;
             case "Deletar":
             break;
@@ -74,15 +82,24 @@ public class ArquivoUpload implements Logica{
                 ar = new Arquivo(pkArquivo, pkAutoStage, origem, tipoArquivo, nomeDoArquivo, caminhoArquivo, nome, loginSessio);
                 arDAO.upArquivo(ar);
             }else{
-                //boolean duplicidade = arDAO.duplicidade(origem,tipoArquivo,caminhoArquivo);
-//                if(duplicidade == false){
+                boolean duplicidade = arDAO.duplicidade(pkAutoStage,tipoArquivo);
+                if(duplicidade == false){
                     ar = new Arquivo(pkAutoStage, origem, tipoArquivo, nomeDoArquivo, caminhoArquivo, nome, loginSessio);
                     arDAO.cArquivo(ar);
-//                }    
+                }    
             }
-            AutoCessaoValidacao auto = autoVaDAO.detalheAutoCessao(pkAutoStage);
-            req.setAttribute("auto", auto);
-            return "AutoCessaoValidacao.jsp";
+            
+            if(null !=finalizar && finalizar.equals("1")){
+                autoVaDAO.upAutoCessaoVerificadoValidacao(0, 1, pkAutoStage, "Validado");
+                //execucao = "";
+                req.setAttribute("execucao", "ola");
+                return "ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage="+pkAutoStage+"&execucao=";
+            } 
+            
+            if ((null == pgValidacao || pgValidacao.equals("")) && execucao == "edit") {
+                return "ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage="+pkAutoStage+"&execucao=";
+           }
+        return "ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage="+pkAutoStage+"&execucao="+execucao+"&pgValidacao"+pgValidacao;  
     }   
 
    

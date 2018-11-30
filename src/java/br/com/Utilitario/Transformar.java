@@ -31,10 +31,9 @@ public class Transformar {
     public static String priMaiuscula(String value) {
         value = value.toLowerCase();    	
         String result = "";
-        String[] nomes = value.split(" ");
-            for(String palavra : nomes){
-                    result = result + " " + palavra.replaceFirst(palavra.substring(0, 1), palavra.substring(0, 1).toUpperCase());
-                }
+        String[] nomes = value.split("\\s+");
+            for(String palavra : nomes)
+                result = result +" "+ palavra.replaceFirst(palavra.substring(0, 1), palavra.substring(0, 1).toUpperCase());
         return result.trim();
 	} 
 
@@ -53,6 +52,8 @@ public class Transformar {
 	}    
 
 
+    
+    
 
     
 }

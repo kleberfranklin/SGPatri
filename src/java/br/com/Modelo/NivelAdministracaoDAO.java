@@ -55,5 +55,29 @@ public class NivelAdministracaoDAO {
     } 
     
     
+    //METODO utilizado para retornar as informação de um Nivel Administração
+    public NivelAdministracao detalheNivelAdm(int pkNivelAdm){
+        String sql = "SELECT * FROM tbl_niveladministracao WHERE id_niveladministracao = ?";
+        try{
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, pkNivelAdm);
+            ResultSet rs = stmt.executeQuery();
+                    
+            NivelAdministracao nvadm = new NivelAdministracao();
+            if(rs.next()){
+                nvadm.setPkAdm(rs.getInt("id_niveladministracao"));
+                nvadm.setSgAdm(rs.getString("sg_administracao"));
+                nvadm.setNmAdm(rs.getString("nm_administracao"));
+                nvadm.setNmLogin(rs.getString("nm_login"));
+                nvadm.setDthrAtualizacao(rs.getString("dtth_atualizacao"));
+            }
+         stmt.close();
+         return nvadm;
+        }catch (SQLException e){
+          throw new RuntimeException(e);
+        }
+    }   
+    
+    
     
 }

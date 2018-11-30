@@ -11,13 +11,113 @@ package br.com.Modelo;
  */
 public class AutoCessaoValidacao {
     
-    private int pkAutoStage, fkTipoCessaoStage, fkCatEntidadeStage, fkCatAutoStage, fkCatFinalidadeStage, fkDisplegalStage, 
-            fkNivelAdm,fkSubpref, nrVerAc, nrVerDispLegal, nrVerArqAc, nrVerArqPlanta, nrVerValidacao;
+    private int pkAutoStage, fkTipoCessaoStage, fkCatEntidadeStage, fkCatAutoStage, fkCatFinalidadeStage, fkSubcatfinalidade,
+            fkNivelAdm, fkSubpref, fkCatContrapartida, fkValidacao, nrPrazoAno, nrPrazoMes, nrVerAc, nrVerDispLegal, nrVerArqAc, nrVerArqPlanta, nrVerValidacao;
 
-    private String nmCodAc, dtLavratura, nmProcesso, nmCessionario, nmCedente, nmPlanta, nmCroqui,nrArea, nrSetor, nrQuadra, nrLote,
+    private String nmCodAc, dtLavratura, nmProcesso, nmCessionario, nmCedente, nmPlanta, nmCroqui, nrArea, nrCap, nmMetragem, nrSetor, nrQuadra, nrLote,
             nmTipoEndereco, nmTituloEndereco, nmEndereco, nrEndereco, nmComplementoEndereco, nmReferencialEndereco, nmMunicipal,
-            nrPrazo, dtVencimento, dtEncerramento, dsContrapartida, nrVigor, dtCadastro, dsObservacao, nmLogin,  nmStatus, dthrAtualizacao;
+            nrPrazo, dtVencimento, dtEncerramento, dsContrapartida, nrVigor, dtCadastro, dsFinalidade, dsObservacao, nmLogin,  nmStatus, dthrAtualizacao;
 
+    public AutoCessaoValidacao() {
+    }
+
+    public AutoCessaoValidacao(int nrVerDispLegal) {
+        this.nrVerDispLegal = nrVerDispLegal;
+    }
+    
+    public AutoCessaoValidacao(int fkTipoCessaoStage, int fkCatEntidadeStage, int fkCatAutoStage, int fkCatFinalidadeStage, int fkSubcatfinalidade, int fkNivelAdm, 
+            int fkSubpref, int fkCatContrapartida, int nrPrazoAno, int nrPrazoMes, int nrVerAc, String nmCodAc, String dtLavratura, String nmProcesso, String nmCessionario, String nmCedente, String nmPlanta, String nmCroqui, 
+            String nrArea, String nrCap, String nmMetragem, String nrSetor, String nrQuadra, String nrLote, String nmTipoEndereco, String nmTituloEndereco, String nmEndereco, 
+            String nrEndereco, String nmComplementoEndereco, String nmReferencialEndereco, String nrPrazo, String dtVencimento, String nrVigor, String dsFinalidade, String dsContrapartida, String dsObservacao, String nmStatus, String nmLogin) {
+        this.fkTipoCessaoStage = fkTipoCessaoStage;
+        this.fkCatEntidadeStage = fkCatEntidadeStage;
+        this.fkCatAutoStage = fkCatAutoStage;
+        this.fkCatFinalidadeStage = fkCatFinalidadeStage;
+        this.fkSubcatfinalidade = fkSubcatfinalidade;
+        this.fkNivelAdm = fkNivelAdm;
+        this.fkSubpref = fkSubpref;
+        this.fkCatContrapartida = fkCatContrapartida;
+        this.nrPrazoAno = nrPrazoAno;
+        this.nrPrazoMes = nrPrazoMes;
+        this.nrVerAc = nrVerAc;
+        this.nmCodAc = nmCodAc;
+        this.dtLavratura = dtLavratura;
+        this.nmProcesso = nmProcesso;
+        this.nmCessionario = nmCessionario;
+        this.nmCedente = nmCedente;
+        this.nmPlanta = nmPlanta;
+        this.nmCroqui = nmCroqui;
+        this.nrArea = nrArea;
+        this.nrCap = nrCap;
+        this.nmMetragem = nmMetragem;
+        this.nrSetor = nrSetor;
+        this.nrQuadra = nrQuadra;
+        this.nrLote = nrLote;
+        this.nmTipoEndereco = nmTipoEndereco;
+        this.nmTituloEndereco = nmTituloEndereco;
+        this.nmEndereco = nmEndereco;
+        this.nrEndereco = nrEndereco;
+        this.nmComplementoEndereco = nmComplementoEndereco;
+        this.nmReferencialEndereco = nmReferencialEndereco;
+        this.nrPrazo = nrPrazo;
+        this.dtVencimento = dtVencimento;
+        this.nrVigor = nrVigor;
+        this.dsFinalidade = dsFinalidade;
+        this.dsContrapartida = dsContrapartida;
+        this.dsObservacao = dsObservacao;
+        this.nmStatus = nmStatus;
+        this.nmLogin = nmLogin;
+    }
+    
+    
+    public AutoCessaoValidacao(int pkAutoStage, int fkTipoCessaoStage, int fkCatEntidadeStage, int fkCatAutoStage, int fkCatFinalidadeStage, int fkSubcatfinalidade, int fkNivelAdm, 
+            int fkSubpref, int fkCatContrapartida, int nrPrazoAno, int nrPrazoMes, int nrVerAc, String nmCodAc, String dtLavratura, String nmProcesso, String nmCessionario, String nmCedente, String nmPlanta, String nmCroqui, 
+            String nrArea, String nrCap, String nmMetragem, String nrSetor, String nrQuadra, String nrLote, String nmTipoEndereco, String nmTituloEndereco, String nmEndereco, 
+            String nrEndereco, String nmComplementoEndereco, String nmReferencialEndereco, String nrPrazo, String dtVencimento, String nrVigor, String dsFinalidade, String dsContrapartida, String dsObservacao, String nmStatus, String nmLogin) {
+        this.pkAutoStage = pkAutoStage;
+        this.fkTipoCessaoStage = fkTipoCessaoStage;
+        this.fkCatEntidadeStage = fkCatEntidadeStage;
+        this.fkCatAutoStage = fkCatAutoStage;
+        this.fkCatFinalidadeStage = fkCatFinalidadeStage;
+        this.fkSubcatfinalidade = fkSubcatfinalidade;
+        this.fkNivelAdm = fkNivelAdm;
+        this.fkSubpref = fkSubpref;
+        this.fkCatContrapartida = fkCatContrapartida;
+        this.nrPrazoAno = nrPrazoAno;
+        this.nrPrazoMes = nrPrazoMes;
+        this.nrVerAc = nrVerAc;
+        this.nmCodAc = nmCodAc;
+        this.dtLavratura = dtLavratura;
+        this.nmProcesso = nmProcesso;
+        this.nmCessionario = nmCessionario;
+        this.nmCedente = nmCedente;
+        this.nmPlanta = nmPlanta;
+        this.nmCroqui = nmCroqui;
+        this.nrArea = nrArea;
+        this.nrCap = nrCap;
+        this.nmMetragem = nmMetragem;
+        this.nrSetor = nrSetor;
+        this.nrQuadra = nrQuadra;
+        this.nrLote = nrLote;
+        this.nmTipoEndereco = nmTipoEndereco;
+        this.nmTituloEndereco = nmTituloEndereco;
+        this.nmEndereco = nmEndereco;
+        this.nrEndereco = nrEndereco;
+        this.nmComplementoEndereco = nmComplementoEndereco;
+        this.nmReferencialEndereco = nmReferencialEndereco;
+        this.nrPrazo = nrPrazo;
+        this.dtVencimento = dtVencimento;
+        this.nrVigor = nrVigor;
+        this.dsFinalidade = dsFinalidade;
+        this.dsContrapartida = dsContrapartida;
+        this.dsObservacao = dsObservacao;
+        this.nmStatus = nmStatus;
+        this.nmLogin = nmLogin;
+    }
+
+    
+    
+    
     
     public int getPkAutoStage() {
         return pkAutoStage;
@@ -59,15 +159,15 @@ public class AutoCessaoValidacao {
         this.fkCatFinalidadeStage = fkCatFinalidadeStage;
     }
 
-    public int getFkDisplegalStage() {
-        return fkDisplegalStage;
+    public int getFkSubcatfinalidade() {
+        return fkSubcatfinalidade;
     }
 
-    public void setFkDisplegalStage(int fkDisplegalStage) {
-        this.fkDisplegalStage = fkDisplegalStage;
+    public void setFkSubcatfinalidade(int fkSubcatfinalidade) {
+        this.fkSubcatfinalidade = fkSubcatfinalidade;
     }
     
-     public int getFkNivelAdm() {
+    public int getFkNivelAdm() {
         return fkNivelAdm;
     }
 
@@ -83,6 +183,40 @@ public class AutoCessaoValidacao {
         this.fkSubpref = fkSubpref;
     }
 
+    public int getFkCatContrapartida() {
+        return fkCatContrapartida;
+    }
+
+    public void setFkCatContrapartida(int fkCatContrapartida) {
+        this.fkCatContrapartida = fkCatContrapartida;
+    }
+
+    public int getFkValidacao() {
+        return fkValidacao;
+    }
+
+    public void setFkValidacao(int fkValidacao) {
+        this.fkValidacao = fkValidacao;
+    }
+    
+    public int getNrPrazoAno() {
+        return nrPrazoAno;
+    }
+
+    public void setNrPrazoAno(int nrPrazoAno) {
+        this.nrPrazoAno = nrPrazoAno;
+    }
+
+    public int getNrPrazoMes() {
+        return nrPrazoMes;
+    }
+
+    public void setNrPrazoMes(int nrPrazoMes) {
+        this.nrPrazoMes = nrPrazoMes;
+    }
+    
+    
+    
     public int getNrVerAc() {
         return nrVerAc;
     }
@@ -211,6 +345,22 @@ public class AutoCessaoValidacao {
         this.nrLote = nrLote;
     }
 
+    public String getNrCap() {
+        return nrCap;
+    }
+
+    public void setNrCap(String nrCap) {
+        this.nrCap = nrCap;
+    }
+
+    public String getNmMetragem() {
+        return nmMetragem;
+    }
+
+    public void setNmMetragem(String nmMetragem) {
+        this.nmMetragem = nmMetragem;
+    }
+    
     public String getNmTipoEndereco() {
         return nmTipoEndereco;
     }
@@ -315,6 +465,14 @@ public class AutoCessaoValidacao {
         this.dtCadastro = dtCadastro;
     }
 
+    public String getDsFinalidade() {
+        return dsFinalidade;
+    }
+
+    public void setDsFinalidade(String dsFinalidade) {
+        this.dsFinalidade = dsFinalidade;
+    }
+    
     public String getDsObservacao() {
         return dsObservacao;
     }

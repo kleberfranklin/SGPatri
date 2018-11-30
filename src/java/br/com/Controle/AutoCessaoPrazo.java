@@ -6,10 +6,10 @@
 package br.com.Controle;
 
 
-import br.com.Modelo.AutoCessao;
-import br.com.Modelo.AutoCessao;
-import br.com.Modelo.AutoCessaoDAO;
-import br.com.Modelo.AutoCessaoDAO;
+import br.com.Modelo.AutoCessaoAntigo;
+import br.com.Modelo.AutoCessaoAntigo;
+import br.com.Modelo.AutoCessaoAntigoDAO;
+import br.com.Modelo.AutoCessaoAntigoDAO;
 import br.com.Modelo.Logica;
 import java.util.Calendar;
 import java.util.Date;
@@ -27,7 +27,7 @@ public class AutoCessaoPrazo implements Logica{
     public String executa(HttpServletRequest req,
                      HttpServletResponse res) throws Exception {
          
-         AutoCessaoDAO autoDAO = new AutoCessaoDAO();
+         AutoCessaoAntigoDAO autoDAO = new AutoCessaoAntigoDAO();
          Calendar cal = new GregorianCalendar();
 
 /**
@@ -133,11 +133,11 @@ public class AutoCessaoPrazo implements Logica{
         offset = ((pg * qtdLinha)- qtdLinha);
         
 //Populando o objeto lista         
-        List<AutoCessao> listAuto;
+        List<AutoCessaoAntigo> listAuto;
         if("".equals(ter) || null == ter){
-            listAuto = new AutoCessaoDAO().listPrazo(mes, ano, qtdLinha, offset);
+            listAuto = new AutoCessaoAntigoDAO().listPrazo(mes, ano, qtdLinha, offset);
         }else{    
-            listAuto = new AutoCessaoDAO().listPrazoTerceiro(mes, ano, qtdLinha, offset);
+            listAuto = new AutoCessaoAntigoDAO().listPrazoTerceiro(mes, ano, qtdLinha, offset);
         }
         
         req.setAttribute("listAuto", listAuto);

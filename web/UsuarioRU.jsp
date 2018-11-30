@@ -55,7 +55,7 @@
                             </a>
                         </li>
 
-                        <li class="">
+                      <!--      <li class="">
                             <a data-toggle="tab" href="#escolaridade" aria-expanded="false">
                                 <i class="ace-icon fa fa-briefcase bigger-120"></i>
                                 Escolaridade
@@ -69,7 +69,7 @@
                             </a>
                         </li>
 
-                    <!--    <li class="">
+                    <li class="">
                             <a data-toggle="tab" href="#pictures" aria-expanded="false">
                                 <i class="ace-icon fa fa-road bigger-120"></i>
                                 Histórico  

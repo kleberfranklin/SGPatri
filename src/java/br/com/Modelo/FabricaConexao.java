@@ -26,7 +26,9 @@ public class FabricaConexao {
     
 //  -- CONEXÃO POSTGRESQL SERVIDOR HOMOLOGAÇÃO CAP --  
         String drive = "org.postgresql.Driver";
-        private final String banco = "geoDGPI_restore_20180730_teste"; 
+        private final String banco = "SG_Patri_PROD"; 
+//        private final String banco = "SG_Patri_Homolog"; 
+//        private final String banco = "SG_Patri_Test"; 
         private final String url = "jdbc:postgresql://10.69.41.91:5433/"+banco; //Antigo banco Homologação
 //        private final String url = "jdbc:postgresql://10.69.40.181:5433/"+banco;
         Properties props = new Properties();
@@ -44,6 +46,8 @@ public class FabricaConexao {
             props.setProperty("currentSchema","sch_cgpatri");
             props.setProperty("user","devhomolog");
             props.setProperty("password","Prodam@2018!");
+//            props.setProperty("user","falmeida");
+//            props.setProperty("password","Prodam1997");
             props.setProperty("ssl","false");
             return DriverManager.getConnection(url, props);
 

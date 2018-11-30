@@ -6,10 +6,10 @@
 package br.com.Controle;
 
 
-import br.com.Modelo.AutoCessao;
-import br.com.Modelo.AutoCessao;
-import br.com.Modelo.AutoCessaoDAO;
-import br.com.Modelo.AutoCessaoDAO;
+import br.com.Modelo.AutoCessaoAntigo;
+import br.com.Modelo.AutoCessaoAntigo;
+import br.com.Modelo.AutoCessaoAntigoDAO;
+import br.com.Modelo.AutoCessaoAntigoDAO;
 import br.com.Modelo.Logica;
 import java.util.*;
 import javax.servlet.http.HttpServletRequest;
@@ -28,12 +28,12 @@ public class AutoCessaoGraQtd implements Logica{
         String ter ="";
         ter = req.getParameter("ter");
 
-        List<AutoCessao> listAuto;
+        List<AutoCessaoAntigo> listAuto;
         
 //        if("".equals(ter) || null == ter){
-            listAuto = new AutoCessaoDAO().listQtdPorCessao();
+            listAuto = new AutoCessaoAntigoDAO().listQtdPorCessao();
 //        }else{
-//            listAuto = new AutoCessaoDAO().listQtdPorCessaoTerceiro();
+//            listAuto = new AutoCessaoAntigoDAO().listQtdPorCessaoTerceiro();
 //        }
 //Popula lista do objeto            
         req.setAttribute("listAuto", listAuto);

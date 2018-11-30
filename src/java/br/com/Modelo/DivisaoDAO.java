@@ -90,9 +90,6 @@ public class DivisaoDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    
-    
-    
     }
     
     
@@ -121,6 +118,7 @@ public class DivisaoDAO {
                 di.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
              divLista.add(di);
             }       
+            stmt.close();
         return divLista;
     
     } catch (SQLException e) {
@@ -141,6 +139,7 @@ public class DivisaoDAO {
         if(rs.next()){
             total = rs.getInt("total");
         }
+        stmt.close();
        return total;
     }catch (SQLException e) {
         throw new RuntimeException(e);
@@ -161,6 +160,7 @@ public class DivisaoDAO {
                     dv.setNmDivisao(rs.getString("nm_divisao"));
             divLista.add(dv);
             }
+            stmt.close();
             return divLista;
         }catch(SQLException e){
             throw new RuntimeException(e);

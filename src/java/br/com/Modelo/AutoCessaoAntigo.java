@@ -9,7 +9,7 @@ package br.com.Modelo;
  *
  * @author d732229
  */
-public class AutoCessao {
+public class AutoCessaoAntigo {
 
 //Atributos 
     
@@ -24,7 +24,7 @@ public class AutoCessao {
 
 //Contrutores
 
-    public AutoCessao() {
+    public AutoCessaoAntigo() {
     }
 
     

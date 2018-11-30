@@ -30,6 +30,9 @@
         <c:set var="qProcesso" value="${param.qProcesso}" />
         <c:set var="qCessionario" value="${param.qCessionario}" />
         <c:set var="qVigor" value="${param.qVigor}" />
+        <c:set var="qStatus" value="${param.qStatus}" />
+        <c:set var="totalRes" value="${param.totalRes}" />
+        
         
     
     <div class="breadcrumbs ace-save-state" id="breadcrumbs">
@@ -50,25 +53,34 @@
                 <input type="hidden" value="" name="ter" />
                     
                 <label class="col-sm-1 col-xs-12 "> A/C nº: </label>
-                <div class="col-sm-2 col-xs-12">
+                <div class="col-sm-1 col-xs-12">
                     <input type="text" name="qAC" placeholder="nº do A/C" class="col-xs-10 col-sm-12" />
                 </div>     
                 
                 <label class="col-sm-1 col-xs-12 "> Processo: </label>
-                <div class="col-sm-3 col-xs-12">
-                    <input type="text" name="qProcesso" placeholder="nº do processo" class="col-xs-10 col-sm-10" />
+                <div class="col-sm-2 col-xs-12">
+                    <input type="text" name="qProcesso" placeholder="nº do processo" class="col-xs-10 col-sm-8" />
                 </div>
                 <label class="col-sm-1 col-xs-12"> Em Vigor </label>
                 <div class="col-sm-2 col-xs-12">
                     <select class="col-sm-6 col-xs-12" name="qVigor">
-                        <option value=""> </option>
-                        <option value="True">Sim</option>
-                        <option value="False">Não</option>
+                        <option value=""></option>
+                        <option value="true">Sim</option>
+                        <option value="false">Não</option>
                     </select>
                 </div>
-                                
+                <label class="col-sm-1 col-xs-12"> Status </label>
+                <div class="col-sm-3 col-xs-12">
+                    <select class="col-sm-9 col-xs-12" name="qStatus">
+                        <option value=""></option>
+                        <option value="NaoVerificado">Pendente Conferência</option>
+                        <option value="EmConferencia">Em conferência</option>
+                        <option value="Corrigir">Em correção</option>
+                        <option value="Validado">Validado</option>
+                    </select>
+                </div>                
                 <div class="col-sm-12 col-xs-12">
-                    <span class="input-group-btn col-sm-6 col-sm-offset-8">
+                    <span class="input-group-btn col-sm-8 col-sm-offset-10">
                         <button type="submit" class="btn btn-inverse btn-white" title="duplo clik limpa pesquisa">
                             <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
                             Pesquisa
@@ -84,27 +96,37 @@
                 <table id="simple-table" class="table  table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th class="detail-col hidden-480">Analisar</th>
+                            <th class="detail-col hidden-480">Analisar/Visualizar</th>
                             <th class="hidden-480">AC</th>
                             <th>Processo</th>
                             <th class="hidden-480">Vigor </th>
-                            <th class="hidden-480">Validação</th>
+                            <th class="hidden-480">Status Validação</th>
                         </tr>
                     </thead>
                       <c:forEach var="autolist" items="${listAuto}">
                     <tbody>
                         <tr>
                             <td class="center hidden-480">
-                                <button class="btn btn-xs btn-info" onclick="location.href='ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage=${autolist.pkAutoStage}&pg=${pg}&pi=${pi}&pf=${pf}&qProcesso=${qProcesso}&qVigor=${qVigor}'">
-                                    <i class="ace-icon fa fa-pencil bigger-120"></i>
-                                    <a href="ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage=${autolist.pkAutoStage}&pg=${pg}&pi=${pi}&pf=${pf}&qProcesso=${qProcesso}&qVigor=${qVigor}" class="btn-info">Analisar</a>
-                                </button>
+                                <c:choose>
+                                    <c:when test="${autolist.nmStatus == 'Validado'}">
+                                        <button class="btn btn-white btn-success" onclick="location.href='ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage=${autolist.pkAutoStage}&pg=${pg}&pi=${pi}&pf=${pf}&qAC=${qAC}&qProcesso=${qProcesso}&qVigor=${qVigor}&qStatus=${qStatus}&pgValidacao=pgValidacao'">
+                                            <i class="ace-icon fa fa-search-plus"></i>
+                                            Visualizar
+                                        </button>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <button class="btn btn-xs btn-info" onclick="location.href='ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage=${autolist.pkAutoStage}&pg=${pg}&pi=${pi}&pf=${pf}&qAC=${qAC}&qProcesso=${qProcesso}&qVigor=${qVigor}&qStatus=${qStatus}&pgValidacao=pgValidacao&execucao=edit'">
+                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                            Analisar
+                                        </button>
+                                    </c:otherwise>    
+                                </c:choose>
                             </td>
                             <td class="hidden-480">${autolist.nmCodAc}</td>
                             <td title="${autolist.nmProcesso}">${autolist.nmProcesso}</td>
                             <td class="hidden-480">
                                 <c:choose>
-                                    <c:when test="${'True' == autolist.nrVigor}">
+                                    <c:when test="${'true' == autolist.nrVigor}">
                                         <span class="label label-success arrowed" title="SIM">
                                             <i class="ace-icon fa fa-check bigger-120"></i>
                                             Sim
@@ -120,24 +142,24 @@
                             </td>
                             <td> 
                                 <c:choose>
-                                    <c:when test="${autolist.nmStatus == 'Nao Verificado'}">
-                                        <span class="label label-warning label-white" title="Pendente Conferência">
-                                            Pendente Conferência
-                                        </span>
-                                    </c:when>
                                     <c:when test="${autolist.nmStatus == 'EmConferencia'}">
                                         <span class="label label-white label-white" title="Em conferência">
                                             Em conferência
                                         </span>
                                     </c:when>
-                                    <c:when test="${autolist.nmStatus == 'EmCorrecao'}">
+                                    <c:when test="${autolist.nmStatus == 'Corrigir'}">
                                         <span class="label label-danger label-white" title="Em correção">
                                             Em correção
                                         </span>
                                     </c:when>
-                                    <c:otherwise>
-                                        <span class="label label-success label-white" title="Analisar">
+                                    <c:when test="${autolist.nmStatus == 'Validado'}">
+                                        <span class="label label-success label-white" title="Validado">
                                             Validado 
+                                        </span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <span class="label label-warning label-white" title="Pendente Conferência">
+                                            Pendente Conferência
                                         </span>
                                     </c:otherwise>
                                 </c:choose>    
@@ -152,7 +174,7 @@
         <!--Paginação -->
             <div class="col-xs-6">
                 <div class="dataTables_info" id="dynamic-table_info" role="status" aria-live="polite">
-                    <label class="lead">Total <strong><c:out value="${totalRes}"></c:out></strong></label>
+                    <label class="lead">Total <strong><c:out value="${totalRes}" /></strong></label>
                </div>
             </div>
                 <div class="col-xs-6">
@@ -161,7 +183,7 @@
                         <c:forEach var="i" begin="${pi}" end="${pf}">
                             <c:if test="${pi != 0 && pi == i}">
                                 <li>
-                                    <a href="ControllerServlet?acao=AutoCessaoValidacaoLista&pg=${i}&pi=${pi}&pf=${pf}&qProcesso=${qProcesso}&qVigor=${qVigor}">
+                                    <a href="ControllerServlet?acao=AutoCessaoValidacaoLista&pg=${i}&pi=${pi}&pf=${pf}&qAC=${qAC}&qProcesso=${qProcesso}&qVigor=${qVigor}&qStatus=${qStatus}">
                                         <i class="ace-icon fa fa-angle-double-left"></i></a>
                                 </li>
                             </c:if>    
@@ -174,14 +196,14 @@
                                     </c:when>
                                     <c:otherwise>
                                         <li>
-                                            <a href="ControllerServlet?acao=AutoCessaoValidacaoLista&pg=${i}&pi=${pi}&pf=${pf}&qProcesso=${qProcesso}&qVigor=${qVigor}">${i}</a>
+                                            <a href="ControllerServlet?acao=AutoCessaoValidacaoLista&pg=${i}&pi=${pi}&pf=${pf}&qAC=${qAC}&qProcesso=${qProcesso}&qVigor=${qVigor}&qStatus=${qStatus}">${i}</a>
                                         </li>
                                     </c:otherwise>
                                 </c:choose>
                             </c:if>
                             <c:if test="${i == pf && pf != qtdPg && i <= qtdPg  }">
                                 <li>
-                                    <a href="ControllerServlet?acao=AutoCessaoValidacaoLista&pg=${i}&pi=${pi}&pf=${pf}&qProcesso=${qProcesso}&qVigor=${qVigor}">
+                                    <a href="ControllerServlet?acao=AutoCessaoValidacaoLista&pg=${i}&pi=${pi}&pf=${pf}&qProcesso=${qProcesso}&qVigor=${qVigor}&qStatus=${qStatus}">
                                         <i class="ace-icon fa fa-angle-double-right"></i></a>
                                 </li>
                             </c:if>    

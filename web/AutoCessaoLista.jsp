@@ -14,19 +14,22 @@
     <jsp:directive.include file="include/ControleAcesso.jsp" />
         
 
-    <jsp:useBean id="beanTipoCessao" class= "br.com.Modelo.TipoCessaoDAO" />
-        <c:set var="ter" value="${param.ter}" />
-        <c:set var="pg" value="${param.pg}" />
-        <c:set var="pf" value="${param.pf}" />
-        <c:set var="pi" value="${param.pi}" />
-        <c:set var="qtdPg" value="${param.qtdPg}" />
-        <c:set var="totalRes" value="${param.totalRes}" />
-        <c:set var="qTpcessao" value="${param.qTpcessao}" />
-        <c:set var="qProcesso" value="${param.qProcesso}" />
-        <c:set var="qCessionario" value="${param.qCessionario}" />
-        <c:set var="qEndereco" value="${param.qEndereco}" />
-        <c:set var="qVigor" value="${param.qVigor}" />
-        <c:set var="qCroqui" value="${param.qCroqui}" />
+    <jsp:useBean id="tpAuto" class= "br.com.Modelo.TipoAutoCessaoDAO" />
+    
+    
+    
+    <c:set var="ter" value="${param.ter}" />
+    <c:set var="pg" value="${param.pg}" />
+    <c:set var="pf" value="${param.pf}" />
+    <c:set var="pi" value="${param.pi}" />
+    <c:set var="qtdPg" value="${param.qtdPg}" />
+    <c:set var="totalRes" value="${param.totalRes}" />
+    <c:set var="qTpcessao" value="${param.qTpcessao}" />
+    <c:set var="qProcesso" value="${param.qProcesso}" />
+    <c:set var="qCessionario" value="${param.qCessionario}" />
+    <c:set var="qEndereco" value="${param.qEndereco}" />
+    <c:set var="qVigor" value="${param.qVigor}" />
+    <c:set var="qCroqui" value="${param.qCroqui}" />
     
     <div class="breadcrumbs ace-save-state" id="breadcrumbs">
         <ul class="breadcrumb">
@@ -49,17 +52,16 @@
                     <div class="col-sm-3">
                         <select class=" col-xs-12 col-sm-12" name="qTpcessao">
                             <option value=""></option>
-                            <c:forEach var="tp" items="${beanTipoCessao.listTipoCessao()}">
-                                
-                                    <c:choose >
-                                        <c:when test="${tp.nmCessao.length() > 40 }">
-                                            <option value="${tp.nmCessao}" title="${tp.nmCessao}">   ${tp.nmCessao.substring(0,40)}</option>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <option value="${tp.nmCessao}" title="${tp.nmCessao}"> ${tp.nmCessao}</option>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </option>  
+                            <c:forEach var="tp" items="${tpAuto.listSelectTpCessao()}">
+                                <c:choose >
+                                    <c:when test="${to.nmCatAutoCessao.length() > 40 }">
+                                        <option value="${tp.pkTipoAutoCessao}" title="${tp.nmTipoAutoCessao}">${tp.nmTipoAutoCessao.substring(0,40)}</option>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <option value="${tp.pkTipoAutoCessao}" title="${tp.nmTipoAutoCessao}">${tp.nmTipoAutoCessao}</option>
+                                    </c:otherwise>
+                                </c:choose>
+                            </option>  
                             </c:forEach>
                         </select>
                     </div>
@@ -103,8 +105,8 @@
                 <div class="col-sm-3 col-xs-12">
                     <select class="col-sm-4 col-xs-12" name="qVigor">
                         <option value=""> </option>
-                        <option value="1">Sim</option>
-                        <option value="0">Não</option>
+                        <option value="true">Sim</option>
+                        <option value="false">Não</option>
                     </select>
                     <span class="input-group-btn col-sm-6 col-sm-offset-6">
                         <button type="submit" class="btn btn-inverse btn-white" title="duplo clik limpa pesquisa">
@@ -133,14 +135,15 @@
                         </tr>
                     </thead>
                       <c:forEach var="autolist" items="${listAuto}">
+                    <c:set var="selTpAuto" value="${tpAuto.detalheTpCessao(autolist.fkTipoCessaoStage)}" />
                     <tbody>
                         <tr>
                             <td class="center hidden-480">
                             <div class="action-buttons ">
-                                <a href="ControllerServlet?acao=AutoCessaoDetalhe&pkCessao=${autolist.pkCessao}&pg=${pg}&pi=${pi}&pf=${pf}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}"><i class="ace-icon fa fa-search-plus"></i></a>
+                                <a href="ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage=${autolist.pkAutoStage}&pg=${pg}&pi=${pi}&pf=${pf}&qAC=${qAC}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}"><i class="ace-icon fa fa-search-plus"></i></a>
                             </div>
                             </td>
-                            <td class="hidden-480">${autolist.nmAc}</td>
+                            <td class="hidden-480">${autolist.nmCodAc}</td>
                             <td title="${autolist.nmProcesso}">
                                 <c:choose >
                                     <c:when test="${autolist.nmProcesso.length() > 17 }">
@@ -151,13 +154,13 @@
                                     </c:otherwise>
                                 </c:choose>
                             </td>
-                            <td title="${autolist.nmCessao}">
+                            <td title="${selTpAuto.nmTipoAutoCessao}">
                                 <c:choose >
-                                    <c:when test="${autolist.nmCessao.length() > 20 }">
-                                        ${autolist.nmCessao.substring(0,20)}...
+                                    <c:when test="${selTpAuto.nmTipoAutoCessao.length() > 20 }">
+                                        ${selTpAuto.nmTipoAutoCessao.substring(0,20)}...
                                     </c:when>
                                     <c:otherwise>
-                                        ${autolist.nmCessao}
+                                        ${selTpAuto.nmTipoAutoCessao}
                                     </c:otherwise>
                                 </c:choose>
                                 </td>
@@ -183,7 +186,7 @@
                             </td>
                             <td class="hidden-480">
                                 <c:choose>
-                                    <c:when test="${'1' == autolist.nrVigor}">
+                                    <c:when test="${'true' == autolist.nrVigor}">
                                         <span class="label label-success arrowed" title="SIM">
                                             <i class="ace-icon fa fa-check bigger-120"></i>
                                             Sim
@@ -208,44 +211,73 @@
                                 </c:choose>
                                </td>
                             <td>
+                            <c:choose>
+                                <c:when test="${sessionSgDivisao == 'DDPI'}">
                                 <div class="hidden-sm hidden-xs btn-group">
                                     <button class="btn btn-xs btn-info">
                                         <i class="ace-icon fa fa-pencil bigger-120"></i>
-                                        <a href="#" class="btn-info">Editar</a>
+                                        <a href="ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage=${autolist.pkAutoStage}&pg=${pg}&pi=${pi}&pf=${pf}&qAC=${qAC}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}&execucao=edit" class="btn-info">Editar</a>
                                     </button>                                                                                                                                
                                 </div>
-
+                                </c:when>    
+                                <c:otherwise>
+                                    <c:choose>
+                                        <c:when test="${autolist.nmStatus == 'EmConferencia'}">
+                                            <span class="label label-white label-white" title="Em conferência">
+                                                Em conferência
+                                            </span>
+                                        </c:when>
+                                        <c:when test="${autolist.nmStatus == 'Corrigir'}">
+                                            <span class="label label-danger label-white" title="Em correção">
+                                                Em correção
+                                            </span>
+                                        </c:when>
+                                        <c:when test="${autolist.nmStatus == 'Validado'}">
+                                            <span class="label label-success label-white" title="Validado">
+                                                Validado 
+                                            </span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <span class="label label-warning label-white" title="Pendente Conferência">
+                                                Pendente Conferência
+                                            </span>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:otherwise>
+                            </c:choose>    
                                 <div class="hidden-md hidden-lg">
                                     <div class="inline pos-rel">
                                         <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
                                             <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
                                         </button>
-
+                                        <c:if test="${sessionSgDivisao == 'DDPI'}" >
                                         <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                              
                                             <li>
-                                                <a href="#" class="tooltip-info" data-rel="tooltip" title="" data-original-title="View">
-                                                    <span class="blue">
-                                                        <i class="ace-icon fa fa-search-plus bigger-120"></i>
-                                                    </span>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <a href="#" class="tooltip-success" data-rel="tooltip" title="" data-original-title="Edit">
+                                                <a href="ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage=${autolist.pkAutoStage}&pg=${pg}&pi=${pi}&pf=${pf}&qAC=${qAC}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}&execucao=edit" class="tooltip-success" data-rel="tooltip" title="" data-original-title="Edit">
                                                     <span class="green">
                                                         <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
                                                     </span>
                                                 </a>
                                             </li>
-
-                                            <li>
+                                          
+                                            <!--<li>
+                                                <a href="#" class="tooltip-info" data-rel="tooltip" title="" data-original-title="View">
+                                                    <span class="blue">
+                                                        <i class="ace-icon fa fa-search-plus bigger-120"></i>
+                                                    </span>
+                                                </a>
+                                            </li>-->
+                                          
+                                            <!--<li>
                                                 <a href="#" class="tooltip-error" data-rel="tooltip" title="" data-original-title="Delete">
                                                     <span class="red">
                                                         <i class="ace-icon fa fa-trash-o bigger-120"></i>
                                                     </span>
                                                 </a>
-                                            </li>
+                                            </li>-->
                                         </ul>
+                                        </c:if>
                                     </div>
                                 </div>
                             </td>
@@ -268,7 +300,7 @@
                         <c:forEach var="i" begin="${pi}" end="${pf}">
                             <c:if test="${pi != 0 && pi == i}">
                                 <li>
-                                    <a href="ControllerServlet?acao=AutoCessaoListaPagFiltro&pg=${i}&pi=${pi}&pf=${pf}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}&ter=${ter}">
+                                    <a href="ControllerServlet?acao=AutoCessaoListaPagFiltro&pg=${i}&pi=${pi}&pf=${pf}&qAC=${qAC}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}&ter=${ter}">
                                         <i class="ace-icon fa fa-angle-double-left"></i></a>
                                 </li>
                             </c:if>    
@@ -281,14 +313,14 @@
                                     </c:when>
                                     <c:otherwise>
                                         <li>
-                                            <a href="ControllerServlet?acao=AutoCessaoListaPagFiltro&pg=${i}&pi=${pi}&pf=${pf}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}&ter=${ter}">${i}</a>
+                                            <a href="ControllerServlet?acao=AutoCessaoListaPagFiltro&pg=${i}&pi=${pi}&pf=${pf}&qAC=${qAC}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}&ter=${ter}">${i}</a>
                                         </li>
                                     </c:otherwise>
                                 </c:choose>
                             </c:if>
                             <c:if test="${i == pf && pf != qtdPg && i <= qtdPg  }">
                                 <li>
-                                    <a href="ControllerServlet?acao=AutoCessaoListaPagFiltro&pg=${i}&pi=${pi}&pf=${pf}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}&ter=${ter}">
+                                    <a href="ControllerServlet?acao=AutoCessaoListaPagFiltro&pg=${i}&pi=${pi}&pf=${pf}&qAC=${qAC}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}&ter=${ter}">
                                         <i class="ace-icon fa fa-angle-double-right"></i></a>
                                 </li>
                             </c:if>    

@@ -6,10 +6,10 @@
 package br.com.Controle;
 
 
-import br.com.Modelo.AutoCessao;
-import br.com.Modelo.AutoCessao;
-import br.com.Modelo.AutoCessaoDAO;
-import br.com.Modelo.AutoCessaoDAO;
+import br.com.Modelo.AutoCessaoAntigo;
+import br.com.Modelo.AutoCessaoAntigo;
+import br.com.Modelo.AutoCessaoAntigoDAO;
+import br.com.Modelo.AutoCessaoAntigoDAO;
 import br.com.Modelo.Logica;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,13 +18,13 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author d732229
  */
-public class AutoCessaoDetalhe implements Logica{
+public class AutoCessaoAntigoDetalhe implements Logica{
 @Override    
      public String executa(HttpServletRequest req,
                      HttpServletResponse res) throws Exception {
         
          
-        AutoCessaoDAO autoDAO = new AutoCessaoDAO();
+        AutoCessaoAntigoDAO autoDAO = new AutoCessaoAntigoDAO();
 
 //Atributos
         int pkCessao = 0;
@@ -36,7 +36,7 @@ public class AutoCessaoDetalhe implements Logica{
             return "ControllerServlet?acao=AutoCessaoListaPagFiltro";
         }
 //Consulta no banco e popula o objeto        
-        AutoCessao auto = autoDAO.detalheAutoCessao(pkCessao);
+        AutoCessaoAntigo auto = autoDAO.detalheAutoCessao(pkCessao);
         req.setAttribute("auto", auto);
         
         return "AutoCessaoDetalhe.jsp";

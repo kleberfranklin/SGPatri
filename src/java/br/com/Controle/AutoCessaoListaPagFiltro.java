@@ -6,8 +6,8 @@
 package br.com.Controle;
 
 
-import br.com.Modelo.AutoCessao;
-import br.com.Modelo.AutoCessaoDAO;
+import br.com.Modelo.AutoCessaoValidacao;
+import br.com.Modelo.AutoCessaoValidacaoDAO;
 import br.com.Modelo.Logica;
 import br.com.Utilitario.Transformar;
 import java.util.List;
@@ -23,7 +23,7 @@ public class AutoCessaoListaPagFiltro implements Logica{
     public String executa(HttpServletRequest req,
                      HttpServletResponse res) throws Exception {
         
-        AutoCessaoDAO autoDAO = new AutoCessaoDAO();
+        AutoCessaoValidacaoDAO autoDAO = new AutoCessaoValidacaoDAO();
     
 /**
 *  Atributos: 
@@ -37,13 +37,12 @@ public class AutoCessaoListaPagFiltro implements Logica{
 *  sobraMaxPg = auxiliar para o calculdo da quantidade de pagina
 * */        
         
-        int pg, pi, pf, qtdRegistro, qtdPg, sobraMaxPg=0, offset;
+        int pg, pi, pf, qtdRegistro, qtdPg, sobraMaxPg=0, offset, tpCessao=0;
         int qtdLinha = 6;
         int maxPg = 10;
         
         String pgS, piS, pfS, ter;
-        
-        String qTpcessao, qAC, qProcesso, qCessionario, qEndereco, qCroqui, qVigor;
+        String qTpcessao, qAC, qProcesso, qCessionario, qCedente, qEndereco, qCroqui, qVigor;
         
 //Carregando atributos com a informações do formlário.           
         pgS = req.getParameter("pg");
@@ -54,14 +53,17 @@ public class AutoCessaoListaPagFiltro implements Logica{
         qProcesso = req.getParameter("qProcesso");
         qAC = req.getParameter("qAC");
         qCessionario = req.getParameter("qCessionario");
+        qCedente = req.getParameter("qCessionario");
         qEndereco = req.getParameter("qEndereco");
         qCroqui = req.getParameter("qCroqui");
         qVigor = req.getParameter("qVigor");
         ter = req.getParameter("ter");
         
 //Validação dos atributos carregdos com as informações do formulário.         
-        if (qTpcessao == null){
+        if (qTpcessao == null || qTpcessao.equals("")){
             qTpcessao ="";
+        }else{
+            tpCessao = Integer.parseInt(qTpcessao);
         }
         if (qAC == null){
             qAC ="";
@@ -71,6 +73,9 @@ public class AutoCessaoListaPagFiltro implements Logica{
         }
         if (qCessionario == null){
             qCessionario ="";
+        }
+        if (qCedente == null){
+            qCedente ="";
         }
         if (qEndereco == null){
             qEndereco ="";
@@ -97,20 +102,20 @@ public class AutoCessaoListaPagFiltro implements Logica{
             pf = Integer.parseInt(pfS);
         }
 
-        qTpcessao = Transformar.utf8(qTpcessao);
+//        qTpcessao = Transformar.utf8(qTpcessao);
         qCessionario = Transformar.utf8(qCessionario);
         qCessionario = Transformar.utf8(qCessionario);
         qEndereco = Transformar.utf8(qEndereco);
         
 //Carregando a quantidade de registro para calculdo da quantidade de paginas     
-        if ("".equals(ter) || null == ter){
-            qtdRegistro = autoDAO.qtdAutoCessaoPesquisa(qTpcessao, qAC, qProcesso, qCessionario, qEndereco, qCroqui, qVigor);
+//        if ("".equals(ter) || null == ter){
+            qtdRegistro = autoDAO.qtdAutoPesquisa(qTpcessao, qAC, qProcesso, qCessionario, qCedente, qEndereco, qCroqui, qVigor);
             qtdPg = qtdRegistro / qtdLinha;
-        }else{
-            qtdRegistro = autoDAO.qtdAutoCessaoPesquisaTerceiro(qTpcessao, qAC, qProcesso, qCessionario, qEndereco, qCroqui, qVigor);
-            qtdPg = qtdRegistro / qtdLinha;   
-        }
-//Logica da paginação         
+//        }else{
+//            qtdRegistro = autoDAO.qtdAutoCessaoPesquisaTerceiro(qTpcessao, qAC, qProcesso, qCessionario, qEndereco, qCroqui, qVigor);
+//            qtdPg = qtdRegistro / qtdLinha;   
+//        }
+////Logica da paginação         
         if ((qtdRegistro % qtdLinha) != 0) {
             qtdPg = qtdPg+1;
         }
@@ -142,12 +147,12 @@ public class AutoCessaoListaPagFiltro implements Logica{
         offset = ((pg * qtdLinha)- qtdLinha);
         
 //Populando o objeto lista 
-        List<AutoCessao> listAuto;
-        if ("".equals(ter) || null == ter){
-            listAuto= new AutoCessaoDAO().listPagFiltro(qTpcessao, qAC, qProcesso, qCessionario, qEndereco, qCroqui, qVigor, qtdLinha, offset);
-        }else{
-            listAuto = new AutoCessaoDAO().listPagFiltroTerceiro(qTpcessao, qAC, qProcesso, qCessionario, qEndereco, qCroqui, qVigor, qtdLinha, offset);
-        }
+//        List<AutoCessaoValidacao> listAuto;
+//        if ("".equals(ter) || null == ter){
+          List<AutoCessaoValidacao>  listAuto = new AutoCessaoValidacaoDAO().listPagFiltroPesquisa(qTpcessao, qAC, qProcesso, qCessionario, qCedente, qEndereco, qCroqui, qVigor, qtdLinha, offset);
+//        }else{
+//            listAuto = new AutoCessaoAntigoDAO().listPagFiltroTerceiro(qTpcessao, qAC, qProcesso, qCessionario, qEndereco, qCroqui, qVigor, qtdLinha, offset);
+//        }
         req.setAttribute("listAuto", listAuto);
         req.setAttribute("qTpcessao", qTpcessao);
         req.setAttribute("qAC", qAC);

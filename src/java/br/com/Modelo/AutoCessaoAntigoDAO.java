@@ -16,13 +16,13 @@ import java.util.List;
  *
  * @author d732229
  */
-public class AutoCessaoDAO {
+public class AutoCessaoAntigoDAO {
     
 //Atrituto 
     private final Connection connection;
 
 //Construtor
-    public AutoCessaoDAO() {
+    public AutoCessaoAntigoDAO() {
         this.connection = new FabricaConexao().getConnetion();
     }    
 
@@ -32,19 +32,20 @@ public class AutoCessaoDAO {
                     + "WHERE dt_vencimento <= ? "
                     + "and nr_vigor = 1 and nr_encerrado = 0 "
                     + "ORDER BY dt_vencimento DESC");
-                try {
-                 PreparedStatement stmt = connection.prepareStatement(sql);
-                 stmt.setTimestamp(1, java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
+            try {
+                PreparedStatement stmt = connection.prepareStatement(sql);
+                stmt.setTimestamp(1, java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
 
-                 ResultSet rs = stmt.executeQuery();
-                 int qtdAuto = 0;
-                 if (rs.next()) {
-                     qtdAuto = rs.getInt("total");
-                 }
-                 return qtdAuto;
-             } catch (SQLException e) {
-                 throw new RuntimeException(e);
-             }
+                ResultSet rs = stmt.executeQuery();
+                int qtdAuto = 0;
+                    if (rs.next()) {
+                        qtdAuto = rs.getInt("total");
+                    }
+                stmt.close();
+            return qtdAuto;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         }
         
@@ -64,6 +65,7 @@ public class AutoCessaoDAO {
                  if (rs.next()) {
                      qtdAuto = rs.getInt("total");
                  }
+                 stmt.close();
                  return qtdAuto;
              } catch (SQLException e) {
                  throw new RuntimeException(e);
@@ -73,21 +75,21 @@ public class AutoCessaoDAO {
 
     
 //METODO utilizado na Classe (AutoCessaoVencida)
-    public List<AutoCessao> listAutoCessaoVencida(int qtdLinha, int OFFSET) {
+    public List<AutoCessaoAntigo> listAutoCessaoVencida(int qtdLinha, int OFFSET) {
             String sql = "SELECT * FROM autocessaocompleto "
                     + "WHERE dt_vencimento <= ?"
                     + "and nr_vigor = 1 and nr_encerrado = 0 "
                     + "ORDER BY dt_vencimento DESC "
                     + "LIMIT ? OFFSET ?";
             try {
-                List<AutoCessao> cessaoLista = new ArrayList<AutoCessao>();
+                List<AutoCessaoAntigo> cessaoLista = new ArrayList<AutoCessaoAntigo>();
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.setTimestamp(1, java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
                 stmt.setInt(2, qtdLinha);
                 stmt.setInt(3, OFFSET);
                 ResultSet rs = stmt.executeQuery();
                 while (rs.next()) {
-                    AutoCessao auto = new AutoCessao();
+                    AutoCessaoAntigo auto = new AutoCessaoAntigo();
                         auto.setPkCessao(rs.getInt("pk_cessao"));
                         auto.setNmAc(rs.getString("nm_ac"));
                         auto.setNmProcesso(rs.getString("nm_processo"));
@@ -112,21 +114,21 @@ public class AutoCessaoDAO {
 
 
 //METODO utilizado na Classe (AutoCessaoVencida) terceiro
-    public List<AutoCessao> listAutoCessaoVencidaTerceiro(int qtdLinha, int OFFSET) {
+    public List<AutoCessaoAntigo> listAutoCessaoVencidaTerceiro(int qtdLinha, int OFFSET) {
             String sql = "SELECT * FROM autocessaocompletoterceiro "
                     + "WHERE dt_vencimento <= ?"
                     + "and nr_vigor = 1 and nr_encerrado = 0 "
                     + "ORDER BY dt_vencimento DESC "
                     + "LIMIT ? OFFSET ?";
             try {
-                List<AutoCessao> cessaoLista = new ArrayList<AutoCessao>();
+                List<AutoCessaoAntigo> cessaoLista = new ArrayList<AutoCessaoAntigo>();
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.setTimestamp(1, java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
                 stmt.setInt(2, qtdLinha);
                 stmt.setInt(3, OFFSET);
                 ResultSet rs = stmt.executeQuery();
                 while (rs.next()) {
-                    AutoCessao auto = new AutoCessao();
+                    AutoCessaoAntigo auto = new AutoCessaoAntigo();
                         auto.setPkCessao(rs.getInt("pk_cessao"));
                         auto.setNmAc(rs.getString("nm_ac"));
                         auto.setNmProcesso(rs.getString("nm_processo"));
@@ -170,7 +172,8 @@ public class AutoCessaoDAO {
 
                if(rs.next()){
                    qtdAuto = rs.getInt("total");
-               }    
+               }
+               stmt.close();
                return qtdAuto;
            } catch (SQLException e) {
                throw new RuntimeException(e);
@@ -199,6 +202,7 @@ public class AutoCessaoDAO {
                if(rs.next()){
                    qtdAuto = rs.getInt("total");
                }    
+               stmt.close();
                return qtdAuto;
            } catch (SQLException e) {
                throw new RuntimeException(e);
@@ -208,7 +212,7 @@ public class AutoCessaoDAO {
     
     
 //METODO utilizado na Classe (AutoCessaolistaPagFiltro)
-    public List<AutoCessao> listPagFiltro(String qTpcessao, String qAC, String qProcesso, String qCessionario, 
+    public List<AutoCessaoAntigo> listPagFiltro(String qTpcessao, String qAC, String qProcesso, String qCessionario, 
             String qEndereco,String qCroqui ,String qVigor, int qtdLinha, int OFFSET) {
             String sql = ("SELECT * FROM autocessaocompleto "
                     + "WHERE nm_cessao like ? and nm_ac like ? and nm_processo like ? and nm_cessionario like ? "
@@ -216,7 +220,7 @@ public class AutoCessaoDAO {
                     + "ORDER BY pk_cessao DESC "
                     + "LIMIT ? OFFSET ?");
             try {
-                List<AutoCessao> cessaoLista = new ArrayList<AutoCessao>();
+                List<AutoCessaoAntigo> cessaoLista = new ArrayList<AutoCessaoAntigo>();
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
                    stmt.setString(1, '%'+qTpcessao+'%');
@@ -232,7 +236,7 @@ public class AutoCessaoDAO {
                 ResultSet rs = stmt.executeQuery();
 
                 while (rs.next()) {
-                AutoCessao auto = new AutoCessao();
+                AutoCessaoAntigo auto = new AutoCessaoAntigo();
                     auto.setPkCessao(rs.getInt("pk_cessao"));
                     auto.setNmAc(rs.getString("nm_ac"));
                     auto.setNmProcesso(rs.getString("nm_processo"));
@@ -256,7 +260,7 @@ public class AutoCessaoDAO {
         } 
     
 //METODO utilizado na Classe (AutoCessaolistaPagFiltro) Terceiro
-    public List<AutoCessao> listPagFiltroTerceiro(String qTpcessao, String qAC, String qProcesso, String qCessionario, 
+    public List<AutoCessaoAntigo> listPagFiltroTerceiro(String qTpcessao, String qAC, String qProcesso, String qCessionario, 
             String qEndereco,String qCroqui ,String qVigor, int qtdLinha, int OFFSET) {
             String sql = ("SELECT * FROM autocessaocompletoterceiro "
                     + "WHERE nm_cessao like ? and nm_ac like ? and nm_processo like ? and nm_cessionario like ? "
@@ -264,7 +268,7 @@ public class AutoCessaoDAO {
                     + "ORDER BY pk_cessao DESC "
                     + "LIMIT ? OFFSET ?");
             try {
-                List<AutoCessao> cessaoLista = new ArrayList<AutoCessao>();
+                List<AutoCessaoAntigo> cessaoLista = new ArrayList<AutoCessaoAntigo>();
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
                    stmt.setString(1, '%'+qTpcessao+'%');
@@ -280,7 +284,7 @@ public class AutoCessaoDAO {
                 ResultSet rs = stmt.executeQuery();
 
                 while (rs.next()) {
-                AutoCessao auto = new AutoCessao();
+                AutoCessaoAntigo auto = new AutoCessaoAntigo();
                     auto.setPkCessao(rs.getInt("pk_cessao"));
                     auto.setNmAc(rs.getString("nm_ac"));
                     auto.setNmProcesso(rs.getString("nm_processo"));
@@ -319,7 +323,8 @@ public class AutoCessaoDAO {
                int qtdAuto = 0;
                if(rs.next()){
                    qtdAuto = rs.getInt("total");
-               }    
+               }
+               stmt.close();
                return qtdAuto;
            } catch (SQLException e) {
                throw new RuntimeException(e);
@@ -341,7 +346,8 @@ public class AutoCessaoDAO {
                int qtdAuto = 0;
                if(rs.next()){
                    qtdAuto = rs.getInt("total");
-               }    
+               }
+               stmt.close();
                return qtdAuto;
            } catch (SQLException e) {
                throw new RuntimeException(e);
@@ -349,7 +355,7 @@ public class AutoCessaoDAO {
         }       
     
 //METODO utilizado na Classe (AutoCessaoPrazo)
-    public List<AutoCessao> listPrazo(int mes, int ano, int qtdLinha, int OFFSET) {
+    public List<AutoCessaoAntigo> listPrazo(int mes, int ano, int qtdLinha, int OFFSET) {
             String sql = ("SELECT * FROM autocessaocompleto "
                     + "WHERE dt_vencimento >= ? "
                     + "and month(dt_vencimento) = ? "
@@ -357,7 +363,7 @@ public class AutoCessaoDAO {
                     + "ORDER BY dt_vencimento DESC "
                     + "LIMIT ? OFFSET ?");
             try {
-                List<AutoCessao> cessaoLista = new ArrayList<AutoCessao>();
+                List<AutoCessaoAntigo> cessaoLista = new ArrayList<AutoCessaoAntigo>();
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
                     stmt.setTimestamp(1, java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
@@ -368,7 +374,7 @@ public class AutoCessaoDAO {
                 ResultSet rs = stmt.executeQuery();
 
                 while (rs.next()) {
-                    AutoCessao auto = new AutoCessao();
+                    AutoCessaoAntigo auto = new AutoCessaoAntigo();
 
                     auto.setPkCessao(rs.getInt("pk_cessao"));
                     auto.setNmAc(rs.getString("nm_ac"));
@@ -392,7 +398,7 @@ public class AutoCessaoDAO {
         }     
     
 //METODO utilizado na Classe (AutoCessaoPrazo) terceiro
-    public List<AutoCessao> listPrazoTerceiro(int mes, int ano, int qtdLinha, int OFFSET) {
+    public List<AutoCessaoAntigo> listPrazoTerceiro(int mes, int ano, int qtdLinha, int OFFSET) {
             String sql = ("SELECT * FROM autocessaocompletoterceiro "
                     + "WHERE dt_vencimento >= ? "
                     + "and month(dt_vencimento) = ? "
@@ -400,7 +406,7 @@ public class AutoCessaoDAO {
                     + "ORDER BY dt_vencimento DESC "
                     + "LIMIT ? OFFSET ?");
             try {
-                List<AutoCessao> cessaoLista = new ArrayList<AutoCessao>();
+                List<AutoCessaoAntigo> cessaoLista = new ArrayList<AutoCessaoAntigo>();
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
                     stmt.setTimestamp(1, java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
@@ -411,7 +417,7 @@ public class AutoCessaoDAO {
                 ResultSet rs = stmt.executeQuery();
 
                 while (rs.next()) {
-                    AutoCessao auto = new AutoCessao();
+                    AutoCessaoAntigo auto = new AutoCessaoAntigo();
 
                     auto.setPkCessao(rs.getInt("pk_cessao"));
                     auto.setNmAc(rs.getString("nm_ac"));
@@ -436,7 +442,7 @@ public class AutoCessaoDAO {
         
     
 //METODO utilizado para Classe (AutoCessaoDetalhe) 
-    public AutoCessao detalheAutoCessao(int pkCessao){
+    public AutoCessaoAntigo detalheAutoCessao(int pkCessao){
         
         String sql = ("SELECT * FROM autocessaocompleto WHERE pk_cessao = ?");
            try {
@@ -444,7 +450,7 @@ public class AutoCessaoDAO {
                    stmt.setInt(1, pkCessao);
                 ResultSet rs = stmt.executeQuery();
                 
-                AutoCessao auto = new AutoCessao();
+                AutoCessaoAntigo auto = new AutoCessaoAntigo();
                 if (rs.next()) {
                    auto.setPkCessao(rs.getInt("pk_cessao"));
                    auto.setNmAc(rs.getString("nm_ac"));
@@ -485,7 +491,7 @@ public class AutoCessaoDAO {
     }
 
 //METODO utilizado para Classe (AutoCessaoDetalhe) terceiro
-    public AutoCessao detalheAutoCessaoTerceiro(int pkCessao){
+    public AutoCessaoAntigo detalheAutoCessaoTerceiro(int pkCessao){
         
         String sql = ("SELECT * FROM autocessaocompletoterceiro WHERE pk_cessao = ?");
            try {
@@ -493,7 +499,7 @@ public class AutoCessaoDAO {
                    stmt.setInt(1, pkCessao);
                 ResultSet rs = stmt.executeQuery();
                 
-                AutoCessao auto = new AutoCessao();
+                AutoCessaoAntigo auto = new AutoCessaoAntigo();
                 if (rs.next()) {
                    auto.setPkCessao(rs.getInt("pk_cessao"));
                    auto.setNmAc(rs.getString("nm_ac"));
@@ -535,17 +541,17 @@ public class AutoCessaoDAO {
     
     
 //METODO utilizado na Classe AutoCessaoGraQtd)
-    public List<AutoCessao> listQtdPorCessao() {
+    public List<AutoCessaoAntigo> listQtdPorCessao() {
             String sql = ("SELECT nm_cessao, COUNT(*) AS total FROM autocessaocompleto "
                         + "WHERE nr_vigor = 1 AND nr_encerrado = 0 "
                         + "GROUP BY pk_tipoCessao "
                         + "ORDER BY total DESC");
             try {
-                List<AutoCessao> cessaoLista = new ArrayList<AutoCessao>();
+                List<AutoCessaoAntigo> cessaoLista = new ArrayList<AutoCessaoAntigo>();
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 ResultSet rs = stmt.executeQuery();
                 while (rs.next()) {
-                    AutoCessao auto = new AutoCessao();
+                    AutoCessaoAntigo auto = new AutoCessaoAntigo();
                         auto.setNmCessao(rs.getString("nm_cessao"));
                         auto.setNrTotal(rs.getInt("total"));
                     cessaoLista.add(auto);
@@ -561,17 +567,17 @@ public class AutoCessaoDAO {
 
 
 //METODO utilizado na Classe AutoCessaoGraQtd) terceiro
-    public List<AutoCessao> listQtdPorCessaoTerceiro() {
+    public List<AutoCessaoAntigo> listQtdPorCessaoTerceiro() {
             String sql = ("SELECT nm_cessao, COUNT(*) AS total FROM autocessaocompletoterceiro "
                         + "WHERE nr_vigor = 1 AND nr_encerrado = 0 "
                         + "GROUP BY pk_tipoCessao "
                         + "ORDER BY total DESC");
             try {
-                List<AutoCessao> cessaoLista = new ArrayList<AutoCessao>();
+                List<AutoCessaoAntigo> cessaoLista = new ArrayList<AutoCessaoAntigo>();
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 ResultSet rs = stmt.executeQuery();
                 while (rs.next()) {
-                    AutoCessao auto = new AutoCessao();
+                    AutoCessaoAntigo auto = new AutoCessaoAntigo();
                         auto.setNmCessao(rs.getString("nm_cessao"));
                         auto.setNrTotal(rs.getInt("total"));
                     cessaoLista.add(auto);

@@ -122,14 +122,13 @@ public class ArquivoDAO {
     }
     
 //METODO utilizado para não ocorrer duplicidade      
-    public boolean duplicidade (String nmOrigem, String nmTipo, String nmDiretorio){
-        String sql = "SELECT nm_diretorio FROM tbl_arquivo WHERE nm_origem = ? and nm_tipo = ? and nm_diretorio = ? "; 
+    public boolean duplicidade (int pkArquivo, String nmTipo){
+        String sql = "SELECT id_arquivo, nm_nome_arquivo, nm_diretorio FROM tbl_arquivo WHERE fk_tipo_arquivo = ? and nm_tipo = ? "; 
         try{
             boolean encontrado = false;
             PreparedStatement stmt = connection.prepareCall(sql);
-                stmt.setString(1, nmOrigem);
+                stmt.setInt(1, pkArquivo);
                 stmt.setString(2, nmTipo);
-                stmt.setString(3, nmDiretorio);
             ResultSet rs = stmt.executeQuery();
             if(rs.next()){
                encontrado = true;

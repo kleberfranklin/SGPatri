@@ -41,9 +41,15 @@
                         </li>
                         </c:if> 
                         <li>
-                            <a href="#">
-                                <i class="ace-icon fa fa-user"></i>
+                            <a href="#" title="Perfil do usuário">
+                                <i class="ace-icon fa fa-users"></i>
                                 <c:out value="${sessionPerfil}"/>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" title="Divisão">
+                                <i class="ace-icon fa fa-folder"></i>
+                                <c:out value="${sessionSgDivisao}"/>
                             </a>
                         </li>
                         <li class="divider"></li>
