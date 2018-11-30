@@ -53,6 +53,7 @@
                         <select class=" col-xs-12 col-sm-12" name="qTpcessao">
                             <option value=""></option>
                             <c:forEach var="tp" items="${tpAuto.listSelectTpCessao()}">
+                                <c:if test="${tp.nmTipoAutoCessao != 'Informacao Nao Cadastrada'}">
                                 <c:choose >
                                     <c:when test="${to.nmCatAutoCessao.length() > 40 }">
                                         <option value="${tp.pkTipoAutoCessao}" title="${tp.nmTipoAutoCessao}">${tp.nmTipoAutoCessao.substring(0,40)}</option>
@@ -61,6 +62,7 @@
                                         <option value="${tp.pkTipoAutoCessao}" title="${tp.nmTipoAutoCessao}">${tp.nmTipoAutoCessao}</option>
                                     </c:otherwise>
                                 </c:choose>
+                                </c:if>
                             </option>  
                             </c:forEach>
                         </select>
@@ -212,7 +214,7 @@
                                </td>
                             <td>
                             <c:choose>
-                                <c:when test="${sessionSgDivisao == 'DDPI'}">
+                                <c:when test="${sessionSgDivisao == 'DDPI' && autolist.nmStatus == 'Validado'}">
                                 <div class="hidden-sm hidden-xs btn-group">
                                     <button class="btn btn-xs btn-info">
                                         <i class="ace-icon fa fa-pencil bigger-120"></i>
