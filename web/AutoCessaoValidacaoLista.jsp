@@ -109,7 +109,7 @@
                             <td class="center hidden-480">
                                 <c:choose>
                                     <c:when test="${autolist.nmStatus == 'Validado'}">
-                                        <button class="btn btn-white btn-success" onclick="location.href='ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage=${autolist.pkAutoStage}&pg=${pg}&pi=${pi}&pf=${pf}&qAC=${qAC}&qProcesso=${qProcesso}&qVigor=${qVigor}&qStatus=${qStatus}&pgValidacao=pgValidacao'">
+                                        <button class="btn btn-white btn-success" onclick="location.href='ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage=${autolist.pkAutoStage}&pg=${pg}&pi=${pi}&pf=${pf}&qAC=${qAC}&qProcesso=${qProcesso}&qVigor=${qVigor}&qStatus=${qStatus}&pgValidacao=pgValidacao&execucao=view'">
                                             <i class="ace-icon fa fa-search-plus"></i>
                                             Visualizar
                                         </button>

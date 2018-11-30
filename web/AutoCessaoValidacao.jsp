@@ -1590,7 +1590,7 @@
                             <c:when test="${auto.nrVerAc=='1' && auto.nrVerDispLegal=='0'}">
                                 in active
                             </c:when>
-                            <c:when test="${(execucao!='insert' || execucao=='edit') && auto.nrVerDispLegal=='1' || auto.nmStatus == 'Validado'}">
+                            <c:when test="${ execucao=='view' }">
                                
                             </c:when>
                             <c:otherwise>
@@ -1691,7 +1691,7 @@
                             <c:when test="${auto.nrVerAc == '1' && auto.nrVerDispLegal == '1' && (auto.nrVerArqAc=='0' || auto.nrVerArqPlanta=='0') }"> 
                                 in active
                             </c:when>
-                             <c:when test="${(auto.nrVerArqAc=='1' || auto.nrVerArqPlanta=='1') && (execucao!='insert' || execucao=='edit') || auto.nmStatus == 'Validado'}">
+                             <c:when test="${execucao=='view'}">
                                 
                             </c:when>    
                             <c:otherwise>
@@ -1719,7 +1719,7 @@
                                 <label class="col-md-1 col-xs-12">
                                     <c:forEach var="ar" items="${Arquivo.listArquivo(auto.pkAutoStage, 'AutoCessao')}">
                                         <c:if test="${ar.nmTipo == 'planta'}">
-                                            <a href="/CGPatri/Arquivo/Planta/${ar.nmNomeArquivo}" target="_blank"><img src="img/img-planta.png" title="${ar.nmNome}" width="60%" height="60%"/></a>
+                                            <a href="<c:out value="${pageContext.servletContext.contextPath}" />/Arquivo/Planta/${ar.nmNomeArquivo}" target="_blank"><img src="img/img-planta.png" title="${ar.nmNome}" width="60%" height="60%"/></a>
                                             </c:if>    
                                     </c:forEach>
                                 </label>
@@ -1771,7 +1771,8 @@
                                     <label class="col-md-1 col-xs-12">
                                         <c:forEach var="ar" items="${Arquivo.listArquivo(auto.pkAutoStage, 'AutoCessao')}">
                                             <c:if test="${ar.nmTipo == 'AC'}">
-                                                <a href="/CGPatri/Arquivo/AC/${ar.nmNomeArquivo}" target="_blank"><img src="img/img-arquivo.png" title="${ar.nmNome}" width="50%" height="50%"/></a>
+                                                <a href="<c:out value="${pageContext.servletContext.contextPath}" />/Arquivo/AC/${ar.nmNomeArquivo}" target="_blank"><img src="img/img-arquivo.png" title="${ar.nmNome}" width="50%" height="50%"/></a>
+                                                
                                             </c:if>
                                         </c:forEach>
                                     </label>
