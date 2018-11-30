@@ -1691,7 +1691,7 @@
                             <c:when test="${auto.nrVerAc == '1' && auto.nrVerDispLegal == '1' && (auto.nrVerArqAc=='0' || auto.nrVerArqPlanta=='0') }"> 
                                 in active
                             </c:when>
-                             <c:when test="${(execucao!='insert' || execucao=='edit') || auto.nmStatus == 'Validado'}">
+                             <c:when test="${(execucao!='insert' || execucao=='edit' && (auto.nrVerArqAc=='0' || auto.nrVerArqPlanta=='0')) || auto.nmStatus == 'Validado'}">
                                 
                             </c:when>    
                             <c:otherwise>
