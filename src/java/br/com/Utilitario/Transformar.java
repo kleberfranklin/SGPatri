@@ -5,9 +5,11 @@
  */
 package br.com.Utilitario;
 
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.Normalizer;
 
 /**
  *
@@ -19,13 +21,15 @@ public class Transformar {
     public static String utf8(String s) {
         String out;
         try {
-            //out = new String(s.getBytes("ISO-8859-1"), "UTF-8");
+//            out = new String(s.getBytes("ISO-8859-1"), "UTF-8");
             out = new String(s.getBytes("UTF-8"), "UTF-8");
         } catch (java.io.UnsupportedEncodingException e) {
             return null;
         }
         return out;
     }
+    
+          
 
 //Converte padronização o texto para a Primeira Letra da frase em Maiuscula    
     public static String priMaiuscula(String value) {
@@ -51,9 +55,11 @@ public class Transformar {
 		return sen;
 	}    
 
-
-    
-    
+    public static String removeAccents(String str) {
+        str = Normalizer.normalize(str, Normalizer.Form.NFD);
+        str = str.replaceAll("[^\\p{ASCII}]", "");
+        return str;
+    }
 
     
 }

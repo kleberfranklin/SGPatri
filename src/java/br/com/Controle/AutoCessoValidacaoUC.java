@@ -65,8 +65,8 @@ public class AutoCessoValidacaoUC  implements Logica{
     codAC = req.getParameter("codAC"); 
     dtlavratura = req.getParameter("dtlavratura");
     nrprocesso = req.getParameter("nrprocesso");
-    nmcessionario = Transformar.priMaiuscula(req.getParameter("nmcessionario"));
-    dsFinalidade = Transformar.priMaiuscula(req.getParameter("dsFinalidade"));
+    nmcessionario = req.getParameter("nmcessionario");
+    dsFinalidade = req.getParameter("dsFinalidade");
     nmplanta = req.getParameter("nmplanta"); 
     nmcroqui = req.getParameter("nmcroqui");
     nrarea = req.getParameter("nrarea"); 
@@ -77,20 +77,62 @@ public class AutoCessoValidacaoUC  implements Logica{
     nmMetragemOficial = req.getParameter("nmMetragemOficial");
     tipoEndereco = req.getParameter("tipoEndereco");
     tituloEndereco = req.getParameter("tituloEndereco");
-    nmendereco = Transformar.priMaiuscula(req.getParameter("nmendereco")); 
+    nmendereco = req.getParameter("nmendereco"); 
     nrnumeroend = req.getParameter("nrnumeroend");
-    nmcomplementoend = Transformar.priMaiuscula(req.getParameter("nmcomplementoend")); 
+    nmcomplementoend = req.getParameter("nmcomplementoend"); 
     nmreferenciaend = Transformar.priMaiuscula(req.getParameter("nmreferenciaend"));
     nmprazo = req.getParameter("nmprazo");
     nrvigor = req.getParameter("nrvigor");
     dsContrapartida = req.getParameter("dsContrapartida"); 
     dsObservacao = Transformar.priMaiuscula(req.getParameter("dsObservacao"));
-    dsContrapartida = dsContrapartida.trim();
     loginSessio =(String) session.getAttribute("sessionLogin");
-    dsContrapartida = Transformar.priMaiuscula(dsContrapartida.trim());
+    
    
     
+    if(null == nmcessionario || nmcessionario.equals("")){
+        nmcessionario = "";
+    }else{
+        nmcessionario = Transformar.removeAccents(Transformar.utf8(nmcessionario)).toUpperCase().trim();
+    }
     
+    if(null == dsFinalidade || dsFinalidade.equals("")){
+        dsFinalidade = "";
+    }else{
+        dsFinalidade = Transformar.removeAccents(Transformar.utf8(dsFinalidade)).toUpperCase().trim();
+    }
+    
+    if(null == nmendereco || nmendereco.equals("")){
+        nmendereco = "";
+    }else{
+        nmendereco = Transformar.removeAccents(Transformar.utf8(nmendereco)).toUpperCase().trim();
+    }
+    
+    if(null == nmcomplementoend || nmcomplementoend.equals("")){
+        nmcomplementoend = "";
+    }else{
+        nmcomplementoend = Transformar.removeAccents(Transformar.utf8(nmcomplementoend)).toUpperCase().trim();
+    }
+    
+    if(null == nmreferenciaend || nmreferenciaend.equals("")){
+        nmreferenciaend = "";
+    }else{
+        nmreferenciaend = Transformar.removeAccents(Transformar.utf8(nmreferenciaend)).toUpperCase().trim();
+    }
+    
+    if(null == dsContrapartida || dsContrapartida.equals("")){
+        dsContrapartida = "";
+    }else{
+        dsContrapartida = Transformar.removeAccents(Transformar.utf8(dsContrapartida)).toUpperCase().trim();
+    }
+    
+    if(null == dsObservacao || dsObservacao.equals("")){
+        dsObservacao = "";
+    }else{
+        dsObservacao = Transformar.removeAccents(Transformar.utf8(dsObservacao)).toUpperCase().trim();
+    }
+      
+    
+        
     
 //Tratando dos dados do formulário
     if(null==nmprazo || nmprazo.equals("") || !nmprazo.equals("Indeterminado")){

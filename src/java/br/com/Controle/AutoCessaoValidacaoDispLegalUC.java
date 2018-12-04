@@ -54,7 +54,7 @@ public class AutoCessaoValidacaoDispLegalUC implements Logica {
             disp.setNrDisp(nrDispositivo[i]);
             disp.setDtDisp(dtDispositivo[i]);
             disp.setNmLogin(loginSessio);
-            System.out.println(dtDispositivo[i]);
+//            System.out.println(dtDispositivo[i]);
         lisDis.add(disp);             
         }
         

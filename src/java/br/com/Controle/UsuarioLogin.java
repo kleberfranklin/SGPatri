@@ -40,7 +40,7 @@ public class UsuarioLogin implements Logica {
         String login, nome, senha, pagina, msg="", msg2="";
         Boolean autenticacao;
         
-        login = req.getParameter("Login");
+        login = req.getParameter("Login").toLowerCase();
         senha = req.getParameter("senha");
 
 //Autenticação no servido AD     

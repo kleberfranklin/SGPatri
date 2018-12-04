@@ -25,11 +25,64 @@ public class AutoCessaoValidacaoDAO {
         this.connection = new FabricaConexao().getConnetion();
     }
 
+/**
+    Normalização da remover acentos e colocar para tuto maiusculo 
+*/    
+    
+//    public List<AutoCessaoValidacao> listIdAuto() {
+//            String sql = ("SELECT id_autocessao, nm_cessionario, nm_cedente, nm_referencialendereco "
+//                    + "FROM tbl_autocessao_stage "
+//                    + "ORDER BY id_autocessao ASC "
+//                    );
+////                    + "LIMIT 1");
+//            try {
+//                List<AutoCessaoValidacao> lisIdAutoCessao = new ArrayList<AutoCessaoValidacao>();
+//                PreparedStatement stmt = connection.prepareStatement(sql);
+//            
+//                ResultSet rs = stmt.executeQuery();
+//
+//                while (rs.next()) {
+//                AutoCessaoValidacao auto = new AutoCessaoValidacao();
+//                    auto.setPkAutoStage(rs.getInt("id_autocessao"));
+//                    auto.setNmCessionario(rs.getString("nm_cessionario"));
+//                    auto.setNmCedente(rs.getString("nm_cedente"));
+//                    auto.setNmReferencialEndereco(rs.getString("nm_referencialendereco"));
+//                lisIdAutoCessao.add(auto);
+//                }
+//                stmt.execute();
+//                stmt.close();
+//
+//                return lisIdAutoCessao;
+//            } catch (SQLException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
+//    
+//    public void normalizar(int pkAuto, String qCessionario, String qCedente, String qEndereco){
+//        String sql = ("UPDATE tbl_autocessao_stage "
+//                + "SET nm_cessionario = ?, nm_cedente=?, nm_referencialendereco = ? "
+//                + "WHERE id_autocessao = ? ");
+//            try{
+//               PreparedStatement stmt = connection.prepareStatement(sql);
+//                   stmt.setString(1, qCessionario);
+//                   stmt.setString(2, qCedente);
+//                   stmt.setString(3, qEndereco);
+//                   stmt.setInt(4, pkAuto);
+//               stmt.execute();
+//               stmt.close();
+//           }catch (SQLException e){
+//              throw new RuntimeException(e);
+//           } 
+//    }
+    
+   
+    
+    
 //METODO utilizado na Classe (AutoCessaolistaPagFiltro)
     public List<AutoCessaoValidacao> listPagFiltroPesquisa(String qTpcessao, String qAC, String qProcesso, String qCessionario, String qCedente,
             String qEndereco,String qCroqui ,String qVigor, int qtdLinha, int OFFSET) {
             String sql = ("SELECT * FROM tbl_autocessao_stage "
-                    + "WHERE CAST(fk_tipocessao AS VARCHAR) LIKE ? and cod_ac LIKE ? and nm_processo LIKE ? and (nm_cessionario LIKE ? or nm_cedente LIKE ? ) "
+                    + "WHERE CAST(fk_tipocessao AS VARCHAR) LIKE ? and cod_ac LIKE ? and nm_processo LIKE ? and nm_cessionario LIKE ? and nm_cedente LIKE ? "
                     + "and nm_endereco LIKE ? and nm_croqui LIKE ? and nr_Vigor LIKE ? "
                     + "ORDER BY cod_ac DESC "
                     + "LIMIT ? OFFSET ?");
@@ -40,8 +93,8 @@ public class AutoCessaoValidacaoDAO {
                    stmt.setString(1, '%'+qTpcessao+'%');
                    stmt.setString(2, qAC+'%');
                    stmt.setString(3, qProcesso+'%');
-                   stmt.setString(4, qCessionario+'%');
-                   stmt.setString(5, qCedente+'%');
+                   stmt.setString(4, '%'+qCessionario+'%');
+                   stmt.setString(5, '%'+qCedente+'%');
                    stmt.setString(6, '%'+qEndereco+'%');
                    stmt.setString(7, qCroqui+'%');
                    stmt.setString(8, '%'+qVigor+'%');
@@ -79,15 +132,15 @@ public class AutoCessaoValidacaoDAO {
     public int qtdAutoPesquisa(String qTpcessao, String qAC, String qProcesso, String qCessionario, String qCedente, 
             String qEndereco, String qCroqui, String qVigor){
           String sql = ("SELECT COUNT(*) as total FROM tbl_autocessao_stage WHERE CAST(fk_tipocessao AS VARCHAR) LIKE ? and cod_ac LIKE ? and nm_processo LIKE ? "
-                  + "and (nm_cessionario LIKE ? or nm_cedente LIKE ? ) and nm_endereco LIKE ? and nm_croqui LIKE ? and nr_vigor LIKE ? ");
+                  + "and nm_cessionario LIKE ? and nm_cedente LIKE ? and nm_endereco LIKE ? and nm_croqui LIKE ? and nr_vigor LIKE ? ");
 //                  + "and pk_tipoCessao <> 1");
            try {
                PreparedStatement stmt = connection.prepareStatement(sql);
                    stmt.setString(1, '%'+qTpcessao+'%');
                    stmt.setString(2, qAC+'%');
                    stmt.setString(3, qProcesso+'%');
-                   stmt.setString(4, qCessionario+'%');
-                   stmt.setString(5, qCedente+'%');
+                   stmt.setString(4, '%'+qCessionario+'%');
+                   stmt.setString(5, '%'+qCedente+'%');
                    stmt.setString(6, '%'+qEndereco+'%');
                    stmt.setString(7, qCroqui+'%');
                    stmt.setString(8, '%'+qVigor+'%');

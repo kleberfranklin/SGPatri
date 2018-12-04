@@ -1,0 +1,20 @@
+<script>
+function alertSigla() {
+    var digitado = parseInt(document.getElementById("sigla").value.length);
+    var maxLength = parseInt(document.getElementById("sigla").maxLength);
+    maxLength = maxLength-1;
+    if (digitado > maxLength){
+        document.getElementById("alertSigla").style.visibility='visible';
+        document.getElementById("alertSigla").innerHTML = "&nbsp;<span class='badge badge-danger'>Maximo "+maxLength+" caracteres!</span>";
+        document.getElementById("salvar").disabled = true;
+        
+    }
+}
+function alertSiglaClear() {
+    document.getElementById("alertSigla").style.visibility='hidden';
+    document.getElementById("salvar").disabled = false;
+}
+</script>
+
+
+
