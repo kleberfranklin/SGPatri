@@ -64,9 +64,35 @@
             </a>
             <b class="arrow"></b>
             <ul class="submenu">
+                <li class="disabled-li-menu">
+                    <a href="#" class="dropdown-toggle" title="Núcleo de Administração dos Imóveis">
+                        <i class="menu-icon fa fa-caret-right"></i> SAI
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+                    <b class="arrow"></b>
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="#" title=""> - </a>
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+                <li class="disabled-li-menu">
+                    <a href="#" class="dropdown-toggle" title="Núcleo de Análise de Processos">
+                        <i class="menu-icon fa fa-caret-right"></i> SAP
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+                    <b class="arrow"></b>
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="#" title=""> - </a>
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
                 <li class="">
-                    <a href="#" class="dropdown-toggle" title="Núcleo de Análise Geral">
-                        <i class="menu-icon fa fa-caret-right"></i> SAG
+                    <a href="#" class="dropdown-toggle" title="Núcleo de Controle de Lavratura de Cessão">
+                        <i class="menu-icon fa fa-caret-right"></i> SCL
                         <b class="arrow fa fa-angle-down"></b>
                     </a>
                     <b class="arrow"></b>
@@ -86,12 +112,6 @@
                         </li>
                         </c:if>   
                     </ul>
-                </li>
-                <li class="disabled-li-menu">
-                    <a href="#">
-                        <i class="menu-icon fa fa-caret-right " title="Núcleo de Análise de Processos"></i> -
-                    </a>
-                    <b class="arrow"></b>
                 </li>
             </ul>
             
