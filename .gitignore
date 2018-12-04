@@ -1,1 +1,4 @@
+.gitignore
 /dist/
+FabricaConexao.java
+Auth.java
