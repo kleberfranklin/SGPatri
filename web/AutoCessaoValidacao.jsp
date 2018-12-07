@@ -129,7 +129,7 @@
                             </c:choose>
                         </a>
                     </li>
-                    <c:if test="${sessionSgDivisao=='DDPI' && sessionPerfil == 'Supervisor' && pgValidacao=='pgValidacao'}">
+                    <c:if test="${(sessionSgDivisao == 'DDPI' && sessionSgSetor == 'SCL') && pgValidacao=='pgValidacao'}">
                     <li class="<c:if test="${auto.nrVerAc == '1' && auto.nrVerDispLegal == '1' && auto.nrVerArqAc == '1' && auto.nrVerArqPlanta == '1' && auto.nrVerValidacao == '0' }">active</c:if>">
                         <a data-toggle="tab" href="#validacao" aria-expanded="true">
                             Validação
@@ -1573,7 +1573,7 @@
                                             </button>
                                         </c:otherwise>
                                     </c:choose>
-                                    <c:if test="${execucao=='insert' || execucao=='edit' && sessionSgDivisao == 'DDPI'}">
+                                    <c:if test="${execucao=='insert' || execucao=='edit' && (sessionSgDivisao == 'DDPI' && sessionSgSetor == 'SCL')}">
                                     <button class="btn btn-success" type="submit">
                                         <i class="ace-icon fa fa-save bigger-110"></i>
                                         Salvar
@@ -1599,7 +1599,7 @@
                         </c:choose>     
                         ">        
                         <h5 class="header smaller lbl "><strong>Dispositivos Legais</strong></h5>
-                <c:if test="${sessionSgDivisao == 'DDPI' && (execucao=='insert' || execucao=='edit')}">
+                <c:if test="${(sessionSgDivisao == 'DDPI' && sessionSgSetor == 'SCL') && (execucao=='insert' || execucao=='edit')}">
                         <form action="ControllerServlet?acao=AutoCessaoValidacaoDispLegalUC" method="POST" >
                             <input type="hidden" name="pkAutoStage" value="${auto.pkAutoStage}" />
                             <input type="hidden" name="nrVerDisplegal" value="1" />
@@ -1723,7 +1723,7 @@
                                             </c:if>    
                                     </c:forEach>
                                 </label>
-                    <c:if test="${sessionSgDivisao == 'DDPI' && (execucao=='insert' || execucao=='edit')}">
+                    <c:if test="${(sessionSgDivisao == 'DDPI' &&sessionSgSetor == 'SCL') && (execucao=='insert' || execucao=='edit')}">
                                 <label class="inline col-md-3">
                                     <input type="text" id="form-field-1" class="col-xs-12 col-md-12" name="nmNome" placeholder="Nome da Planta" required="required" >
                                 </label>
@@ -1776,7 +1776,7 @@
                                             </c:if>
                                         </c:forEach>
                                     </label>
-                    <c:if test="${sessionSgDivisao == 'DDPI' && (execucao=='insert' || execucao=='edit')}">
+                    <c:if test="${(sessionSgDivisao == 'DDPI' && sessionSgSetor == 'SCL') && (execucao=='insert' || execucao=='edit')}">
                                     <label class="inline col-md-3">
                                         <input type="text" id="form-field-1" class="col-xs-12 col-md-12" name="nmNome" placeholder="Nome do Auto de Cessão" required="required" >
                                     </label>

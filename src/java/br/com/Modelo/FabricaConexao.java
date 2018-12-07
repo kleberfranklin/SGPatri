@@ -27,12 +27,12 @@ public class FabricaConexao {
     
 //  -- CONEXÃO POSTGRESQL SERVIDOR HOMOLOGAÇÃO CAP --  
         String drive = "org.postgresql.Driver";
-        private final String banco = "SG_Patri_PROD"; 
-        private final String url = "jdbc:postgresql://10.69.41.91:5433/"+banco;
-//        private final String url = "jdbc:postgresql:/SMDUGBC361:5433/"+banco;
+//        private final String banco = "SG_Patri_PROD";
 //        private final String banco = "SG_Patri_Homolog"; 
-//        private final String banco = "SG_Patri_Test"; 
-//        private final String url = "jdbc:postgresql://10.69.41.91:5433/"+banco; 
+        private final String banco = "SG_Patri_Test"; 
+        private final String url = "jdbc:postgresql://10.69.41.91:5433/"+banco; 
+//        private final String url = "jdbc:postgresql://SMDUGBC361:5433/"+banco;
+//        private final String url = "jdbc:postgresql://10.69.42.92:5433/"+banco;
         Properties props = new Properties();
     
     public Connection getConnetion(){
@@ -50,7 +50,7 @@ public class FabricaConexao {
                 props.setProperty("password","Prodam@2018!");
 //            props.setProperty("user","falmeida");
 //            props.setProperty("password","Prodam1997");
-//                props.setProperty("ssl","false");
+//            props.setProperty("ssl","false");
                 
                 return DriverManager.getConnection(url, props);
 

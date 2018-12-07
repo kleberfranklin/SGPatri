@@ -105,7 +105,7 @@
                         <a href="AutoCessao.jsp?ter=terceiro" title="Auto de Cessão de Terceiros"> Autos de Cessão de Terceiros</a>
                         <b class="arrow"></b>
                     </li> -->
-                        <c:if test="${sessionSgDivisao == 'DDPI' && sessionPerfil == 'Supervisor'}">
+                        <c:if test="${sessionSgDivisao == 'DDPI' && sessionSgSetor == 'SCL'}">
                         <li class="">
                             <a href="ControllerServlet?acao=AutoCessaoValidacaoLista" title="Auto de Cessão Validação"> Validação Auto Cessão</a>
                             <b class="arrow"></b>
@@ -137,7 +137,7 @@
         
         <!-- Menu DEAPI -->
         <li class="disabled-li-menu">
-            <a href="#" class="dropdown-toggle" title="Divisão de Engenharia e Avaliação do Patrimônio Imobiliário">
+            <a href="#" class="dropdown-toggle" title="Divisão de Engenharia do Patrimônio Imobiliário">
                 <i class="menu-icon fa fa-folder"></i>
                 <span class="menu-text"> DEAPI </span>
                 <b class="arrow fa fa-angle-down"></b>

@@ -28,54 +28,50 @@ public class AutoCessaoValidacaoDAO {
 /**
     Normalização da remover acentos e colocar para tuto maiusculo 
 */    
-    
-//    public List<AutoCessaoValidacao> listIdAuto() {
-//            String sql = ("SELECT id_autocessao, nm_cessionario, nm_cedente, nm_referencialendereco "
-//                    + "FROM tbl_autocessao_stage "
-//                    + "ORDER BY id_autocessao ASC "
-//                    );
-////                    + "LIMIT 1");
-//            try {
-//                List<AutoCessaoValidacao> lisIdAutoCessao = new ArrayList<AutoCessaoValidacao>();
-//                PreparedStatement stmt = connection.prepareStatement(sql);
-//            
-//                ResultSet rs = stmt.executeQuery();
-//
-//                while (rs.next()) {
-//                AutoCessaoValidacao auto = new AutoCessaoValidacao();
-//                    auto.setPkAutoStage(rs.getInt("id_autocessao"));
-//                    auto.setNmCessionario(rs.getString("nm_cessionario"));
-//                    auto.setNmCedente(rs.getString("nm_cedente"));
-//                    auto.setNmReferencialEndereco(rs.getString("nm_referencialendereco"));
-//                lisIdAutoCessao.add(auto);
-//                }
-//                stmt.execute();
-//                stmt.close();
-//
-//                return lisIdAutoCessao;
-//            } catch (SQLException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
+    public List<AutoCessaoValidacao> listIdAuto() {
+            String sql = ("SELECT id_autocessao, nm_endereco, nm_referencialendereco  "
+                    + "FROM tbl_autocessao_stage "
+                    + "ORDER BY id_autocessao ASC "
+                    );
+//                    + "LIMIT 2");
+            try {
+                List<AutoCessaoValidacao> lisIdAutoCessao = new ArrayList<AutoCessaoValidacao>();
+                PreparedStatement stmt = connection.prepareStatement(sql);
+            
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                AutoCessaoValidacao auto = new AutoCessaoValidacao();
+                    auto.setPkAutoStage(rs.getInt("id_autocessao"));
+                    auto.setNmEndereco(rs.getString("nm_endereco"));
+                    auto.setNmReferencialEndereco(rs.getString("nm_referencialendereco"));
+                lisIdAutoCessao.add(auto);
+                }
+                stmt.execute();
+                stmt.close();
+
+                return lisIdAutoCessao;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
 //    
-//    public void normalizar(int pkAuto, String qCessionario, String qCedente, String qEndereco){
-//        String sql = ("UPDATE tbl_autocessao_stage "
-//                + "SET nm_cessionario = ?, nm_cedente=?, nm_referencialendereco = ? "
-//                + "WHERE id_autocessao = ? ");
-//            try{
-//               PreparedStatement stmt = connection.prepareStatement(sql);
-//                   stmt.setString(1, qCessionario);
-//                   stmt.setString(2, qCedente);
-//                   stmt.setString(3, qEndereco);
-//                   stmt.setInt(4, pkAuto);
-//               stmt.execute();
-//               stmt.close();
-//           }catch (SQLException e){
-//              throw new RuntimeException(e);
-//           } 
-//    }
+    public void normalizar(int pkAuto, String qEndereco){
+        String sql = ("UPDATE tbl_autocessao_stage "
+                + "SET nm_referencialendereco = ? "
+                + "WHERE id_autocessao = ? ");
+            try{
+               PreparedStatement stmt = connection.prepareStatement(sql);
+                   stmt.setString(1, qEndereco);
+                   stmt.setInt(2, pkAuto);
+               stmt.execute();
+               stmt.close();
+           }catch (SQLException e){
+              throw new RuntimeException(e);
+           } 
+    }
     
-   
+ /*************************************************************************************/
     
     
 //METODO utilizado na Classe (AutoCessaolistaPagFiltro)

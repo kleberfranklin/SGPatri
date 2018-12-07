@@ -6,7 +6,6 @@
 package br.com.Controle;
 
 import br.com.Modelo.Logica;
-import br.com.Modelo.Logica;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,14 +21,27 @@ public class UsuarioLogoff implements Logica{
     
 // remover os atributos das session!          
         HttpSession session = req.getSession();
-            session.removeAttribute("sessionLogin");
-            session.removeAttribute("sessionNome");
-            session.removeAttribute("sessionDivisao");
-            session.removeAttribute("sessionPefil");
-            session.removeAttribute("sessionFoto");
-            session.removeAttribute("sessionStatus");
+                session.removeAttribute("sessionPkUs");
+                session.removeAttribute("sessionLogin");
+                session.removeAttribute("sessionNome");
+                session.removeAttribute("sessionPkDivisao");
+                session.removeAttribute("sessionSgDivisao");
+                session.removeAttribute("sessionNmDivisao");
+                session.removeAttribute("sessionPkSetor");
+                session.removeAttribute("sessionSgSetor");
+                session.removeAttribute("sessionNmSetor");
+                session.removeAttribute("sessionPerfil");
+                session.removeAttribute("sessionCargo");
+                session.removeAttribute("sessionFoto");
+                session.removeAttribute("sessionStatus");
+                session.removeAttribute("sessionLer");
+                session.removeAttribute("sessionInserir");
+                session.removeAttribute("sessionEditar");
+                session.removeAttribute("sessionExcluir");
+                session.removeAttribute("sessionPainel");
+                session.removeAttribute("sessionDesPerfil");
+            session.invalidate();
         return "Login.jsp";
-         
       }     
     
 }

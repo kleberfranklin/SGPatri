@@ -21,12 +21,9 @@
     
       
 <!--Parametro para diferencia entre os Auto Cessão e Auto Cessão Terceiros -->    
-    <c:set var="ter" value="${param.ter}" />
-    
-    
     <div class="breadcrumbs ace-save-state" id="breadcrumbs">
         <ul class="breadcrumb">
-            <li><i class="ace-icon fa fa-list"></i> Auto Cessão <c:if test="${ter=='terceiro'}"> Terceiro</c:if></li>
+            <li><i class="ace-icon fa fa-list"></i> Auto Cessão</li>
         </ul><!-- /.breadcrumb -->
     </div>    
     <div class="page-content">
@@ -35,7 +32,7 @@
 
         <div class="page-header">
             <h1>
-                Auto de Cessão <c:if test="${ter=='terceiro'}"> Terceiro</c:if>
+                Auto de Cessão
             </h1>
         </div>
     
@@ -49,7 +46,7 @@
                     </button>
                 </div>
             </div>
-            <c:if test="${sessionSgDivisao == 'DDPI'}">
+            <c:if test="${sessionSgDivisao == 'DDPI' && sessionSgSetor == 'SCL'}">
             <div class="infobox">
                 <div class="btn-group-lg">
                     <!--<button class="btn btn-primary btn-white btn-block" onclick="#">-->

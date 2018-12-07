@@ -16,9 +16,6 @@
 
     <jsp:useBean id="tpAuto" class= "br.com.Modelo.TipoAutoCessaoDAO" />
     
-    
-    
-    <c:set var="ter" value="${param.ter}" />
     <c:set var="pg" value="${param.pg}" />
     <c:set var="pf" value="${param.pf}" />
     <c:set var="pi" value="${param.pi}" />
@@ -35,7 +32,7 @@
     
     <div class="breadcrumbs ace-save-state" id="breadcrumbs">
         <ul class="breadcrumb">
-            <li><i class="ace-icon fa fa-list"></i> Auto de Cessão <c:if test="${not empty ter}">Terceiros</c:if></li>
+            <li><i class="ace-icon fa fa-list"></i> Auto de Cessão </li>
         </ul>
     </div>
         
@@ -48,7 +45,6 @@
             <div class="form-actions col-md-12 col-xs-12">
                 <h4 class="widget-title">Filtros</h4>
                 <form class="form-search" action="ControllerServlet?acao=AutoCessaoListaPagFiltro" method="POST">
-                <c:if test="${not empty ter}"><input type="hidden" value="${ter}" name="ter" /></c:if>
                     
                     <label class="col-sm-2 col-xs-12">Tipo de Cessão </label>
                     <div class="col-sm-3">
@@ -234,7 +230,7 @@
                                </td>
                             <td>
                             <c:choose>
-                                <c:when test="${sessionSgDivisao == 'DDPI' && autolist.nmStatus == 'Validado'}">
+                                <c:when test="${sessionSgDivisao == 'DDPI' &&  sessionSgSetor == 'SCL'}">
                                 <div class="hidden-sm hidden-xs btn-group">
                                     <button class="btn btn-xs btn-info">
                                         <i class="ace-icon fa fa-pencil bigger-120"></i>

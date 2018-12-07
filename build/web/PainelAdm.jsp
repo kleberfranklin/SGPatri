@@ -80,9 +80,9 @@
     </div> 
 
 
-<c:if test="${ ('DDPI' == sessionSgDivisao && 'Supervisor' == sessionPerfil)  || sessionPerfil == 'Administrador'}">    
+<c:if test="${ ('DDPI' == sessionSgDivisao && sessionSgSetor == 'SCL')  || sessionPerfil == 'Administrador'}">    
       <div class="col-xs-10" > 
-          <h3 class="header smaller lighter blue"><strong>DDPI</strong></h3>
+          <h3 class="header smaller lighter blue"><strong>DDPI / SCL - Núcleo de Controle de Lavratura de Cessão</strong></h3>
         <div class="col-sm-12 infobox-chart" style=" padding-top:30px">
             <div class="infobox" title="Realizar alterações no campo Tipo de Auto de Cessão dos formulários de cadastro de Auto de Cessão">
                 <div class="btn-group-lg ">

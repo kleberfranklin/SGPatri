@@ -59,7 +59,12 @@ public class UsuarioLogin implements Logica {
 //                session.setAttribute("sNome", partes[partes.length - 1]); //pega o ultimo nome.
                 session.setAttribute("sessionPkDivisao", us.getPkDivisao());
                 session.setAttribute("sessionSgDivisao", us.getSgDivisao());
+                session.setAttribute("sessionNmDivisao", us.getNmDivisao());
+                session.setAttribute("sessionPkSetor",us.getPkSetor());
+                session.setAttribute("sessionSgSetor",us.getSgSetor());
+                session.setAttribute("sessionNmSetor",us.getNmSetor());
                 session.setAttribute("sessionPerfil", us.getNmPerfil());
+                session.setAttribute("sessionCargo", us.getNmCargo());
                 session.setAttribute("sessionFoto", us.getNmFoto());
                 session.setAttribute("sessionStatus", us.getNrAtivo());
                 session.setAttribute("sessionLer", per.getNrLer());
@@ -67,6 +72,7 @@ public class UsuarioLogin implements Logica {
                 session.setAttribute("sessionEditar", per.getNrEditar());
                 session.setAttribute("sessionExcluir", per.getNrExcluir());
                 session.setAttribute("sessionPainel", per.getNrGerenciar());
+                session.setAttribute("sessionDesPerfil", per.getDsPerfil());
                 
                     if (us.getNrAtivo() == 0){
                         pagina = "AcessoNegado.jsp";

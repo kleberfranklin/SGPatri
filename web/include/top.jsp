@@ -34,22 +34,22 @@
                     <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                         <c:if test="${sessionPainel == '1'}">
                         <li>
-                            <a href="PainelAdm.jsp">
+                            <a href="PainelAdm.jsp" title="Gerenciamento dos usuários de formulário e funções">
                                 <i class="ace-icon fa fa-cog"></i>
                                 Painel Administrativo
                             </a>
                         </li>
                         </c:if> 
                         <li>
-                            <a href="#" title="Perfil do usuário">
-                                <i class="ace-icon fa fa-users"></i>
+                            <a href="#" title="<c:out value="${sessionDesPerfil}"/>">
+                                <i class="ace-icon fa fa-user"></i>
                                 <c:out value="${sessionPerfil}"/>
                             </a>
                         </li>
                         <li>
-                            <a href="#" title="Divisão">
+                            <a href="#" title="<c:out value="${sessionNmDivisao}"/> / <c:out value="${sessionNmSetor}"/>">
                                 <i class="ace-icon fa fa-folder"></i>
-                                <c:out value="${sessionSgDivisao}"/>
+                                <c:out value="${sessionSgDivisao}"/> / <c:out value="${sessionSgSetor}"/>
                             </a>
                         </li>
                         <li class="divider"></li>

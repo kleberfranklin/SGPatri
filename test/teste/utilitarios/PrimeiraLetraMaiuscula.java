@@ -26,43 +26,10 @@ import java.util.List;
 public class PrimeiraLetraMaiuscula {
     public static void main(String[] args) throws UnsupportedEncodingException{
         
-/**
-    Normalização da remover acentos e colocar para tuto maiusculo 
-*/
-        
-//        AutoCessaoValidacaoDAO autoDAO = new AutoCessaoValidacaoDAO();
-//        List<AutoCessaoValidacao> lisAuto = new ArrayList();
-//        lisAuto = autoDAO.listIdAuto();
-//        
-//        int PkAutoStage =0;
-//        String qCessionario="", qCedente="", qEndereco="";
-//                
-//        for (AutoCessaoValidacao auto :lisAuto){
-//            PkAutoStage = auto.getPkAutoStage();
-//            qCessionario = removeAccents(auto.getNmCessionario()).toUpperCase();
-//            qCedente = removeAccents(auto.getNmCedente()).toLowerCase().toUpperCase();
-//            qEndereco = removeAccents(auto.getNmReferencialEndereco()).toUpperCase();
-//            
-//            autoDAO.normalizar(PkAutoStage, qCessionario, qCedente, qEndereco);
-//            System.out.print(PkAutoStage);
-//            System.out.print(" - "+ qCessionario);
-//            System.out.print("- "+ qCedente);
-//            System.out.println("- "+qEndereco);
-//            
-//            System.out.println("---------------------------//-----------------------------");
-//            
-//        }
-//        
-        
-    
         String nome = "À Á Â Ã Ä Å Æ Ç È É Ê Ë Ì Í Î Ï Ð Ñ Ò Ó Ô Õ Ö Ø Ù Ú Û Ü Ý Þ ß à á â ã ä å æ ç è é ê ë ì í î ï ð ñ ò ó ô õ ö ø ù ú û ü ý þ ÿ ";
-//        System.out.println(iniMaiuscula(nome));
-//        System.out.println(encoder(nome));
-//          System.out.println(removeAccents(nome));
-          
-            
-        
-        
+        System.out.println(iniMaiuscula(nome));
+        System.out.println(encoder(nome));
+        System.out.println(removeAccents(nome));
     }
     public static String iniMaiuscula(String value) {
 		String result = "", result2="";
@@ -89,8 +56,7 @@ public class PrimeiraLetraMaiuscula {
 
             return t;
         }
-    
-    
+
         public static String removeAccents(String str) {
             str = Normalizer.normalize(str, Normalizer.Form.NFD);
             str = str.replaceAll("[^\\p{ASCII}]", "");

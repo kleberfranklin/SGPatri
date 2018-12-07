@@ -5,10 +5,7 @@
  */
 package br.com.Controle;
 
-
 import br.com.Modelo.AutoCessaoAntigo;
-import br.com.Modelo.AutoCessaoAntigo;
-import br.com.Modelo.AutoCessaoAntigoDAO;
 import br.com.Modelo.AutoCessaoAntigoDAO;
 import br.com.Modelo.Logica;
 import java.util.Calendar;
@@ -93,13 +90,10 @@ public class AutoCessaoPrazo implements Logica{
         }
 
 //Carregando a quantidade de registro para calculdo da quantidade de paginas        
-        if("".equals(ter) || null == ter){
-            qtdRegistro = autoDAO.qtdAutoCessaoPrazo( mes, ano);
-            qtdPg = qtdRegistro / qtdLinha;
-        }else{    
-            qtdRegistro = autoDAO.qtdAutoCessaoPrazoTerceiro(mes, ano);
-            qtdPg = qtdRegistro / qtdLinha;
-        }
+        
+        qtdRegistro = autoDAO.qtdAutoCessaoPrazo( mes, ano);
+        qtdPg = qtdRegistro / qtdLinha;
+        
 
 //Logica da paginação         
         if ((qtdRegistro % qtdLinha) != 0) {
@@ -133,13 +127,7 @@ public class AutoCessaoPrazo implements Logica{
         offset = ((pg * qtdLinha)- qtdLinha);
         
 //Populando o objeto lista         
-        List<AutoCessaoAntigo> listAuto;
-        if("".equals(ter) || null == ter){
-            listAuto = new AutoCessaoAntigoDAO().listPrazo(mes, ano, qtdLinha, offset);
-        }else{    
-            listAuto = new AutoCessaoAntigoDAO().listPrazoTerceiro(mes, ano, qtdLinha, offset);
-        }
-        
+        List<AutoCessaoAntigo> listAuto = new AutoCessaoAntigoDAO().listPrazo(mes, ano, qtdLinha, offset);
         req.setAttribute("listAuto", listAuto);
                  
         return "AutoCessaoPrazo.jsp?pg="+pg+"&pi="+pi+"&pf="+pf+"&qtdPg="+qtdPg+"&totalRes="+qtdRegistro+"&ter="+ter;

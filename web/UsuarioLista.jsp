@@ -49,6 +49,7 @@
                             <th class="hidden-480">Login</th>
                             <th>Nome</th>
                             <th>Divisão</th>
+                            <th>Núcleo</th>
                             <th class="hidden-480">Perfil  </th>
                             <th class="hidden-480">Status  </th>
                             <th class="col-md-3">
@@ -86,6 +87,7 @@
                                 </c:choose>
                             </td>
                             <td title="${uslist.nmDivisao}">${uslist.sgDivisao}</td>
+                            <td title="${uslist.nmSetor}">${uslist.sgSetor}</td>
                             <td class="hidden-480" title="">${uslist.nmPerfil}</td>
                             <td class="hidden-480">
                                 <c:choose>

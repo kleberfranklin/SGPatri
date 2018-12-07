@@ -6,7 +6,6 @@
 package br.com.Controle;
 
 import br.com.Utilitario.Transformar;
-import br.com.Modelo.*;
 import br.com.Modelo.Logica;
 import br.com.Modelo.Usuario;
 import br.com.Modelo.UsuarioDAO;
