@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -24,7 +25,10 @@ public class AutoCessaoValidacaoDAO {
     public AutoCessaoValidacaoDAO(){
         this.connection = new FabricaConexao().getConnetion();
     }
-
+    
+    //Atributo DATA para inserir a data da OS.
+    Calendar calendar = Calendar.getInstance();
+    java.sql.Date data = new java.sql.Date(calendar.getTime().getTime());
 /**
     Normalização da remover acentos e colocar para tuto maiusculo 
 */    
@@ -298,8 +302,8 @@ public class AutoCessaoValidacaoDAO {
                 + "dt_lavratura, nm_processo, nm_cessionario, nm_cedente, nm_planta, nm_croqui, nr_area, nr_setor, nr_quadra, "
                 + "nr_lote, nm_tipoendereco, nm_tituloendereco, nm_endereco, nr_endereco, nm_complementoendereco, nm_referencialendereco, "
                 + "nr_prazo_ano, nr_prazo_mes, nr_prazo, dt_vencimento, ds_contrapartida, ds_observacao, status, cod_ac, fk_niveladm, fk_subprefeitura, "
-                + "nr_verificado_ac, nm_cap, nm_metragem_oficial, fk_subcatfinalidade, fk_catcontrapartida, ds_finalidade, nm_login, dthr_atualizacao, nr_vigor) "
-                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                + "nr_verificado_ac, nm_cap, nm_metragem_oficial, fk_subcatfinalidade, fk_catcontrapartida, ds_finalidade, nm_login, dthr_atualizacao, nr_vigor, dt_cadastro ) "
+                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try{
             PreparedStatement stmt = connection.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
                 stmt.setInt(1, auto.getFkTipoCessaoStage());
@@ -341,6 +345,7 @@ public class AutoCessaoValidacaoDAO {
                 stmt.setString(37,auto.getNmLogin());
                 stmt.setTimestamp(38, java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
                 stmt.setString(39, auto.getNrVigor());
+                stmt.setDate(40, data);
 //            stmt.execute();
             stmt.executeUpdate();
             

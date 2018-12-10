@@ -5,7 +5,6 @@
  */
 package br.com.Controle;
 
-import br.com.Modelo.*;
 import br.com.Modelo.Logica;
 import br.com.Modelo.Setor;
 import br.com.Modelo.SetorDAO;
@@ -36,7 +35,7 @@ public class SetorCU implements Logica{
     fkDivisao = Integer.parseInt(req.getParameter("fkDivisao"));
     
     sigla = req.getParameter("sigla").toUpperCase();
-    setor = Transformar.utf8(Transformar.priMaiuscula(req.getParameter("setor")));
+    setor = Transformar.removeAccents(req.getParameter("setor")).toUpperCase().trim();
     nrSimproc = req.getParameter("nrSimproc");
     nrSei = req.getParameter("nrSei");
     loginSessio =(String) session.getAttribute("sessionLogin");

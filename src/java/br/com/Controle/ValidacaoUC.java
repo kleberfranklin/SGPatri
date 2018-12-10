@@ -55,7 +55,7 @@ public class ValidacaoUC implements Logica {
     }
     
     if(null == dsObsservacao || !dsObsservacao.equals("")){
-        dsObsservacao =  Transformar.priMaiuscula(dsObsservacao);
+        dsObsservacao =  Transformar.removeAccents(dsObsservacao).toUpperCase().trim();
     }
     
         

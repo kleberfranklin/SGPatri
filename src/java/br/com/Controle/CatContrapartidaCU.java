@@ -33,7 +33,7 @@ public class CatContrapartidaCU implements Logica{
 //Carregando os atributos com as informações do formulário
     execucao = req.getParameter("execucao");
     sigla = req.getParameter("sigla").toUpperCase();
-    catContrapartida = Transformar.utf8(Transformar.priMaiuscula(req.getParameter("catContrapartida")));
+    catContrapartida = Transformar.removeAccents(req.getParameter("catContrapartida")).toUpperCase().trim();
     loginSessio =(String) session.getAttribute("sessionLogin");
     
 

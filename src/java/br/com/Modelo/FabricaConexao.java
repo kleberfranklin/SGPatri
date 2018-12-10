@@ -27,9 +27,9 @@ public class FabricaConexao {
     
 //  -- CONEXÃO POSTGRESQL SERVIDOR HOMOLOGAÇÃO CAP --  
         String drive = "org.postgresql.Driver";
-//        private final String banco = "SG_Patri_PROD";
+        private final String banco = "SG_Patri_PROD";
 //        private final String banco = "SG_Patri_Homolog"; 
-        private final String banco = "SG_Patri_Test"; 
+//        private final String banco = "SG_Patri_Test"; 
         private final String url = "jdbc:postgresql://10.69.41.91:5433/"+banco; 
 //        private final String url = "jdbc:postgresql://SMDUGBC361:5433/"+banco;
 //        private final String url = "jdbc:postgresql://10.69.42.92:5433/"+banco;

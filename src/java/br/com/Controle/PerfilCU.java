@@ -6,7 +6,6 @@
 package br.com.Controle;
 
 import br.com.Utilitario.Transformar;
-import br.com.Modelo.*;
 import br.com.Modelo.Logica;
 import br.com.Modelo.Perfil;
 import br.com.Modelo.PerfilDAO;
@@ -34,7 +33,7 @@ public class PerfilCU implements Logica{
 //Carregando os atributos com as informações do formulário
     execucao = req.getParameter("execucao");
     perfil = Transformar.priMaiuscula(req.getParameter("perfil"));
-    descricao = Transformar.priMaiuscula(req.getParameter("descricao"));
+    descricao = Transformar.removeAccents(req.getParameter("descricao")).toUpperCase().trim();
     loginSessio =(String) session.getAttribute("sessionLogin");
     
 //Validação dos atributos carregdos com as informações do formulário.       

@@ -34,7 +34,7 @@ public class TipoDispLegalCU implements Logica {
 //Carregando os atributos com as informações do formulário
     execucao = req.getParameter("execucao");
     sigla = req.getParameter("sigla").toUpperCase();
-    tipodispositivo = Transformar.priMaiuscula(req.getParameter("tipodispositivo"));
+    tipodispositivo = Transformar.removeAccents(req.getParameter("tipodispositivo")).toUpperCase().trim();
     loginSessio =(String) session.getAttribute("sessionLogin");
     
 

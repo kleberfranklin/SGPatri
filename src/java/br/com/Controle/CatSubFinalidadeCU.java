@@ -34,7 +34,7 @@ public class CatSubFinalidadeCU  implements Logica{
     execucao = req.getParameter("execucao");
     fkCategoria = Integer.parseInt(req.getParameter("fkCategoria"));
     sigla = req.getParameter("sigla").toUpperCase();
-    catSubFinalidade = Transformar.utf8(Transformar.priMaiuscula(req.getParameter("catSubFinalidade")));
+    catSubFinalidade = Transformar.removeAccents(req.getParameter("catSubFinalidade")).toUpperCase().trim();
     loginSessio =(String) session.getAttribute("sessionLogin");
     
 
