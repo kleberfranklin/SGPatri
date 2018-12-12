@@ -232,9 +232,9 @@
                             <c:choose>
                                 <c:when test="${sessionSgDivisao == 'DDPI' &&  sessionSgSetor == 'SCL'}">
                                 <div class="hidden-sm hidden-xs btn-group">
-                                    <button class="btn btn-xs btn-info">
+                                    <button class="btn btn-xs btn-info"  onclick="location.href='ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage=${autolist.pkAutoStage}&pg=${pg}&pi=${pi}&pf=${pf}&qAC=${qAC}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}&execucao=edit'">
                                         <i class="ace-icon fa fa-pencil bigger-120"></i>
-                                        <a href="ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage=${autolist.pkAutoStage}&pg=${pg}&pi=${pi}&pf=${pf}&qAC=${qAC}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}&execucao=edit" class="btn-info">Editar</a>
+                                        Editar
                                     </button>                                                                                                                                
                                 </div>
                                 </c:when>    

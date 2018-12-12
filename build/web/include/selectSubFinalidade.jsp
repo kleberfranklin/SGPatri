@@ -16,7 +16,7 @@
 <c:if test="${not empty lista}">
     <select class="form-control col-xs-12 col-sm-12" name="pkSubCatFinalidade" required="required">
         <c:forEach var="catSub" items="${bean.listSelectSubCatFinalidade(pkCatFinalidade)}"  >
-            <option value="${catSub.pkCatSubFinalidade}" title="${catSub.nmCatSubFinalidade}">${catSub.sgCatSubFinalidade}</option>
+            <option value="${catSub.pkCatSubFinalidade}" title="${catSub.nmCatSubFinalidade}">${catSub.nmCatSubFinalidade}</option>
         </c:forEach>
     </select>
 </c:if> 

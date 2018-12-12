@@ -10,7 +10,6 @@ import br.com.Modelo.AutoCessaoValidacao;
 import br.com.Modelo.AutoCessaoValidacaoDAO;
 import br.com.Modelo.Logica;
 import br.com.Utilitario.Transformar;
-import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;

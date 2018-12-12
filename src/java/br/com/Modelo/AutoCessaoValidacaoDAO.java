@@ -83,7 +83,7 @@ public class AutoCessaoValidacaoDAO {
             String qEndereco,String qCroqui ,String qVigor, int qtdLinha, int OFFSET) {
             String sql = ("SELECT * FROM tbl_autocessao_stage "
                     + "WHERE CAST(fk_tipocessao AS VARCHAR) LIKE ? and cod_ac LIKE ? and nm_processo LIKE ? and nm_cessionario LIKE ? and nm_cedente LIKE ? "
-                    + "and nm_endereco LIKE ? and nm_croqui LIKE ? and nr_Vigor LIKE ? "
+                    + "and (nm_endereco LIKE ? or nm_referencialendereco LIKE ?) and nm_croqui LIKE ? and nr_Vigor LIKE ? "
                     + "ORDER BY cod_ac DESC "
                     + "LIMIT ? OFFSET ?");
             try {
@@ -96,10 +96,11 @@ public class AutoCessaoValidacaoDAO {
                    stmt.setString(4, '%'+qCessionario+'%');
                    stmt.setString(5, '%'+qCedente+'%');
                    stmt.setString(6, '%'+qEndereco+'%');
-                   stmt.setString(7, qCroqui+'%');
-                   stmt.setString(8, '%'+qVigor+'%');
-                   stmt.setInt(9, qtdLinha);
-                   stmt.setInt(10, OFFSET);
+                   stmt.setString(7, '%'+qEndereco+'%');
+                   stmt.setString(8, qCroqui+'%');
+                   stmt.setString(9, '%'+qVigor+'%');
+                   stmt.setInt(10, qtdLinha);
+                   stmt.setInt(11, OFFSET);
 
                 ResultSet rs = stmt.executeQuery();
 
@@ -132,7 +133,7 @@ public class AutoCessaoValidacaoDAO {
     public int qtdAutoPesquisa(String qTpcessao, String qAC, String qProcesso, String qCessionario, String qCedente, 
             String qEndereco, String qCroqui, String qVigor){
           String sql = ("SELECT COUNT(*) as total FROM tbl_autocessao_stage WHERE CAST(fk_tipocessao AS VARCHAR) LIKE ? and cod_ac LIKE ? and nm_processo LIKE ? "
-                  + "and nm_cessionario LIKE ? and nm_cedente LIKE ? and nm_endereco LIKE ? and nm_croqui LIKE ? and nr_vigor LIKE ? ");
+                  + "and nm_cessionario LIKE ? and nm_cedente LIKE ? and ( nm_endereco LIKE ? or nm_referencialendereco LIKE ?) and nm_croqui LIKE ? and nr_vigor LIKE ? ");
 //                  + "and pk_tipoCessao <> 1");
            try {
                PreparedStatement stmt = connection.prepareStatement(sql);
@@ -142,8 +143,9 @@ public class AutoCessaoValidacaoDAO {
                    stmt.setString(4, '%'+qCessionario+'%');
                    stmt.setString(5, '%'+qCedente+'%');
                    stmt.setString(6, '%'+qEndereco+'%');
-                   stmt.setString(7, qCroqui+'%');
-                   stmt.setString(8, '%'+qVigor+'%');
+                   stmt.setString(7, '%'+qEndereco+'%');
+                   stmt.setString(8, qCroqui+'%');
+                   stmt.setString(9, '%'+qVigor+'%');
                ResultSet rs = stmt.executeQuery();
                int qtdAuto = 0;
 

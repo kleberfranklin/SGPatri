@@ -145,7 +145,6 @@
                     </li>
                     </c:if>
                 </ul>
-
                 <div class="tab-content profile-edit-tab-content">
                     <div id="auto-cessao" class="tab-pane <c:if test="${auto.nrVerAc=='0' || auto.nrVerValidacao == '1' || novo=='1'}">in active</c:if>">
                             <form action="ControllerServlet?acao=AutoCessoValidacaoUC" method="POST" >
@@ -1501,7 +1500,7 @@
                                                 </select>
                                             </c:when>
                                             <c:when test="${execucao == 'insert'}">
-                                                <select class="col-md-12 col-xs-12" name="pkCatContrapartida">
+                                                <select class="col-md-12 col-xs-12" name="pkCatContrapartida" required="required">
                                                     <option></option>
                                                     <c:forEach var="catContra" items="${CatContra.listSelectCatContra()}">
                                                         <option value="${catContra.pkCatContrapartida}" title="${catContra.nmCatContrapartida}">${catContra.nmCatContrapartida}</option>  

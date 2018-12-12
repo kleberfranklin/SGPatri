@@ -46,11 +46,13 @@ public class FabricaConexao {
 
 //          -- CONEXÃO POSTGRESQL SERVIDOR HOMOLOGAÇÃO CAP --       
                 props.setProperty("currentSchema","sch_cgpatri");
-                props.setProperty("user","devhomolog");
-                props.setProperty("password","Prodam@2018!");
-//            props.setProperty("user","falmeida");
-//            props.setProperty("password","Prodam1997");
-//            props.setProperty("ssl","false");
+                props.setProperty("user","sgpatriproducao");
+                props.setProperty("password","SGP@tri2018!");
+
+//                props.setProperty("user","devhomolog");
+//                props.setProperty("password","Prodam@2018!");
+//
+//                props.setProperty("ssl","false");
                 
                 return DriverManager.getConnection(url, props);
 
