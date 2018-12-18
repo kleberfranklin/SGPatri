@@ -73,18 +73,18 @@ public class AutoCessoValidacaoUC  implements Logica{
     nrsetor = req.getParameter("nrsetor"); 
     nrquadra = req.getParameter("nrquadra"); 
     nrlote = req.getParameter("nrlote");
-    nmcap = req.getParameter("nmcap").toUpperCase();
+    nmcap = req.getParameter("nmcap");
     nmMetragemOficial = req.getParameter("nmMetragemOficial");
     tipoEndereco = req.getParameter("tipoEndereco");
     tituloEndereco = req.getParameter("tituloEndereco");
     nmendereco = req.getParameter("nmendereco"); 
     nrnumeroend = req.getParameter("nrnumeroend");
     nmcomplementoend = req.getParameter("nmcomplementoend"); 
-    nmreferenciaend = Transformar.priMaiuscula(req.getParameter("nmreferenciaend"));
+    nmreferenciaend = req.getParameter("nmreferenciaend");
     nmprazo = req.getParameter("nmprazo");
     nrvigor = req.getParameter("nrvigor");
     dsContrapartida = req.getParameter("dsContrapartida"); 
-    dsObservacao = Transformar.priMaiuscula(req.getParameter("dsObservacao"));
+    dsObservacao = req.getParameter("dsObservacao");
     loginSessio =(String) session.getAttribute("sessionLogin");
     
    

@@ -1673,7 +1673,7 @@
                                         <label class="inline col-md-2 col-xs-12">
                                             <span class="lbl">${di.dtDisp}</span>
                                         </label>
-                                         <c:if test="${auto.nmStatus != 'Validado'}">
+                                         <c:if test="${auto.nmStatus != 'Validado' && (sessionSgDivisao == 'DDPI' && sessionSgSetor == 'SCL')}">
                                         <a href="ControllerServlet?acao=DispositivoLegalDelete&pkDispLegal=${di.pkDisplegal}&pkAutoStage=${auto.pkAutoStage}"  class="red remove_field" title="Excluir Dispositivo"><i class="ace-icon glyphicon glyphicon-trash bigger-130"></i></a>
                                          </c:if>
                                     </div>
