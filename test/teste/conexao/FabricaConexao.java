@@ -28,22 +28,25 @@ public class FabricaConexao {
 
 
 //      Conexão para banco Postgres CAP (Felipe)
-        String banco = "geoDGPI_restore_20180730_teste";
-        String url = "jdbc:postgresql://10.69.41.91:5433/"+banco;
+//        String banco = "geoDGPI_restore_20180730_teste";
+        String banco = "geoDGPI";
+        String url = "jdbc:postgresql://10.69.40.70:5433/"+banco;
+//        String url = "jdbc:postgresql://10.69.41.91:5433/"+banco;
 //        String url = "jdbc:postgresql://10.69.41.91:5433/geoDGPI_restore_20180730"; //Antigo banco Homologação
 //        String url = "jdbc:postgresql://10.69.40.181:5433/"+banco;
 //        String url = "jdbc:postgresql://10.69.40.252:5433/"+banco;
 
         Properties props = new Properties();
        
-        props.setProperty("currentSchema","sch_cgpatri");
+//        props.setProperty("currentSchema","sch_cgpatri");
+        props.setProperty("currentSchema","sch_cap");
         props.setProperty("user","devhomolog");
         props.setProperty("password","Prodam@2018!");
         props.setProperty("ssl","false");
 //        
             
-        String sql = "SELECT nm_nome FROM tbl_usuario WHERE id_usuario=7";
-        String nome ="";
+        String sql = "SELECT nome_tec FROM tbl_cap Where gid = 1054";
+        String nome_tec ="";
 
 
         try{
@@ -55,18 +58,18 @@ public class FabricaConexao {
             Connection conn = DriverManager.getConnection(url, props);
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery(); 
-            
+//            
             if(rs.next()){
-                nome = rs.getString("nm_nome");
+                nome_tec = rs.getString("nome_tec");
             }else{
-                nome = "não encontrado para o parametro solicitado!";
+                nome_tec = "não encontrado para o parametro solicitado!";
             }
-            
+//            
             
             
             System.out.println("Sucessona conexão");
-            System.out.println("Nome: "+nome);
-            
+            System.out.println("Nome: "+nome_tec);
+//            
 
 //      Conexão para banco MySQL logal         
 //      }catch(SQLException | ClassNotFoundException erro){
