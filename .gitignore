@@ -1,6 +1,0 @@
-.gitignore
-build/web/WEB-INF/classes/br/com/Modelo/Auth.class
-build/web/WEB-INF/classes/br/com/Modelo/FabricaConexao.class
-/dist/
-FabricaConexao.java
-Auth.java
