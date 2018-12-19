@@ -1654,9 +1654,9 @@
                                 <c:set var="TpDisp" value="${TpDis.detalheTpDisp(di.fkTipoDisplegal)}" />
                                 <div class="form-group">
                                         <label class="inline col-md-2 col-xs-12" >
-                                                <span class="lbl">
-                                                    <strong>Tipo de Dispositivo:</strong>
-                                                </span>
+                                            <span class="lbl">
+                                                <strong>Tipo de Dispositivo:</strong>
+                                            </span>
                                         </label>
                                         <label class="inline col-md-3 col-xs-12">
                                                 <span class="lbl">${TpDisp.nmTipoDispLegal}</span>
