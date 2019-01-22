@@ -197,7 +197,6 @@ public class AutoCessaoListaPagFiltro implements Logica{
                 +"&qVigor="+qVigor
                 +"&qCroqui="+qCroqui
                 +"&ter"+ter;
- 
     }
     
     

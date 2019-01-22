@@ -1,0 +1,98 @@
+<script>
+    
+function maskProcesso() {
+      
+    var sei = document.getElementById("sei");
+    var pa = document.getElementById("pa");
+    var tid = document.getElementById("tid");
+    var cid = document.getElementById("cid");
+    var strValor = document.getElementById("nrprocesso").value; 
+    var strTemp;
+
+        strTemp = strValor.replace(/\D+/g, '');
+        strValor = strTemp.trim();
+        
+
+    if(pa.checked) {
+        if (strValor.length > 12 || 12 > strValor.length){
+            document.getElementById("msgProcesso").style.visibility='visible';
+            document.getElementById("msgProcesso").innerHTML = "<span class='badge badge-danger'>PA tem que ter 12 numeros!</span>";
+            document.getElementById("nrprocesso").value = strValor;
+            document.getElementById("nrprocesso").focus();
+            document.getElementById("pa").checked = false;
+        }else{ 
+            document.getElementById("msgProcesso").style.visibility='hidden';
+            if (strValor.length > 11) {
+                strValor = strValor.substr(0, 4) + '-' + strValor.substr(4, 1) + '.' + strValor.substr(5, 3) + '.' + strValor.substr(8, 3) + '-' + strValor.substr(11, 1);
+            } else if (strValor.length > 8) {
+                strValor = strValor.substr(0, 4) + '-' + strValor.substr(4, 1) + '.' + strValor.substr(5, 3) + '.' + strValor.substr(8, 3);
+            } else if (strValor.length > 5) {
+                strValor = strValor.substr(0, 4) + '-' + strValor.substr(4, 1) + '.' + strValor.substr(5, 3);
+            } else if (strValor.length > 4) {
+                strValor = strValor.substr(0, 4) + '-' + strValor.substr(4, 1);
+            }
+            document.getElementById("nrprocesso").value = strValor;
+        }    
+    }else if(cid.checked) {
+        if (strValor.length > 12 || 12 > strValor.length){
+            document.getElementById("msgProcesso").style.visibility='visible';
+            document.getElementById("msgProcesso").innerHTML = "<span class='badge badge-danger'>CID tem que ter 12 numeros!</span>";
+            document.getElementById("nrprocesso").focus();
+            document.getElementById("cid").checked = false;
+        }else{ 
+            document.getElementById("msgProcesso").style.visibility='hidden';
+            if (strValor.length > 11) {
+                strValor = strValor.substr(0, 4) + '-' + strValor.substr(4, 1) + '.' + strValor.substr(5, 3) + '.' + strValor.substr(8, 3) + '-' + strValor.substr(11, 1);
+            } else if (strValor.length > 8) {
+                strValor = strValor.substr(0, 4) + '-' + strValor.substr(4, 1) + '.' + strValor.substr(5, 3) + '.' + strValor.substr(8, 3);
+            } else if (strValor.length > 5) {
+                strValor = strValor.substr(0, 4) + '-' + strValor.substr(4, 1) + '.' + strValor.substr(5, 3);
+            } else if (strValor.length > 4) {
+                strValor = strValor.substr(0, 4) + '-' + strValor.substr(4, 1);
+            }
+        }    
+        document.getElementById("nrprocesso").value = strValor;
+    }else if(sei.checked) {
+        if (strValor.length > 16 || 16 > strValor.length){
+            document.getElementById("msgProcesso").style.visibility='visible';
+            document.getElementById("msgProcesso").innerHTML = "&nbsp;<span class='badge badge-danger'>SEI tem que ter 16 numeros!</span>";
+            document.getElementById("nrprocesso").focus();
+            document.getElementById("sei").checked = false;
+        }else{ 
+            document.getElementById("msgProcesso").style.visibility='hidden';
+            if (strValor.length > 15) {
+               strValor = strValor.substr(0, 4) + '.' + strValor.substr(4, 4) + '/' + strValor.substr(8, 7) + '-' + strValor.substr(15, 1);
+            }
+            else if (strValor.length > 8) {
+               strValor = strValor.substr(0, 4) + '.' + strValor.substr(4, 4) + '/' + strValor.substr(8, 7);
+            }
+            else if (strValor.length > 4) {
+               strValor = strValor.substr(0, 4) + '.' + strValor.substr(4, 4);
+            }
+        }
+        document.getElementById("nrprocesso").value = strValor;
+    }else if(tid.checked) {
+        if (strValor.length < 8){
+            document.getElementById("msgProcesso").style.visibility='visible';
+            document.getElementById("msgProcesso").innerHTML = "&nbsp;<span class='badge badge-danger'>TID no minimo 8 numeros!</span>";
+            document.getElementById("nrprocesso").focus();
+            document.getElementById("tid").checked = false;
+        }else{ 
+            document.getElementById("msgProcesso").style.visibility='hidden';
+           // if (strValor.length > 9) {
+           //    strValor = strValor.substr(0, 3) + '.' + strValor.substr(3, 3) + '.' + strValor.substr(6, 3)+'.' + strValor.substr(9, 3) + '.' + strValor.substr(12,3);
+           // }
+           // else if (strValor.length > 6) {
+           //     strValor = strValor.substr(0, 3) + '.' + strValor.substr(3, 3) + '.' + strValor.substr(6, 3)+'.' + strValor.substr(9, 3);
+           // }
+           // else if (strValor.length > 3) {
+           //     strValor = strValor.substr(0, 3) + '.' + strValor.substr(3, 3);
+          // }
+        }
+        document.getElementById("nrprocesso").value = strValor;
+    }
+   
+}
+    
+    
+</script>

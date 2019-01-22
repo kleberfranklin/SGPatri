@@ -50,7 +50,7 @@
             <div class="infobox">
                 <div class="btn-group-lg">
                     <!--<button class="btn btn-primary btn-white btn-block" onclick="#">-->
-                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href='AutoCessaoValidacao.jsp?execucao=insert&novo=1';">
+                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href='AutoCessaoCRU.jsp?execucao=insert&novo=1';">
                         <i class="ace-icon fa fa-plus"></i>
                         Novo
                     </button>

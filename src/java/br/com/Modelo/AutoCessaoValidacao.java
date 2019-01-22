@@ -12,7 +12,8 @@ package br.com.Modelo;
 public class AutoCessaoValidacao {
     
     private int pkAutoStage, fkTipoCessaoStage, fkCatEntidadeStage, fkCatAutoStage, fkCatFinalidadeStage, fkSubcatfinalidade,
-            fkNivelAdm, fkSubpref, fkCatContrapartida, fkValidacao, nrPrazoAno, nrPrazoMes, nrVerAc, nrVerDispLegal, nrVerArqAc, nrVerArqPlanta, nrVerValidacao;
+            fkNivelAdm, fkSubpref, fkCatContrapartida, fkValidacao, nrPrazoAno, nrPrazoMes, nrVerAc, nrVerDispLegal, nrVerArqAc, nrVerArqPlanta, nrVerValidacao,
+            nrVerContrapartida, nrVerVitoria;
 
     private String nmCodAc, dtLavratura, nmProcesso, nmCessionario, nmCedente, nmPlanta, nmCroqui, nrArea, nrCap, nmMetragem, nrSetor, nrQuadra, nrLote,
             nmTipoEndereco, nmTituloEndereco, nmEndereco, nrEndereco, nmComplementoEndereco, nmReferencialEndereco, nmMunicipal,
@@ -503,6 +504,22 @@ public class AutoCessaoValidacao {
 
     public void setDthrAtualizacao(String dthrAtualizacao) {
         this.dthrAtualizacao = dthrAtualizacao;
+    }
+
+    public int getNrVerContrapartida() {
+        return nrVerContrapartida;
+    }
+
+    public void setNrVerContrapartida(int nrVerContrapartida) {
+        this.nrVerContrapartida = nrVerContrapartida;
+    }
+
+    public int getNrVerVitoria() {
+        return nrVerVitoria;
+    }
+
+    public void setNrVerVitoria(int nrVerVitoria) {
+        this.nrVerVitoria = nrVerVitoria;
     }
     
     

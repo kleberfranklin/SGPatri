@@ -41,7 +41,7 @@ public class NivelAdministracaoDAO {
                 nvadm.setSgAdm(rs.getString("sg_administracao"));
                 nvadm.setNmAdm(rs.getString("nm_administracao"));
                 nvadm.setNmLogin(rs.getString("nm_login"));
-                nvadm.setDthrAtualizacao(rs.getString("dtth_atualizacao"));
+                nvadm.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
             lisNivelAdm.add(nvadm);
             }       
             stmt.execute();
@@ -69,7 +69,7 @@ public class NivelAdministracaoDAO {
                 nvadm.setSgAdm(rs.getString("sg_administracao"));
                 nvadm.setNmAdm(rs.getString("nm_administracao"));
                 nvadm.setNmLogin(rs.getString("nm_login"));
-                nvadm.setDthrAtualizacao(rs.getString("dtth_atualizacao"));
+                nvadm.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
             }
          stmt.close();
          return nvadm;
