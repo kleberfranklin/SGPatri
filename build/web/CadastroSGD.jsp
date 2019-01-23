@@ -2999,7 +2999,7 @@
                                                                    placeholder="Referência do Fndereço" >
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <span class="lbl">${auto.nmReferenciaEndereco}</span> 
+                                                            <span class="lbl">${SGD.nmReferenciaEndereco}</span> 
                                                         </c:otherwise>
                                                     </c:choose>
                                                 </label>
@@ -3027,7 +3027,8 @@
                                                     </c:choose>
                                                 </label>
                                             </div>
-
+                                            
+                                            <!-- BOTOES -->
                                             <div class="form-actions center">
                                                 <button class="btn btn-yellow" type="reset" onclick=" location.href = 'Index.jsp';">
                                                     <i class="ace-icon fa fa-undo bigger-110"></i>
@@ -3041,37 +3042,25 @@
                                                 <button class="btn" type="reset">
                                                     <i class="ace-icon fa fa-eraser bigger-110"></i>
                                                     Limpar
-                                                </button>
+                                                </button>                                                
                                             </div>
 
-
                                         </div>
-
-
-
                                     </div>
-
-
-
                                 </div>
                             </div>    
                         </div>        
 
-
                         <jsp:include page = "include/footer.jsp" />
                         <jsp:include page = "javaScritp/carregado.html" />
 
-                    </div><!-- /.main-container -->
-                    <div id="dialog-planta"style="display:none;">
-
                     </div>
-
-                    <div id="dialog-auto-cessao"style="display:none;">
-
-                    </div>
-
+                    <!-- /.main-container -->
+                    <div id="dialog-planta"style="display:none;"></div>
+                    <div id="dialog-auto-cessao"style="display:none;"></div>
 
                     </body>
                     </html>
 
 
+<!-- TESTE -->
