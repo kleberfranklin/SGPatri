@@ -176,9 +176,13 @@
                         <b class="arrow fa fa-angle-down"></b>
                     </a>
                     <b class="arrow"></b>
-                    <ul class="submenu disabled-li-menu">
+                    <ul class="submenu">
                         <li class="">
-                            <a href="#" title="Informação">Informação</a>
+                            <a href="PesquisaSGD.jsp" title="Informação">Informação</a>
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="CadastroSGD.jsp" title="Informação">Formularios SGD</a>
                             <b class="arrow"></b>
                         </li>
                     </ul>    
@@ -189,9 +193,13 @@
                         <b class="arrow fa fa-angle-down"></b>
                     </a>
                     <b class="arrow"></b>
-                    <ul class="submenu disabled-li-menu">
+                    <ul class="submenu ">
                         <li class="">
                             <a href="#" title="Anotação de Expediente">Anotação de Expediente </a>
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="CadastroSIC.jsp" title="Anotação de Expediente">Formularios SIC </a>
                             <b class="arrow"></b>
                         </li>
                     </ul>    
