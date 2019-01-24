@@ -17,15 +17,11 @@ public class AnotacaoExpediente {
     private String cdCroqui, cdArea, cdExpediente, nmInteressado, dsAssunto, dsDespacho, dsObservacao, nmNome, cdSetor, cdQuadra, cdLote,
             dtPublicacao, dtData, dthrAtualizacao, nmLogin, dtAnotacao, nmPublicadoPor, dsInfoGeral, cdTid, cdProcesso;
 
-    
-     public AnotacaoExpediente() {
+    public AnotacaoExpediente() {
     }
-     
+
 //Construtor form croqui
     public AnotacaoExpediente(int pkCadastroSic, int fkUsuario, int fkEnderecos, int nrInformacaoDgpi, String cdCroqui, String cdArea,
-
-    
-
             String cdExpediente, String nmInteressado, String dsAssunto, String cdTid, String cdProcesso, String dsObservacao, String nmLogin) {
         this.pkCadastroSic = pkCadastroSic;
         this.fkUsuario = fkUsuario;
@@ -67,8 +63,6 @@ public class AnotacaoExpediente {
         this.nmPublicadoPor = nmPublicadoPor;
 
     }
-
-   
 
     //Getter's & Setter's
     public int getPkCadastroSic() {
@@ -286,10 +280,12 @@ public class AnotacaoExpediente {
     public void setNmPublicadoPor(String nmPublicadoPor) {
         this.nmPublicadoPor = nmPublicadoPor;
     }
-    public String getDsInfoGeral(){
+
+    public String getDsInfoGeral() {
         return dsInfoGeral;
     }
-    public void setDsInfoGeral(String dsInfoGeral){
+
+    public void setDsInfoGeral(String dsInfoGeral) {
         this.dsInfoGeral = dsInfoGeral;
     }
 

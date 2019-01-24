@@ -27,7 +27,7 @@ public class AnotacaoExpedienteDAO {
 
     //METODO lista os atributos do cadastro de croqui das pesquisas e paginado
     public List<AnotacaoExpediente> listAnotacaoExpediente(int qtLinha, int offset, String q) {
-        String sql = ("SELECT * FROM tbl_cadastro_sic ");
+        String sql = ("SELECT * FROM tbl_anotacao_expediente ");
         try {
             List<AnotacaoExpediente> listAnotacaoExpediente = new ArrayList<AnotacaoExpediente>();
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -65,7 +65,7 @@ public class AnotacaoExpedienteDAO {
 
     //METODO utilizado para inserir dados em um novo croqui
     public void upCadastroSic(AnotacaoExpediente cadsic) {
-        String sql = "INSERT INTO tbl_cadastro_sic ( cd_croqui, cd_area, nr_informacao_dgpi, cd_processo, cd_tid, cd_expediente, nm_interessado ,"
+        String sql = "INSERT INTO tbl_anotacao_expediente ( cd_croqui, cd_area, nr_informacao_dgpi, cd_processo, cd_tid, cd_expediente, nm_interessado ,"
                 + "ds_assunto, fk_enderecos, ds_observacao, nm_login, dthr_atualizacao ) "
                 + "VALUES (?,?,?,?,?,?,?,?,?,?,?,? )";
         try {
@@ -93,7 +93,7 @@ public class AnotacaoExpedienteDAO {
 
     //Metodo de quantidade de linhas
     public int qdCadastroSic(String q) {
-        String sql = ("SELECT COUNT(*) as total FROM tbl_cadastro_sic "
+        String sql = ("SELECT COUNT(*) as total FROM tbl_anotacao_expediente "
                 + "WHERE (# LIKE ? or # LIKE ? ) ");
         try {
             int total;
@@ -115,7 +115,7 @@ public class AnotacaoExpedienteDAO {
 
 //METODO utilizado na Classe (AnotacaoExpedientelistaPagFiltro)
     public int qtdExpedientePesquisa(String cdProcesso, String cdCroqui, String nmInteressado, String nmNome, String dsAssunto) {
-        String sql = ("SELECT COUNT(*) as total FROM tbl_cadastro_sic LIKE ? and nm_interessado LIKE ? and cd_processo LIKE ? "
+        String sql = ("SELECT COUNT(*) as total FROM tbl_anotacao_expediente LIKE ? and nm_interessado LIKE ? and cd_processo LIKE ? "
                 + "and ds_assunto LIKE ? and nm_nome LIKE ? and cd_croqui LIKE ? ");
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -138,13 +138,9 @@ public class AnotacaoExpedienteDAO {
 
     }
 
-    public AnotacaoExpediente detalheAnotacaoExpediente(int pkCadastroSic) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public List<AnotacaoExpediente> listPagFiltroPesquisa(String cdProcesso, String nmInteressado, String nmNome, String dsAssunto,
             String cdCroqui, int qtdLinha, int offset) {
-        String sql = ("SELECT COUNT(*) as total FROM tbl_cadastro_sic LIKE ? and nm_interessado LIKE ? and cd_processo LIKE ? "
+        String sql = ("SELECT COUNT(*) as total FROM tbl_anotacao_expediente LIKE ? and nm_interessado LIKE ? and cd_processo LIKE ? "
                 + "and ds_assunto LIKE ? and nm_nome LIKE ? and cd_croqui LIKE ? "
                 + "ORDER BY nm_nome ASC "
                 + "LIMIT ? OFFSET ?");

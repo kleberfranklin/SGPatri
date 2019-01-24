@@ -103,8 +103,8 @@ public class AnotacaoExpedienteLista implements Logica {
         offset = ((pg * qtdLinha) - qtdLinha);
 
         // Populando o objeto lista 
-        List<AnotacaoExpediente> listSic = new AnotacaoExpedienteDAO().listAnotacaoExpediente(qtdLinha, offset, q);
-        req.setAttribute("listSic", listSic);
+        List<AnotacaoExpediente> listExpediente = new AnotacaoExpedienteDAO().listAnotacaoExpediente(qtdLinha, offset, q);
+        req.setAttribute("listExpediente", listExpediente);
 
         return "AnotacaoExpedienteLista.jsp?pg=" + pg + "&pi=" + pi + "&pf=" + pf + "&qtdPg=" + qtdPg + "&totalRes=" + qtdRegistro + "&q=" + q;
     }
