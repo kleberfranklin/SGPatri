@@ -427,7 +427,7 @@
                                                     <c:choose>
                                                         <c:when test="${execucao == 'edit'}">
                                                             <select class="col-xs-12 col-xs-12" name="tituloEndereco" title="Capitão / Doutor / Dom / etc">
-                                                                <option>${auto.nmTituloEndereco}</option>
+                                                                <option>${sgd.nmTituloEndereco}</option>
                                                                 <option></option>
                                                                 <option>ABADE</option>
                                                                 <option>ACADEMICO</option>
@@ -847,7 +847,7 @@
                                                             </select>
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <span class="lbl">${auto.nmTituloEndereco}</span> 
+                                                            <span class="lbl">${sgd.nmTituloEndereco}</span> 
                                                         </c:otherwise>
                                                     </c:choose>
 
@@ -864,13 +864,13 @@
 
                                                     <c:choose>
                                                         <c:when test="${execucao == 'edit'}">
-                                                            <input type="text" id="form-field-1" class="col-xs-12 col-xs-12" name="nmendereco" value="${auto.nmEndereco}"  placeholder="nome do endereço" required="required">
+                                                            <input type="text" id="form-field-1" class="col-xs-12 col-xs-12" name="nmendereco" value="${sgd.nmEndereco}"  placeholder="nome do endereço" required="required">
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
                                                             <input type="text" id="form-field-1" class="col-xs-12 col-xs-12" name="nmendereco" placeholder="nome do endereço" required="required">
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <span class="lbl">${auto.nmEndereco}</span> 
+                                                            <span class="lbl">${sgd.nmEndereco}</span> 
                                                         </c:otherwise>
                                                     </c:choose>
                                                 </label>
@@ -883,13 +883,13 @@
 
                                                     <c:choose>
                                                         <c:when test="${execucao == 'edit'}">
-                                                            <input type="text" id="form-field-1" class="col-xs-7 col-md-12" name="nrnumeroend" value="${auto.nrEndereco}" placeholder="nº">
+                                                            <input type="text" id="form-field-1" class="col-xs-7 col-md-12" name="nrnumeroend" value="${sgd.nrEndereco}" placeholder="nº">
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
                                                             <input type="text" id="form-field-1" class="col-xs-7 col-md-12" name="nrnumeroend" placeholder="nº">
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <span class="lbl">${auto.nrEndereco}</span> 
+                                                            <span class="lbl">${sgd.nrEndereco}</span> 
                                                         </c:otherwise>
                                                     </c:choose>
                                                 </label>
@@ -923,7 +923,7 @@
 
                                                     <c:choose>
                                                         <c:when test="${execucao == 'edit'}">
-                                                            <input type="text" id="form-field-1" class="col-xs-12 col-md-12" name="nmreferenciaend" value="${auto.nmReferencialEndereco}" placeholder="referencia do endereço" >
+                                                            <input type="text" id="form-field-1" class="col-xs-12 col-md-12" name="nmreferenciaend" value="${sgd.nmReferencialEndereco}" placeholder="referencia do endereço" >
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
                                                             <input type="text" id="form-field-1" class="col-xs-12 col-md-12" name="nmreferenciaend" placeholder="referencia do endereço" >
@@ -1820,13 +1820,13 @@
                                                 <label class="col-xs-4 col-xs-12" >
                                                     <span class="lbl"><strong>Data da Imissao de Posse</strong></span>
                                                     <div class="space-1"></div>
-                                                    <input class="form-control date-picker" id="id-date-picker-1" name="dtImissaoPosse" type="text" 
+                                                    <input class="date-picker col-xs-4 col-xs-12" id="id-date-picker-1" name="dtImissaoPosse" type="text" 
                                                            placeholder="dd/mm/aaaa" data-date-format="dd/mm/yyyy" required="required">
 
                                                     <c:choose>
                                                         <c:when test="${execucao == 'edit'}">
                                                             <div class="input-group">
-                                                                <input class="form-control date-picker" id="id-date-picker-1" name="dtImissaoPosse" 
+                                                                <input class="date-picker col-xs-4 col-xs-12" id="id-date-picker-1" name="dtImissaoPosse" 
                                                                        value="${sgd.dtImissaoPosse}" type="text" placeholder="dd/mm/aaaa" data-date-format="dd/mm/yyyy" 
                                                                        required="required">
                                                                 <span class="input-group-addon">
@@ -1836,7 +1836,7 @@
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
                                                             <div class="input-group">
-                                                                <input class="form-control date-picker" id="id-date-picker-1" name="dtImissaoPosse" type="text" 
+                                                                <input class="date-picker col-xs-4 col-xs-12" id="id-date-picker-1" name="dtImissaoPosse" type="text" 
                                                                        placeholder="dd/mm/aaaa" data-date-format="dd/mm/yyyy" required="required">
                                                                 <span class="input-group-addon">
                                                                     <i class="fa fa-calendar bigger-110"></i>
@@ -1896,13 +1896,13 @@
                                                 <label class="col-xs-4 col-xs-12" >
                                                     <span class="lbl"><strong>Data da Imissao de Posse</strong></span>
                                                     <div class="space-1"></div>
-                                                    <input class="form-control date-picker" id="id-date-picker-1" name="dtImissaoPosse" type="text" 
+                                                    <input class="date-picker col-xs-4 col-xs-12" id="id-date-picker-1" name="dtImissaoPosse" type="text" 
                                                            placeholder="dd/mm/aaaa" data-date-format="dd/mm/yyyy" required="required">
 
                                                     <c:choose>
                                                         <c:when test="${execucao == 'edit'}">
                                                             <div class="input-group">
-                                                                <input class="form-control date-picker" id="id-date-picker-1" name="dtImissaoPosse" 
+                                                                <input class="date-picker col-xs-4 col-xs-12" id="id-date-picker-1" name="dtImissaoPosse" 
                                                                        value="${sgd.dtImissaoPosse}" type="text" placeholder="dd/mm/aaaa" data-date-format="dd/mm/yyyy" 
                                                                        required="required">
                                                                 <span class="input-group-addon">
@@ -1912,7 +1912,7 @@
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
                                                             <div class="input-group">
-                                                                <input class="form-control date-picker" id="id-date-picker-1" name="dtImissaoPosse" type="text" 
+                                                                <input class="date-picker col-xs-4 col-xs-12" id="id-date-picker-1" name="dtImissaoPosse" type="text" 
                                                                        placeholder="dd/mm/aaaa" data-date-format="dd/mm/yyyy" required="required">
                                                                 <span class="input-group-addon">
                                                                     <i class="fa fa-calendar bigger-110"></i>
@@ -1972,7 +1972,7 @@
                                                 <label class="col-xs-4 col-xs-12" >
                                                     <span class="lbl"><strong>Vara</strong></span>
                                                     <div class="space-1"></div>
-                                                    <input type="text" id="form-field-1" class="col-xs-6 col-xs-12"
+                                                    <input type="text" id="form-field-1" class="col-xs-4 col-xs-12"
                                                            value="" placeholder="Vara" required="required">
 
                                                     <c:choose>
@@ -2971,14 +2971,14 @@
                                                     <c:choose>
                                                         <c:when test="${execucao == 'edit'}">
                                                             <input type="text" id="form-field-1" class="col-xs-12 col-md-12" name="nmComplementoEndereco" 
-                                                                   value="${auto.nmComplementoEndereco}" placeholder="Complemento do Endereço" >
+                                                                   value="${sgd.nmComplementoEndereco}" placeholder="Complemento do Endereço" >
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
                                                             <input type="text" id="form-field-1" class="col-xs-12 col-md-12" name="nmComplementoEndereco" 
                                                                    placeholder="Complemento do Endereço" >
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <span class="lbl">${auto.nmComplementoEndereco}</span> 
+                                                            <span class="lbl">${sgd.nmComplementoEndereco}</span> 
                                                         </c:otherwise>
                                                     </c:choose>
                                                 </label>
@@ -2992,7 +2992,7 @@
                                                     <c:choose>
                                                         <c:when test="${execucao == 'edit'}">
                                                             <input type="text" id="form-field-1" class="col-xs-9 col-xs-12" name="nmReferenciaEndereco" 
-                                                                   value="${auto.nmReferenciaEndereco}" placeholder="Referência do Endereço" >
+                                                                   value="${sgd.nmReferenciaEndereco}" placeholder="Referência do Endereço" >
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
                                                             <input type="text" id="form-field-1" class="col-xs-9 col-xs-12" name="nmReferenciaEndereco" 
@@ -3027,7 +3027,7 @@
                                                     </c:choose>
                                                 </label>
                                             </div>
-                                            
+
                                             <!-- BOTOES -->
                                             <div class="form-actions center">
                                                 <button class="btn btn-yellow" type="reset" onclick=" location.href = 'Index.jsp';">
@@ -3063,4 +3063,4 @@
                     </html>
 
 
-<!-- TESTE -->
+                    <!-- TESTE -->

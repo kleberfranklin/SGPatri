@@ -9,18 +9,18 @@
     <ul class="nav nav-list">
         <li class="">
             <a href="Index.jsp">
-                    <i class="menu-icon fa fa-tachometer"></i>
-                    <span class="menu-text"> Dashboard </span>
+                <i class="menu-icon fa fa-tachometer"></i>
+                <span class="menu-text"> Dashboard </span>
             </a>
             <b class="arrow"></b>
         </li>
-        
+
         <!-- Menu Gabinete-->
         <li class="">
             <a href="#" class="dropdown-toggle" title="Gabinete da Coordenadoria">
                 <i class="menu-icon fa fa-folder"></i>
                 <span class="menu-text">
-                        GABINETE
+                    GABINETE
                 </span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
@@ -80,13 +80,13 @@
                 </li>
             </ul>
         </li>
-        
-        
+
+
         <!-- Menu DDPI -->
         <li class="">
             <a href="#" class="dropdown-toggle" title="Divisão de Destinação do Patrimônio Imobiliário">
                 <i class="menu-icon fa fa-folder"></i>
-                    <span class="menu-text"> DDPI </span>
+                <span class="menu-text"> DDPI </span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
             <b class="arrow"></b>
@@ -128,22 +128,22 @@
                             <a href="AutoCessao.jsp" title="Auto de Cessão">Autos de Cessão</a>
                             <b class="arrow"></b>
                         </li>
-                    <!--<li class="">
-                        <a href="AutoCessao.jsp?ter=terceiro" title="Auto de Cessão de Terceiros"> Autos de Cessão de Terceiros</a>
-                        <b class="arrow"></b>
-                    </li> -->
-                        <c:if test="${sessionSgDivisao == 'DDPI' && sessionSgSetor == 'SCL'}">
-                        <li class="">
-                            <a href="ControllerServlet?acao=AutoCessaoValidacaoLista" title="Auto de Cessão Validação">Validação Auto Cessão</a>
+                        <!--<li class="">
+                            <a href="AutoCessao.jsp?ter=terceiro" title="Auto de Cessão de Terceiros"> Autos de Cessão de Terceiros</a>
                             <b class="arrow"></b>
-                        </li>
+                        </li> -->
+                        <c:if test="${sessionSgDivisao == 'DDPI' && sessionSgSetor == 'SCL'}">
+                            <li class="">
+                                <a href="ControllerServlet?acao=AutoCessaoValidacaoLista" title="Auto de Cessão Validação">Validação Auto Cessão</a>
+                                <b class="arrow"></b>
+                            </li>
                         </c:if>   
                     </ul>
                 </li>
             </ul>
-            
+
         </li>
-        
+
         <!-- Menu DIPI -->
         <li class="">
             <a href="#" class="dropdown-toggle" title="Divisão de Informação do Patrimônio Imobiliário">
@@ -178,11 +178,11 @@
                     <b class="arrow"></b>
                     <ul class="submenu">
                         <li class="">
-                            <a href="PesquisaSGD.jsp" title="Informação">Informação</a>
+                            <a href="PesquisaSGD.jsp" title="Formulários de Pesquisa do SGD">Informação</a>
                             <b class="arrow"></b>
                         </li>
                         <li class="">
-                            <a href="CadastroSGD.jsp" title="Informação">Formularios SGD</a>
+                            <a href="CadastroSGD.jsp" title="Formularios de Cadastros do SGD">Cadastramento</a>
                             <b class="arrow"></b>
                         </li>
                     </ul>    
@@ -194,19 +194,27 @@
                     </a>
                     <b class="arrow"></b>
                     <ul class="submenu ">
+
                         <li class="">
-                            <a href="#" title="Anotação de Expediente">Anotação de Expediente </a>
+                             <a href="AnotacaoExpediente.jsp" title="Anotação de Expediente">Anotação de Expediente </a>
+                             <b class="arrow"></b>
+                         </li>
+                         <!--
+                        <li class="sub-scroll">
+                            <a href="PesquisaSic.jsp" title="Formulários de Pesquisa do SIC">Informações</a>
                             <b class="arrow"></b>
                         </li>
-                        <li class="">
-                            <a href="CadastroSIC.jsp" title="Anotação de Expediente">Formularios SIC </a>
+
+                        <li class="arrowed">
+                            <a href="CadastroSIC.jsp" title="Formularios de Cadastros do SIC">Cadastramento</a>
                             <b class="arrow"></b>
                         </li>
+                         -->
                     </ul>    
                 </li>
             </ul>
         </li>
-        
+
         <!-- Menu DEAPI -->
         <li class="">
             <a href="#" class="dropdown-toggle" title="Divisão de Engenharia do Patrimônio Imobiliário">
@@ -257,8 +265,8 @@
                 </li>
             </ul>
         </li>
-        
-         <!-- Menu DAPI -->
+
+        <!-- Menu DAPI -->
         <li class="">
             <a href="#" class="dropdown-toggle" title="Divisão de Avaliação do Patrimônio Imobiliário">
                 <i class="menu-icon fa fa-folder"></i>
@@ -301,10 +309,10 @@
                 <i class="menu-icon fa fa-tags"></i>
                 <span class="menu-text"> Tarefas 
                     <span class="badge badge-transparent tooltip-error" title="2 Eventos importantes">
-                            <i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i>
+                        <i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i>
                     </span>
                 </span>
-                
+
             </a>
             <b class="arrow"></b>
         </li>
@@ -315,7 +323,7 @@
                 <i class="menu-icon fa fa-calendar"></i>
                 <span class="menu-text"> Calendário </span>
             </a>
-           <b class="arrow"></b>
+            <b class="arrow"></b>
         </li>
         <!-- Wikipedia CGPatri-->
         <li class="disabled-li-menu">
@@ -323,12 +331,12 @@
                 <i class="menu-icon fa fa-book"></i>
                 <span class="menu-text"> Wikipedia CGPatri </span>
             </a>
-           <b class="arrow"></b>
+            <b class="arrow"></b>
         </li>
-  
+
     </ul><!-- /.nav-list -->
 </div>
 
 <!--Inicio DIV do body -->
 <div class="main-content">
-<div class="main-content-inner">
+    <div class="main-content-inner">

@@ -140,7 +140,7 @@
 
                                         <!--Inicio da tab-pane Cadastro Croqui-->
                                         <div id="cad-croqui" class="tab-pane <c:if test="${auto.nrVerAc=='0' || auto.nrVerValidacao == '1' || novo=='1'}">in active</c:if>"  >
-                                                <form action="ControllerServlet?acao=CadastroSicDAO" method="POST" >
+                                                <form action="ControllerServlet?acao=" method="POST" >
 
                                                     <input type="hidden" name="pkAutoStage" value="${auto.pkAutoStage}" />
                                                 <input type="hidden" name="cdCroqui" value="1" />
@@ -152,12 +152,11 @@
                                                 <h4 class="header smaller lbl "><strong>Cadastro Croqui</strong></h4>
 
                                                 <div class="form-group">
-                                                    <label class="col-xs-7 col-xs-12">
-                                                        <span class="lbl"><strong>Nº Croqui</strong></span>
-                                                        <div class="space-1"></div>
-                                                        <input type="text" id="form-field-1" name="cdCroqui" class="col-xs-4 col-xs-12"
-                                                               placeholder="Nº Do Croqui" required="required">
+                                                    <div class="inline col-xs-2 col-xs-12"
+                                                         <span class="lbl"><strong>Nº Croqui:</strong></span>
+                                                    </div>
 
+                                                    <label class="col-xs-5 col-xs-12">
                                                         <c:choose>
                                                             <c:when test="${execucao == 'edit'}">
                                                                 <input type="text" id="form-field-1" class="col-xs-4 col-xs-12" name="cdCroqui" 
@@ -172,20 +171,17 @@
                                                             </c:otherwise>
                                                         </c:choose>
                                                     </label>
-
-                                                    <label class="col-xs-5 col-xs-12">
-                                                        <span class = "lbl"><strong>Área</strong></span>
-                                                        <div class="space-1"></div>
-                                                        <input type="text" id="form-field-1" class="col-xs-4 col-xs-12" 
-                                                               value="" placeholder="Código da Area" required="required">
-
+                                                    <label class="col-xs-1 col-xs-12">
+                                                        <span class = "lbl"><strong>Área:</strong></span>
+                                                    </label>
+                                                    <label class="col-xs-4 col-xs-12">
                                                         <c:choose>
                                                             <c:when test="${execucao == 'edit'}">
-                                                                <input type="text" id="form-field-1" class="col-xs-3 col-xs-12" name="cdArea" 
+                                                                <input type="text" id="form-field-1" class="col-xs-5 col-xs-12" name="cdArea" 
                                                                        value="${cadSic.cdArea}" placeholder="Código da Area" required="required">
                                                             </c:when>
                                                             <c:when test="${execucao == 'insert'}">
-                                                                <input type="text" id="form-field-1" class="col-xs-3 col-xs-12" name="cdArea" 
+                                                                <input type="text" id="form-field-1" class="col-xs-5 col-xs-12" name="cdArea" 
                                                                        placeholder="Código da Area" required="required" >
                                                             </c:when>
                                                             <c:otherwise>
@@ -195,20 +191,20 @@
                                                     </label>                                                   
                                                 </div>
 
+                                                <div class="space-1"></div>
                                                 <div class="form-group">
-                                                    <label class="col-xs-7 col-xs-12" >
-                                                        <span class="lbl"><strong>Nº da Informação do DGPI</strong></span>
-                                                        <div class="space-1"></div>
-                                                        <input type="text" id="form-field-1" class="col-xs-5 col-xs-12"
-                                                               value="" placeholder="Nº da Informação do DGPI" required="required">
+                                                    <div class="inline col-xs-2 col-xs-12 ">
+                                                        <span class="lbl"><strong>Nº da Informação do DGPI:</strong></span>
+                                                    </div>
 
+                                                    <label class="col-xs-7 col-xs-12" >
                                                         <c:choose>
                                                             <c:when test="${execucao == 'edit'}">
-                                                                <input type="text" id="form-field-1" class="col-xs-4 col-xs-12" name="nrInformacaoDgpi" 
+                                                                <input type="text" id="form-field-1" class="col-xs-5 col-xs-12" name="nrInformacaoDgpi" 
                                                                        value="${cadSic.nrInformacaoDgpi}" placeholder="Nº da Informação do DGPI" required="required">
                                                             </c:when>
                                                             <c:when test="${execucao == 'insert'}">
-                                                                <input type="text" id="form-field-1" class="col-xs-4 col-xs-12" name="nrInformacaoDgpi" 
+                                                                <input type="text" id="form-field-1" class="col-xs-5 col-xs-12" name="nrInformacaoDgpi" 
                                                                        placeholder="Nº da Informação do DGPI" required="required" >
                                                             </c:when>
                                                             <c:otherwise>
@@ -218,20 +214,20 @@
                                                     </label>
                                                 </div>  
 
+                                                <div class="space-1"></div>
                                                 <div class="form-group">
-                                                    <label class="col-xs-7 col-xs-12">
-                                                        <span class="lbl"><strong>Nº Processo</strong></span>
-                                                        <div class="space-1"></div>
-                                                        <input type="text" id="form-field-1" class="col-xs-5 col-xs-12" 
-                                                               value="" placeholder="Nº Processo" required="required">
+                                                    <div class="inline col-xs-2 col-xs-12">
+                                                        <span class="lbl"><strong>Nº Processo:</strong></span>
+                                                    </div>
 
+                                                    <label class="col-xs-5 col-xs-12">
                                                         <c:choose>
                                                             <c:when test="${execucao == 'edit'}">
-                                                                <input type="text" id="form-field-1" class="col-xs-5 col-xs-12" name="cdProcesso" 
+                                                                <input type="text" id="form-field-1" class="col-xs-7 col-xs-12" name="cdProcesso" 
                                                                        value="${cadSic.cdProcesso}" placeholder="nº do processo" required="required"  >
                                                             </c:when>
                                                             <c:when test="${execucao == 'insert'}">
-                                                                <input type="text" id="form-field-1" class="col-xs-5 col-xs-12"  name="cdProcesso" 
+                                                                <input type="text" id="form-field-1" class="col-xs-7 col-xs-12"  name="cdProcesso" 
                                                                        placeholder="Nº Processo" required="required"  >
                                                             </c:when>
                                                             <c:otherwise>
@@ -240,19 +236,19 @@
                                                         </c:choose>
                                                     </label>
 
-                                                    <label class="col-xs-5 col-xs-12" >
-                                                        <span class="lbl"><strong>Nº TID</strong></span>
-                                                        <div class="space-1"></div>
-                                                        <input type="text" id="form-field-1" class="col-xs-7 col-xs-12" 
-                                                               value="" placeholder="Nº TID" required="required">
+                                                    <label class="col-xs-1 col-xs-12" >
+                                                        <span class="lbl"><strong>Nº TID:</strong></span>
+                                                    </label>
+
+                                                    <label class="col-xs-3 col-xs-12" >
 
                                                         <c:choose>
                                                             <c:when test="${execucao == 'edit'}">
-                                                                <input type="text" id="form-field-1" class="col-xs-7 col-xs-12"  name="cdTid" 
+                                                                <input type="text" id="form-field-1" class="col-xs-8 col-xs-12"  name="cdTid" 
                                                                        value="${cadSic.cdTid}" placeholder="Nº TID" required="required" >
                                                             </c:when>
                                                             <c:when test="${execucao == 'insert'}">
-                                                                <input type="text" id="form-field-1" class="col-xs-7 col-xs-12"  name="cdTid" 
+                                                                <input type="text" id="form-field-1" class="col-xs-8 col-xs-12"  name="cdTid" 
                                                                        placeholder="Nº TID" required="required" >
                                                             </c:when>
                                                             <c:otherwise>
@@ -262,20 +258,20 @@
                                                     </label>
                                                 </div>
 
+                                                <div class="space-1"></div>
                                                 <div class="form-group">
-                                                    <label class="inline col-xs-7 col-xs-12" >
-                                                        <span class="lbl"><strong>Nº de Expediente</strong></span>
-                                                        <div class="space-1"></div>
-                                                        <input type="text" id="form-field-1" class="col-xs-7 col-xs-12" 
-                                                               value="" placeholder="Nº Expediente" required="required">
+                                                    <div class="inline col-xs-2 col-xs-12">
+                                                        <span class="lbl"><strong>Nº de Expediente:</strong></span>
+                                                    </div>
 
+                                                    <label class="inline col-xs-7 col-xs-12" >
                                                         <c:choose>
                                                             <c:when test="${execucao == 'edit'}">
-                                                                <input type="text" id="form-field-1" class="col-xs-7 col-xs-12"  name="cdExpediente" 
+                                                                <input type="text" id="form-field-1" class="col-xs-5 col-xs-12"  name="cdExpediente" 
                                                                        value="${cadSic.cdExpediente}" placeholder="Nº Expediente" required="required" >
                                                             </c:when>
                                                             <c:when test="${execucao == 'insert'}">
-                                                                <input type="text" id="form-field-1" class="col-xs-7 col-xs-12"  name="cdExpediente" 
+                                                                <input type="text" id="form-field-1" class="col-xs-5 col-xs-12"  name="cdExpediente" 
                                                                        placeholder="Nº Expediente" required="required" >
                                                             </c:when>
                                                             <c:otherwise>
@@ -285,20 +281,20 @@
                                                     </label>
                                                 </div>
 
+                                                <div class="space-1"></div>
                                                 <div class="form-group">
-                                                    <label class="col-xs-7 col-xs-12"  >
-                                                        <span class="lbl"><strong>Interessado</strong></span>
-                                                        <div class="space-1"></div>
-                                                        <input type="text" id="form-field-1" class="col-xs-7 col-xs-12" 
-                                                               value="" placeholder="Nome do Interessado" required="required">
+                                                    <div class="inline col-xs-2 col-xs-12">
+                                                        <span class="lbl"><strong>Interessado:</strong></span>
+                                                    </div>
 
+                                                    <label class="col-xs-7 col-xs-12">
                                                         <c:choose>
                                                             <c:when test="${execucao == 'edit'}">
-                                                                <input type="text" id="form-field-1" class="col-xs-7 col-xs-12"  name="nmInteressado" 
+                                                                <input type="text" id="form-field-1" class="col-xs-6 col-xs-12"  name="nmInteressado" 
                                                                        value="${cadSic.nmInteressado}" placeholder="Nome do Interessado" required="required" >
                                                             </c:when>
                                                             <c:when test="${execucao == 'insert'}">
-                                                                <input type="text" id="form-field-1" class="col-xs-7 col-xs-12"  name="nmInteressado" 
+                                                                <input type="text" id="form-field-1" class="col-xs-6 col-xs-12"  name="nmInteressado" 
                                                                        placeholder="Nome do Interessado" required="required" >
                                                             </c:when>
                                                             <c:otherwise>
@@ -308,21 +304,20 @@
                                                     </label>
                                                 </div>
 
+                                                <div class="space-1"></div>
                                                 <div class="form-group">
+                                                    <div class="inline col-xs-2 col-xs-12">
+                                                        <span class="lbl"><strong>Assunto:</strong></span>
+                                                    </div>
 
                                                     <label class="col-xs-7 col-xs-12">
-                                                        <span class="lbl"><strong>Assunto</strong></span>
-                                                        <div class="space-1"></div>
-                                                        <input type="text" id="form-field-1" class="col-xs-7 col-xs-12" 
-                                                               value="" placeholder="Descrição do Assunto" required="required">
-
                                                         <c:choose>
                                                             <c:when test="${execucao == 'edit'}">
-                                                                <input type="text" id="form-field-1" class="col-xs-7 col-xs-12"  name="dsAssunto" 
+                                                                <input type="text" id="form-field-1" class="col-xs-6 col-xs-12"  name="dsAssunto" 
                                                                        value="${cadSic.dsAssunto}" placeholder="Descrição do assunto" required="required" >
                                                             </c:when>
                                                             <c:when test="${execucao == 'insert'}">
-                                                                <input type="text" id="form-field-1" class="col-xs-7 col-xs-12"  name="dsAssunto" 
+                                                                <input type="text" id="form-field-1" class="col-xs-6 col-xs-12"  name="dsAssunto" 
                                                                        placeholder="Descrição do assunto" required="required" >
                                                             </c:when>
                                                             <c:otherwise>
@@ -332,16 +327,16 @@
                                                     </label>
                                                 </div>
 
+                                                <div class="space-1"></div>
                                                 <div class="form-group">
-                                                    <label class="col-xs-7 col-xs-12" >
-                                                        <span class="lbl"><strong>Tipo do endereço</strong></span>
-                                                        <div class="space-1"></div>
-                                                        <input type="text" id="form-field-1" class="col-xs-7 col-xs-12"
-                                                               value="" placeholder="Tipo do Endereço" required="required">
+                                                    <div class="inline col-xs-2 col-xs-12">
+                                                        <span class="lbl"><strong>Tipo do Endereço:</strong></span>
+                                                    </div>
 
+                                                    <label class=" inline col-xs-5 col-xs-12" >
                                                         <c:choose>
                                                             <c:when test="${execucao == 'edit'}">
-                                                                <select name="tipoEndereco" title="Rua / Avenida / Praça / etc" required="required">
+                                                                <select class="col-md-7 col-xs-12" name="tipoEndereco" title="Rua / Avenida / Praça / etc" required="required">
                                                                     <option value="${cadSic.nmTipoEndereco}">${cadSic.nmTipoEndereco}</option>
                                                                     <option></option>
                                                                     <option>ACESSO</option>
@@ -412,7 +407,7 @@
                                                                 </select>
                                                             </c:when>
                                                             <c:when test="${execucao == 'insert'}">
-                                                                <select  name="tipoEndereco" title="Rua / Avenida / Praça / etc" required="required">
+                                                                <select class="col-md-7 col-xs-12" name="tipoEndereco" title="Rua / Avenida / Praça / etc" required="required">
                                                                     <option></option>
                                                                     <option>ACESSO</option>
                                                                     <option>ALAMEDA</option>
@@ -487,16 +482,15 @@
                                                         </c:choose>
                                                     </label>
 
-                                                    <label class="col-xs-5 col-xs-12">
-                                                        <span class="lbl"><strong>Título do endereço</strong></span>
-                                                        <div class="space-1"></div>
-                                                        <input type="text" id="form-field-1"  class="col-xs-8 col-xs-12" 
-                                                               value="" placeholder="Título do Endereço" required="required">
+                                                    <label class="col-xs-2 col-xs-12">
+                                                        <span class="lbl"><strong>Título do Endereço:</strong></span>
+                                                    </label>
 
+                                                    <label class="col-xs-3 col-xs-12">
                                                         <c:choose>
                                                             <c:when test="${execucao == 'edit'}">
-                                                                <select name="tituloEndereco" title="Capitão / Doutor / Dom / etc">
-                                                                    <option>${cadSic.nmTituloEnd}</option>
+                                                                <select class="col-md-12 col-xs-12" name="tituloEndereco" title="Capitão / Doutor / Dom / etc">
+                                                                    <option>${cadSic.nmTituloEndereco}</option>
                                                                     <option></option>
                                                                     <option>ABADE</option>
                                                                     <option>ACADEMICO</option>
@@ -706,7 +700,7 @@
                                                                 </select>
                                                             </c:when>
                                                             <c:when test="${execucao == 'insert'}">
-                                                                <select name="tituloEndereco" title="Capitão / Doutor / Dom / etc">
+                                                                <select class="col-md-12 col-xs-12" name="tituloEndereco" title="Capitão / Doutor / Dom / etc">
                                                                     <option></option>
                                                                     <option>ABADE</option>
                                                                     <option>ACADEMICO</option>
@@ -916,26 +910,26 @@
                                                                 </select>
                                                             </c:when>
                                                             <c:otherwise>
-                                                                <span class="lbl">${cadSic.nmTituloEnd}</span> 
+                                                                <span class="lbl">${cadSic.nmTituloEndereco}</span> 
                                                             </c:otherwise>
                                                         </c:choose>
                                                     </label>
                                                 </div>
 
+                                                <div class="space-1"></div>
                                                 <div class="form-group">
-                                                    <label class="col-xs-7 col-xs-12" >
-                                                        <span class="lbl"><strong>Endereço</strong></span>
-                                                        <div class="space-1"></div>
-                                                        <input type="text" id="form-field-1" class="col-xs-7 col-xs-12"
-                                                               value="" placeholder="Endereço" required="required">
+                                                    <div class="inline col-xs-2 col-xs-12">
+                                                        <span class="lbl"><strong>Endereço:</strong></span>
+                                                    </div>
 
+                                                    <label class="col-xs-5 col-xs-12" >
                                                         <c:choose>
                                                             <c:when test="${execucao == 'edit'}">
-                                                                <input type="text" id="form-field-1" class="col-xs-7 col-xs-12" name="nmEndereco" 
+                                                                <input type="text" id="form-field-1" class="col-xs-11 col-xs-12" name="nmEndereco" 
                                                                        value="${cadSic.nmEndereco}"  placeholder="Nome do Endereço" required="required">
                                                             </c:when>
                                                             <c:when test="${execucao == 'insert'}">
-                                                                <input type="text" id="form-field-1" class="col-xs-7 col-xs-12" name="nmEndereco" 
+                                                                <input type="text" id="form-field-1" class="col-xs-11 col-xs-12" name="nmEndereco" 
                                                                        placeholder="Nome do Endereço" required="required">
                                                             </c:when>
                                                             <c:otherwise>
@@ -944,19 +938,18 @@
                                                         </c:choose>
                                                     </label>
 
-                                                    <label class="col-xs-5 col-xs-12" >
-                                                        <span class="lbl"><strong>Nº Endereço</strong></span>
-                                                        <div class="space-1"></div>
-                                                        <input type="text" id="form-field-1" class="col-xs-4 col-xs-12"
-                                                               value="" placeholder="Nº Endereço" required="required">
+                                                    <label class="col-xs-2 col-xs-12" >
+                                                        <span class="lbl"><strong>Nº Endereço:</strong></span>
+                                                    </label>
 
+                                                    <label class="col-xs-3 col-xs-12" >
                                                         <c:choose>
                                                             <c:when test="${execucao == 'edit'}">
-                                                                <input type="text" id="form-field-1" class="col-xs-7 col-xs-12" name="nrEndereco" 
+                                                                <input type="text" id="form-field-1" class="col-xs-8 col-xs-12" name="nrEndereco" 
                                                                        value="${cadSic.nrEndereco}" placeholder="nº">
                                                             </c:when>
                                                             <c:when test="${execucao == 'insert'}">
-                                                                <input type="text" id="form-field-1" class="col-xs-7 col-xs-12" name="nrEndereco" 
+                                                                <input type="text" id="form-field-1" class="col-xs-8 col-xs-12" name="nrEndereco" 
                                                                        placeholder="Nº Endereço">
                                                             </c:when>
                                                             <c:otherwise>
@@ -966,57 +959,55 @@
                                                     </label>
                                                 </div>
 
+                                                <div class="space-1"></div>
                                                 <div class="form-group">
-                                                    <label class="col-xs-7 col-xs-12" >
-                                                        <span class="lbl"><strong>Complemento do Endereço</strong></span>
-                                                        <div class="space-1"></div>
-                                                        <input type="text" id="form-field-1" class="col-xs-7 col-xs-12"
-                                                               value="" placeholder="Complemento do Endereço" required="required">
+                                                    <div class="inline col-xs-2 col-xs-12">
+                                                        <span class="lbl"><strong>Complemento do Endereço:</strong></span>
+                                                    </div>
 
+                                                    <label class="col-xs-5 col-xs-12" >
                                                         <c:choose>
                                                             <c:when test="${execucao == 'edit'}">
-                                                                <input type="text" id="form-field-1" class="col-xs-7 col-xs-12" name="nmComplementoEnd" 
-                                                                       value="${cadSic.nmComplementoEnd}" placeholder="Complemento do Endereço" >
+                                                                <input type="text" id="form-field-1" class="col-xs-11 col-xs-12" name="nmComplementoEndereco" 
+                                                                       value="${cadSic.nmComplementoEndereco}" placeholder="Complemento do Endereço" >
                                                             </c:when>
                                                             <c:when test="${execucao == 'insert'}">
-                                                                <input type="text" id="form-field-1" class="col-xs-7 col-xs-12" name="nmComplementoEnd" 
+                                                                <input type="text" id="form-field-1" class="col-xs-11 col-xs-12" name="nmComplementoEndereco" 
                                                                        placeholder="Complemento do Endereço">
                                                             </c:when>
                                                             <c:otherwise>
-                                                                <span class="lbl">${cadSic.nmComplementoEnd}</span> 
+                                                                <span class="lbl">${cadSic.nmComplementoEndereco}</span> 
                                                             </c:otherwise>
                                                         </c:choose>
                                                     </label>
 
-                                                    <label class="col-xs-5 col-xs-12" >  
-                                                        <span class="lbl"><strong>Referência</strong></span>
-                                                        <div class="space-1"></div>
-                                                        <input type="text" id="form-field-1" class="col-xs-8 col-xs-12"
-                                                               value="" placeholder="Referência do Endereço" required="required">
+                                                    <label class="col-xs-2 col-xs-12" >  
+                                                        <span class="lbl"><strong>Referência do Endereco:</strong></span>
+                                                    </label>                
 
+                                                    <label class="col-xs-3 col-xs-12" >                                                  
                                                         <c:choose>
                                                             <c:when test="${execucao == 'edit'}">
-                                                                <input type="text" id="form-field-1" class="col-xs-8 col-xs-12" name="dsReferenciaEnd" 
-                                                                       value="${cadSic.dsReferenciaEnd}" placeholder="Referencia do Endereço" >
+                                                                <input type="text" id="form-field-1" class="col-xs-12 col-xs-12" name="dsReferenciaEndereco" 
+                                                                       value="${cadSic.dsReferenciaEndereco}" placeholder="Referencia do Endereço" >
                                                             </c:when>
                                                             <c:when test="${execucao == 'insert'}">
-                                                                <input type="text" id="form-field-1" class="col-xs-8 col-xs-12" name="dsReferenciaEnd" 
+                                                                <input type="text" id="form-field-1" class="col-xs-12 col-xs-12" name="dsReferenciaEndereco" 
                                                                        placeholder="Referencia do Endereço" >
                                                             </c:when>
                                                             <c:otherwise>
-                                                                <span class="lbl">${cadSic.dsReferenciaEnd}</span> 
+                                                                <span class="lbl">${cadSic.dsReferenciaEndereco}</span> 
                                                             </c:otherwise>
                                                         </c:choose>
                                                     </label>
                                                 </div>
 
+                                                <div class="space-1"></div>
                                                 <div class="form-group">
-                                                    <label class="inline col-md-2 col-xs-12" >
-                                                        <span class="lbl"><strong>Observação</strong></span>
-                                                        <div class ="space-1"></div>
-                                                        <textarea class="form-control" id="form-field-8" name="dsObservacao" placeholder="Observação" 
-                                                                  style="margin: 0px 102.656px 0px 0px; width: 600px; height: 90px;"></textarea>
-
+                                                    <div class="inline col-xs-2 col-xs-12"
+                                                         <span class="lbl"><strong>Observação:</strong></span>
+                                                    </div>
+                                                    <label class="inline col-xs-2 col-xs-12" >
                                                         <c:choose>
                                                             <c:when test="${execucao == 'edit'}">
                                                                 <textarea class="form-control" id="form-field-8" name="dsObservacao" placeholder="Observação" 
@@ -1057,19 +1048,17 @@
                                             <h4 class="header smaller lbl "><strong>Anotações Diversas</strong></h4>
 
                                             <div class="form-group">
-                                                <label class="col-xs-5 col-xs-12">
-                                                    <span class="lbl"><strong>Setor </strong></span>
-                                                    <div class="space-1"></div>
-                                                    <input type="text" id="form-field-1" class="col-xs-4 col-xs-12"
-                                                           value="" placeholder="Setor" required="required">
-
+                                                <div class="inline col-xs-1">
+                                                    <span class="lbl"><strong>Setor:</strong></span>
+                                                </div>
+                                                <label class="col-xs-3 col-xs-12">
                                                     <c:choose>
                                                         <c:when test="${execucao == 'edit'}">
-                                                            <input type="text" id="form-field-1" class="col-xs-4 col-xs-12" name="cdSetor" 
+                                                            <input type="text" id="form-field-1" class="col-xs-5 col-xs-12" name="cdSetor" 
                                                                    value="${cadSic.cdSetor}" placeholder="Setor" >
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
-                                                            <input type="text" id="form-field-1" class="col-xs-4 col-xs-12" name="cdSetor" 
+                                                            <input type="text" id="form-field-1" class="col-xs-5 col-xs-12" name="cdSetor" 
                                                                    placeholder="Setor" >
                                                         </c:when>
                                                         <c:otherwise>
@@ -1078,19 +1067,17 @@
                                                     </c:choose>
                                                 </label>
 
-                                                <label class="col-xs-4 col-xs-12">
-                                                    <span class="lbl"><strong>Quadra</strong></span>
-                                                    <div class="space-1"></div>
-                                                    <input type="text" id="form-field-1" class="col-xs-4 col-xs-12"
-                                                           value="" placeholder="Quadra" required="required">
-
+                                                <label class="col-xs-1 col-xs-12">
+                                                    <span class="lbl"><strong>Quadra:</strong></span>   
+                                                </label>
+                                                <label class="col-xs-3 col-xs-12">
                                                     <c:choose>
                                                         <c:when test="${execucao == 'edit'}">
-                                                            <input type="text" id="form-field-1" class="col-xs-4 col-xs-12" name="cdQuadra" 
+                                                            <input type="text" id="form-field-1" class="col-xs-6 col-xs-12" name="cdQuadra" 
                                                                    value="${cadSic.cdQuadra}" placeholder="Quadra" >
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
-                                                            <input type="text" id="form-field-1" class="col-xs-4 col-xs-12" name="cdQuadra" 
+                                                            <input type="text" id="form-field-1" class="col-xs-6 col-xs-12" name="cdQuadra" 
                                                                    placeholder="Quadra" >
                                                         </c:when>
                                                         <c:otherwise>
@@ -1099,19 +1086,18 @@
                                                     </c:choose>
                                                 </label>
 
-                                                <label class="col-xs-3 col-xs-12">
-                                                    <span class="lbl"><strong>Lote</strong></span>
-                                                    <div class="space-1"></div>
-                                                    <input type="text" id="form-field-1" class="col-xs-5 col-xs-12"
-                                                           value="" placeholder="Lote" required="required">
+                                                <label class="col-xs-1 col-xs-12">
+                                                    <span class="lbl"><strong>Lote:</strong></span>
+                                                </label>                
 
+                                                <label class="col-xs-3 col-xs-12">
                                                     <c:choose>
                                                         <c:when test="${execucao == 'edit'}">
-                                                            <input type="text" id="form-field-1" class="col-xs-4 col-xs-12" name="cdLote" 
+                                                            <input type="text" id="form-field-1" class="col-xs-6 col-xs-12" name="cdLote" 
                                                                    value="${cadSic.cdLote}" placeholder="Lote" >
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
-                                                            <input type="text" id="form-field-1" class="col-xs-4 col-xs-12" name="cdLote" 
+                                                            <input type="text" id="form-field-1" class="col-xs-6 col-xs-12" name="cdLote" 
                                                                    placeholder="Lote" >
                                                         </c:when>
                                                         <c:otherwise>
@@ -1121,21 +1107,21 @@
                                                 </label>
                                             </div>
 
+                                            <div class="space-1"></div>
                                             <div class="form-group">
-                                                <label class="col-xs-7 col-xs-12">
-                                                    <span class="lbl"><strong>Expediente</strong></span>
-                                                    <div class="space-1"></div>
-                                                    <input type="text" id="form-field-1" class="col-xs-7 col-xs-12" 
-                                                           value="" placeholder="Expediente" required="required">
+                                                <div class="inline col-xs-2 col-xs-12">
+                                                    <span class="lbl"><strong>Expediente:</strong></span>
+                                                </div>
 
+                                                <label class="col-xs-7 col-xs-12">
                                                     <c:choose>
                                                         <c:when test="${execucao == 'edit'}">
                                                             <input type="text" id="form-field-1" class="col-xs-7 col-xs-12" name="cdExpediente" 
-                                                                   value="${cadSic.cdExpediente}" placeholder="Lote" >
+                                                                   value="${cadSic.cdExpediente}" placeholder="Expediente" >
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
                                                             <input type="text" id="form-field-1" class="col-xs-7 col-xs-12" name="cdExpediente" 
-                                                                   placeholder="Lote" >
+                                                                   placeholder="Expediente" >
                                                         </c:when>
                                                         <c:otherwise>
                                                             <span class="lbl">${cadSic.cdLote}</span> 
@@ -1144,13 +1130,13 @@
                                                 </label>
                                             </div>
 
+                                            <div class="space-1"></div>
                                             <div class="form-group">
-                                                <label class="col-xs-7 col-xs-12">
-                                                    <span class="lbl"><strong>Interessado</strong></span>
-                                                    <div class="space-1"></div>
-                                                    <input type="text" id="form-field-1" class="col-xs-7 col-xs-12"
-                                                           value="" placeholder="Interessado" required="required">
+                                                <div class="inline col-xs-2 col-xs-12">
+                                                    <span class="lbl"><strong>Interessado:</strong></span>
+                                                </div>
 
+                                                <label class="col-xs-7 col-xs-12">
                                                     <c:choose>
                                                         <c:when test="${execucao == 'edit'}">
                                                             <input type="text" id="form-field-1" class="col-xs-7 col-xs-12" name="nmInteressado" 
@@ -1167,13 +1153,13 @@
                                                 </label>
                                             </div>
 
+                                            <div class="space-1"></div>
                                             <div class="form-group">
-                                                <label class="col-xs-7 col-xs-12">
-                                                    <span class="lbl"><strong>Assunto</strong></span>
-                                                    <div class="space-1"></div>
-                                                    <input type="text" id="form-field-1" class="col-xs-7 col-xs-12"
-                                                           value="" placeholder="Assunto" required="required">                        
+                                                <div class="inline col-xs-2 col-xs-12">
+                                                    <span class="lbl"><strong>Assunto:</strong></span>
+                                                </div>
 
+                                                <label class="col-xs-7 col-xs-12">
                                                     <c:choose>
                                                         <c:when test="${execucao == 'edit'}">
                                                             <input type="text" id="form-field-1" class="col-xs-7 col-xs-12" name="dsAssunto" 
@@ -1190,16 +1176,16 @@
                                                 </label>
                                             </div>
 
+                                            <div class="space-1"></div>
                                             <div class="form-group">
-                                                <label class="col-xs-7 col-xs-12" >
-                                                    <span class="lbl"><strong>Tipo do endereço</strong></span>
-                                                    <div class="space-1"></div>
-                                                    <input type="text" id="form-field-1"  class="col-xs-7 col-xs-12"
-                                                           value="" placeholder="Tipo do Endereço" required="required">
+                                                <div class="inline col-xs-2 col-xs-12">
+                                                    <span class="lbl"><strong>Tipo do Endereço:</strong></span>
+                                                </div>
 
+                                                <label class=" inline col-xs-5 col-xs-12" >
                                                     <c:choose>
                                                         <c:when test="${execucao == 'edit'}">
-                                                            <select class="col-xs-7 col-xs-12" name="tipoEndereco" title="Rua / Avenida / Praça / etc" required="required">
+                                                            <select class="col-md-7 col-xs-12" name="tipoEndereco" title="Rua / Avenida / Praça / etc" required="required">
                                                                 <option value="${cadSic.nmTipoEndereco}">${cadSic.nmTipoEndereco}</option>
                                                                 <option></option>
                                                                 <option>ACESSO</option>
@@ -1270,7 +1256,7 @@
                                                             </select>
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
-                                                            <select  name="tipoEndereco" title="Rua / Avenida / Praça / etc" required="required">
+                                                            <select class="col-md-7 col-xs-12" name="tipoEndereco" title="Rua / Avenida / Praça / etc" required="required">
                                                                 <option></option>
                                                                 <option>ACESSO</option>
                                                                 <option>ALAMEDA</option>
@@ -1345,15 +1331,14 @@
                                                     </c:choose>
                                                 </label>
 
-                                                <label class="col-xs-5 col-xs-12" >
-                                                    <span class="lbl"><strong>Título do endereço</strong></span>
-                                                    <div class="space-1"></div>
-                                                    <input type="text" id="form-field-1"  class="col-xs-8 col-xs-12"
-                                                           value="" placeholder="Título do Endereço" required="required">
+                                                <label class="col-xs-2 col-xs-12">
+                                                    <span class="lbl"><strong>Título do Endereço:</strong></span>
+                                                </label>
 
+                                                <label class="col-xs-3 col-xs-12">
                                                     <c:choose>
                                                         <c:when test="${execucao == 'edit'}">
-                                                            <select name="tituloEndereco" title="Capitão / Doutor / Dom / etc">
+                                                            <select class="col-md-12 col-xs-12" name="tituloEndereco" title="Capitão / Doutor / Dom / etc">
                                                                 <option>${cadSic.nmTituloEndereco}</option>
                                                                 <option></option>
                                                                 <option>ABADE</option>
@@ -1564,7 +1549,7 @@
                                                             </select>
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
-                                                            <select name="tituloEndereco" title="Capitão / Doutor / Dom / etc">
+                                                            <select class="col-md-12 col-xs-12" name="tituloEndereco" title="Capitão / Doutor / Dom / etc">
                                                                 <option></option>
                                                                 <option>ABADE</option>
                                                                 <option>ACADEMICO</option>
@@ -1780,21 +1765,21 @@
                                                 </label>
                                             </div>
 
+                                            <div class="space-1"></div>
                                             <div class="form-group">
-                                                <label class="col-xs-7 col-xs-12" >
-                                                    <span class="lbl"><strong>Endereço</strong></span>
-                                                    <div class="space-1"></div>
-                                                    <input type="text" id="form-field-1" class="col-xs-7 col-xs-12"
-                                                           value="" placeholder="Endereço" required="required">
+                                                <div class="inline col-xs-2 col-xs-12">
+                                                    <span class="lbl"><strong>Endereço:</strong></span>
+                                                </div>
 
+                                                <label class="col-xs-5 col-xs-12" >
                                                     <c:choose>
                                                         <c:when test="${execucao == 'edit'}">
-                                                            <input type="text" id="form-field-1" class="col-xs-7 col-xs-12" name="nmEndereco" 
-                                                                   value="${cadSic.nmEndereco}"  placeholder="Endereço" required="required">
+                                                            <input type="text" id="form-field-1" class="col-xs-11 col-xs-12" name="nmEndereco" 
+                                                                   value="${cadSic.nmEndereco}"  placeholder="Nome do Endereço" required="required">
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
-                                                            <input type="text" id="form-field-1" class="col-xs-7 col-xs-12" name="nmEndereco" 
-                                                                   placeholder="Endereço" required="required">
+                                                            <input type="text" id="form-field-1" class="col-xs-11 col-xs-12" name="nmEndereco" 
+                                                                   placeholder="Nome do Endereço" required="required">
                                                         </c:when>
                                                         <c:otherwise>
                                                             <span class="lbl">${cadSic.nmEndereco}</span> 
@@ -1803,19 +1788,18 @@
                                                 </label>
 
                                                 <label class="col-xs-2 col-xs-12" >
-                                                    <span class="lbl"><strong>Nº Endereço</strong></span>
-                                                    <div class="space-1"></div>
-                                                    <input type="text" id="form-field-1" style = "width:100px; height:30px"
-                                                           value="" placeholder="Nº Endereço" required="required">
+                                                    <span class="lbl"><strong>Nº Endereço:</strong></span>
+                                                </label>
 
+                                                <label class="col-xs-3 col-xs-12" >
                                                     <c:choose>
                                                         <c:when test="${execucao == 'edit'}">
-                                                            <input type="text" id="form-field-1" style = "width:100px; height:30px" name="nrEndereco" 
+                                                            <input type="text" id="form-field-1" class="col-xs-8 col-xs-12" name="nrEndereco" 
                                                                    value="${cadSic.nrEndereco}" placeholder="nº">
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
-                                                            <input type="text" id="form-field-1" style = "width:100px; height:30px" name="nrEndereco" 
-                                                                   placeholder="nº">
+                                                            <input type="text" id="form-field-1" class="col-xs-8 col-xs-12" name="nrEndereco" 
+                                                                   placeholder="Nº Endereço">
                                                         </c:when>
                                                         <c:otherwise>
                                                             <span class="lbl">${cadSic.nrEndereco}</span> 
@@ -1824,21 +1808,21 @@
                                                 </label>
                                             </div>
 
+                                            <div class="space-1"></div>
                                             <div class="form-group">
-                                                <label class="col-xs-7 col-xs-12" >
-                                                    <span class="lbl"><strong>Complemento</strong></span>
-                                                    <div class="space-1"></div>
-                                                    <input type="text" id="form-field-1" class="col-xs-7 col-xs-12"
-                                                           value="" placeholder="Complemento do Endereço" required="required">
+                                                <div class="inline col-xs-2 col-xs-12">
+                                                    <span class="lbl"><strong>Complemento do Endereço:</strong></span>
+                                                </div>
 
+                                                <label class="col-xs-5 col-xs-12" >
                                                     <c:choose>
                                                         <c:when test="${execucao == 'edit'}">
-                                                            <input type="text" id="form-field-1" class="col-xs-7 col-xs-12" name="nmComplementoEndereco" 
+                                                            <input type="text" id="form-field-1" class="col-xs-11 col-xs-12" name="nmComplementoEndereco" 
                                                                    value="${cadSic.nmComplementoEndereco}" placeholder="Complemento do Endereço" >
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
-                                                            <input type="text" id="form-field-1" class="col-xs-7 col-xs-12" name="nmComplementoEndereco" 
-                                                                   placeholder="Complemento do Endereço" >
+                                                            <input type="text" id="form-field-1" class="col-xs-11 col-xs-12" name="nmComplementoEndereco" 
+                                                                   placeholder="Complemento do Endereço">
                                                         </c:when>
                                                         <c:otherwise>
                                                             <span class="lbl">${cadSic.nmComplementoEndereco}</span> 
@@ -1846,19 +1830,18 @@
                                                     </c:choose>
                                                 </label>
 
-                                                <label class="col-xs-5 col-xs-12" >  
-                                                    <span class="lbl"><strong>Referência do Endereço</strong></span>
-                                                    <div class="space-1"></div>
-                                                    <input type="text" id="form-field-1" class="col-xs-8 col-xs-12"
-                                                           value="" placeholder="Referência do Endereço" required="required">
+                                                <label class="col-xs-2 col-xs-12" >  
+                                                    <span class="lbl"><strong>Referência do Endereco:</strong></span>
+                                                </label>                
 
+                                                <label class="col-xs-3 col-xs-12" >                                                  
                                                     <c:choose>
                                                         <c:when test="${execucao == 'edit'}">
-                                                            <input type="text" id="form-field-1" class="col-xs-7 col-xs-12" name="dsReferenciaEndereco" 
+                                                            <input type="text" id="form-field-1" class="col-xs-12 col-xs-12" name="dsReferenciaEndereco" 
                                                                    value="${cadSic.dsReferenciaEndereco}" placeholder="Referencia do Endereço" >
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
-                                                            <input type="text" id="form-field-1" class="col-xs-7 col-xs-12" name="dsReferenciaEndereco" 
+                                                            <input type="text" id="form-field-1" class="col-xs-12 col-xs-12" name="dsReferenciaEndereco" 
                                                                    placeholder="Referencia do Endereço" >
                                                         </c:when>
                                                         <c:otherwise>
@@ -1868,13 +1851,13 @@
                                                 </label>
                                             </div>
 
+                                            <div class="space-1"></div>
                                             <div class="form-group">
-                                                <label class="col-xs-7 col-xs-12" >
-                                                    <span class="lbl"><strong>Despacho</strong></span>
-                                                    <div class="space-1"></div>
-                                                    <input type="text" id="form-field-1" class= "col-xs-7 col-xs-12" 
-                                                           value="" placeholder="Despacho" required="required">
+                                                <div class="inline col-xs-2 col-xs-12">
+                                                    <span class="lbl"><strong>Despacho:</strong></span>
+                                                </div>
 
+                                                <label class="col-xs-7 col-xs-12" >
                                                     <c:choose>
                                                         <c:when test="${execucao == 'edit'}">
                                                             <input type="text" id="form-field-1" class="col-xs-7 col-xs-12" name="dsDespacho" 
@@ -1891,17 +1874,17 @@
                                                 </label>
                                             </div>
 
+                                            <div class="space-1"></div>
                                             <div class="form-group">
-                                                <label class="col-xs-7 col-xs-12" >
-                                                    <span class="lbl"><strong>Data da Anotação</strong></span>
-                                                    <div class="space-1"></div>
-                                                    <input class="date-picker col-xs-3 col-xs-12" id="id-date-picker-1" name="dtAnotacao" type="text" 
-                                                           placeholder="dd/mm/aaaa" data-date-format="dd/mm/yyyy" required="required">
+                                                <div class="inline col-xs-2 col-xs-12">
+                                                    <span class="lbl"><strong>Data da Anotação:</strong></span>
+                                                </div>
 
+                                                <label class="inline col-xs-3 col-xs-12" >
                                                     <c:choose>
                                                         <c:when test="${execucao == 'edit'}">
                                                             <div class="input-group">
-                                                                <input class="date-picker col-xs-3 col-xs-12" id="id-date-picker-1" name="dtAnotacao" 
+                                                                <input class="form-control date-picker" id="id-date-picker-1" name="dtAnotacao" 
                                                                        value="${cadSic.dtAnotacao}" type="text" placeholder="dd/mm/aaaa" data-date-format="dd/mm/yyyy" 
                                                                        required="required">
                                                                 <span class="input-group-addon">
@@ -1911,7 +1894,7 @@
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
                                                             <div class="input-group">
-                                                                <input class="date-picker col-xs-3 col-xs-12" id="id-date-picker-1" name="dtAnotacao" type="text" 
+                                                                <input class="form-control date-picker" id="id-date-picker-1" name="dtAnotacao" type="text" 
                                                                        placeholder="dd/mm/aaaa" data-date-format="dd/mm/yyyy" required="required">
                                                                 <span class="input-group-addon">
                                                                     <i class="fa fa-calendar bigger-110"></i>
@@ -1924,16 +1907,15 @@
                                                     </c:choose>
                                                 </label>
 
-                                                <label class="col-xs-5 col-xs-12" >
-                                                    <span class="lbl"><strong>Data da Publicação</strong></span>
-                                                    <div class="space-1"></div>
-                                                    <input class="date-picker col-xs-4 col-xs-12" id="id-date-picker-1" name="dtPublicacao" type="text" 
-                                                           placeholder="dd/mm/aaaa" data-date-format="dd/mm/yyyy" required="required">
+                                                <label class="col-xs-2 col-xs-12" >
+                                                    <span class="lbl"><strong>Data da Publicação:</strong></span>
+                                                </label>
 
+                                                <label class="col-xs-3 col-xs-12" >
                                                     <c:choose>
                                                         <c:when test="${execucao == 'edit'}">
                                                             <div class="input-group">
-                                                                <input class="date-picker col-xs-4 col-xs-12" id="id-date-picker-1" name="dtPublicacao" 
+                                                                <input class="form-control date-picker" id="id-date-picker-1" name="dtPublicacao" 
                                                                        value="${cadSic.dtPublicacao}" type="text" placeholder="dd/mm/aaaa" data-date-format="dd/mm/yyyy" 
                                                                        required="required">
                                                                 <span class="input-group-addon">
@@ -1943,7 +1925,7 @@
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
                                                             <div class="input-group">
-                                                                <input class="date-picker col-xs-4 col-xs-12" id="id-date-picker-1" name="dtPublicacao" type="text" 
+                                                                <input class="form-control date-picker" id="id-date-picker-1" name="dtPublicacao" type="text" 
                                                                        placeholder="dd/mm/aaaa" data-date-format="dd/mm/yyyy" required="required">
                                                                 <span class="input-group-addon">
                                                                     <i class="fa fa-calendar bigger-110"></i>
@@ -1957,13 +1939,13 @@
                                                 </label>                                                
                                             </div>
 
+                                            <div class="space-1"></div>
                                             <div class="form-group">
-                                                <label class="col-xs-7 col-xs-12" >
-                                                    <span class="lbl"><strong>Informações Gerais</strong></span>
-                                                    <div class="space-1"></div>
-                                                    <textarea class="form-control" id="form-field-8" name="dsInfoGeral" placeholder="Informações Gerais" 
-                                                              style="margin: 0px 102.656px 0px 0px; width: 600px; height: 90px;"></textarea>
+                                                <div class="inline col-xs-2 col-xs-12">
+                                                    <span class="lbl"><strong>Informações Gerais:</strong></span>
+                                                </div>
 
+                                                <label class="col-xs-10 col-xs-12" >
                                                     <c:choose>
                                                         <c:when test="${execucao == 'edit'}">
                                                             <textarea class="form-control" id="form-field-8" name="dsInfoGeral" placeholder="Informações Gerais" 

@@ -9,7 +9,7 @@ package br.com.Modelo;
  *
  * @author x369482
  */
-public class CadastroSic {
+public class AnotacaoExpediente {
 
 //Atributos
     private int pkCadastroSic, nrInformacaoDgpi, nrAnotacao, nrInformacao, fkUsuario, fkCatFormularios, fkEnderecos, nrCodigo;
@@ -20,7 +20,7 @@ public class CadastroSic {
     
 //Construtor form croqui
 
-    public CadastroSic(int pkCadastroSic, int fkUsuario, int fkEnderecos, int nrInformacaoDgpi, String cdCroqui, String cdArea,
+    public AnotacaoExpediente(int pkCadastroSic, int fkUsuario, int fkEnderecos, int nrInformacaoDgpi, String cdCroqui, String cdArea,
             String cdExpediente, String nmInteressado, String dsAssunto, String cdTid, String cdProcesso, String dsObservacao, String nmLogin) {
         this.pkCadastroSic = pkCadastroSic;
         this.fkUsuario = fkUsuario;
@@ -39,7 +39,7 @@ public class CadastroSic {
     }
 
     //Construtor form AD
-    public CadastroSic(int pkCadastroSic, int fkUsuario, int fkEnderecos, int nrInformacaoDgpi, int nrCodigo, String cdExpediente,
+    public AnotacaoExpediente(int pkCadastroSic, int fkUsuario, int fkEnderecos, int nrInformacaoDgpi, int nrCodigo, String cdExpediente,
             String nmInteressado, String dsAssunto, String dsObservacao, String nmLogin, String dsDespacho, String cdSetor, String cdQuadra,
             String cdLote, String dtPublicacao, String dtAnotacao, String nmPublicadoPor, String dsInfoGeral, String cdProcesso, String cdTid) {
         this.fkUsuario = fkUsuario;
@@ -63,7 +63,7 @@ public class CadastroSic {
 
     }
 
-    public CadastroSic() {
+    public AnotacaoExpediente() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
