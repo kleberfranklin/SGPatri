@@ -18,8 +18,11 @@ public class CadastroSic {
             dtPublicacao, dtData, dthrAtualizacao, nmLogin, dtAnotacao, nmPublicadoPor, dsInfoGeral, cdTid, cdProcesso;
 
     
-//Construtor form croqui
+     public CadastroSic() {
+    }
 
+    
+//Construtor form croqui
     public CadastroSic(int pkCadastroSic, int fkUsuario, int fkEnderecos, int nrInformacaoDgpi, String cdCroqui, String cdArea,
             String cdExpediente, String nmInteressado, String dsAssunto, String cdTid, String cdProcesso, String dsObservacao, String nmLogin) {
         this.pkCadastroSic = pkCadastroSic;
@@ -60,13 +63,9 @@ public class CadastroSic {
         this.dtPublicacao = dtPublicacao;
         this.dtAnotacao = dtAnotacao;
         this.nmPublicadoPor = nmPublicadoPor;
-
     }
 
-    public CadastroSic() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+   
     
 
     //Getter's & Setter's

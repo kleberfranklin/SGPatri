@@ -7,8 +7,14 @@ package teste.normalizacao;
 
 import br.com.Modelo.AutoCessaoValidacao;
 import br.com.Modelo.AutoCessaoValidacaoDAO;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 /**
  *
@@ -37,9 +43,8 @@ public class Padronizar {
 //            System.out.print("- "+ qCedente);
 //            System.out.println("- "+qEndereco);
         }
-         System.out.println("---------------------------/Concluido/-----------------------------");   
-        
-        
+       System.out.println("------FIM-----------");
+       
     }
     
     

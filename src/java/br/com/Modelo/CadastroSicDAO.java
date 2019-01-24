@@ -39,19 +39,19 @@ public class CadastroSicDAO {
                 ResultSet rs = stmt.executeQuery();
                 while (rs.next()) {
                     CadastroSic cadsic = new CadastroSic();
-                    cadsic.setPkCadastroSic(rs.getInt("id_cadastro_sic"));
-                    cadsic.setCdCroqui(rs.getString("cd_croqui"));
-                    cadsic.setCdArea(rs.getString("cd_area"));
-                    cadsic.setNrInformacaoDgpi(rs.getInt("nr_informacao_dgpi"));
-                    cadsic.setCdProcesso(rs.getString("cd_processo"));
-                    cadsic.setCdTid(rs.getString("cd_tid"));
-                    cadsic.setCdExpediente(rs.getString("cd_expediente"));
-                    cadsic.setNmInteressado(rs.getString("nm_interessado"));
-                    cadsic.setDsAssunto(rs.getString("ds_assunto"));
-                    cadsic.setDsObservacao(rs.getString("ds_observacao"));
-                    cadsic.setFkEnderecos(rs.getInt("fk_enderecos"));
-                    cadsic.setNmLogin(rs.getString("nm_login"));
-                    cadsic.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
+                        cadsic.setPkCadastroSic(rs.getInt("id_cadastro_sic"));
+                        cadsic.setCdCroqui(rs.getString("cd_croqui"));
+                        cadsic.setCdArea(rs.getString("cd_area"));
+                        cadsic.setNrInformacaoDgpi(rs.getInt("nr_informacao_dgpi"));
+                        cadsic.setCdProcesso(rs.getString("cd_processo"));
+                        cadsic.setCdTid(rs.getString("cd_tid"));
+                        cadsic.setCdExpediente(rs.getString("cd_expediente"));
+                        cadsic.setNmInteressado(rs.getString("nm_interessado"));
+                        cadsic.setDsAssunto(rs.getString("ds_assunto"));
+                        cadsic.setDsObservacao(rs.getString("ds_observacao"));
+                        cadsic.setFkEnderecos(rs.getInt("fk_enderecos"));
+                        cadsic.setNmLogin(rs.getString("nm_login"));
+                        cadsic.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
                     listCadSic.add(cadsic);
                 }
             }
@@ -59,7 +59,6 @@ public class CadastroSicDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     //METODO utilizado para inserir dados em um novo croqui
