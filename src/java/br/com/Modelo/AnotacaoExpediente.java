@@ -18,9 +18,14 @@ public class AnotacaoExpediente {
             dtPublicacao, dtData, dthrAtualizacao, nmLogin, dtAnotacao, nmPublicadoPor, dsInfoGeral, cdTid, cdProcesso;
 
     
+     public AnotacaoExpediente() {
+    }
+     
 //Construtor form croqui
-
     public AnotacaoExpediente(int pkCadastroSic, int fkUsuario, int fkEnderecos, int nrInformacaoDgpi, String cdCroqui, String cdArea,
+
+    
+
             String cdExpediente, String nmInteressado, String dsAssunto, String cdTid, String cdProcesso, String dsObservacao, String nmLogin) {
         this.pkCadastroSic = pkCadastroSic;
         this.fkUsuario = fkUsuario;
@@ -63,11 +68,7 @@ public class AnotacaoExpediente {
 
     }
 
-    public AnotacaoExpediente() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
+   
 
     //Getter's & Setter's
     public int getPkCadastroSic() {

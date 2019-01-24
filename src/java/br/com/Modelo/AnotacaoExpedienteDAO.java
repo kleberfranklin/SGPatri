@@ -54,13 +54,13 @@ public class AnotacaoExpedienteDAO {
                     cadsic.setNmLogin(rs.getString("nm_login"));
                     cadsic.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
                     listAnotacaoExpediente.add(cadsic);
+
                 }
             }
             return listAnotacaoExpediente;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     //METODO utilizado para inserir dados em um novo croqui
