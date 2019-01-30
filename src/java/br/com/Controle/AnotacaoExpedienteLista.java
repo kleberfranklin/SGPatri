@@ -9,6 +9,7 @@ import br.com.Modelo.AnotacaoExpediente;
 import br.com.Modelo.AnotacaoExpedienteDAO;
 import br.com.Modelo.Logica;
 import br.com.Utilitario.Transformar;
+import java.sql.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +25,8 @@ public class AnotacaoExpedienteLista implements Logica {
             HttpServletResponse res) throws Exception {
 
         AnotacaoExpedienteDAO cadsicDAO = new AnotacaoExpedienteDAO();
+        
+        
 
         /**
          * Atributos: pg = número da página atual pi = número da página inicial
@@ -35,23 +38,74 @@ public class AnotacaoExpedienteLista implements Logica {
          *
          */
         int pg, pi, pf, qtdRegistro, qtdPg, offset;
-        String q, pgS, piS, pfS;
-        int qtdLinha = 8;
+        String pgS, piS, pfS;
+        int qtdLinha = 6;
         int maxPg = 10;
         int sobraMaxPg = 0;
+        
+        Date dtIni = null, dtFim=null;
+        String dtIniS, dtFimS, qCroqui, qArea, qNome, qEndereco, qAssunto;
+        
 
 //Carregando atributos com a informações do formlário.         
         pgS = req.getParameter("pg");
         piS = req.getParameter("pi");
         pfS = req.getParameter("pf");
-        q = req.getParameter("q");
+        
+               
+        qCroqui = req.getParameter("qCroqui"); 
+        qArea = req.getParameter("qArea");
+        qNome = req.getParameter("qNome");
+        qEndereco = req.getParameter("qEndereco");
+        qAssunto = req.getParameter("qAssunto");
+        dtIniS = req.getParameter("dtIni");        
+        dtFimS = req.getParameter("dtFim"); 
+        
+        
 
-        //Validação dos atributos carregdos com as informações do formulário.            
-        if (q == null) {
-            q = "";
-        } else if (!"".equals(q)) {
-            q = Transformar.priMaiuscula(q);
+        //Validação dos atributos carregdos com as informações do formulário.    
+        
+        if (qCroqui == null) {
+            qCroqui = "";
+        }else if (!"".equals(qCroqui)){
+            qCroqui = qCroqui.toUpperCase();
         }
+        
+        if (qArea == null) {
+            qArea = "";
+        }else if (!"".equals(qArea)) {
+            qArea = Transformar.removeAccents(qArea).toUpperCase();
+        }
+        
+        if (qNome == null) {
+            qNome = "";
+        }else if (!"".equals(qNome)) {
+            qNome = Transformar.removeAccents(qNome).toUpperCase();
+        }
+        
+        if (qAssunto == null) {
+            qAssunto = "";
+        }else if (!"".equals(qAssunto)) {
+            qAssunto = Transformar.removeAccents(qAssunto).toUpperCase();
+        }
+        
+        if (qEndereco == null) {
+            qEndereco = "";
+        }else if (!"".equals(qEndereco)) {
+            qEndereco = Transformar.removeAccents(qEndereco).toUpperCase();
+        }
+        
+        if(dtIniS == null || "".equals(dtIniS)){
+            dtIni = Date.valueOf("1500-01-01");
+        }else{
+            dtIni = Date.valueOf(dtIniS);
+        }
+        if(dtFimS == null || "".equals(dtFimS)){
+            dtFim = Date.valueOf("3000-12-31");
+        }else{
+            dtFim = Date.valueOf(dtFimS);
+        }
+        
         if (pgS == null) {
             pg = 0;
         } else {
@@ -69,7 +123,7 @@ public class AnotacaoExpedienteLista implements Logica {
         }
 
 //Carregando a quantidade de registro para calculdo da quantidade de paginas        
-        qtdRegistro = cadsicDAO.qdCadastroSic(q);
+        qtdRegistro = cadsicDAO.qtdExpediente(qCroqui, qArea, qNome, qEndereco, qAssunto, dtIni, dtFim);
         qtdPg = qtdRegistro / qtdLinha;
 
 //Logica da paginação            
@@ -103,10 +157,22 @@ public class AnotacaoExpedienteLista implements Logica {
         offset = ((pg * qtdLinha) - qtdLinha);
 
         // Populando o objeto lista 
-        List<AnotacaoExpediente> listExpediente = new AnotacaoExpedienteDAO().listAnotacaoExpediente(qtdLinha, offset, q);
+        List<AnotacaoExpediente> listExpediente = new AnotacaoExpedienteDAO().listAnotacaoExpediente(qCroqui, qArea, qNome, qEndereco, qAssunto, dtIni, dtFim, qtdLinha, offset);
         req.setAttribute("listExpediente", listExpediente);
 
-        return "AnotacaoExpedienteLista.jsp?pg=" + pg + "&pi=" + pi + "&pf=" + pf + "&qtdPg=" + qtdPg + "&totalRes=" + qtdRegistro + "&q=" + q;
+        return "AnotacaoExpedienteLista.jsp?pg="+pg
+                +"&pi="+pi
+                +"&pf="+pf
+                +"&qtdPg="+qtdPg
+                +"&totalRes="+qtdRegistro
+                +"&qCroqui="+qCroqui 
+                +"&qArea="+qArea
+                +"&qNome="+qNome
+                +"&qEndereco="+qEndereco
+                +"&qAssunto="+qAssunto
+                +"&dtIni="+dtIni
+                +"&dtFim="+dtFim;
+                
     }
 
 }

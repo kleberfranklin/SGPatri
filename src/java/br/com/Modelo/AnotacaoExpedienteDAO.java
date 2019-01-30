@@ -6,6 +6,7 @@
 package br.com.Modelo;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,84 +25,29 @@ public class AnotacaoExpedienteDAO {
     public AnotacaoExpedienteDAO() {
         this.connection = new FabricaConexao().getConnetion();
     }
-
-    //METODO lista os atributos do cadastro de croqui das pesquisas e paginado
-    public List<AnotacaoExpediente> listAnotacaoExpediente(int qtLinha, int offset, String q) {
-        String sql = ("SELECT * FROM tbl_anotacao_expediente ");
-        try {
-            List<AnotacaoExpediente> listAnotacaoExpediente = new ArrayList<AnotacaoExpediente>();
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            {
-                stmt.setString(1, '%' + q + '%');
-                stmt.setString(2, '%' + q + '%');
-                stmt.setInt(3, qtLinha);
-                stmt.setInt(4, offset);
-
-                ResultSet rs = stmt.executeQuery();
-                while (rs.next()) {
-                    AnotacaoExpediente cadsic = new AnotacaoExpediente();
-                    cadsic.setPkCadastroSic(rs.getInt("id_cadastro_sic"));
-                    cadsic.setCdCroqui(rs.getString("cd_croqui"));
-                    cadsic.setCdArea(rs.getString("cd_area"));
-                    cadsic.setNrInformacaoDgpi(rs.getInt("nr_informacao_dgpi"));
-                    cadsic.setCdProcesso(rs.getString("cd_processo"));
-                    cadsic.setCdTid(rs.getString("cd_tid"));
-                    cadsic.setCdExpediente(rs.getString("cd_expediente"));
-                    cadsic.setNmInteressado(rs.getString("nm_interessado"));
-                    cadsic.setDsAssunto(rs.getString("ds_assunto"));
-                    cadsic.setDsObservacao(rs.getString("ds_observacao"));
-                    cadsic.setFkEnderecos(rs.getInt("fk_enderecos"));
-                    cadsic.setNmLogin(rs.getString("nm_login"));
-                    cadsic.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
-                    listAnotacaoExpediente.add(cadsic);
-
-                }
-            }
-            return listAnotacaoExpediente;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    //METODO utilizado para inserir dados em um novo croqui
-    public void upCadastroSic(AnotacaoExpediente cadsic) {
-        String sql = "INSERT INTO tbl_anotacao_expediente ( cd_croqui, cd_area, nr_informacao_dgpi, cd_processo, cd_tid, cd_expediente, nm_interessado ,"
-                + "ds_assunto, fk_enderecos, ds_observacao, nm_login, dthr_atualizacao ) "
-                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,? )";
-        try {
-            try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-                stmt.setString(1, cadsic.getCdCroqui());
-                stmt.setString(2, cadsic.getCdArea());
-                stmt.setInt(3, cadsic.getNrInformacaoDgpi());
-                stmt.setString(4, cadsic.getCdProcesso());
-                stmt.setString(5, cadsic.getCdTid());
-                stmt.setString(6, cadsic.getCdExpediente());
-                stmt.setString(7, cadsic.getNmInteressado());
-                stmt.setString(8, cadsic.getDsAssunto());
-                stmt.setString(9, cadsic.getDsObservacao());
-                stmt.setInt(10, cadsic.getFkEnderecos());
-                stmt.setString(11, cadsic.getNmLogin());
-                stmt.setTimestamp(12, java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
-
-                stmt.execute();
-                stmt.close();
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
+    
+    
     //Metodo de quantidade de linhas
-    public int qdCadastroSic(String q) {
+    public int qtdExpediente(String qCroqui, String qArea, String qNome, String qEndereco, String qAssunto, 
+                                                           Date dtIni, Date dtFim) {
         String sql = ("SELECT COUNT(*) as total FROM tbl_anotacao_expediente "
-                + "WHERE (# LIKE ? or # LIKE ? ) ");
+                    + "WHERE cd_croqui LIKE ? "
+                    + "and cd_area LIKE ? "
+                    + "and nm_nome LIKE ? "
+                    + "and ds_local LIKE ? "
+                    + "and ds_assunto LIKE ? "
+                    + "and dt_data between ? and ?  ");
         try {
-            int total;
+            int total =0;
             try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-                stmt.setString(1, '%' + q + '%');
-                stmt.setString(2, '%' + q + '%');
+                    stmt.setString(1, '%' + qCroqui + '%');
+                    stmt.setString(2, '%' + qArea + '%');
+                    stmt.setString(3, qNome + '%');
+                    stmt.setString(4, '%' + qEndereco + '%');
+                    stmt.setString(5, '%' + qAssunto + '%');
+                    stmt.setDate(6, dtIni);
+                    stmt.setDate(7, dtFim);
                 ResultSet rs = stmt.executeQuery();
-                total = 0;
                 if (rs.next()) {
                     total = rs.getInt("total");
                 }
@@ -113,68 +59,125 @@ public class AnotacaoExpedienteDAO {
         }
     }
 
-//METODO utilizado na Classe (AnotacaoExpedientelistaPagFiltro)
-    public int qtdExpedientePesquisa(String cdProcesso, String cdCroqui, String nmInteressado, String nmNome, String dsAssunto) {
-        String sql = ("SELECT COUNT(*) as total FROM tbl_anotacao_expediente LIKE ? and nm_interessado LIKE ? and cd_processo LIKE ? "
-                + "and ds_assunto LIKE ? and nm_nome LIKE ? and cd_croqui LIKE ? ");
+    //METODO lista os atributos do cadastro de croqui das pesquisas e paginado
+    public List<AnotacaoExpediente> listAnotacaoExpediente(String qCroqui, String qArea, String qNome, String qEndereco, String qAssunto, 
+                                                           Date dtIni, Date dtFim, int qtLinha, int offset) {
+        String sql = ("SELECT * FROM tbl_anotacao_expediente "
+                    + "WHERE cd_croqui LIKE ? "
+                    + "and cd_area LIKE ? "
+                    + "and nm_nome LIKE ? "
+                    + "and ds_local LIKE ? "
+                    + "and ds_assunto LIKE ? "
+                    + "and dt_data between ? and ? "
+                    + "ORDER BY dt_data DESC "
+                    + "LIMIT ? OFFSET ?");
         try {
+            List<AnotacaoExpediente> listAnotacaoExpediente = new ArrayList<AnotacaoExpediente>();
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(3, cdProcesso + '%');
-            stmt.setString(4, '%' + nmInteressado + '%');
-            stmt.setString(5, '%' + nmNome + '%');
-            stmt.setString(6, '%' + dsAssunto + '%');
-            stmt.setString(8, cdCroqui + '%');
-            ResultSet rs = stmt.executeQuery();
-            int qtdExpediente = 0;
+                stmt.setString(1, '%' + qCroqui + '%');
+                stmt.setString(2, '%' + qArea + '%');
+                stmt.setString(3, qNome + '%');
+                stmt.setString(4, '%' + qEndereco + '%');
+                stmt.setString(5, '%' + qAssunto + '%');
+                stmt.setDate(6, dtIni);
+                stmt.setDate(7, dtFim);
+                stmt.setInt(8, qtLinha);
+                stmt.setInt(9, offset);
 
-            if (rs.next()) {
-                qtdExpediente = rs.getInt("total");
-            }
-            stmt.close();
-            return qtdExpediente;
+            ResultSet rs = stmt.executeQuery();
+                while (rs.next()) {
+                    AnotacaoExpediente expedi = new AnotacaoExpediente();
+                        expedi.setPkAnotacaoExpediente(rs.getInt("id_anotacao_expediente"));
+                        expedi.setCdCroqui(rs.getString("cd_croqui"));
+                        expedi.setCdArea(rs.getString("cd_area"));
+                        expedi.setNmNome(rs.getString("nm_nome"));
+                        expedi.setDsLocal(rs.getString("ds_local"));
+                        expedi.setDsAssunto(rs.getString("ds_assunto"));
+                        expedi.setDtData(rs.getString("dt_data"));
+                        expedi.setCdProcesso(rs.getString("cd_processo"));
+                        expedi.setCdTid(rs.getString("cd_tid"));
+                    listAnotacaoExpediente.add(expedi);
+                }
+            return listAnotacaoExpediente;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
-
-    public List<AnotacaoExpediente> listPagFiltroPesquisa(String cdProcesso, String nmInteressado, String nmNome, String dsAssunto,
-            String cdCroqui, int qtdLinha, int offset) {
-        String sql = ("SELECT COUNT(*) as total FROM tbl_anotacao_expediente LIKE ? and nm_interessado LIKE ? and cd_processo LIKE ? "
-                + "and ds_assunto LIKE ? and nm_nome LIKE ? and cd_croqui LIKE ? "
-                + "ORDER BY nm_nome ASC "
-                + "LIMIT ? OFFSET ?");
-        try {
-            List<AnotacaoExpediente> expedienteLista = new ArrayList<AnotacaoExpediente>();
-
+    
+    //METODO uilizado para listar o nome do da tabela 
+    public List<AnotacaoExpediente> listNome(){
+        String sql = ("SELECT COUNT(*)qtd, nm_nome FROM tbl_anotacao_expediente " +
+                        "GROUP BY nm_nome " +
+                        "ORDER BY nm_nome ");
+        try{
+            List<AnotacaoExpediente> lisNome = new ArrayList<AnotacaoExpediente>();
+                PreparedStatement stmt =  connection.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery();
+                while(rs.next()){
+                    AnotacaoExpediente note = new AnotacaoExpediente ();
+                        note.setNmNome(rs.getString("nm_nome"));
+                    lisNome.add(note);
+                }
+            return lisNome;
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+    
+    //METODO detalhe de uma Anotação de Expediente
+    public AnotacaoExpediente detalheAnotacaoExpediente(int pkExpe){
+        String sql = ("SELECT * FROM tbl_anotacao_expediente");
+        try{
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(3, cdProcesso + '%');
-            stmt.setString(4, '%' + nmInteressado + '%');
-            stmt.setString(5, '%' + nmNome + '%');
-            stmt.setString(6, '%' + dsAssunto + '%');
-//                   stmt.setString(7, '%'+qEndereco+'%');
-            stmt.setString(8, cdCroqui + '%');
-            stmt.setInt(10, qtdLinha);
-            stmt.setInt(11, offset);
-
+                stmt.setInt(1, pkExpe);
             ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                AnotacaoExpediente expediente = new AnotacaoExpediente();
-                expediente.setCdProcesso(rs.getString("cd_processo"));
-                expediente.setNmNome(rs.getString("nm_nome"));
-                expediente.setNmInteressado(rs.getString("nm_interessado"));
-                expediente.setCdCroqui(rs.getString("cd_croqui"));
-                expediente.setDsAssunto(rs.getString("ds_assunto"));
-
-                expedienteLista.add(expediente);
-            }
+            AnotacaoExpediente expedi = new AnotacaoExpediente();    
+                if(rs.next()){
+                    expedi.setPkAnotacaoExpediente(rs.getInt("id_anotacao_expediente"));
+                
+                return expedi;
+                }
             stmt.execute();
             stmt.close();
-
-            return expedienteLista;
-        } catch (SQLException e) {
+        }catch (SQLException e){
             throw new RuntimeException(e);
         }
+        return null;
     }
+       
+    
+    //METODO utilizado para inserir dados em um novo croqui
+//    public void upCadastroSic(AnotacaoExpediente cadsic) {
+//        String sql = "INSERT INTO tbl_anotacao_expediente ( cd_croqui, cd_area, nr_informacao_dgpi, cd_processo, cd_tid, cd_expediente, nm_interessado ,"
+//                + "ds_assunto, fk_enderecos, ds_observacao, nm_login, dthr_atualizacao ) "
+//                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,? )";
+//        try {
+//            try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+//                stmt.setString(1, cadsic.getCdCroqui());
+//                stmt.setString(2, cadsic.getCdArea());
+//                stmt.setInt(3, cadsic.getNrInformacaoDgpi());
+//                stmt.setString(4, cadsic.getCdProcesso());
+//                stmt.setString(5, cadsic.getCdTid());
+//                stmt.setString(6, cadsic.getCdExpediente());
+//                stmt.setString(7, cadsic.getNmInteressado());
+//                stmt.setString(8, cadsic.getDsAssunto());
+//                stmt.setString(9, cadsic.getDsObservacao());
+//                stmt.setInt(10, cadsic.getFkEnderecos());
+//                stmt.setString(11, cadsic.getNmLogin());
+//                stmt.setTimestamp(12, java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
+//
+//                stmt.execute();
+//                stmt.close();
+//            }
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+
+    
+
+
+ 
+    
+    
 }

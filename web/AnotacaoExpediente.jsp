@@ -40,7 +40,7 @@
                         <div class="col-sm-12 infobox-small" style=" padding-top:30px">
                             <div class="infobox">
                                 <div class="btn-group-lg ">
-                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'AnotacaoExpedienteLista.jsp';">
+                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=AnotacaoExpedienteLista';">
                                         <i class="glyphicon glyphicon-search"></i>
                                         Pesquisa
                                     </button>

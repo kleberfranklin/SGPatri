@@ -27,56 +27,15 @@
             <c:set var="acessoPerfil" value="${sessionPerfil}" />
             <jsp:directive.include file="include/ControleAcesso.jsp" />
 
-
-
-            <jsp:useBean id="TpCessao" class= "br.com.Modelo.TipoAutoCessaoDAO" />
-            <jsp:useBean id="CatFin" class= "br.com.Modelo.CatFinalidadeDAO" />
-            <jsp:useBean id="CatSubFin" class= "br.com.Modelo.CatSubFinalidadeDAO" />
-            <jsp:useBean id="CatAuto" class= "br.com.Modelo.CatAutoCessaoDAO" />
-            <jsp:useBean id="CatContra" class= "br.com.Modelo.CatContrapartidaDAO" />
-            <jsp:useBean id="TpDis" class= "br.com.Modelo.TipoDispositivoLegalDAO" />
-            <jsp:useBean id="subPref" class= "br.com.Modelo.SubPrefeituraDAO" />
-            <jsp:useBean id="Disp" class= "br.com.Modelo.DispositivoLegalDAO"/>
-            <jsp:useBean id="Arquivo" class= "br.com.Modelo.ArquivoDAO" />
-            <jsp:useBean id="NivelAdm" class= "br.com.Modelo.NivelAdministracaoDAO" />
-            <jsp:useBean id="CatEnt" class= "br.com.Modelo.CatEntidadeDAO" />
-            <jsp:useBean id="Divisao" class= "br.com.Modelo.DivisaoDAO" />
-            <jsp:useBean id="Val" class= "br.com.Modelo.ValidacaoDAO" />
-            <jsp:useBean id="Usuario" class= "br.com.Modelo.UsuarioDAO" />
-
-
-
-            <c:set var="selTpCessao" value="${TpCessao.detalheTpCessao(auto.fkTipoCessaoStage)}" />
-            <c:set var="selCatAuto" value="${CatAuto.detalheCatAuto(auto.fkCatAutoStage)}" />
-            <c:set var="selCatFin" value="${CatFin.detalheCatFinalidade(auto.fkCatFinalidadeStage)}" />
-            <c:set var="selNvAdm" value="${NivelAdm.detalheNivelAdm(auto.fkNivelAdm)}" />
-            <c:set var="selCatEnt" value="${CatEnt.detalheCatEnt(auto.fkCatEntidadeStage)}" />
-            <c:set var="selSubPref" value="${subPref.detalheSubPref(auto.fkSubpref)}" />
-            <c:set var="selCatContra" value="${CatContra.detalheCatContra(auto.fkCatContrapartida)}"/>
-            <c:set var="selCatSubFin" value="${CatSubFin.detalheCatSubFinalidade(auto.fkSubcatfinalidade)}"  />
-            <c:set var="selVal" value="${Val.detalheValidacaoAutoCessao(auto.pkAutoStage)}" />
-
-
-            <c:set var="qAC" value="${param.qAC}" />
-            <c:set var="qProcesso" value="${param.qProcesso}" />
-            <c:set var="qVigor" value="${param.qVigor}" />
-            <c:set var="qStatus" value="${param.qStatus}" />
             <c:set var="pg" value="${param.pg}" />
             <c:set var="pf" value="${param.pf}" />
             <c:set var="pi" value="${param.pi}" />
             <c:set var="execucao" value="${param.execucao}" />
             <c:set var="novo" value="${param.novo}" />
-            <c:set var="pgValidacao" value="${param.pgValidacao}"/>
-
-
-
-
-
-
 
             <div class="breadcrumbs ace-save-state" id="breadcrumbs">
                 <ul class="breadcrumb">
-                    <li><i class="ace-icon fa fa-list"></i> Cadastros SIC </li>
+                    <li><i class="ace-icon fa fa-list"></i> Anotação do Expediente</li>
                 </ul>
             </div>    
             <div class="page-content" >
@@ -86,63 +45,28 @@
 
 
                         <div class="col-sm-offset-1 col-sm-10">
-                            <h2>Cadastros SIC</h2>
+                            <h2>Anotação do Expediente</h2>
                             <div class="space-14"></div>
                             <div class="form-horizontal">
                                 <div class="tabbable">
                                     <ul class="nav nav-tabs padding-0">
-                                        <li class="<c:if test="${auto.nrVerAc=='0' || auto.nrVerValidacao== '1' || novo=='1'}">active</c:if>">
-                                                <a data-toggle="tab" href="#cad-croqui" aria-expanded="true">
-                                                    Cadastro Croqui 
-                                                <c:choose>
-                                                    <c:when test="${auto.nrVerAc == '0' || execucao=='insert' }">
-                                                        <span class="badge badge-transparent" title="Pendente"><i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i></span>
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                        <span class="badge badge-transparent" title="Ok"><i class="ace-icon fa fa-check-square-o green bigger-130"></i></span>
-                                                        </c:otherwise>    
-                                                    </c:choose>
+                                        <li class="active">
+                                            <a data-toggle="tab" href="#cad-croqui" aria-expanded="true">Anotação Expediente</a>
+                                        </li>
+                                        <li class="">
+                                            <a data-toggle="tab" href="#anot-diversas" aria-expanded="true">
+                                                Anotações Diversas
                                             </a>
                                         </li>
-
-                                        <li class="<c:if test="${auto.nrVerAc=='1' && auto.nrVerDispLegal=='0'}">active</c:if>">
-                                                <a data-toggle="tab" href="#anot-diversas" aria-expanded="true">
-                                                    Anotações Diversas
-                                                <c:choose>
-                                                    <c:when test="${auto.nrVerDispLegal == '0' || execucao=='insert'}">
-                                                        <span class="badge badge-transparent" title="Pendente"><i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i></span>
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                        <span class="badge badge-transparent" title="Ok"><i class="ace-icon fa fa-check-square-o green bigger-130"></i></span>
-                                                        </c:otherwise>    
-                                                    </c:choose>
-                                            </a>
-                                        </li>
-
-                                        <c:if test="${(sessionSgDivisao == 'DIPI' && sessionSgSetor == 'SIC') && pgValidacao=='pgValidacao'}">
-                                            <li class="<c:if test="${auto.nrVerAc == '1' && auto.nrVerDispLegal == '1' && auto.nrVerArqAc == '1' && auto.nrVerArqPlanta == '1' && auto.nrVerValidacao == '0' }">active</c:if>">
-                                                    <a data-toggle="tab" href="#validacao" aria-expanded="true">
-                                                        Validação
-                                                    <c:choose>
-                                                        <c:when test="${auto.nrVerValidacao == '0' || execucao=='insert'}">
-                                                            <span class="badge badge-transparent" title="Pendente"><i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i></span>
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                            <span class="badge badge-transparent" title="OK"><i class="ace-icon fa fa-check-square-o green bigger-130"></i></span>
-                                                            </c:otherwise>    
-                                                        </c:choose>
-                                                </a>
-                                            </li>
-                                        </c:if> 
                                     </ul>
                                     <div class="tab-content profile-edit-tab-content" >
 
 
                                         <!--Inicio da tab-pane Cadastro Croqui-->
-                                        <div id="cad-croqui" class="tab-pane <c:if test="${auto.nrVerAc=='0' || auto.nrVerValidacao == '1' || novo=='1'}">in active</c:if>"  >
+                                        <div id="cad-croqui" class="tab-pane in active"  >
                                                 <form action="ControllerServlet?acao=" method="POST" >
 
-                                                    <input type="hidden" name="pkAutoStage" value="${auto.pkAutoStage}" />
+                                                <input type="hidden" name="pkAutoStage" value="${auto.pkAutoStage}" />
                                                 <input type="hidden" name="cdCroqui" value="1" />
                                                 <input type="hidden" name="nmStatus" value="EmConferencia"  />
                                                 <input type="hidden" name="execucao" value="${execucao}" />
