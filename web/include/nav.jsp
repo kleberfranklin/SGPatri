@@ -27,54 +27,27 @@
             <b class="arrow"></b>
             <ul class="submenu">
                 <li class="">
-                    <a href="#" class="dropdown-toggle">
-                        <i class="menu-icon fa fa-caret-right"></i> Expediente 
-                        <b class="arrow fa fa-angle-down"></b>
+                    <a href="#" title="Gestão de Pessoas">
+                        <i class="menu-icon fa fa-caret-right"></i> Gestão de Pessoas
                     </a>
                     <b class="arrow"></b>
-                    <ul class="submenu disabled-li-menu">
-                        <li class="">
-                            <a href="#" title="Entrada e saída de processos / protocolo (posição SIMPROC)">Entrada e saída de processos</a>
-                            <b class="arrow"></b>
-                        </li>
-                        <li class="">
-                            <a href="#" title="Processos SEI autuados na Praça de Serviços">Processos SEI</a>
-                            <b class="arrow"></b>
-                        </li>
-                        <li class="">
-                            <a href="#" title="NESGAS_50 processos| chamamento  / posição consolidada">NESGAS</a>
-                            <b class="arrow"></b>
-                        </li>
-                    </ul>
                 </li>
                 <li class="">
-                    <a href="#" class="dropdown-toggle">
-                        <i class="menu-icon fa fa-caret-right"></i> Projetos
-                        <b class="arrow fa fa-angle-down"></b>
+                    <a href="#" title="Protocolo">
+                        <i class="menu-icon fa fa-caret-right"></i> Protocolo 
                     </a>
                     <b class="arrow"></b>
-                    <ul class="submenu disabled-li-menu">
-                        <li class="">
-                            <a href="#" title="Desenvolvimento de projetos / SG-Patri (sistema de gestão) e melhorias do projeto CAP">SG-Patri</a>
-                        </li>
-                    </ul>
                 </li>
                 <li class="">
-                    <a href="#" class="dropdown-toggle">
-                        <i class="menu-icon fa fa-caret-right"></i> Pessoal
-                        <b class="arrow fa fa-angle-down"></b>
+                    <a href="#" title="Autuação de Processos">
+                        <i class="menu-icon fa fa-caret-right"></i>Autuação Processos
                     </a>
                     <b class="arrow"></b>
-                    <ul class="submenu disabled-li-menu">
-                        <li class="disabled-li-menu">
-                            <a href="#" title="Férias, Aniversário">Funcionários</a>
-                            <b class="arrow"></b>
-                        </li>
-                    </ul>
                 </li>
-                <li class="disabled-li-menu">
-                    <a href="#">
-                        <i class="menu-icon fa fa-caret-right"></i>Informática
+                
+                <li class="">
+                    <a href="#" title="Comissão Municipal do Patrimônio Imobiliário">
+                        <i class="menu-icon fa fa-caret-right"></i> CMPT
                     </a>
                     <b class="arrow"></b>
                 </li>
@@ -217,7 +190,7 @@
             <b class="arrow"></b>
             <ul class="submenu">
                 <li class="">
-                    <a href="#" class="dropdown-toggle" title="Setor de Informação de Áreas Públicas">
+                    <a href="#" class="dropdown-toggle" title="Núcleo de Informação de Áreas Públicas">
                         <i class="menu-icon fa fa-caret-right"></i> SI
                         <b class="arrow fa fa-angle-down"></b>
                     </a>
@@ -258,7 +231,7 @@
             </ul>
         </li>
         
-         <!-- Menu DAPI -->
+        <!-- Menu DAPI -->
         <li class="">
             <a href="#" class="dropdown-toggle" title="Divisão de Avaliação do Patrimônio Imobiliário">
                 <i class="menu-icon fa fa-folder"></i>
@@ -295,7 +268,35 @@
                 </li>
             </ul>
         </li>
-        <!-- Tarefas-->
+        
+        <!-- Menu INDICADORES -->
+        <li class="disabled-li-menu">
+            <a href="#" title="">
+                <i class="menu-icon fa fa-bar-chart-o"></i>
+                <span class="menu-text">Indicadores</span>
+            </a>
+            <b class="arrow"></b>
+        </li>
+        
+        <!-- Menu DECRETOS -->
+        <li class="">
+            <a href="#" class="disabled-li-menu" title="">
+                <i class="menu-icon fa fa-balance-scale"></i>
+                <span class="menu-text">Decretos</span>
+            </a>
+            <b class="arrow"></b>
+        </li>
+        
+        <!-- Menu PROJETOS -->
+        <li class="">
+            <a href="#" class="disabled-li-menu" title="">
+                <i class="menu-icon fa fa-laptop"></i>
+                <span class="menu-text">Projetos</span>
+            </a>
+            <b class="arrow"></b>
+        </li>
+        
+        <!--Menu Tarefas-->
         <li class="disabled-li-menu">
             <a href="#" class="dropdown-toggle" title="">
                 <i class="menu-icon fa fa-tags"></i>
@@ -317,6 +318,7 @@
             </a>
            <b class="arrow"></b>
         </li>
+        
         <!-- Wikipedia CGPatri-->
         <li class="disabled-li-menu">
             <a href="#">

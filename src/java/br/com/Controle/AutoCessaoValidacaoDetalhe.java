@@ -38,7 +38,7 @@ public class AutoCessaoValidacaoDetalhe implements Logica{
         AutoCessaoValidacao auto = autoVaDAO.detalheAutoCessao(pkAutoStage);
         req.setAttribute("auto", auto);
         req.setAttribute("execucao", execucao);
-        return "AutoCessaoCRU.jsp";
+        return "AutoCessaoValidacao.jsp";
         
     }    
 }
