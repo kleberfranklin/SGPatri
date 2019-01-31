@@ -14,79 +14,51 @@
             </a>
             <b class="arrow"></b>
         </li>
-
-        <!-- Menu Gabinete-->
+        
+<!-- Menu Gabinete-->
         <li class="">
             <a href="#" class="dropdown-toggle" title="Gabinete da Coordenadoria">
                 <i class="menu-icon fa fa-folder"></i>
                 <span class="menu-text">
-                    GABINETE
+                        GABINETE
                 </span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
             <b class="arrow"></b>
             <ul class="submenu">
                 <li class="">
-                    <a href="#" class="dropdown-toggle">
-                        <i class="menu-icon fa fa-caret-right"></i> Expediente 
-                        <b class="arrow fa fa-angle-down"></b>
+                    <a href="#" title="Gestão de Pessoas">
+                        <i class="menu-icon fa fa-caret-right"></i> Gestão de Pessoas
                     </a>
                     <b class="arrow"></b>
-                    <ul class="submenu disabled-li-menu">
-                        <li class="">
-                            <a href="#" title="Entrada e saída de processos / protocolo (posição SIMPROC)">Entrada e saída de processos</a>
-                            <b class="arrow"></b>
-                        </li>
-                        <li class="">
-                            <a href="#" title="Processos SEI autuados na Praça de Serviços">Processos SEI</a>
-                            <b class="arrow"></b>
-                        </li>
-                        <li class="">
-                            <a href="#" title="NESGAS_50 processos| chamamento  / posição consolidada">NESGAS</a>
-                            <b class="arrow"></b>
-                        </li>
-                    </ul>
                 </li>
                 <li class="">
-                    <a href="#" class="dropdown-toggle">
-                        <i class="menu-icon fa fa-caret-right"></i> Projetos
-                        <b class="arrow fa fa-angle-down"></b>
+                    <a href="#" title="Protocolo">
+                        <i class="menu-icon fa fa-caret-right"></i> Protocolo 
                     </a>
                     <b class="arrow"></b>
-                    <ul class="submenu disabled-li-menu">
-                        <li class="">
-                            <a href="#" title="Desenvolvimento de projetos / SG-Patri (sistema de gestão) e melhorias do projeto CAP">SG-Patri</a>
-                        </li>
-                    </ul>
                 </li>
                 <li class="">
-                    <a href="#" class="dropdown-toggle">
-                        <i class="menu-icon fa fa-caret-right"></i> Pessoal
-                        <b class="arrow fa fa-angle-down"></b>
+                    <a href="#" title="Autuação de Processos">
+                        <i class="menu-icon fa fa-caret-right"></i>Autuação Processos
                     </a>
                     <b class="arrow"></b>
-                    <ul class="submenu disabled-li-menu">
-                        <li class="disabled-li-menu">
-                            <a href="#" title="Férias, Aniversário">Funcionários</a>
-                            <b class="arrow"></b>
-                        </li>
-                    </ul>
                 </li>
-                <li class="disabled-li-menu">
-                    <a href="#">
-                        <i class="menu-icon fa fa-caret-right"></i>Informática
+                
+                <li class="">
+                    <a href="#" title="Comissão Municipal do Patrimônio Imobiliário">
+                        <i class="menu-icon fa fa-caret-right"></i> CMPT
                     </a>
                     <b class="arrow"></b>
                 </li>
             </ul>
         </li>
-
-
-        <!-- Menu DDPI -->
+        
+<!-- Menu DDPI -->
         <li class="">
             <a href="#" class="dropdown-toggle" title="Divisão de Destinação do Patrimônio Imobiliário">
                 <i class="menu-icon fa fa-folder"></i>
-                <span class="menu-text"> DDPI </span>
+                    <span class="menu-text"> DDPI </span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
             <b class="arrow"></b>
@@ -128,23 +100,18 @@
                             <a href="AutoCessao.jsp" title="Auto de Cessão">Autos de Cessão</a>
                             <b class="arrow"></b>
                         </li>
-                        <!--<li class="">
-                            <a href="AutoCessao.jsp?ter=terceiro" title="Auto de Cessão de Terceiros"> Autos de Cessão de Terceiros</a>
-                            <b class="arrow"></b>
-                        </li> -->
                         <c:if test="${sessionSgDivisao == 'DDPI' && sessionSgSetor == 'SCL'}">
-                            <li class="">
-                                <a href="ControllerServlet?acao=AutoCessaoValidacaoLista" title="Auto de Cessão Validação">Validação Auto Cessão</a>
-                                <b class="arrow"></b>
-                            </li>
+                        <li class="">
+                            <a href="ControllerServlet?acao=AutoCessaoValidacaoLista" title="Auto de Cessão Validação">Validação Auto Cessão</a>
+                            <b class="arrow"></b>
+                        </li>
                         </c:if>   
                     </ul>
                 </li>
             </ul>
-
         </li>
-
-        <!-- Menu DIPI -->
+        
+<!-- Menu DIPI -->
         <li class="">
             <a href="#" class="dropdown-toggle" title="Divisão de Informação do Patrimônio Imobiliário">
                 <i class="menu-icon fa fa-folder"></i>
@@ -165,7 +132,7 @@
                             <b class="arrow"></b>
                         </li>
                         <li class="disabled-li-menu">
-                            <a href="#" title="Restauração CAP alterados/inseridos/deletados">Restaurar CAP/QGIS</a>
+                            <a href="#" title="Restauração de CAP alterado/inserido/deletado">Restaurar CAP/QGIS</a>
                             <b class="arrow"></b>
                         </li>
                     </ul>    
@@ -177,12 +144,8 @@
                     </a>
                     <b class="arrow"></b>
                     <ul class="submenu">
-                        <li class="">
-                            <a href="PesquisaSGD.jsp" title="Formulários de Pesquisa do SGD">Informação</a>
-                            <b class="arrow"></b>
-                        </li>
-                        <li class="">
-                            <a href="CadastroSGD.jsp" title="Formularios de Cadastros do SGD">Cadastramento</a>
+                        <li class="disabled-li-menu">
+                            <a href="PesquisaSGD.jsp" title="Documentos Imobiliários">Guarda Documental</a>
                             <b class="arrow"></b>
                         </li>
                     </ul>    
@@ -194,28 +157,16 @@
                     </a>
                     <b class="arrow"></b>
                     <ul class="submenu ">
-
-                        <li class="">
-                             <a href="AnotacaoExpediente.jsp" title="Anotação de Expediente">Anotação de Expediente </a>
-                             <b class="arrow"></b>
-                         </li>
-                         <!--
-                        <li class="sub-scroll">
-                            <a href="PesquisaSic.jsp" title="Formulários de Pesquisa do SIC">Informações</a>
+                        <li class="disabled-li-menu">
+                            <a href="#" title="Anotação de Expediente">Anotação Expediente </a>
                             <b class="arrow"></b>
                         </li>
-
-                        <li class="arrowed">
-                            <a href="CadastroSIC.jsp" title="Formularios de Cadastros do SIC">Cadastramento</a>
-                            <b class="arrow"></b>
-                        </li>
-                         -->
                     </ul>    
                 </li>
             </ul>
         </li>
-
-        <!-- Menu DEAPI -->
+        
+<!-- Menu DEAPI -->
         <li class="">
             <a href="#" class="dropdown-toggle" title="Divisão de Engenharia do Patrimônio Imobiliário">
                 <i class="menu-icon fa fa-folder"></i>
@@ -225,7 +176,7 @@
             <b class="arrow"></b>
             <ul class="submenu">
                 <li class="">
-                    <a href="#" class="dropdown-toggle" title="Setor de Informação de Áreas Públicas">
+                    <a href="#" class="dropdown-toggle" title="Núcleo de Informação de Áreas Públicas">
                         <i class="menu-icon fa fa-caret-right"></i> SI
                         <b class="arrow fa fa-angle-down"></b>
                     </a>
@@ -265,8 +216,8 @@
                 </li>
             </ul>
         </li>
-
-        <!-- Menu DAPI -->
+        
+<!-- Menu DAPI -->
         <li class="">
             <a href="#" class="dropdown-toggle" title="Divisão de Avaliação do Patrimônio Imobiliário">
                 <i class="menu-icon fa fa-folder"></i>
@@ -303,40 +254,69 @@
                 </li>
             </ul>
         </li>
-        <!-- Tarefas-->
-        <li class="disabled-li-menu">
-            <a href="#" class="dropdown-toggle" title="">
+        
+<!-- Menu INDICADORES -->
+        <li class="">
+            <a class="disabled-li-menu" href="#" title="">
+                <i class="menu-icon fa fa-bar-chart-o"></i>
+                <span class="menu-text">Indicadores</span>
+            </a>
+            <b class="arrow"></b>
+        </li>
+        
+<!-- Menu DECRETOS -->
+        <li class="">
+            <a class="disabled-li-menu" href="#" title="">
+                <i class="menu-icon fa fa-balance-scale"></i>
+                <span class="menu-text">Decretos</span>
+            </a>
+            <b class="arrow"></b>
+        </li>
+        
+<!-- Menu PROJETOS -->
+        <li class="">
+            <a class="disabled-li-menu" href="#" title="">
+                <i class="menu-icon fa fa-laptop"></i>
+                <span class="menu-text">Projetos</span>
+            </a>
+            <b class="arrow"></b>
+        </li>
+        
+<!--Menu Tarefas-->
+        <li class="">
+            <a class="disabled-li-menu" href="#" title="">
                 <i class="menu-icon fa fa-tags"></i>
                 <span class="menu-text"> Tarefas 
                     <span class="badge badge-transparent tooltip-error" title="2 Eventos importantes">
-                        <i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i>
+                            <i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i>
                     </span>
                 </span>
-
+                
             </a>
             <b class="arrow"></b>
         </li>
 
-        <!-- Menu Calendario-->
-        <li class="disabled-li-menu">
-            <a href="#">
+<!-- Menu Calendario-->
+        <li class="">
+            <a class="disabled-li-menu" href="#" title="">
                 <i class="menu-icon fa fa-calendar"></i>
                 <span class="menu-text"> Calendário </span>
             </a>
-            <b class="arrow"></b>
+           <b class="arrow"></b>
         </li>
+        
         <!-- Wikipedia CGPatri-->
-        <li class="disabled-li-menu">
-            <a href="#">
+        <li class="">
+            <a class="disabled-li-menu" href="#" title="">
                 <i class="menu-icon fa fa-book"></i>
                 <span class="menu-text"> Wikipedia CGPatri </span>
             </a>
-            <b class="arrow"></b>
+           <b class="arrow"></b>
         </li>
-
+  
     </ul><!-- /.nav-list -->
 </div>
 
 <!--Inicio DIV do body -->
 <div class="main-content">
-    <div class="main-content-inner">
+<div class="main-content-inner">
