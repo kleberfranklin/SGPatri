@@ -51,7 +51,6 @@
                             <div class="infobox">
                                 <div class="btn-group-lg">
                                     <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'AnotacaoCroquiCRU.jsp?pkAnotacaoExpediente=1867&execucao=insert';">
-                                    <!--<button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=AnotacaoCroquiDetalhe&pkAnotacaoExpediente=1867&execucao=edit';">-->
                                         <i class="ace-icon fa fa-plus"></i>
                                         Novo
                                     </button>

@@ -29,7 +29,7 @@
     <jsp:directive.include file="include/ControleAcesso.jsp" />
     
     
-      
+<!-- Beans -->       
     <jsp:useBean id="TpCessao" class= "br.com.Modelo.TipoAutoCessaoDAO" />
     <jsp:useBean id="CatFin" class= "br.com.Modelo.CatFinalidadeDAO" />
     <jsp:useBean id="CatSubFin" class= "br.com.Modelo.CatSubFinalidadeDAO" />
