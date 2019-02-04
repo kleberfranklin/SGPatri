@@ -157,8 +157,12 @@
                     </a>
                     <b class="arrow"></b>
                     <ul class="submenu ">
+                        <li class="">
+                            <a href="AnotacaoCroqui.jsp" title="Anotação e Informação Cadastral de Croqui">Anotação Croqui </a>
+                            <b class="arrow"></b>
+                        </li>
                         <li class="disabled-li-menu">
-                            <a href="#" title="Anotação de Expediente">Anotação Expediente </a>
+                            <a href="#" title="Anotação e Informação Cadastral Diversas">Anotação Diversas </a>
                             <b class="arrow"></b>
                         </li>
                     </ul>    

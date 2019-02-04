@@ -31,13 +31,13 @@ public class Padronizar {
         DaoPadronizar d = new DaoPadronizar();
 
 ////Cria uma lista de objeto         
-        List<AnotacaoExpediente> lisExp = new ArrayList();
+        List<AnotacaoCroqui> lisExp = new ArrayList();
 
 ////Popula a lista com as informações do banco        
         lisExp = d.listaObjeto(qTb, qOrder);
            
                 
-        for (AnotacaoExpediente expedi :lisExp){
+        for (AnotacaoCroqui expedi :lisExp){
             pk = expedi.getPkAnotacaoExpediente();
             qTxt1 = removeAccents(expedi.getCdCroqui()).toUpperCase().trim();
 //            Txt2 = removeAccents(expedi.getDsAssunto()).toUpperCase();
