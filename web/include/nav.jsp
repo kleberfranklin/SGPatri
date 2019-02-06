@@ -14,13 +14,13 @@
             </a>
             <b class="arrow"></b>
         </li>
-        
-<!-- Menu Gabinete-->
+
+        <!-- Menu Gabinete-->
         <li class="">
             <a href="#" class="dropdown-toggle" title="Gabinete da Coordenadoria">
                 <i class="menu-icon fa fa-folder"></i>
                 <span class="menu-text">
-                        GABINETE
+                    GABINETE
                 </span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
@@ -44,7 +44,7 @@
                     </a>
                     <b class="arrow"></b>
                 </li>
-                
+
                 <li class="">
                     <a href="#" title="Comissão Municipal do Patrimônio Imobiliário">
                         <i class="menu-icon fa fa-caret-right"></i> CMPT
@@ -53,12 +53,12 @@
                 </li>
             </ul>
         </li>
-        
-<!-- Menu DDPI -->
+
+        <!-- Menu DDPI -->
         <li class="">
             <a href="#" class="dropdown-toggle" title="Divisão de Destinação do Patrimônio Imobiliário">
                 <i class="menu-icon fa fa-folder"></i>
-                    <span class="menu-text"> DDPI </span>
+                <span class="menu-text"> DDPI </span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
             <b class="arrow"></b>
@@ -101,17 +101,17 @@
                             <b class="arrow"></b>
                         </li>
                         <c:if test="${sessionSgDivisao == 'DDPI' && sessionSgSetor == 'SCL'}">
-                        <li class="">
-                            <a href="ControllerServlet?acao=AutoCessaoValidacaoLista" title="Auto de Cessão Validação">Validação Auto Cessão</a>
-                            <b class="arrow"></b>
-                        </li>
+                            <li class="">
+                                <a href="ControllerServlet?acao=AutoCessaoValidacaoLista" title="Auto de Cessão Validação">Validação Auto Cessão</a>
+                                <b class="arrow"></b>
+                            </li>
                         </c:if>   
                     </ul>
                 </li>
             </ul>
         </li>
-        
-<!-- Menu DIPI -->
+
+        <!-- Menu DIPI -->
         <li class="">
             <a href="#" class="dropdown-toggle" title="Divisão de Informação do Patrimônio Imobiliário">
                 <i class="menu-icon fa fa-folder"></i>
@@ -127,12 +127,12 @@
                     </a>
                     <b class="arrow"></b>
                     <ul class="submenu ">
-                        <li class="disabled-li-menu">
-                            <a href="#" title="Gerenciamento do Usuário do CAP/QGIS">Usuários CAP/QGIS</a>
+                        <li class="">
+                            <a href="CapUsuario.jsp" title="Gerenciamento do Usuário do CAP/QGIS">Usuários CAP/QGIS</a>
                             <b class="arrow"></b>
                         </li>
-                        <li class="disabled-li-menu">
-                            <a href="#" title="Restauração de CAP alterado/inserido/deletado">Restaurar CAP/QGIS</a>
+                        <li class="">
+                            <a href="CapRestauracao.jsp" title="Restauração de CAP alterado/inserido/deletado">Restaurar CAP/QGIS</a>
                             <b class="arrow"></b>
                         </li>
                     </ul>    
@@ -144,8 +144,8 @@
                     </a>
                     <b class="arrow"></b>
                     <ul class="submenu">
-                        <li class="disabled-li-menu">
-                            <a href="PesquisaSGD.jsp" title="Documentos Imobiliários">Guarda Documental</a>
+                        <li class="">
+                            <a href="AnotacaoDocumental.jsp" title="Documentos Imobiliários">Guarda Documental</a>
                             <b class="arrow"></b>
                         </li>
                     </ul>    
@@ -161,16 +161,16 @@
                             <a href="AnotacaoCroqui.jsp" title="Anotação e Informação Cadastral de Croqui">Anotação Croqui </a>
                             <b class="arrow"></b>
                         </li>
-                        <li class="disabled-li-menu">
-                            <a href="#" title="Anotação e Informação Cadastral Diversas">Anotação Diversas </a>
+                        <li class="">
+                            <a href="AnotacaoDiversa.jsp" title="Anotação e Informação Cadastral Diversas">Anotação Diversas </a>
                             <b class="arrow"></b>
                         </li>
                     </ul>    
                 </li>
             </ul>
         </li>
-        
-<!-- Menu DEAPI -->
+
+        <!-- Menu DEAPI -->
         <li class="">
             <a href="#" class="dropdown-toggle" title="Divisão de Engenharia do Patrimônio Imobiliário">
                 <i class="menu-icon fa fa-folder"></i>
@@ -220,8 +220,8 @@
                 </li>
             </ul>
         </li>
-        
-<!-- Menu DAPI -->
+
+        <!-- Menu DAPI -->
         <li class="">
             <a href="#" class="dropdown-toggle" title="Divisão de Avaliação do Patrimônio Imobiliário">
                 <i class="menu-icon fa fa-folder"></i>
@@ -258,8 +258,8 @@
                 </li>
             </ul>
         </li>
-        
-<!-- Menu INDICADORES -->
+
+        <!-- Menu INDICADORES -->
         <li class="">
             <a class="disabled-li-menu" href="#" title="">
                 <i class="menu-icon fa fa-bar-chart-o"></i>
@@ -267,8 +267,8 @@
             </a>
             <b class="arrow"></b>
         </li>
-        
-<!-- Menu DECRETOS -->
+
+        <!-- Menu DECRETOS -->
         <li class="">
             <a class="disabled-li-menu" href="#" title="">
                 <i class="menu-icon fa fa-balance-scale"></i>
@@ -276,8 +276,8 @@
             </a>
             <b class="arrow"></b>
         </li>
-        
-<!-- Menu PROJETOS -->
+
+        <!-- Menu PROJETOS -->
         <li class="">
             <a class="disabled-li-menu" href="#" title="">
                 <i class="menu-icon fa fa-laptop"></i>
@@ -285,42 +285,42 @@
             </a>
             <b class="arrow"></b>
         </li>
-        
-<!--Menu Tarefas-->
+
+        <!--Menu Tarefas-->
         <li class="">
             <a class="disabled-li-menu" href="#" title="">
                 <i class="menu-icon fa fa-tags"></i>
                 <span class="menu-text"> Tarefas 
                     <span class="badge badge-transparent tooltip-error" title="2 Eventos importantes">
-                            <i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i>
+                        <i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i>
                     </span>
                 </span>
-                
+
             </a>
             <b class="arrow"></b>
         </li>
 
-<!-- Menu Calendario-->
+        <!-- Menu Calendario-->
         <li class="">
             <a class="disabled-li-menu" href="#" title="">
                 <i class="menu-icon fa fa-calendar"></i>
                 <span class="menu-text"> Calendário </span>
             </a>
-           <b class="arrow"></b>
+            <b class="arrow"></b>
         </li>
-        
+
         <!-- Wikipedia CGPatri-->
         <li class="">
             <a class="disabled-li-menu" href="#" title="">
                 <i class="menu-icon fa fa-book"></i>
                 <span class="menu-text"> Wikipedia CGPatri </span>
             </a>
-           <b class="arrow"></b>
+            <b class="arrow"></b>
         </li>
-  
+
     </ul><!-- /.nav-list -->
 </div>
 
 <!--Inicio DIV do body -->
 <div class="main-content">
-<div class="main-content-inner">
+    <div class="main-content-inner">
