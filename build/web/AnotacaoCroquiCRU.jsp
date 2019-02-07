@@ -751,16 +751,21 @@
                                                     <label class="inline col-sm-6 col-xs-12" >
                                                         <c:choose>
                                                             <c:when test="${execucao == 'edit'}">
+                                                                <c:set var = "dtPubli" value = "${anotCroqui.dtPublicacao}" />
+                                                                <fmt:parseDate value = "${dtPubli}" var = "converteDTPlub" pattern="yyyy-MM-dd" />
+                                                                <fmt:formatDate type= "date" value="${converteDTPlub}" var="dtAtuPubli"/>
                                                                 <input type="date" id="form-field-1" class="col-sm-4 col-xs-12"  name="cdExpediente" 
-                                                                       value="${anotCroqui.dtPublicacao}" placeholder="" required="required" >
+                                                                       value="${dtAtuPubli}" placeholder="" required="required" >
                                                             </c:when>
                                                             <c:when test="${execucao == 'insert'}">
                                                                 <input type="date" id="form-field-1" class="col-sm-4 col-xs-12"  name="cdExpediente" 
                                                                        placeholder="" required="required" >
                                                             </c:when>
                                                             <c:otherwise>
-                                                                
-                                                                <span class="lbl">${anotCroqui.dtPublicacao}</span> 
+                                                                <c:set var = "dtPubli" value = "${anotCroqui.dtPublicacao}" />
+                                                                <fmt:parseDate value = "${dtPubli}" var = "converteDTPlub" pattern="yyyy-MM-dd" />
+                                                                <fmt:formatDate type= "date" value="${converteDTPlub}" var="dtAtuPubli"/>
+                                                                <span class="lbl">${dtAtuPubli}</span> 
                                                             </c:otherwise>
                                                         </c:choose>
                                                     </label>
