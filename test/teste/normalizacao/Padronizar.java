@@ -28,13 +28,13 @@ public class Padronizar {
 //        coluna2 ="ds_assunto";
         colunaPk ="id_anotacao_expediente";
         
-        DaoPadronizar d = new DaoPadronizar();
+        //DaoPadronizar d = new DaoPadronizar();
 
 ////Cria uma lista de objeto         
         List<AnotacaoCroqui> lisExp = new ArrayList();
 
 ////Popula a lista com as informações do banco        
-        lisExp = d.listaObjeto(qTb, qOrder);
+//        lisExp = d.listaObjeto(qTb, qOrder);
            
                 
         for (AnotacaoCroqui expedi :lisExp){
