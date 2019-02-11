@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<script>
+function pesquisaNomeLogradouro(str) {
+    var res = decodeURI(str);
+    var xhttp;
+  
+  if (strEncode.length < 3 || strEncode === "") { 
+    document.getElementById("listaEndereco").innerHTML = "";
+    return;
+  }
+  if(window.XMLHttpRequest){ //Chrome, Mozilla, ....
+        xhttp = new XMLHttpRequest();
+    }else if(window.ActiveXObject){ // I8 and antigos
+        xhttp = new ActiveXObject();
+    }
+  xhttp.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status === 200) {
+        document.getElementById("listaEndereco").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "include/listaEndereco.jsp?endereco="+strEncode, true);
+  xhttp.send();
+}
+</script>
+
+<script>
+function pesquisaCepLogradouro(cep) {
+  var xhttp;
+    if (cep.length === 0 || cep === "") { 
+    return;
+  }
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status === 200) {
+        
+        //var conteudo = JSON.parse(xhttp.responseText);
+       // alert(conteudo.cep);
+        
+      //  var conteudo = this.responseXML;
+      //  document.getElementById("nrcep").value(conteudo.cep);
+      //  document.getElementById("endereco").value(conteudo.logradouro);
+      //  document.getElementById("nmcomplementoend").value(conteudo.complemento);
+      //  document.getElementById("nmbairro").value(conteudo.bairro);
+        
+      //document.getElementById("listaEndereco").innerHTML = this.responseText;
+      alert(this.responseText);
+    }
+  };
+  
+  xhttp.open("GET", "ControllerServlet?acao=LogradouroPadraoJSON&cep="+cep,true);
+  
+  //xhttp.send("cep="+cep);   
+  xhttp.send();
+}
+</script>
+
+
