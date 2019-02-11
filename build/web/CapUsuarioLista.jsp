@@ -203,8 +203,10 @@
                                 </ul>
                             </div>
                         </div>
-
-                        <jsp:include page = "include/footer.jsp" />
-                        <!-- /.main-container --> 
-                        </body>
-                        </html>
+                    </div>
+                </div>
+            </div>
+            <jsp:include page = "include/footer.jsp" />
+        </div> <!-- /.main-container --> 
+    </body>
+</html>

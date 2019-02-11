@@ -31,7 +31,7 @@
 
                     <div class="col-xs-10" >
                         <h3 class="header smaller lighter blue"><strong>Controle de Usuários</strong></h3>
-                        <div class="infobox-chart" style=" padding-top:30px">
+                        <div class="infobox-chart col-xs-12" style=" padding-top:30px">
                             <div class="btn-group-lg col-xs-2">
                                 <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=UsuarioListaPaginada';">
                                     <i class="ace-icon fa fa-user"></i>
@@ -74,7 +74,7 @@
                     <c:if test="${ ('DDPI' == sessionSgDivisao && sessionSgSetor == 'SCL')  || sessionPerfil == 'Administrador'}">    
                         <div class="col-xs-10" > 
                             <h3 class="header smaller lighter blue"><strong>DDPI / SCL - Núcleo de Controle de Lavratura de Cessão</strong></h3>
-                            <div class=" infobox-chart" style=" padding-top:30px">
+                            <div class=" infobox-chart col-xs-10" style=" padding-top:30px">
                                 <div class="btn-group-lg col-xs-3" title="Realizar alterações no campo Tipo de Auto de Cessão dos formulários de cadastro de Auto de Cessão">
                                     <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=TipoAutoCessaoLista';">
                                         Tipo de Auto de Cessão
@@ -99,8 +99,9 @@
                                 </div>
                             </div>
 
-                            <br/>
-                            <div class=" infobox-chart" style=" padding-top:30px">
+                            <br/> 
+
+                            <div class=" infobox-chart col-xs-10" style=" padding-top:30px">
                                 <div class="btn-group-lg col-xs-3">
                                     <button class="btn btn-primary btn-white btn-block" onclick="location.href = 'ControllerServlet?acao=CatContrapartidaLista';">
                                         Categoria contrapartida
@@ -124,26 +125,28 @@
                                         Categoria da Entidade
                                     </button>
                                 </div>
+                            </div>
 
-                                <br/>
-                                <div class=" infobox-chart" style=" padding-top:30px">
-                                    <div class="btn-group-lg disabled-li-menu col-xs-2">
-                                        <button class="btn btn-primary btn-white btn-block" onclick="location.href = 'ControllerServlet?acao=';">
-                                            Cessionário
-                                        </button>
-                                    </div>
+                            <br/>
 
-                                    <div class="btn-group-lg disabled-li-menu col-xs-2" >
-                                        <button class="btn btn-primary btn-white btn-block" onclick="location.href = 'ControllerServlet?acao=';">
-                                            Cedente
-                                        </button>
-                                    </div>
+                            <div class=" infobox-chart col-xs-10" style=" padding-top:30px">
+                                <div class="btn-group-lg disabled-li-menu col-xs-3">
+                                    <button class="btn btn-primary btn-white btn-block" onclick="location.href = 'ControllerServlet?acao=';">
+                                        Cessionário
+                                    </button>
+                                </div>
+
+                                <div class="btn-group-lg disabled-li-menu col-xs-3" >
+                                    <button class="btn btn-primary btn-white btn-block" onclick="location.href = 'ControllerServlet?acao=';">
+                                        Cedente
+                                    </button>
                                 </div>
                             </div>
-                        </c:if>  
-                        <jsp:include page = "include/footer.jsp" />
+                        </div>
+                    </c:if>  
 
-                    </div>
+                    <jsp:include page = "include/footer.jsp" />
+
                 </div>
             </div>      
         </div><!-- /.main-container --> 

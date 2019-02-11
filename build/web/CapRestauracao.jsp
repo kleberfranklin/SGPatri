@@ -36,7 +36,7 @@
                             </h1>
                         </div>
 
-                        <div class="form-group" style=" padding-top:30px">
+                        <div class="infobox-chart col-xs-11" style=" padding-top:30px">
                             <div class="btn-group-lg col-xs-2">
                                 <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'CapRestauracaoLista.jsp';">
                                     <i class="glyphicon glyphicon-search"></i>

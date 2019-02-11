@@ -136,7 +136,7 @@
                                             </fieldset>
 
                                             <div class="form-actions center">
-                                                <button class="btn btn-yellow" type="reset" onclick=" location.href = 'ControllerServlet?acao=UsuarioListaPaginada&pg=${pg}&pi=${pi}&pf=${pf}&q=${q}&sgDivisao=${sgDivisao}';">
+                                                <button class="btn btn-yellow" type="reset" onclick=" location.href = 'ControllerServlet?acao=CapUsuarioListaPaginada&pg=${pg}&pi=${pi}&pf=${pf}&q=${q}&sgDivisao=${sgDivisao}';">
                                                     <i class="ace-icon fa fa-undo bigger-110"></i>
                                                     Voltar
                                                 </button>
@@ -177,9 +177,11 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
 
-
-                        <jsp:include page = "include/footer.jsp" />
-                    </div><!-- /.main-container --> 
-                    </body>
-                    </html>
+            <jsp:include page = "include/footer.jsp" />
+        </div><!-- /.main-container --> 
+    </body>
+</html>

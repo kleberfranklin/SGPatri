@@ -44,7 +44,7 @@ public class AnotacaoCroquiLista implements Logica {
         int sobraMaxPg = 0;
         
         Date dtIni = null, dtFim=null;
-        String dtIniS, dtFimS, qCroqui, qArea, qNome, qEndereco, qAssunto;
+        String dtIniS, dtFimS, qCroqui, qArea, qNome, qInteressado, qEndereco, qAssunto;
         
 
 //Carregando atributos com a informações do formlário.         
@@ -56,6 +56,7 @@ public class AnotacaoCroquiLista implements Logica {
         qCroqui = req.getParameter("qCroqui"); 
         qArea = req.getParameter("qArea");
         qNome = req.getParameter("qNome");
+        qInteressado = req.getParameter("qInteressado");
         qEndereco = req.getParameter("qEndereco");
         qAssunto = req.getParameter("qAssunto");
         dtIniS = req.getParameter("dtIni");        
@@ -81,6 +82,12 @@ public class AnotacaoCroquiLista implements Logica {
             qNome = "";
         }else if (!"".equals(qNome)) {
             qNome = Transformar.removeAccents(qNome).toUpperCase();
+        }
+        
+        if (qInteressado == null) {
+            qInteressado = "";
+        }else if (!"".equals(qInteressado)) {
+            qInteressado = Transformar.removeAccents(qInteressado).toUpperCase();
         }
         
         if (qAssunto == null) {
@@ -123,7 +130,7 @@ public class AnotacaoCroquiLista implements Logica {
         }
 
 //Carregando a quantidade de registro para calculdo da quantidade de paginas        
-        qtdRegistro = croquiDAO.qtdAntoCroqui(qCroqui, qArea, qNome, qEndereco, qAssunto, dtIni, dtFim);
+        qtdRegistro = croquiDAO.qtdAntoCroqui(qCroqui, qArea, qNome, qInteressado, qEndereco, qAssunto, dtIni, dtFim);
         qtdPg = qtdRegistro / qtdLinha;
 
 //Logica da paginação            
@@ -157,7 +164,7 @@ public class AnotacaoCroquiLista implements Logica {
         offset = ((pg * qtdLinha) - qtdLinha);
 
         // Populando o objeto lista 
-        List<AnotacaoCroqui> listCroqui = new AnotacaoCroquiDAO().listAnotaCroqui(qCroqui, qArea, qNome, qEndereco, qAssunto, dtIni, dtFim, qtdLinha, offset);
+        List<AnotacaoCroqui> listCroqui = new AnotacaoCroquiDAO().listAnotaCroqui(qCroqui, qArea, qNome, qInteressado, qEndereco, qAssunto, dtIni, dtFim, qtdLinha, offset);
         req.setAttribute("listCroqui", listCroqui);
 
         return "AnotacaoCroquiLista.jsp?pg="+pg
@@ -168,6 +175,7 @@ public class AnotacaoCroquiLista implements Logica {
                 +"&qCroqui="+qCroqui 
                 +"&qArea="+qArea
                 +"&qNome="+qNome
+                +"&qInteressado="+qInteressado
                 +"&qEndereco="+qEndereco
                 +"&qAssunto="+qAssunto
                 +"&dtIni="+dtIni

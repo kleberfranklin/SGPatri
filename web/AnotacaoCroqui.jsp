@@ -49,13 +49,14 @@
                             <br/><br/>
 
                             <c:if test="${sessionSgDivisao == 'DIPI' && sessionSgSetor == 'SIC'}"> 
+                                <div class="btn-group-lg col-xs-2">
+                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'AnotacaoCroquiCRU.jsp?pkAnotacaoExpediente=1867&execucao=insert';">
+                                        <i class="ace-icon fa fa-plus"></i>
+                                        Novo
+                                    </button>
+                                </div>     
                             </c:if>
-                            <div class="btn-group-lg col-xs-2">
-                                <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'AnotacaoCroquiCRU.jsp?pkAnotacaoExpediente=1867&execucao=insert';">
-                                    <i class="ace-icon fa fa-plus"></i>
-                                    Novo
-                                </button>
-                            </div>                            
+
                         </div>
                     </div>
                 </div>

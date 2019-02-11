@@ -19,8 +19,8 @@
             <c:set var="acessoPerfil" value="${sessionPerfil}" />
             <jsp:directive.include file="include/ControleAcesso.jsp" />
             <jsp:useBean id="expe" class= "br.com.Modelo.AnotacaoCroquiDAO"/>
-            
-            
+
+
             <c:set var="pg" value="${param.pg}" />
             <c:set var="pf" value="${param.pf}" />
             <c:set var="pi" value="${param.pi}" />
@@ -30,11 +30,12 @@
             <c:set var="qCroqui" value="${param.qCroqui}" />
             <c:set var="qArea" value="${param.qArea}" />
             <c:set var="qNome" value="${param.qNome}" />
+            <c:set var="qInteressado" value="${param.qInteressado}" />
             <c:set var="qEndereco" value="${param.qEndereco}" />
             <c:set var="qAssunto" value="${param.qAssunto}" />
             <c:set var="dtIni" value="${param.dtIni}" />
             <c:set var="dtFim" value="${param.dtFim}" />
-            
+
             <div class="breadcrumbs ace-save-state" id="breadcrumbs">
                 <ul class="breadcrumb">
                     <li><i class="ace-icon fa fa-list"></i> Anotação Croqui</li>
@@ -49,17 +50,17 @@
                         <div class="form-actions col-sm-12 col-xs-12">
                             <h4 class="widget-title "><strong>Croqui Filtros</strong></h4>
                             <form class="form-search" action="ControllerServlet?acao=AnotacaoCroquiLista" method="POST">
-                                
+
                                 <label class="col-sm-2 col-xs-1 "> Croqui:</label>
                                 <div class="input-group col-sm-2 col-xs-12">
                                     <input type="text" name="qCroqui" placeholder="${qCroqui}" class="col-sm-7 col-xs-12" />
                                 </div>
-                                
+
                                 <label class="col-sm-1 col-xs-1 "> Área:</label>
                                 <div class="input-group col-sm-2 col-xs-12">
                                     <input type="text" name="qArea" placeholder="${qArea}" class="col-sm-7 col-xs-12" />
                                 </div>
-                               
+
                                 <label class="col-sm-1 col-xs-12"> Autor:</label>
                                 <div class="input-group col-sm-4 col-xs-12">
                                     <select name="qNome" placeholder="" class="col-sm-5 col-xs-12" >
@@ -71,19 +72,26 @@
                                         </c:forEach>
                                     </select>
                                 </div>
-                                
+
+
                                 <br /> <br />
                                 <label class="col-sm-2 col-xs-1 "> Local:</label>
                                 <div class="input-group col-sm-4 col-xs-12">
                                     <input type="text" name="qEndereco" placeholder="${qEndereco}" class="col-sm-12 col-xs-12" />
                                 </div>
-                                
+
                                 <label class="col-sm-1 col-xs-12" >Assunto:</label>
                                 <div class="input-group col-sm-3 col-xs-12">
                                     <input type="text" name="qAssunto" placeholder="${qAssunto}" class="col-sm-12 col-xs-12 " />
                                 </div>
                                 <br /> <br />
-                                
+
+                                <label class="col-sm-2 col-xs-1 "> Interessado:</label>
+                                <div class="input-group col-sm-4 col-xs-12">
+                                    <input type="text" name="qInteressado" placeholder="${qInteressado}" class="col-sm-10 col-xs-12" />
+                                </div>
+
+                                <br/><br/>
                                 <label class="col-sm-2 col-xs-12 ">Período:</label>
                                 <div class="input-group col-sm-1 col-xs-12">
                                     <input class="form-control" name="dtIni" placeholder="${dtIni}" type="date" data-date-format="dd/mm/yyyy" >
@@ -98,8 +106,8 @@
                                         <i class="fa fa-calendar bigger-110"></i>
                                     </span>
                                 </div>
-                                
-                               <!--Botoes-->
+
+                                <!--Botoes-->
                                 <div class="input-group-btn col-sm-4 col-sm-offset-1 col-xs-12">
                                     <button type="submit" class="btn btn-inverse btn-white">
                                         <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
@@ -109,7 +117,7 @@
                                 <br/><br/>
                             </form>    
                         </div>
-                
+
                         <div class="space-10" ></div>    
 
                         <table id="simple-table" class="table  table-bordered table-hover">
@@ -122,6 +130,7 @@
                                     <th>Endereço </th>
                                     <th>Processo</th>
                                     <th class="hidden-480">Assunto </th>
+                                    <th class="hidden-480">Interessado </th>
                                     <th class="hidden-480">Autor </th>
                                 </tr>
                             </thead>
@@ -192,6 +201,17 @@
                                                 </c:otherwise>
                                             </c:choose>
                                         </td>
+                                        <td class="hidden-480">
+                                            <c:choose>
+                                                <c:when test="${lcroqui.nmInteressado.length() > 20}">
+                                                    ${lcroqui.nmInteressado.substromg(0,20)}...
+                                                </c:when>
+                                                <c:otherwise>
+                                                    ${lcroqui.nmInteressado}
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </td>
+
                                         <td class="hidden-480" title="${lcroqui.nmNome}">
                                             <c:choose >
                                                 <c:when test="${lcroqui.nmNome.length() > 10 }">
@@ -203,6 +223,7 @@
                                                 </c:otherwise>
                                             </c:choose>
                                         </td>  
+
                                     </tr>
                                 </tbody>
                             </c:forEach>
@@ -210,57 +231,60 @@
 
                         </table>
 
-                         <hr> <!--linha de separação -->
-        <!--Paginação -->
-            <div class="col-xs-6">
-                <div class="dataTables_info" id="dynamic-table_info" role="status" aria-live="polite">
-                    <label class="lead">Total <strong><c:out value="${totalRes}" /></strong></label>
-               </div>
-            </div>
-                <div class="col-xs-6">
-                    <div class="dataTables_paginate paging_simple_numbers" id="dynamic-table_paginate">
-                        <ul class="pagination">
-                        
-                        <c:forEach var="i" begin="${pi}" end="${pf}">
-                            <c:set var="qCessionario" value="${qCessionario}" />
-                            <c:if test="${pi != 0 && pi == i}">
-                                <li>
-                                    <a href="ControllerServlet?acao=AnotacaoCroquiLista&pg=${i}&pi=${pi}&pf=${pf}&qCroqui=${qCroqui}&qArea=${qArea}&qNome=${qNome}&qEndereco=${qEndereco}&qAssunto=${qAssunto}&dtIni=${dtIni}&dtFim=${dtFim}">
-                                    <i class="ace-icon fa fa-angle-double-left"></i></a>
-                                </li>
-                            </c:if>    
-                            <c:if test="${i != 0 && i != pf && i <= qtdPg || i == qtdPg}">
-                                <c:choose>
-                                    <c:when test="${i==pg}">
-                                        <li class="active">
-                                            <a href="#"> ${i}</a>
-                                        </li>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <li>
-                                            <a href="ControllerServlet?acao=AnotacaoCroquiLista&pg=${i}&pi=${pi}&pf=${pf}&qCroqui=${qCroqui}&qArea=${qArea}&qNome=${qNome}&qEndereco=${qEndereco}&qAssunto=${qAssunto}&dtIni=${dtIni}&dtFim=${dtFim}">${i}</a>
-                                        </li>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:if>
-                            <c:if test="${i == pf && pf != qtdPg && i <= qtdPg  }">
-                                <li>
-                                    <a href="ControllerServlet?acao=AnotacaoCroquiLista&pg=${i}&pi=${pi}&pf=${pf}&qCroqui=${qCroqui}&qArea=${qArea}&qNome=${qNome}&qEndereco=${qEndereco}&qAssunto=${qAssunto}&dtIni=${dtIni}&dtFim=${dtFim}">
-                                        <i class="ace-icon fa fa-angle-double-right"></i></a>
-                                </li>
-                            </c:if>    
-                        </c:forEach>
-                        </ul>
+                        <hr> <!--linha de separação -->
+                        <!--Paginação -->
+                        <div class="col-xs-6">
+                            <div class="dataTables_info" id="dynamic-table_info" role="status" aria-live="polite">
+                                <label class="lead">Total <strong><c:out value="${totalRes}" /></strong></label>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="dataTables_paginate paging_simple_numbers" id="dynamic-table_paginate">
+                                <ul class="pagination">
+
+                                    <c:forEach var="i" begin="${pi}" end="${pf}">
+                                        <c:set var="qCessionario" value="${qCessionario}" />
+                                        <c:if test="${pi != 0 && pi == i}">
+                                            <li>
+                                                <a href="ControllerServlet?acao=AnotacaoCroquiLista&pg=${i}&pi=${pi}&pf=${pf}&qCroqui=${qCroqui}&qArea=${qArea}&qNome=${qNome}&qEndereco=${qEndereco}&qAssunto=${qAssunto}&dtIni=${dtIni}&dtFim=${dtFim}">
+                                                    <i class="ace-icon fa fa-angle-double-left"></i></a>
+                                            </li>
+                                        </c:if>    
+                                        <c:if test="${i != 0 && i != pf && i <= qtdPg || i == qtdPg}">
+                                            <c:choose>
+                                                <c:when test="${i==pg}">
+                                                    <li class="active">
+                                                        <a href="#"> ${i}</a>
+                                                    </li>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <li>
+                                                        <a href="ControllerServlet?acao=AnotacaoCroquiLista&pg=${i}&pi=${pi}&pf=${pf}&qCroqui=${qCroqui}&qArea=${qArea}&qNome=${qNome}&qEndereco=${qEndereco}&qAssunto=${qAssunto}&dtIni=${dtIni}&dtFim=${dtFim}">${i}</a>
+                                                    </li>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:if>
+                                        <c:if test="${i == pf && pf != qtdPg && i <= qtdPg  }">
+                                            <li>
+                                                <a href="ControllerServlet?acao=AnotacaoCroquiLista&pg=${i}&pi=${pi}&pf=${pf}&qCroqui=${qCroqui}&qArea=${qArea}&qNome=${qNome}&qEndereco=${qEndereco}&qAssunto=${qAssunto}&dtIni=${dtIni}&dtFim=${dtFim}">
+                                                    <i class="ace-icon fa fa-angle-double-right"></i></a>
+                                            </li>
+                                        </c:if>    
+                                    </c:forEach>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 " >
+                            <button class="btn btn-yellow right" type="reset" onclick=" location.href = 'AnotacaoCroqui.jsp';">
+                                <i class="ace-icon fa fa-undo bigger-110"></i>
+                                Voltar
+                            </button>    
+                        </div>
+                        <jsp:include page = "include/footer.jsp" />
                     </div>
                 </div>
-                
-                <div class="col-sm-12 " >
-                    <button class="btn btn-yellow right" type="reset" onclick=" location.href='AnotacaoCroqui.jsp';">
-                        <i class="ace-icon fa fa-undo bigger-110"></i>
-                        Voltar
-                    </button>    
-                </div>
-        <jsp:include page = "include/footer.jsp" />
-        <!-- /.main-container --> 
+            </div>
+        </div><!-- /.main-container --> 
     </body>
 </html>
