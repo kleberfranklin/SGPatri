@@ -8,7 +8,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
-
 <jsp:useBean id="bean" class= "br.com.Modelo.LogradouroPadraoDAO" />
 <c:set var="endereco" value="${param.endereco}" />
 
@@ -33,7 +32,6 @@
         filter: alpha(opacity=10); */
     }    
 </style>
-<c:out value="${endereco}" />
 <table class="col-md-8 table-endereco" name="" id="" >
     
     <c:forEach var="logPadrao" items="${bean.pesquisaNomeLogradouro(endereco)}"  >
@@ -42,9 +40,5 @@
         </tr>
     </c:forEach>
 </table>
-<%
-    String  endereco = request.getParameter("endereco");
-    System.out.println(endereco);
-%>
 
 </html>

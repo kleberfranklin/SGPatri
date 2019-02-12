@@ -271,7 +271,8 @@
                                                                     <span class="lbl"><strong>CEP</strong></span>
                                                                 </label>
                                                                 <label class="inline col-md-10 col-xs-12" >
-                                                                    <input type="text" id="form-field-1" class="col-xs-12 col-md-2" name="nrcep" id="nrcep"  placeholder="nº do CEP">
+                                                                    <input type="hidden" name="pkLogradouro" id="pkLogradouro">
+                                                                    <input type="text" class="col-xs-12 col-md-2" name="nrcep" id="nrcep"  placeholder="nº do CEP">
                                                                 </label>
                                                             </div>
                                                             <div class="form-group">
@@ -279,7 +280,8 @@
                                                                     <span class="lbl"><strong>Endereço:</strong></span>
                                                                 </label>
                                                                 <label class="inline col-md-10 col-xs-12" >
-                                                                    <input type="text" id="form-field-1" class="col-xs-12 col-md-8" name="nmendereco" id="endereco" onkeyup="pesquisaNomeLogradouro(this.value)" placeholder="nome do endereço" required="required">
+                                                                    
+                                                                    <input type="text" class="col-xs-12 col-md-8" name="nmendereco" id="nmendereco" onkeyup="pesquisaNomeLogradouro(this.value)" placeholder="nome do endereço" required="required" >
                                                                     <div id="listaEndereco" style="padding-top:35px"></div>
                                                                 </label>
                                                             </div>
@@ -290,13 +292,13 @@
                                                                     <span class="lbl"><strong>número:</strong></span>
                                                                 </label>
                                                                 <label class="inline col-md-2 col-xs-12" >
-                                                                    <input type="text" id="form-field-1" class="col-xs-12 col-md-12" name="nrnumeroend" id="nrnumeroend" placeholder="nº">
+                                                                    <input type="text" class="col-xs-12 col-md-12" name="nrnumeroend" id="nrnumeroend" placeholder="nº">
                                                                 </label>
                                                                 <label class="inline col-md-2 col-xs-12" >
                                                                     <span class="lbl"><strong>Complemento:</strong></span>
                                                                 </label>
                                                                 <label class="inline col-md-3 col-xs-12" >
-                                                                    <input type="text" id="form-field-1" class="col-xs-12 col-md-12" name="nmcomplementoend" id="nmcomplementoend" placeholder="complemento do endereço" >
+                                                                    <input type="text" class="col-xs-12 col-md-12" name="nmcomplementoend" id="nmcomplementoend" placeholder="complemento do endereço" >
                                                                 </label>
                                                             </div>
                                                             <div class="form-group">
@@ -304,7 +306,7 @@
                                                                     <span class="lbl"><strong>Bairro:</strong></span>
                                                                 </label>
                                                                 <label class="inline col-md-10 col-xs-12" >
-                                                                    <input type="text" id="form-field-1" class="col-xs-12 col-md-5" name="nmbairro" id="nmbairro" placeholder="nome do bairro">
+                                                                    <input type="text" class="col-xs-12 col-md-5" name="nmbairro" id="nmbairro" placeholder="nome do bairro">
                                                                 </label>
                                                             </div>
                                                             <div class="space-1"></div>
