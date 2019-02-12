@@ -8,6 +8,7 @@ package br.com.Controle;
 
 import br.com.Modelo.Arquivo;
 import br.com.Modelo.*;
+import br.com.Utilitario.Transformar;
 import br.com.Utilitario.Upload;
 import java.io.InputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -48,7 +49,7 @@ public class ArquivoUpload implements Logica{
         loginSessio =(String) session.getAttribute("sessionLogin");
         
 
-        String pasta = "/Arquivo";
+        String pasta = "//Arquivo";
         String pastaArquivar = req.getServletContext().getRealPath(pasta);
 
 
@@ -56,7 +57,7 @@ public class ArquivoUpload implements Logica{
             case "planta":
                 pastaArquivar+="\\Planta";
                 Part uploadPlanta = req.getPart("UploadPlanta");
-                nomeDoArquivo = uploadPlanta.getSubmittedFileName();
+                nomeDoArquivo = Transformar.substituiEspacoHifen(Transformar.retiraEspacosDuplicados(Transformar.removeAccents(uploadPlanta.getSubmittedFileName())));
                 arquivoCarregado = uploadPlanta.getInputStream();
                 caminhoArquivo = up.upload(pastaArquivar, nomeDoArquivo, arquivoCarregado);
                 nrVerArqPlanta = Integer.parseInt(req.getParameter("nrVerArqPlanta"));
@@ -66,7 +67,7 @@ public class ArquivoUpload implements Logica{
             case "AC":
                 pastaArquivar+="\\AC";
                 Part uploadAC = req.getPart("UploadAC");
-                nomeDoArquivo = uploadAC.getSubmittedFileName();
+                nomeDoArquivo = Transformar.substituiEspacoHifen(Transformar.retiraEspacosDuplicados(Transformar.removeAccents(uploadAC.getSubmittedFileName())));
                 arquivoCarregado = uploadAC.getInputStream();
                 caminhoArquivo = up.upload(pastaArquivar, nomeDoArquivo, arquivoCarregado);
                 nrVerArqAc = Integer.parseInt(req.getParameter("nrVerArqAc"));
@@ -77,6 +78,8 @@ public class ArquivoUpload implements Logica{
             default:
             break;
             }
+        
+                
             
             if(pkArquivo != 0){
                 ar = new Arquivo(pkArquivo, pkAutoStage, origem, tipoArquivo, nomeDoArquivo, caminhoArquivo, nome, loginSessio);

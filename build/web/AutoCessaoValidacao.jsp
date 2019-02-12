@@ -1589,7 +1589,7 @@
                             <c:when test="${auto.nrVerAc=='1' && auto.nrVerDispLegal=='0'}">
                                 in active
                             </c:when>
-                            <c:when test="${ execucao=='view' }">
+                            <c:when test="${ execucao=='view' || execucao =='edit' }">
                                
                             </c:when>
                             <c:otherwise>
@@ -1690,7 +1690,7 @@
                             <c:when test="${auto.nrVerAc == '1' && auto.nrVerDispLegal == '1' && (auto.nrVerArqAc=='0' || auto.nrVerArqPlanta=='0') }"> 
                                 in active
                             </c:when>
-                             <c:when test="${execucao=='view'}">
+                             <c:when test="${execucao=='view' || execucao =='edit'}">
                                 
                             </c:when>    
                             <c:otherwise>

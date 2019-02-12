@@ -14,6 +14,8 @@ import java.net.URLEncoder;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 
@@ -27,9 +29,12 @@ public class PrimeiraLetraMaiuscula {
     public static void main(String[] args) throws UnsupportedEncodingException{
         
         String nome = "À Á Â Ã Ä Å Æ Ç È É Ê Ë Ì Í Î Ï Ð Ñ Ò Ó Ô Õ Ö Ø Ù Ú Û Ü Ý Þ ß à á â ã ä å æ ç è é ê ë ì í î ï ð ñ ò ó ô õ ö ø ù ú û ü ý þ ÿ ";
-        System.out.println(iniMaiuscula(nome));
-        System.out.println(encoder(nome));
-        System.out.println(removeAccents(nome));
+//        System.out.println(iniMaiuscula(nome));
+//        System.out.println(encoder(nome));
+//        System.out.println(removeAccents(nome));
+        //System.out.println(removeAccents(nome));
+        System.out.println(removeEspaco(retiraEspacosDuplicados(removeAccents(nome))));
+        
     }
     public static String iniMaiuscula(String value) {
 		String result = "", result2="";
@@ -62,4 +67,21 @@ public class PrimeiraLetraMaiuscula {
             str = str.replaceAll("[^\\p{ASCII}]", "");
             return str;
         }
+        
+         public static String removeEspaco(String str){
+            str = str.trim();
+            str = str.replaceAll("\\s+","-");
+        return str;
+    }
+         
+         
+        public static String retiraEspacosDuplicados(String string) {
+            String patternStr = "\\s+";
+            String replaceStr = " ";
+            Pattern pattern = Pattern.compile(patternStr);
+            Matcher matcher = pattern.matcher(string);
+            string = matcher.replaceAll(replaceStr);
+        return string;
+}
+         
 }
