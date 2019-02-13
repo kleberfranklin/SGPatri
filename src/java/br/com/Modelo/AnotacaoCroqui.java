@@ -14,11 +14,16 @@ public class AnotacaoCroqui {
 //Atributos
     private int pkAnotacaoExpediente, nrAnotacao, nrInformacao, fkUsuario, fkCatFormularios, nrCodigo;
 
-    private String cdCroqui, cdArea, cdExpediente, nmInformacaoDgpi, nmInteressado, dsAssunto, dsDespacho, dsObservacao, nmNome, cdSetor, cdQuadra, cdLote,
-            dtPublicacao, dsLocal, dtData, dthrAtualizacao, nmLogin, dtAnotacao, nmPublicadoPor, dsInfoGeral, cdTid, cdProcesso;
+    private String cdCroqui, cdArea, cdExpediente, nrInformacaoDgpi, nmInteressado, dsAssunto, dsDespacho, dsObservacao, nmNome, cdSetor, cdQuadra, 
+            cdLote, dtPublicacao, dsLocal, dtData, dthrAtualizacao, nmLogin, dtAnotacao, nmPublicadoPor, dsInfoGeral, cdTid, cdProcesso;
 
 //Construtor    
     public AnotacaoCroqui() {
+    }
+
+    public AnotacaoCroqui(int pkCadastroSic, int fkUsuario, int fkEnderecos, String nrInformacaoDgpi, String cdProcesso, String cdTid, 
+            String cdCroqui, String cdArea, String cdExpediente, String nmInteressado, String dsAssunto, String dsObservacao, String nmLogin) {
+        
     }
 
 
@@ -111,12 +116,12 @@ public class AnotacaoCroqui {
         this.cdExpediente = cdExpediente;
     }
 
-    public String getNmInformacaoDgpi() {
-        return nmInformacaoDgpi;
+    public String getNrInformacaoDgpi() {
+        return nrInformacaoDgpi;
     }
 
-    public void setNmInformacaoDgpi(String nmInformacaoDgpi) {
-        this.nmInformacaoDgpi = nmInformacaoDgpi;
+    public void setNrInformacaoDgpi(String nrInformacaoDgpi) {
+        this.nrInformacaoDgpi = nrInformacaoDgpi;
     }
         
     public String getNmInteressado() {

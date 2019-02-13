@@ -32,7 +32,7 @@ public class CatContrapartidaDAO {
 //Metodo de quantidade de linhas
     public int qdCatContrapartida (String q){
         String sql = ("SELECT COUNT(*) as total FROM tbl_categoriacontrapartida "
-                    + "WHERE (sg_catcontrapartida LIKE ? or nm_catcontrapartida LIKE ? ) ");
+                    + "WHERE (sg_catcontrapartida ILIKE ? or nm_catcontrapartida ILIKE ? ) ");
         try{
             PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.setString(1, '%'+q+'%');
@@ -53,7 +53,7 @@ public class CatContrapartidaDAO {
 //METODO lista as Categoria Contrapartida das pesquisas e paginada
     public List<CatContrapartida> listCatContra(int qtLinha, int offset, String q ){
         String sql = ("SELECT * FROM tbl_categoriacontrapartida "
-                    + "WHERE (sg_catcontrapartida LIKE ? or nm_catcontrapartida LIKE ? ) "
+                    + "WHERE (sg_catcontrapartida ILIKE ? or nm_catcontrapartida ILIKE ? ) "
                     + "ORDER BY nm_catcontrapartida "
                     + "LIMIT ? OFFSET ? ");
         try{

@@ -96,7 +96,7 @@ public class DivisaoDAO {
 //METODO utilizado para lista as divisões paginada e realiza pesquisa por sigla e nome da divisão
     public List<Divisao> listDivisao(int qtdLinha, int offset, String q) {
     String sql = "SELECT * FROM tbl_divisao "
-                + "WHERE (sg_divisao LIKE ? or nm_divisao LIKE ?) "
+                + "WHERE (sg_divisao ILIKE ? or nm_divisao ILIKE ?) "
                 + "ORDER BY sg_divisao ASC "
                 + "LIMIT ? OFFSET ?";
     try {
@@ -128,7 +128,7 @@ public class DivisaoDAO {
 
 //METODO uilizado para retornar a quantidade divisao cadastradas na pesquisa por nome ou sigla
     public int qtdDivisao(String q){
-    String sql = "SELECT COUNT(*) as total FROM tbl_divisao WHERE (sg_divisao LIKE ? or nm_divisao LIKE ? )";
+    String sql = "SELECT COUNT(*) as total FROM tbl_divisao WHERE (sg_divisao ILIKE ? or nm_divisao ILIKE ? )";
     try{
         PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1,'%'+q+'%');

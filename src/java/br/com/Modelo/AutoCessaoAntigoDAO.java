@@ -90,8 +90,8 @@ public class AutoCessaoAntigoDAO {
 //METODO utilizado na Classe (AutoCessaolistaPagFiltro)
     public int qtdAutoCessaoPesquisa(String qTpcessao, String qAC, String qProcesso, String qCessionario, 
             String qEndereco,String qCroqui ,String qVigor){
-          String sql = ("SELECT COUNT(*) as total FROM autocessaocompleto WHERE nm_cessao like ? and nm_ac like ? and nm_processo like ? "
-                  + "and nm_cessionario like ? and nm_endereco like ? and nm_croqui like ? and nr_Vigor like ?"
+          String sql = ("SELECT COUNT(*) as total FROM autocessaocompleto WHERE nm_cessao ILIKE ? and nm_ac ILIKE ? and nm_processo ILIKE ? "
+                  + "and nm_cessionario ILIKE ? and nm_endereco ILIKE ? and nm_croqui ILIKE ? and nr_Vigor ILIKE ?"
                   + "and pk_tipoCessao <> 1");
            try {
                PreparedStatement stmt = connection.prepareStatement(sql);
@@ -120,8 +120,8 @@ public class AutoCessaoAntigoDAO {
     public List<AutoCessaoAntigo> listPagFiltro(String qTpcessao, String qAC, String qProcesso, String qCessionario, 
             String qEndereco,String qCroqui ,String qVigor, int qtdLinha, int OFFSET) {
             String sql = ("SELECT * FROM autocessaocompleto "
-                    + "WHERE nm_cessao like ? and nm_ac like ? and nm_processo like ? and nm_cessionario like ? "
-                    + "and nm_endereco like ? and nm_croqui like ? and nr_Vigor like ? "
+                    + "WHERE nm_cessao ILIKE ? and nm_ac ILIKE ? and nm_processo ILIKE ? and nm_cessionario ILIKE ? "
+                    + "and nm_endereco ILIKE ? and nm_croqui ILIKE ? and nr_Vigor ILIKE ? "
                     + "ORDER BY pk_cessao DESC "
                     + "LIMIT ? OFFSET ?");
             try {

@@ -32,11 +32,11 @@ public class AnotacaoDiversasDAO {
     public int qtdAntoDiversas(String qCroqui, String qArea, String qNome, String qEndereco, String qAssunto, 
                                                            Date dtIni, Date dtFim) {
         String sql = ("SELECT COUNT(*) as total FROM tbl_anotacao_expediente "
-                    + "WHERE cd_croqui LIKE ? "
-                    + "and cd_area LIKE ? "
-                    + "and nm_nome LIKE ? "
-                    + "and ds_local LIKE ? "
-                    + "and ds_assunto LIKE ? "
+                    + "WHERE cd_croqui ILIKE ? "
+                    + "and cd_area ILIKE ? "
+                    + "and nm_nome ILIKE ? "
+                    + "and ds_local ILIKE ? "
+                    + "and ds_assunto ILIKE ? "
                     + "and dt_data between ? and ? "
                     + "and cd_croqui is not null "
                     + "and cd_croqui != '' ");
@@ -66,11 +66,11 @@ public class AnotacaoDiversasDAO {
     public List<AnotacaoCroqui> listAnotaDiversas(String qCroqui, String qArea, String qNome, String qEndereco, String qAssunto, 
                                                            Date dtIni, Date dtFim, int qtLinha, int offset) {
         String sql = ("SELECT * FROM tbl_anotacao_expediente "
-                    + "WHERE cd_croqui LIKE ? "
-                    + "and cd_area LIKE ? "
-                    + "and nm_nome LIKE ? "
-                    + "and ds_local LIKE ? "
-                    + "and ds_assunto LIKE ? "
+                    + "WHERE cd_croqui ILIKE ? "
+                    + "and cd_area ILIKE ? "
+                    + "and nm_nome ILIKE ? "
+                    + "and ds_local ILIKE ? "
+                    + "and ds_assunto ILIKE ? "
                     + "and dt_data between ? and ? "
                     + "ORDER BY dt_data DESC "
                     + "LIMIT ? OFFSET ?");
@@ -141,7 +141,7 @@ public class AnotacaoDiversasDAO {
             AnotacaoCroqui anotCroqui = new AnotacaoCroqui();    
                 if(rs.next()){
                     anotCroqui.setPkAnotacaoExpediente(rs.getInt("id_anotacao_expediente"));
-                    anotCroqui.setNmInformacaoDgpi(rs.getString("nr_informacao_dgpi"));
+                    anotCroqui.setNrInformacaoDgpi(rs.getString("nr_informacao_dgpi"));
                     anotCroqui.setCdCroqui(rs.getString("cd_croqui"));
                     anotCroqui.setCdArea(rs.getString("cd_area"));
                     anotCroqui.setCdProcesso(rs.getString("cd_processo"));

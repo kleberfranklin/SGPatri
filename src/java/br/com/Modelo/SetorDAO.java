@@ -129,7 +129,7 @@ public class SetorDAO {
 //METODO lista os setor de pesquisa e paginado
     public List<Setor> listSetor(int qtLinha, int offset, String q){
         String sql = ("SELECT * FROM vw_setorcompleto "
-                    + "WHERE (sg_setor LIKE ? OR nm_setor LIKE ? ) "
+                    + "WHERE (sg_setor ILIKE ? OR nm_setor ILIKE ? ) "
                     + "ORDER BY sg_divisao, sg_setor ASC "
                     + "LIMIT ? OFFSET ? ");
         try{
@@ -166,7 +166,7 @@ public class SetorDAO {
 //Metodo de quantidade de linhas
     public int qdSetor (String q){
         String sql = ("SELECT COUNT(*) as total FROM vw_setorcompleto "
-                    + "WHERE (sg_setor LIKE ? OR nm_setor LIKE ? ) ");
+                    + "WHERE (sg_setor ILIKE ? OR nm_setor ILIKE ? ) ");
         try{
             PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.setString(1, '%'+q+'%');

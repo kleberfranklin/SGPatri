@@ -126,7 +126,7 @@
                         <b class="arrow fa fa-angle-down"></b>
                     </a>
                     <b class="arrow"></b>
-                    <ul class="submenu ">
+                    <ul class="submenu disabled-li-menu">
                         <li class="">
                             <a href="CapUsuario.jsp" title="Gerenciamento do Usuário do CAP/QGIS">Usuários CAP/QGIS</a>
                             <b class="arrow"></b>
@@ -143,7 +143,7 @@
                         <b class="arrow fa fa-angle-down"></b>
                     </a>
                     <b class="arrow"></b>
-                    <ul class="submenu">
+                    <ul class="submenu disabled-li-menu">
                         <li class="">
                             <a href="AnotacaoDocumental.jsp" title="Documentos Imobiliários">Guarda Documental</a>
                             <b class="arrow"></b>

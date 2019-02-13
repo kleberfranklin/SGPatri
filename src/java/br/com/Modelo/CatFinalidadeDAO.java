@@ -29,7 +29,7 @@ private final Connection connection;
 //Metodo de quantidade de linhas
     public int qdCatFinalidade (String q){
         String sql = ("SELECT COUNT(*) as total FROM tbl_categoriafinalidade "
-                    + "WHERE (sg_categoriafinalidade LIKE ? or nm_categoriafinalidade LIKE ? ) ");
+                    + "WHERE (sg_categoriafinalidade ILIKE ? or nm_categoriafinalidade ILIKE ? ) ");
         try{
             PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.setString(1, '%'+q+'%');
@@ -50,7 +50,7 @@ private final Connection connection;
 //METODO lista as Categoria Finalidade das pesquisas e paginada
     public List<CatFinalidade> listCatFinalidade (int qtLinha, int offset, String q ){
         String sql = ("SELECT * FROM tbl_categoriafinalidade "
-                    + "WHERE (sg_categoriafinalidade LIKE ? or nm_categoriafinalidade LIKE ? ) "
+                    + "WHERE (sg_categoriafinalidade ILIKE ? or nm_categoriafinalidade ILIKE ? ) "
                     + "ORDER BY nm_categoriafinalidade "
                     + "LIMIT ? OFFSET ? ");
         try{

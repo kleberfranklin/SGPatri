@@ -30,7 +30,7 @@ public class TipoAutoCessaoDAO {
 //Metodo de quantidade de linhas
     public int qdTipoCessao (String q){
         String sql = ("SELECT COUNT(*) as total FROM tbl_tipocessao "
-                    + "WHERE nm_tipocessao LIKE ? ");
+                    + "WHERE nm_tipocessao ILIKE ? ");
         try{
             PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.setString(1, '%'+q+'%');
@@ -50,7 +50,7 @@ public class TipoAutoCessaoDAO {
 //METODO lista os Tipos de Auto de Cessão das pesquisas e paginada
     public List<TipoAutoCessao> listTpCessao (int qtLinha, int offset, String q ){
         String sql = ("SELECT * FROM vw_tipocessaocompleto "
-                    + "WHERE nm_tipocessao LIKE ? "
+                    + "WHERE nm_tipocessao ILIKE ? "
                     + "ORDER BY nm_tipocessao "
                     + "LIMIT ? OFFSET ? ");
         try{

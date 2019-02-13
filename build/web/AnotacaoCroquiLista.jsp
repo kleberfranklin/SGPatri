@@ -75,7 +75,7 @@
 
 
                                 <br /> <br />
-                                <label class="col-sm-2 col-xs-1 "> Local:</label>
+                                <label class="col-sm-2 col-xs-1 "> Endereço:</label>
                                 <div class="input-group col-sm-4 col-xs-12">
                                     <input type="text" name="qEndereco" placeholder="${qEndereco}" class="col-sm-12 col-xs-12" />
                                 </div>
@@ -140,7 +140,7 @@
                                     <tr>
                                         <td>
                                             <div class=" center action-buttons">
-                                                <a href="ControllerServlet?acao=AnotacaoCroquiDetalhe&pkAnotacaoExpediente=${lcroqui.pkAnotacaoExpediente}&pg=${pg}&pi=${pi}&pf=${pf}&qCroqui=${qCroqui}&qArea=${qArea}&qNome=${qNome}&qEndereco=${qEndereco}&qAssunto=${qAssunto}&dtIni=${dtIni}&dtFim=${dtFim}&execucao=view"><i class="ace-icon fa fa-search-plus"></i></a>
+                                                <a href="ControllerServlet?acao=AnotacaoCroquiDetalhe&pkAnotacaoExpediente=${lcroqui.pkAnotacaoExpediente}&pg=${pg}&pi=${pi}&pf=${pf}&qCroqui=${qCroqui}&qArea=${qArea}&qInteressado=${qInteressado}&qNome=${qNome}&qEndereco=${qEndereco}&qAssunto=${qAssunto}&dtIni=${dtIni}&dtFim=${dtFim}&execucao=view"><i class="ace-icon fa fa-search-plus"></i></a>
                                             </div>
                                         </td>
                                         <td>
@@ -201,10 +201,10 @@
                                                 </c:otherwise>
                                             </c:choose>
                                         </td>
-                                        <td class="hidden-480">
+                                        <td class="hidden-480" title="${lcroqui.nmInteressado}">
                                             <c:choose>
                                                 <c:when test="${lcroqui.nmInteressado.length() > 20}">
-                                                    ${lcroqui.nmInteressado.substromg(0,20)}...
+                                                    ${lcroqui.nmInteressado.substring(0,20)}...
                                                 </c:when>
                                                 <c:otherwise>
                                                     ${lcroqui.nmInteressado}
@@ -246,7 +246,7 @@
                                         <c:set var="qCessionario" value="${qCessionario}" />
                                         <c:if test="${pi != 0 && pi == i}">
                                             <li>
-                                                <a href="ControllerServlet?acao=AnotacaoCroquiLista&pg=${i}&pi=${pi}&pf=${pf}&qCroqui=${qCroqui}&qArea=${qArea}&qNome=${qNome}&qEndereco=${qEndereco}&qAssunto=${qAssunto}&dtIni=${dtIni}&dtFim=${dtFim}">
+                                                <a href="ControllerServlet?acao=AnotacaoCroquiLista&pg=${i}&pi=${pi}&pf=${pf}&qCroqui=${qCroqui}&qArea=${qArea}&qInteressado=${qInteressado}&qNome=${qNome}&qEndereco=${qEndereco}&qAssunto=${qAssunto}&dtIni=${dtIni}&dtFim=${dtFim}">
                                                     <i class="ace-icon fa fa-angle-double-left"></i></a>
                                             </li>
                                         </c:if>    
@@ -259,14 +259,14 @@
                                                 </c:when>
                                                 <c:otherwise>
                                                     <li>
-                                                        <a href="ControllerServlet?acao=AnotacaoCroquiLista&pg=${i}&pi=${pi}&pf=${pf}&qCroqui=${qCroqui}&qArea=${qArea}&qNome=${qNome}&qEndereco=${qEndereco}&qAssunto=${qAssunto}&dtIni=${dtIni}&dtFim=${dtFim}">${i}</a>
+                                                        <a href="ControllerServlet?acao=AnotacaoCroquiLista&pg=${i}&pi=${pi}&pf=${pf}&qCroqui=${qCroqui}&qArea=${qArea}&qInteressado=${qInteressado}&qNome=${qNome}&qEndereco=${qEndereco}&qAssunto=${qAssunto}&dtIni=${dtIni}&dtFim=${dtFim}">${i}</a>
                                                     </li>
                                                 </c:otherwise>
                                             </c:choose>
                                         </c:if>
                                         <c:if test="${i == pf && pf != qtdPg && i <= qtdPg  }">
                                             <li>
-                                                <a href="ControllerServlet?acao=AnotacaoCroquiLista&pg=${i}&pi=${pi}&pf=${pf}&qCroqui=${qCroqui}&qArea=${qArea}&qNome=${qNome}&qEndereco=${qEndereco}&qAssunto=${qAssunto}&dtIni=${dtIni}&dtFim=${dtFim}">
+                                                <a href="ControllerServlet?acao=AnotacaoCroquiLista&pg=${i}&pi=${pi}&pf=${pf}&qCroqui=${qCroqui}&qArea=${qArea}&qInteressado=${qInteressado}&qNome=${qNome}&qEndereco=${qEndereco}&qAssunto=${qAssunto}&dtIni=${dtIni}&dtFim=${dtFim}">
                                                     <i class="ace-icon fa fa-angle-double-right"></i></a>
                                             </li>
                                         </c:if>    

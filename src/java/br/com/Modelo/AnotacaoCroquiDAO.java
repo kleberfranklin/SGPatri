@@ -30,12 +30,12 @@ public class AnotacaoCroquiDAO {
     public int qtdAntoCroqui(String qCroqui, String qArea, String qNome, String qInteressado, String qEndereco, String qAssunto,
             Date dtIni, Date dtFim) {
         String sql = ("SELECT COUNT(*) as total FROM tbl_anotacao_expediente_oficial "
-                + "WHERE cd_croqui LIKE ? "
-                + "and cd_area LIKE ? "
-                + "and nm_nome LIKE ? "
-                + "and nm_interessado LIKE ? "
-                + "and ds_local LIKE ? "
-                + "and ds_assunto LIKE ? "
+                + "WHERE cd_croqui ILIKE ? "
+                + "and cd_area ILIKE ? "
+                + "and nm_nome ILIKE ? "
+                + "and nm_interessado ILIKE ? "
+                + "and ds_local ILIKE ? "
+                + "and ds_assunto ILIKE ? "
                 + "and dt_data between ? and ? "
                 + "and cd_croqui is not null "
                 + "and cd_croqui != '' ");
@@ -66,12 +66,12 @@ public class AnotacaoCroquiDAO {
     public List<AnotacaoCroqui> listAnotaCroqui(String qCroqui, String qArea, String qNome, String qInteressado, String qEndereco, String qAssunto,
             Date dtIni, Date dtFim, int qtLinha, int offset) {
         String sql = ("SELECT * FROM tbl_anotacao_expediente_oficial "
-                + "WHERE cd_croqui LIKE ? "
-                + "and cd_area LIKE ? "
-                + "and nm_nome LIKE ? "
-                + "and nm_interessado LIKE ? "
-                + "and ds_local LIKE ? "
-                + "and ds_assunto LIKE ? "
+                + "WHERE cd_croqui ILIKE ? "
+                + "and cd_area ILIKE ? "
+                + "and nm_nome ILIKE ? "
+                + "and nm_interessado ILIKE ? "
+                + "and ds_local ILIKE ? "
+                + "and ds_assunto ILIKE ? "
                 + "and dt_data between ? and ? "
                 + "and cd_croqui is not null "
                 + "and cd_croqui != '' "
@@ -114,7 +114,7 @@ public class AnotacaoCroquiDAO {
 
     //METODO uilizado para listar o nome do da tabela 
     public List<AnotacaoCroqui> listNome() {
-        String sql = ("SELECT COUNT(*)qtd, nm_nome FROM tbl_anotacao_expediente_oficial "
+        String sql = ("SELECT COUNT(*)qtd, nm_nome FROM tbl_anotacao_expediente "
                 + "GROUP BY nm_nome "
                 + "ORDER BY nm_nome ");
         try {
@@ -136,7 +136,7 @@ public class AnotacaoCroquiDAO {
     public AnotacaoCroqui detalheAnotacaoCroqui(int pkAnotacaoExpediente) {
         String sql = ("SELECT id_anotacao_expediente, nr_informacao_dgpi, ds_assunto, cd_croqui, cd_area, cd_processo, cd_tid, cd_expediente, nm_interessado, "
                 + "ds_local,  nr_anotacao, nr_informacao, ds_despacho, dt_publicacao, dt_anotacao, ds_observacao, dt_data, nm_nome "
-                + "FROM tbl_anotacao_expediente_oficial "
+                + "FROM tbl_anotacao_expediente "
                 + "WHERE id_anotacao_expediente = ? ");
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -146,7 +146,7 @@ public class AnotacaoCroquiDAO {
             AnotacaoCroqui anotCroqui = new AnotacaoCroqui();
             if (rs.next()) {
                 anotCroqui.setPkAnotacaoExpediente(rs.getInt("id_anotacao_expediente"));
-                anotCroqui.setNmInformacaoDgpi(rs.getString("nr_informacao_dgpi"));
+                anotCroqui.setNrInformacaoDgpi(rs.getString("nr_informacao_dgpi"));
                 anotCroqui.setCdCroqui(rs.getString("cd_croqui"));
                 anotCroqui.setCdArea(rs.getString("cd_area"));
                 anotCroqui.setCdProcesso(rs.getString("cd_processo"));
@@ -173,31 +173,59 @@ public class AnotacaoCroquiDAO {
         return null;
     }
 
-////    METODO utilizado para inserir dados em um novo croqui
-//    public void upAnotacaoCroqui(AnotacaoCroqui anotCroqui) {
-//        String sql = "INSERT INTO tbl_anotacao_expediente ( cd_croqui, cd_area, nr_informacao_dgpi, cd_processo, cd_tid, cd_expediente, nm_interessado ,"
-//                + "ds_assunto, fk_enderecos, ds_observacao, nm_login, dthr_atualizacao ) "
-//                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,? )";
-//        try {
-//            try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-//                stmt.setString(1, cadsic.getCdCroqui());
-//                stmt.setString(2, cadsic.getCdArea());
-//                stmt.setInt(3, cadsic.getNrInformacaoDgpi());
-//                stmt.setString(4, cadsic.getCdProcesso());
-//                stmt.setString(5, cadsic.getCdTid());
-//                stmt.setString(6, cadsic.getCdExpediente());
-//                stmt.setString(7, cadsic.getNmInteressado());
-//                stmt.setString(8, cadsic.getDsAssunto());
-//                stmt.setString(9, cadsic.getDsObservacao());
-//                stmt.setInt(10, cadsic.getFkEnderecos());
-//                stmt.setString(11, cadsic.getNmLogin());
-//                stmt.setTimestamp(12, java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
-//
-//                stmt.execute();
-//                stmt.close();
-//            }
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
+//    METODO utilizado para inserir dados em um novo croqui
+    public void insAnotacaoCroqui(AnotacaoCroqui anotCroqui) {
+        String sql = "INSERT INTO tbl_anotacao_expediente ( cd_croqui, cd_area, nr_informacao_dgpi, cd_processo, cd_tid, cd_expediente, nm_interessado ,"
+                + "ds_assunto, ds_local, ds_observacao, nm_login, dthr_atualizacao ) "
+                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,? )";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, anotCroqui.getCdCroqui());
+            stmt.setString(2, anotCroqui.getCdArea());
+            stmt.setString(3, anotCroqui.getNrInformacaoDgpi());
+            stmt.setString(4, anotCroqui.getCdProcesso());
+            stmt.setString(5, anotCroqui.getCdTid());
+            stmt.setString(6, anotCroqui.getCdExpediente());
+            stmt.setString(7, anotCroqui.getNmInteressado());
+            stmt.setString(8, anotCroqui.getDsAssunto());
+            stmt.setString(9, anotCroqui.getDsLocal());
+            stmt.setString(10, anotCroqui.getDsObservacao());
+            stmt.setString(11, anotCroqui.getNmLogin());
+            stmt.setTimestamp(12, java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
+
+            stmt.execute();
+            stmt.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void upAnotacaoCroqui(AnotacaoCroqui anotCroqui) {
+        String sql = "UPDATE tbl_anotacao_expediente "
+                + "SET cd_croqui=?, cd_area=?, nr_informacao_dgpi=?, cd_processo=?, cd_tid=?, cd_expediente=?, nm_interessado=?, ds_assunto=?, ds_local=?,"
+                + "ds_observacao=?, nm_login=?, dthr_atualizacao=? "
+                + "WHERE id_anotacao_expediente = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, anotCroqui.getCdCroqui());
+            stmt.setString(2, anotCroqui.getCdArea());
+            stmt.setString(3, anotCroqui.getNrInformacaoDgpi());
+            stmt.setString(4, anotCroqui.getCdProcesso());
+            stmt.setString(5, anotCroqui.getCdTid());
+            stmt.setString(6, anotCroqui.getCdExpediente());
+            stmt.setString(7, anotCroqui.getNmInteressado());
+            stmt.setString(8, anotCroqui.getDsAssunto());
+            stmt.setString(9, anotCroqui.getDsLocal());
+            stmt.setString(10, anotCroqui.getDsObservacao());
+            stmt.setString(11, anotCroqui.getNmLogin());
+            stmt.setTimestamp(12, java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
+
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
