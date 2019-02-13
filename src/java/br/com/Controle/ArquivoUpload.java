@@ -10,6 +10,7 @@ import br.com.Modelo.Arquivo;
 import br.com.Modelo.*;
 import br.com.Utilitario.Transformar;
 import br.com.Utilitario.Upload;
+import java.io.File;
 import java.io.InputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,14 +49,11 @@ public class ArquivoUpload implements Logica{
         finalizar = req.getParameter("finalizar");
         loginSessio =(String) session.getAttribute("sessionLogin");
         
-
-        String pasta = "//Arquivo";
-        String pastaArquivar = req.getServletContext().getRealPath(pasta);
-
-
+        String pastaArquivar = req.getServletContext().getRealPath("/");
         switch(tipoArquivo){
             case "planta":
-                pastaArquivar+="\\Planta";
+           
+                pastaArquivar+= "Arquivo"+File.separator+"Planta";
                 Part uploadPlanta = req.getPart("UploadPlanta");
                 nomeDoArquivo = Transformar.substituiEspacoHifen(Transformar.retiraEspacosDuplicados(Transformar.removeAccents(uploadPlanta.getSubmittedFileName())));
                 arquivoCarregado = uploadPlanta.getInputStream();
@@ -65,7 +63,7 @@ public class ArquivoUpload implements Logica{
             break;
 
             case "AC":
-                pastaArquivar+="\\AC";
+                pastaArquivar+= "Arquivo"+File.separator+"AC";
                 Part uploadAC = req.getPart("UploadAC");
                 nomeDoArquivo = Transformar.substituiEspacoHifen(Transformar.retiraEspacosDuplicados(Transformar.removeAccents(uploadAC.getSubmittedFileName())));
                 arquivoCarregado = uploadAC.getInputStream();

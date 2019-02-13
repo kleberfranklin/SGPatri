@@ -146,7 +146,20 @@
                     </c:if>
                 </ul>
                 <div class="tab-content profile-edit-tab-content">
-                    <div id="auto-cessao" class="tab-pane <c:if test="${auto.nrVerAc=='0' || auto.nrVerValidacao == '1' || novo=='1'}">in active</c:if>">
+                    <div id="auto-cessao" class="tab-pane 
+                    <c:choose>
+                        <c:when test="${auto.nrVerAc=='0' || auto.nrVerValidacao == '1' || novo=='1'}">
+                            in active
+                        </c:when>
+                        <c:when test="${auto.nrVerAc == '1' && auto.nrVerDispLegal=='1' && auto.nrVerArqAc == '1' && auto.nrVerArqPlanta == '1' && auto.nrVerValidacao == '1' && (execucao!='view' || execucao!='edit')}">
+                            
+                        </c:when>
+                        <c:otherwise>
+                                
+                        </c:otherwise>
+                         
+                    </c:choose>          
+                         ">
                             <form action="ControllerServlet?acao=AutoCessoValidacaoUC" method="POST" >
                                 <div class="space-4"></div>
                                 <div class="space-2"></div>
@@ -1719,8 +1732,9 @@
                                     <c:forEach var="ar" items="${Arquivo.listArquivo(auto.pkAutoStage, 'AutoCessao')}">
                                         <c:if test="${ar.nmTipo == 'planta'}">
                                             <a href="<c:out value="${pageContext.servletContext.contextPath}" />/Arquivo/Planta/${ar.nmNomeArquivo}" target="_blank"><img src="img/img-planta.png" title="${ar.nmNome}" width="60%" height="60%"/></a>
-                                            </c:if>    
+                                        </c:if>    
                                     </c:forEach>
+                                            
                                 </label>
                     <c:if test="${(sessionSgDivisao == 'DDPI' &&sessionSgSetor == 'SCL') && (execucao=='insert' || execucao=='edit')}">
                                 <label class="inline col-md-3">
@@ -1771,7 +1785,6 @@
                                         <c:forEach var="ar" items="${Arquivo.listArquivo(auto.pkAutoStage, 'AutoCessao')}">
                                             <c:if test="${ar.nmTipo == 'AC'}">
                                                 <a href="<c:out value="${pageContext.servletContext.contextPath}" />/Arquivo/AC/${ar.nmNomeArquivo}" target="_blank"><img src="img/img-arquivo.png" title="${ar.nmNome}" width="50%" height="50%"/></a>
-                                                
                                             </c:if>
                                         </c:forEach>
                                     </label>
@@ -1810,7 +1823,7 @@
 <!-- Inicio do formulario Validação -->                             
                     <div id="validacao" class="tab-pane 
                          <c:choose>
-                            <c:when test="${auto.nrVerAc == '1' && auto.nrVerDispLegal=='1' && auto.nrVerArqAc == '1' && auto.nrVerArqPlanta == '1' && auto.nrVerValidacao == '0'}"> 
+                            <c:when test="${auto.nrVerAc == '1' && auto.nrVerDispLegal=='1' && auto.nrVerArqAc == '1' && auto.nrVerArqPlanta == '1' && (auto.nrVerValidacao == '0' && execucao!='edit') }"> 
                               in active 
                             </c:when>  
                             <c:when test="${auto.nrVerValidacao=='1'}"> 

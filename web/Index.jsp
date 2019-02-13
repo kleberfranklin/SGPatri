@@ -10,7 +10,6 @@
     <div class="main-container ace-save-state" id="main-container">
     <jsp:include page = "include/nav.jsp" />
     
-    
 <!--Verificação de acesso  -->
     <c:set var="acessoPerfil" value="${sessionPerfil}" />
     <jsp:directive.include file="include/ControleAcesso.jsp" />
