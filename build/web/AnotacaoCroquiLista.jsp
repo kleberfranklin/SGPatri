@@ -20,8 +20,6 @@
             <jsp:directive.include file="include/ControleAcesso.jsp" />
             <jsp:useBean id="expe" class= "br.com.Modelo.AnotacaoCroquiDAO"/>
 
-            <c:set var = "dtHoje" value = "<%= new java.util.Date()%>" />
-
             <c:set var="pg" value="${param.pg}" />
             <c:set var="pf" value="${param.pf}" />
             <c:set var="pi" value="${param.pi}" />
@@ -148,17 +146,7 @@
                                             <c:set var = "dt" value = "${lcroqui.dtData}" />
                                             <fmt:parseDate value = "${dt}" var="converteDT" pattern="yyyy-MM-dd" />
                                             <fmt:formatDate type= "date" value="${converteDT}" var="dtAtu"/>
-                                            <fmt:formatDate value = "${dtHoje}" pattern = "yyyy-MM-dd" />
                                             <c:out value="${dtAtu}"/>
-
-                                            <c:choose>
-                                                <c:when test=" ${dtAtu > dtHoje} ">
-                                                </c:when>
-                                                <c:otherwise>    
-                                                    <c:out value="${dtAtu}"/>
-                                                </c:otherwise>
-                                            </c:choose>
-
                                         </td>         
                                         <td title="${lcroqui.cdCroqui}">
                                             <c:choose >
