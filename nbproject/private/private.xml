@@ -11,18 +11,13 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
         <group>
-            <file>file:/C:/Users/x369482/Documents/GitHub/SGPatri/web/CapUsuario.jsp</file>
-            <file>file:/C:/Users/x369482/Documents/GitHub/SGPatri/web/CapUsuarioLista.jsp</file>
-            <file>file:/C:/Users/x369482/Documents/GitHub/SGPatri/src/java/br/com/Modelo/CapUsuario.java</file>
-            <file>file:/C:/Users/x369482/Documents/GitHub/SGPatri/web/CapUsuarioC.jsp</file>
-            <file>file:/C:/Users/x369482/Documents/GitHub/SGPatri/src/java/br/com/Modelo/UsuarioDAO.java</file>
-            <file>file:/C:/Users/x369482/Documents/GitHub/SGPatri/src/java/br/com/Modelo/CapUsuarioDAO.java</file>
-            <file>file:/C:/Users/x369482/Documents/GitHub/SGPatri/src/java/br/com/Modelo/Usuario.java</file>
+            <file>file:/C:/Users/x369482/Documents/GitHub/SGPatri/web/include/nav.jsp</file>
+            <file>file:/C:/Users/x369482/Documents/GitHub/SGPatri/web/AnotacaoCroquiLista.jsp</file>
+            <file>file:/C:/Users/x369482/Documents/GitHub/SGPatri/web/AnotacaoCroquiCRU.jsp</file>
+            <file>file:/C:/Users/x369482/Documents/GitHub/SGPatri/src/java/br/com/Controle/AnotacaoCroquiUC.java</file>
+            <file>file:/C:/Users/x369482/Documents/GitHub/SGPatri/src/java/br/com/Modelo/AnotacaoCroquiDAO.java</file>
+            <file>file:/C:/Users/x369482/Documents/GitHub/SGPatri/src/java/br/com/Modelo/AnotacaoCroqui.java</file>
         </group>
-=======
-        <group/>
->>>>>>> 5453d507dbe95388fa5ba6e8a4f171ab680c6e84
     </open-files>
 </project-private>

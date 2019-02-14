@@ -18,6 +18,7 @@
         <div class="main-container ace-save-state" id="main-container">
             <jsp:include page = "include/nav.jsp" />
             <jsp:include page = "javaScritp/ajaxEndereco.html" />
+            <jsp:include page = "javaScritp/maskProcesso.html" />
 
             <!--Verificação de acesso  -->
             <c:set var="acessoPerfil" value="${sessionPerfil}" />
@@ -134,49 +135,50 @@
                                                     </label>
                                                 </div>
                                                 <div class="form-group">
-                                                    <div class="inline col-sm-2 col-xs-12">
+                                                    <label class="inline col-md-2 col-xs-12">
                                                         <span class="lbl"><strong>Nº Processo:</strong></span>
-                                                    </div>
-
-                                                    <label class="col-sm-6 col-xs-12">
+                                                    </label>
+                                                    <label class="inline col-md-3 col-xs-12">
                                                         <c:choose>
                                                             <c:when test="${execucao == 'edit'}">
-                                                                <input type="text" id="form-field-1" class="col-sm-5 col-xs-12" name="cdProcesso" 
-                                                                       value="${anotCroqui.cdProcesso}" placeholder="Nº Processo" required="required"  >
+                                                                <input type="text"  class="col-xs-12 col-md-12" name="nrprocesso" id="nrprocesso" value="${auto.nmProcesso}" placeholder="nº do processo"  required="required"  onKeyPress="return somenteNum(event);"  >
                                                             </c:when>
                                                             <c:when test="${execucao == 'insert'}">
-                                                                <input type="text" id="form-field-1" class="col-sm-5 col-xs-12"  name="cdProcesso" 
-                                                                       placeholder="Nº Processo" required="required"  >
+                                                                <input type="text"  class="col-xs-12 col-md-12" name="nrprocesso" id="nrprocesso"  placeholder="nº do processo" required="required"  onKeyPress="return somenteNum(event);"  >
                                                             </c:when>
                                                             <c:otherwise>
-                                                                <span class="lbl">${anotCroqui.cdProcesso}</span> 
+                                                                <span class="lbl">${auto.nmProcesso}</span> 
                                                             </c:otherwise>
                                                         </c:choose>
                                                     </label>
-                                                </div>
-
-                                                <div class="space-1"></div>
-
-                                                <div class="form-group">
-                                                    <label class="col-sm-2 col-xs-12" >
-                                                        <span class="lbl"><strong>Nº TID:</strong></span>
+                                                    <label class="inline col-md-4 col-xs-12">
+                                                        <div class="radio inline col-md-3">
+                                                            <label>
+                                                                <input name="tpProcesso" id="sei" value="SEI" type="radio" class="ace" onclick="maskProcesso();">
+                                                                <span class="lbl"><strong> SEI</strong></span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio inline col-md-3">
+                                                            <label>
+                                                                <input name="tpProcesso" id="pa" value="PA" type="radio" class="ace" onclick="maskProcesso();">
+                                                                <span class="lbl"><strong> P.A.</strong></span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio inline col-md-3">
+                                                            <label>
+                                                                <input name="tpProcesso" id="tid" value="TID" type="radio" class="ace" onclick="maskProcesso();">
+                                                                <span class="lbl"><strong> TID</strong></span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio inline col-md-3">
+                                                            <label>
+                                                                <input name="tpProcesso" id="cid" value="CID" type="radio" class="ace" onclick="maskProcesso();">
+                                                                <span class="lbl"><strong> CID</strong></span>
+                                                            </label>
+                                                        </div>
                                                     </label>
-
-                                                    <label class="col-sm-6 col-xs-12" >
-                                                        <c:choose>
-                                                            <c:when test="${execucao == 'edit'}">
-                                                                <input type="text" id="form-field-1" class="col-sm-5 col-xs-12"  name="cdTid" 
-                                                                       value="${anotCroqui.cdTid}" placeholder="Nº TID" required="required" >
-                                                            </c:when>
-                                                            <c:when test="${execucao == 'insert'}">
-                                                                <input type="text" id="form-field-1" class="col-sm-5 col-xs-12"  name="cdTid" 
-                                                                       placeholder="Nº TID" required="required" >
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <span class="lbl">${anotCroqui.cdTid}</span> 
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                    </label>
+                                                    <!--<lable id="msgProcesso"></lable>-->
+                                                    &nbsp;<span id="msgProcesso"></span>
                                                 </div>
 
                                                 <div class="space-1"></div>
