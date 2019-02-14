@@ -141,7 +141,7 @@ public class UsuarioDAO {
 //METODO quantidade de usuários encontratos um pesquisa por nome
  public int qtdUsuarioQ(String q, String sgDivisao){
        String sql = ("SELECT COUNT(*) as total FROM vw_usuariocompleto "
-               + "WHERE nm_nome LIKE ? and sg_divisao LIKE ? ");
+               + "WHERE nm_nome ILIKE ? and sg_divisao ILIKE ? ");
     	try {
             PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.setString(1, '%'+q+'%');
@@ -165,7 +165,7 @@ public class UsuarioDAO {
 //METODO quantidade de usuario cadastrado em um pesquisa por nome e paginada
     public List<Usuario> listPaginaUsuario(int qtdLinha, int iniPosicao, String q, String sgDivisao) {
     String sql = ("SELECT * FROM vw_usuariocompleto "
-            + "WHERE nm_nome LIKE ? and sg_divisao LIKE ? "
+            + "WHERE nm_nome ILIKE ? and sg_divisao ILIKE ? "
             + "ORDER BY nm_nome "
             + "LIMIT ? OFFSET ?");
     try {

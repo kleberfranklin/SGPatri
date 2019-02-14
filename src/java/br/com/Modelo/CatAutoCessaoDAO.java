@@ -30,7 +30,7 @@ public class CatAutoCessaoDAO {
 //Metodo de quantidade de linhas
     public int qdCatAutoCessao (String q){
         String sql = ("SELECT COUNT(*) as total FROM tbl_categoriautocessao "
-                    + "WHERE (sg_categoriauto LIKE ? or nm_categoriaauto LIKE ? ) ");
+                    + "WHERE (sg_categoriauto ILIKE ? or nm_categoriaauto ILIKE ? ) ");
         try{
             PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.setString(1, '%'+q+'%');
@@ -51,7 +51,7 @@ public class CatAutoCessaoDAO {
 //METODO lista as Categoria de Auto de Cessão das pesquisas e paginado
     public List<CatAutoCessao> listCatAuto(int qtLinha, int offset, String q ){
         String sql = ("SELECT * FROM tbl_categoriautocessao "
-                    + "WHERE (sg_categoriauto LIKE ? or nm_categoriaauto LIKE ? ) "
+                    + "WHERE (sg_categoriauto ILIKE ? or nm_categoriaauto ILIKE ? ) "
                     + "ORDER BY nm_categoriaauto "
                     + "LIMIT ? OFFSET ? ");
         try{

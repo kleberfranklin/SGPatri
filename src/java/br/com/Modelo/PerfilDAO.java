@@ -103,7 +103,7 @@ public class PerfilDAO {
 //Metodo de quantidade de linhas
     public int qdPerfil(String q){
         String sql = ("SELECT COUNT(*) as total FROM tbl_perfil "
-                    + "WHERE nm_perfil LIKE ? ");
+                    + "WHERE nm_perfil ILIKE ? ");
         try{
             PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.setString(1, '%'+q+'%');
@@ -124,7 +124,7 @@ public class PerfilDAO {
 //METODO lista os perfil das pesquisas e paginado
     public List<Perfil> lisPerfil(int qtLinha, int offset, String q ){
         String sql = ("SELECT * FROM tbl_perfil "
-                    + "WHERE nm_perfil LIKE ? "
+                    + "WHERE nm_perfil ILIKE ? "
                     + "ORDER BY nm_perfil, nm_perfil ASC "
                     + "LIMIT ? OFFSET ? ");
         try{

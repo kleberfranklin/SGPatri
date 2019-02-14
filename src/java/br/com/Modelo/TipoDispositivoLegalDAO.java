@@ -31,7 +31,7 @@ public class TipoDispositivoLegalDAO {
 //Metodo de quantidade de linhas
     public int qdTipoDispLegal (String q){
         String sql = ("SELECT COUNT(*) as total FROM tbl_tipodispositivolegal "
-                    + "WHERE ( sg_tipodisplegal LIKE ? or nm_tipodisplegal LIKE ? ) ");
+                    + "WHERE ( sg_tipodisplegal ILIKE ? or nm_tipodisplegal ILIKE ? ) ");
         try{
             PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.setString(1, '%'+q+'%');
@@ -52,7 +52,7 @@ public class TipoDispositivoLegalDAO {
 //METODO lista dos tipo de dispositivo das pesquisas e paginado
     public List<TipoDispositivoLegal> listTipoDispLegal(int qtLinha, int offset, String q ){
         String sql = ("SELECT * FROM tbl_tipodispositivolegal "
-                    + "WHERE (sg_tipodisplegal LIKE ? or nm_tipodisplegal LIKE ? ) "
+                    + "WHERE (sg_tipodisplegal ILIKE ? or nm_tipodisplegal ILIKE ? ) "
                     + "ORDER BY nm_tipodisplegal "
                     + "LIMIT ? OFFSET ? ");
         try{

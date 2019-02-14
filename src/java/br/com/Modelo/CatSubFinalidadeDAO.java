@@ -29,7 +29,7 @@ public class CatSubFinalidadeDAO {
 //Metodo de quantidade de linhas
     public int qdCatSubFinalidade (String q){
         String sql = ("SELECT COUNT(*) as total FROM tbl_subcategoriafinalidade "
-                    + "WHERE (sg_subcatfinalidade LIKE ? or nm_subcatfinalidade LIKE ? ) ");
+                    + "WHERE (sg_subcatfinalidade ILIKE ? or nm_subcatfinalidade ILIKE ? ) ");
         try{
             PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.setString(1, '%'+q+'%');
@@ -50,7 +50,7 @@ public class CatSubFinalidadeDAO {
 //METODO lista as Sub Categoria Finalidade das pesquisas e paginada
     public List<CatSubFinalidade> listCatSubFinalidade (int qtLinha, int offset, String q ){
         String sql = ("SELECT * FROM vw_subcategoriafinalidadecompleto "
-                    + "WHERE (sg_subcatfinalidade LIKE ? or nm_subcatfinalidade LIKE ? ) "
+                    + "WHERE (sg_subcatfinalidade ILIKE ? or nm_subcatfinalidade ILIKE ? ) "
                     + "ORDER BY nm_subcatfinalidade "
                     + "LIMIT ? OFFSET ? ");
         try{

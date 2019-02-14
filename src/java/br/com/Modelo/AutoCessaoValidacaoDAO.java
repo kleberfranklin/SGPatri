@@ -34,8 +34,8 @@ public class AutoCessaoValidacaoDAO {
     public List<AutoCessaoValidacao> listPagFiltroPesquisa(String qTpcessao, String qAC, String qProcesso, String qCessionario, String qCedente,
             String qEndereco,String qCroqui ,String qVigor, int qtdLinha, int OFFSET) {
             String sql = ("SELECT * FROM tbl_autocessao_stage "
-                    + "WHERE CAST(fk_tipocessao AS VARCHAR) LIKE ? and cod_ac LIKE ? and nm_processo LIKE ? and nm_cessionario LIKE ? and nm_cedente LIKE ? "
-                    + "and (nm_endereco LIKE ? or nm_referencialendereco LIKE ?) and nm_croqui LIKE ? and nr_Vigor LIKE ? "
+                    + "WHERE CAST(fk_tipocessao AS VARCHAR) ILIKE ? and cod_ac ILIKE ? and nm_processo ILIKE ? and nm_cessionario ILIKE ? and nm_cedente ILIKE ? "
+                    + "and (nm_endereco ILIKE ? or nm_referencialendereco ILIKE ?) and nm_croqui ILIKE ? and nr_Vigor ILIKE ? "
                     + "ORDER BY cod_ac DESC "
                     + "LIMIT ? OFFSET ?");
             try {
@@ -84,8 +84,8 @@ public class AutoCessaoValidacaoDAO {
 //METODO utilizado na Classe (AutoCessaolistaPagFiltro)
     public int qtdAutoPesquisa(String qTpcessao, String qAC, String qProcesso, String qCessionario, String qCedente, 
             String qEndereco, String qCroqui, String qVigor){
-          String sql = ("SELECT COUNT(*) as total FROM tbl_autocessao_stage WHERE CAST(fk_tipocessao AS VARCHAR) LIKE ? and cod_ac LIKE ? and nm_processo LIKE ? "
-                  + "and nm_cessionario LIKE ? and nm_cedente LIKE ? and ( nm_endereco LIKE ? or nm_referencialendereco LIKE ?) and nm_croqui LIKE ? and nr_vigor LIKE ? ");
+          String sql = ("SELECT COUNT(*) as total FROM tbl_autocessao_stage WHERE CAST(fk_tipocessao AS VARCHAR) ILIKE ? and cod_ac ILIKE ? and nm_processo ILIKE ? "
+                  + "and nm_cessionario ILIKE ? and nm_cedente ILIKE ? and ( nm_endereco ILIKE ? or nm_referencialendereco ILIKE ?) and nm_croqui ILIKE ? and nr_vigor ILIKE ? ");
 //                  + "and pk_tipoCessao <> 1");
            try {
                PreparedStatement stmt = connection.prepareStatement(sql);
@@ -115,7 +115,7 @@ public class AutoCessaoValidacaoDAO {
     
 //METODO utilizado na Classe (AutoCessaolistaPagFiltro)
     public int qtdAutoCessaoPesquisa(String qAC, String qProcesso, String qVigor, String qStatus){
-          String sql = ("SELECT COUNT(*) as total FROM tbl_autocessao_stage WHERE cod_ac LIKE ? and nm_processo LIKE ? and nr_vigor LIKE ? and status LIKE ? ");
+          String sql = ("SELECT COUNT(*) as total FROM tbl_autocessao_stage WHERE cod_ac ILIKE ? and nm_processo ILIKE ? and nr_vigor ILIKE ? and status ILIKE ? ");
            try {
                PreparedStatement stmt = connection.prepareStatement(sql);
                    stmt.setString(1, qAC+'%');
@@ -139,7 +139,7 @@ public class AutoCessaoValidacaoDAO {
 //METODO utilizado na Classe (AutoCessaolistaPagFiltro)
     public List<AutoCessaoValidacao> listPagFiltro(String qAC, String qProcesso, String qVigor, String qStatus, int qtdLinha, int OFFSET) {
             String sql = ("SELECT * FROM tbl_autocessao_stage "
-                    + "WHERE cod_ac like ? and nm_processo like ? and nr_Vigor like ? and status like ? "
+                    + "WHERE cod_ac ILIKE ? and nm_processo ILIKE ? and nr_Vigor ILIKE ? and status ILIKE ? "
                     + "ORDER BY cod_ac ASC "
                     + "LIMIT ? OFFSET ?");
             try {

@@ -17,6 +17,7 @@ public class Padronizar {
     public Padronizar() {
     }
 
+
     public int getPkInt() {
         return pkInt;
     }

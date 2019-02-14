@@ -36,7 +36,7 @@
                             <h1>Controle de Usuários do CAP</h1>
                         </div>
 
-                        <div class="form-group" style=" padding-top:30px">
+                        <div class="infobox-chart col-xs-11" style=" padding-top:30px">
                             <div class="btn-group-lg col-xs-2">
                                 <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'CapUsuarioLista.jsp';">
                                     <i class="ace-icon fa fa-user"></i>
