@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<script>
+function pesquisaNomeLogradouro(str) {
+    var deStr = decodeURI(str);
+    var xhttp;
+  
+  if (deStr.length < 3 || deStr === "") { 
+        document.getElementById("listaEndereco").innerHTML = "";
+    return;
+  }
+  if(window.XMLHttpRequest){ //Chrome, Mozilla, ....
+        xhttp = new XMLHttpRequest();
+    }else if(window.ActiveXObject){ // I8 and antigos
+        xhttp = new ActiveXObject();
+    }
+  xhttp.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status === 200) {
+        document.getElementById("listaEndereco").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "include/listaEndereco.jsp?endereco="+deStr, true);
+  xhttp.send();
+}
+</script>
+
+<script>
+function pesquisaCepLogradouro(cep) {
+        
+    var xmlhttp = new XMLHttpRequest();
+    var url = "ControllerServlet?acao=LogradouroPadraoJSON&cep="+cep ;
+    //var url = "include/" ;
+    
+    xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var Arquivo = JSON.parse(this.responseText);
+        popularEnd(Arquivo);
+        }
+    };
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+            function popularEnd(endereco) {
+                document.getElementById("listaEndereco").innerHTML = "";        
+                document.getElementById("nrnumeroend").focus();       
+                document.getElementById("pkLogradouro").value=(endereco.pkLogradouro);
+                document.getElementById("nrcep").value=(endereco.cep);
+                document.getElementById("nmendereco").value=(endereco.logradouro);
+                document.getElementById("nmbairro").value=(endereco.bairro);
+                
+                document.getElementById("pkLogradouro").disabled = true ;
+                document.getElementById("nrcep").disabled = true ;
+                document.getElementById("nmbairro").disabled = true ;
+            }
+        }
+</script>
+
+
