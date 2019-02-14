@@ -10,9 +10,7 @@
 
 <!DOCTYPE html>
 <html>
-
-    <jsp:include page = "include/head.jsp" />
-
+        <jsp:include page = "include/head.jsp" />
     <body class="no-skin">
         <jsp:include page = "include/top.jsp"/>
         <div class="main-container ace-save-state" id="main-container">
@@ -27,6 +25,11 @@
         <jsp:useBean id="subPref" class= "br.com.Modelo.SubPrefeituraDAO" />
         
 <!--Pegando os paremetros -->
+
+
+        
+        
+        
         <c:set var="pg" value="${param.pg}" />
         <c:set var="pf" value="${param.pf}" />
         <c:set var="pi" value="${param.pi}" />
@@ -96,11 +99,11 @@
                                                     <label class="col-sm-3 col-xs-12">
                                                         <c:choose>
                                                             <c:when test="${execucao == 'edit'}">
-                                                                <input type="text" id="form-field-1" class="col-sm-6 col-xs-12" name="cdArea" 
+                                                                <input type="text" id="form-field-1" class="col-sm-7 col-xs-12" name="cdArea" 
                                                                        value="${anotCroqui.cdArea}" placeholder="Código da Área" required="required">
                                                             </c:when>
                                                             <c:when test="${execucao == 'insert'}">
-                                                                <input type="text" id="form-field-1" class="col-sm-6 col-xs-12" name="cdArea" 
+                                                                <input type="text" id="form-field-1" class="col-sm-7 col-xs-12" name="cdArea" 
                                                                        placeholder="Código da Área" required="required" >
                                                             </c:when>
                                                             <c:otherwise>
@@ -280,7 +283,6 @@
                                                                     <span class="lbl"><strong>Endereço:</strong></span>
                                                                 </label>
                                                                 <label class="inline col-md-10 col-xs-12" >
-                                                                    
                                                                     <input type="text" class="col-xs-12 col-md-8" name="nmendereco" id="nmendereco" onkeyup="pesquisaNomeLogradouro(this.value)" placeholder="nome do endereço" required="required" >
                                                                     <div id="listaEndereco" style="padding-top:35px"></div>
                                                                 </label>

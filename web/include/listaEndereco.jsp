@@ -4,13 +4,14 @@
     Author     : d732229
 --%>
 
-<%@page import="java.net.URLDecoder"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <jsp:useBean id="bean" class= "br.com.Modelo.LogradouroPadraoDAO" />
 <c:set var="endereco" value="${param.endereco}" />
-
+<c:set var="checkList" value="${bean.pesquisaNomeLogradouro(endereco)}" />
 
 <style>
     .table-endereco{
@@ -32,13 +33,21 @@
         filter: alpha(opacity=10); */
     }    
 </style>
-<table class="col-md-8 table-endereco" name="" id="" >
-    
-    <c:forEach var="logPadrao" items="${bean.pesquisaNomeLogradouro(endereco)}"  >
-        <tr class="tr-endereco">
-            <td onclick="pesquisaCepLogradouro('${logPadrao.nrCep}')"> ${logPadrao.nmLogradouroCompleto}</td>
-        </tr>
-    </c:forEach>
+<table class="col-md-8 table-endereco" >
+    <c:choose>
+        <c:when test="${not empty checkList}">
+            <c:forEach var="logPadrao" items="${bean.pesquisaNomeLogradouro(endereco)}"  >
+                <tr class="tr-endereco">
+                    <td onclick="pesquisaCepLogradouro('${logPadrao.nrCep}')" title="${logPadrao.nrCep}"> ${logPadrao.nmLogradouroCompleto}</td>
+                </tr>
+            </c:forEach>
+        </c:when>
+        <c:otherwise>
+            <tr class="tr-endereco">
+                <td> Endereço não localizado...</td>
+            </tr>
+        </c:otherwise>    
+    </c:choose>
 </table>
 
 </html>
