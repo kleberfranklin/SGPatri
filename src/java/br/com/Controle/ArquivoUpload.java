@@ -8,7 +8,9 @@ package br.com.Controle;
 
 import br.com.Modelo.Arquivo;
 import br.com.Modelo.*;
+import br.com.Utilitario.Transformar;
 import br.com.Utilitario.Upload;
+import java.io.File;
 import java.io.InputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,31 +34,28 @@ public class ArquivoUpload implements Logica{
         HttpSession session = req.getSession();
 
         String nomeDoArquivo="", caminhoArquivo="", tipoArquivo, origem, nome, pgValidacao, execucao, finalizar, loginSessio;
-        int pkArquivo, pkOrigem, pkAutoStage, nrVerArqAc, nrVerArqPlanta;
+        int pkArquivo, pkAutoStage,nrVerArqAc, nrVerArqPlanta;
         InputStream arquivoCarregado;
                 
+        
         
         tipoArquivo = req.getParameter("tipoArquivo");
         origem = req.getParameter("Origem");
         nome = req.getParameter("nmNome");
         pkAutoStage = Integer.parseInt(req.getParameter("pkAutoStage"));
-        pkOrigem = Integer.parseInt(req.getParameter("pkOrigem"));
         pkArquivo = Integer.parseInt(req.getParameter("pkArquivo"));
         execucao = req.getParameter("execucao");
         pgValidacao = req.getParameter("pgValidacao");
         finalizar = req.getParameter("finalizar");
         loginSessio =(String) session.getAttribute("sessionLogin");
         
-
-        String pasta = "/Arquivo";
         String pastaArquivar = req.getServletContext().getRealPath("/");
-
-
         switch(tipoArquivo){
             case "planta":
-                pastaArquivar+="\\Planta";
+           
+                pastaArquivar+= "Arquivo"+File.separator+"Planta";
                 Part uploadPlanta = req.getPart("UploadPlanta");
-                nomeDoArquivo = uploadPlanta.getSubmittedFileName();
+                nomeDoArquivo = Transformar.substituiEspacoHifen(Transformar.retiraEspacosDuplicados(Transformar.removeAccents(uploadPlanta.getSubmittedFileName())));
                 arquivoCarregado = uploadPlanta.getInputStream();
                 caminhoArquivo = up.upload(pastaArquivar, nomeDoArquivo, arquivoCarregado);
                 nrVerArqPlanta = Integer.parseInt(req.getParameter("nrVerArqPlanta"));
@@ -64,9 +63,9 @@ public class ArquivoUpload implements Logica{
             break;
 
             case "AC":
-                pastaArquivar+="\\AC";
+                pastaArquivar+= "Arquivo"+File.separator+"AC";
                 Part uploadAC = req.getPart("UploadAC");
-                nomeDoArquivo = uploadAC.getSubmittedFileName();
+                nomeDoArquivo = Transformar.substituiEspacoHifen(Transformar.retiraEspacosDuplicados(Transformar.removeAccents(uploadAC.getSubmittedFileName())));
                 arquivoCarregado = uploadAC.getInputStream();
                 caminhoArquivo = up.upload(pastaArquivar, nomeDoArquivo, arquivoCarregado);
                 nrVerArqAc = Integer.parseInt(req.getParameter("nrVerArqAc"));
@@ -78,6 +77,7 @@ public class ArquivoUpload implements Logica{
             break;
             }
         
+                
             
             if(pkArquivo != 0){
                 ar = new Arquivo(pkArquivo, pkAutoStage, origem, tipoArquivo, nomeDoArquivo, caminhoArquivo, nome, loginSessio);
