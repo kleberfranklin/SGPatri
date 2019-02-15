@@ -11,6 +11,9 @@ function pesquisaNomeLogradouro(str) {
   
   if (deStr.length < 3 || deStr === "") { 
         document.getElementById("listaEndereco").innerHTML = "";
+        document.getElementById("pkLogradouro").disabled = false ;
+        document.getElementById("nrcep").disabled = false ;
+        document.getElementById("nmbairro").disabled = false ;
     return;
   }
   if(window.XMLHttpRequest){ //Chrome, Mozilla, ....
@@ -57,5 +60,26 @@ function pesquisaCepLogradouro(cep) {
             }
         }
 </script>
+<script>
+        function validarEndereco(){
+        var pkEnd = document.getElementById("pkLogradouro").value;
+            if(pkEnd === "" || pkEnd === null ){
+                document.getElementById("pkLogradouro").value="";
+                document.getElementById("nrcep").value="";
+                document.getElementById("nmendereco").value="";
+                document.getElementById("nmbairro").value="";
+            }
+        }
+</script>
+<script>
+        function clickEndereco(){
+            document.getElementById("pkLogradouro").value="";
+            document.getElementById("pkLogradouro").disabled = false ;
+            document.getElementById("nrcep").disabled = false ;
+            document.getElementById("nmbairro").disabled = false ;
+        }
+</script>
+    
+
 
 

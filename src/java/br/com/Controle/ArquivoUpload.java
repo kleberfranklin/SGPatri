@@ -32,15 +32,15 @@ public class ArquivoUpload implements Logica{
         HttpSession session = req.getSession();
 
         String nomeDoArquivo="", caminhoArquivo="", tipoArquivo, origem, nome, pgValidacao, execucao, finalizar, loginSessio;
-        int pkArquivo, pkAutoStage,nrVerArqAc, nrVerArqPlanta;
+        int pkArquivo, pkOrigem, pkAutoStage, nrVerArqAc, nrVerArqPlanta;
         InputStream arquivoCarregado;
                 
-        
         
         tipoArquivo = req.getParameter("tipoArquivo");
         origem = req.getParameter("Origem");
         nome = req.getParameter("nmNome");
         pkAutoStage = Integer.parseInt(req.getParameter("pkAutoStage"));
+        pkOrigem = Integer.parseInt(req.getParameter("pkOrigem"));
         pkArquivo = Integer.parseInt(req.getParameter("pkArquivo"));
         execucao = req.getParameter("execucao");
         pgValidacao = req.getParameter("pgValidacao");
@@ -49,7 +49,7 @@ public class ArquivoUpload implements Logica{
         
 
         String pasta = "/Arquivo";
-        String pastaArquivar = req.getServletContext().getRealPath(pasta);
+        String pastaArquivar = req.getServletContext().getRealPath("/");
 
 
         switch(tipoArquivo){
@@ -77,6 +77,7 @@ public class ArquivoUpload implements Logica{
             default:
             break;
             }
+        
             
             if(pkArquivo != 0){
                 ar = new Arquivo(pkArquivo, pkAutoStage, origem, tipoArquivo, nomeDoArquivo, caminhoArquivo, nome, loginSessio);

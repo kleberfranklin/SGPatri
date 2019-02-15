@@ -29,37 +29,27 @@ public class AnotacaoCroquiUC implements Logica {
             HttpServletResponse res) throws Exception {
 
 // Atributo
-    int  pkCadastroSic, fkEnderecos;
-    String cdProcesso, cdTid, cdCroqui, cdArea, cdExpediente, nmInteressado, dsAssunto, dsObservacao,
-           nmLogin, execucao;
+    int  pkAnotacaoExpediente, pkLogradouro, nrAnotacao, nrInformacao;
+    String  nmTipoExpediente, cdCroqui, cdArea, nrInformacaoDgpi, nrprocesso, tpProcesso, cdTid, dExpediente, nmInteressado, 
+            dsAssunto, nrNumeroEnd, nmCcomplementoEnd, nmReferenciaEnd, dsDespacho, dtPublicacao, dtAnotacao, 
+            dsObservacao, dtData, nmLogin, execucao;
 
 //Carregando os atributos com as informações do formulário     
-        cdProcesso = req.getParameter("cdProcesso").trim();
-        cdTid = req.getParameter("cdTid").trim();
-        cdCroqui = req.getParameter("cdCroqui").trim();
-        cdArea = req.getParameter("cdArea").trim();
-        cdExpediente = req.getParameter("cdExpediente").trim();
-        nmInteressado = req.getParameter("nmInteressado").trim();
-        dsAssunto = req.getParameter("dsAssunto").trim();
-        dsObservacao = req.getParameter("dsObservacao").trim();
-        nmLogin = req.getParameter("nmLogin").trim();
-        execucao = req.getParameter("execucao");
-        fkEnderecos = Integer.parseInt(req.getParameter("fkEnderecos"));
-//        fkUsuario = Integer.parseInt(req.getParameter("fkUsuario"));
+       
                 
 //Tratando para executar o inserir ou alterar, populando o objeto e gravando no banco   
-        if ("edit".equals(execucao)) {
-            pkCadastroSic = Integer.parseInt(req.getParameter("pkCadastroSic"));
-//                anotCroqui = new AnotacaoCroqui(pkCadastroSic, fkUsuario, fkEnderecos, nrInformacaoDgpi, cdProcesso, cdTid, cdCroqui, cdArea, cdExpediente, nmInteressado, dsAssunto, dsObservacao, nmLogin);
-//                anotCroquiDAO.upAnotacaoCroqui(anotCroqui);
-                req.setAttribute("msg", "alterou");
-
-        } else if ("insert".equals(execucao)) {
-                pkCadastroSic = Integer.parseInt(req.getParameter("pkCadastroSic"));
-//                anotCroqui = new AnotacaoCroqui(pkCadastroSic, fkUsuario, fkEnderecos, nrInformacaoDgpi, cdProcesso, cdTid, cdCroqui, cdArea, cdExpediente, nmInteressado, dsAssunto, dsObservacao, nmLogin);
-//                anotCroquiDAO.insAnotacaoCroqui(anotCroqui);
-            req.setAttribute("msg", "gravou");
-        }
+//        if ("edit".equals(execucao)) {
+//           // pkCadastroSic = Integer.parseInt(req.getParameter("pkCadastroSic"));
+////                anotCroqui = new AnotacaoCroqui(pkCadastroSic, fkUsuario, fkEnderecos, nrInformacaoDgpi, cdProcesso, cdTid, cdCroqui, cdArea, cdExpediente, nmInteressado, dsAssunto, dsObservacao, nmLogin);
+////                anotCroquiDAO.upAnotacaoCroqui(anotCroqui);
+//                req.setAttribute("msg", "alterou");
+//
+//        } else if ("insert".equals(execucao)) {
+//        //        pkCadastroSic = Integer.parseInt(req.getParameter("pkCadastroSic"));
+////                anotCroqui = new AnotacaoCroqui(pkCadastroSic, fkUsuario, fkEnderecos, nrInformacaoDgpi, cdProcesso, cdTid, cdCroqui, cdArea, cdExpediente, nmInteressado, dsAssunto, dsObservacao, nmLogin);
+////                anotCroquiDAO.insAnotacaoCroqui(anotCroqui);
+//            req.setAttribute("msg", "gravou");
+//        }
 
         return "ControllerServlet?acao=AnotacaoCroquiDetalhe&pkCadastroSic";
 

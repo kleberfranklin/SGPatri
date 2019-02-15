@@ -15,17 +15,19 @@
         <div class="main-container ace-save-state" id="main-container">
             <jsp:include page = "include/nav.jsp" />
 
-            <!--Verificação de acesso  -->
+<!--Verificação de acesso  -->
             <c:set var="acessoPerfil" value="${sessionPerfil}" />
             <jsp:directive.include file="include/ControleAcesso.jsp" />
+            
+<!-- Beans -->               
             <jsp:useBean id="expe" class= "br.com.Modelo.AnotacaoCroquiDAO"/>
 
+<!--Pegando os paremetros -->
             <c:set var="pg" value="${param.pg}" />
             <c:set var="pf" value="${param.pf}" />
             <c:set var="pi" value="${param.pi}" />
             <c:set var="qtdPg" value="${param.qtdPg}" />
             <c:set var="totalRes" value="${param.totalRes}" />
-
             <c:set var="qCroqui" value="${param.qCroqui}" />
             <c:set var="qArea" value="${param.qArea}" />
             <c:set var="qNome" value="${param.qNome}" />
@@ -34,6 +36,7 @@
             <c:set var="qAssunto" value="${param.qAssunto}" />
             <c:set var="dtIni" value="${param.dtIni}" />
             <c:set var="dtFim" value="${param.dtFim}" />
+            
 
             <div class="breadcrumbs ace-save-state" id="breadcrumbs">
                 <ul class="breadcrumb">
@@ -65,8 +68,8 @@
                                     <select name="qNome" placeholder="" class="col-sm-5 col-xs-12" >
                                         <option></option>
                                         <c:forEach var="lis" items="${expe.listNome()}">
-                                            <c:if test="${lis.nmNome != ''}">
-                                                <option>${lis.nmNome}</option>
+                                            <c:if test="${lis.nmAutor != ''}">
+                                                <option>${lis.nmAutor}</option>
                                             </c:if>
                                         </c:forEach>
                                     </select>
@@ -130,7 +133,7 @@
                                     <th>Processo</th>
                                     <th class="hidden-480">Assunto </th>
                                     <th class="hidden-480">Interessado </th>
-                                    <th class="hidden-480">Autor </th>
+                                    <th colspan="2" class="hidden-480">Autor </th>
                                 </tr>
                             </thead>
 
@@ -143,10 +146,21 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <c:set var = "dt" value = "${lcroqui.dtData}" />
-                                            <fmt:parseDate value = "${dt}" var="converteDT" pattern="yyyy-MM-dd" />
-                                            <fmt:formatDate type= "date" value="${converteDT}" var="dtAtu"/>
-                                            <c:out value="${dtAtu}"/>
+                                            <c:set var="hoje" value="<%= new java.util.Date()%>" />
+                                            <c:set var="dt" value = "${lcroqui.dtData}" />
+                                            <fmt:parseDate var="converteDT" value="${dt}" pattern="yyyy-MM-dd" />
+                                            <fmt:formatDate var="dtAtu" value="${converteDT}" type= "date" />
+                                            <c:choose>
+                                                <c:when test="${converteDT gt hoje }">
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <c:out value="${dtAtu}"/>   
+                                                </c:otherwise>
+                                            </c:choose>
+                                            
                                         </td>         
                                         <td title="${lcroqui.cdCroqui}">
                                             <c:choose >
@@ -211,18 +225,27 @@
                                             </c:choose>
                                         </td>
 
-                                        <td class="hidden-480" title="${lcroqui.nmNome}">
+                                        <td class="hidden-480" title="${lcroqui.nmAutor}">
                                             <c:choose >
-                                                <c:when test="${lcroqui.nmNome.length() > 10 }">
-                                                    ${lcroqui.nmNome.substring(0,10)}...
+                                                <c:when test="${lcroqui.nmAutor.length() > 10 }">
+                                                    ${lcroqui.nmAutor.substring(0,10)}...
                                                 </c:when>
 
                                                 <c:otherwise>
-                                                    ${lcroqui.nmNome}
+                                                    ${lcroqui.nmAutor}
                                                 </c:otherwise>
                                             </c:choose>
-                                        </td>  
-
+                                        </td>
+                                        <c:if  test="${sessionSgDivisao == 'DIPI' &&  sessionSgSetor == 'SIC'}">
+                                            <td>
+                                                <div class="hidden-sm hidden-xs btn-group">
+                                                    <button class="btn btn-xs btn-info"  onclick="location.href='ControllerServlet?acao=AnotacaoCroquiDetalhe&pkAnotacaoExpediente=${lcroqui.pkAnotacaoExpediente}&pg=${pg}&pi=${pi}&pf=${pf}&qCroqui=${qCroqui}&qArea=${qArea}&qInteressado=${qInteressado}&qNome=${qNome}&qEndereco=${qEndereco}&qAssunto=${qAssunto}&dtIni=${dtIni}&dtFim=${dtFim}&execucao=edit'">
+                                                        <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                                        Editar
+                                                    </button>                                                                                                                                
+                                                </div>
+                                            </td>
+                                        </c:if>  
                                     </tr>
                                 </tbody>
                             </c:forEach>

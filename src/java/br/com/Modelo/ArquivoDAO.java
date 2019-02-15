@@ -112,7 +112,6 @@ public class ArquivoDAO {
                 arquivo.setNmOrigem(rs.getString("nm_origem"));
                 arquivo.setNmTipo(rs.getString("nm_tipo"));
                 arquivo.setNmNome(rs.getString("nm_nome"));
-                arquivo.setNmDiretorio(rs.getString("nm_diretorio"));
             }       
             stmt.close();                                                                                                                                                                
         return arquivo;

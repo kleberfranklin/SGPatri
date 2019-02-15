@@ -22,6 +22,7 @@
 
 <!-- Beans -->        
         <jsp:useBean id="subPref" class= "br.com.Modelo.SubPrefeituraDAO" />
+        <jsp:useBean id="Arquivo" class= "br.com.Modelo.ArquivoDAO" />
 
 <!--Include ação ajax e javaScritp -->        
         <jsp:include page = "javaScritp/maskProcesso.html" />
@@ -43,689 +44,765 @@
         <c:set var="dtFim" value="${param.dtFim}" />
            
 
-            <div class="breadcrumbs ace-save-state" id="breadcrumbs">
-                <ul class="breadcrumb">
-                    <li><i class="ace-icon fa fa-list"></i> Anotação Croqui</li>
-                </ul>
-            </div>    
-            <div class="page-content" >
-                <div id="" class="specific-block"></div>    
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="col-sm-offset-1 col-sm-10">
-                            <h2>Anotação Croqui</h2>
-                            <div class="space-14"></div>
-                            <div class="form-horizontal">
-                                <div class="tabbable">
-                                    <ul class="nav nav-tabs padding-0">
-                                        <li class="active">
-                                            <a data-toggle="tab" href="#cad-croqui" aria-expanded="true">
-                                                Anotação Croqui
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content profile-edit-tab-content" >
-                                    
-                <!--Inicio da tab-pane Cadastro Croqui-->
-                                        <div id="cad-croqui" class="tab-pane in active"  >
-                                            <form action="ControllerServlet?acao=AnotacaoCroquiUC" method="POST" >
-                                                <input type="hidden" name="pkAnotacaoExpediente" value="${anotCroqui.pkAnotacaoExpediente}" />
-                                                <input type="hidden" name="execucao" value="${execucao}" />
-                                                <h4 class="header smaller lbl "><strong>Cadastro Croqui</strong></h4>
+        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <li><i class="ace-icon fa fa-list"></i> Anotação Croqui</li>
+            </ul>
+        </div>    
+        <div class="page-content" >
+            <div id="" class="specific-block"></div>    
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="col-sm-offset-1 col-sm-10">
+                        <h2>Anotação Croqui</h2>
+                        <div class="space-14"></div>
+                        <div class="form-horizontal">
+                            <div class="tabbable">
+                                <ul class="nav nav-tabs padding-0">
+                                    <li class="active">
+                                        <a data-toggle="tab" href="#cad-croqui" aria-expanded="true">
+                                            Anotação Croqui
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a data-toggle="tab" href="#doc-anexo" aria-expanded="true">
+                                            Documentos Anexo
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content profile-edit-tab-content" >
 
-                                                <div class="form-group">
-                                                    <div class="inline col-sm-2 col-xs-12"
-                                                         <span class="lbl"><strong>Coqui:</strong></span>
-                                                    </div>
+                                <!--Inicio da tab-pane Cadastro Croqui-->
+                                    <div id="cad-croqui" class="tab-pane in active"  >
+                                        <form action="ControllerServlet?acao=AnotacaoCroquiUC" method="POST" >
+                                            <input type="hidden" name="pkAnotacaoExpediente" value="${anotCroqui.pkAnotacaoExpediente}" />
+                                            <input type="hidden" name="execucao" value="${execucao}" />
+                                            <h4 class="header smaller lbl "><strong>Cadastro Croqui</strong></h4>
 
-                                                    <label class="col-sm-3 col-xs-12">
-                                                        <c:choose>
-                                                            <c:when test="${execucao == 'edit'}">
-                                                                <input type="text" class="col-sm-6 col-xs-12" name="cdCroqui" value="${anotCroqui.cdCroqui}" placeholder="Código Croqui" required="required">
-                                                            </c:when>
-                                                            <c:when test="${execucao == 'insert'}">
-                                                                <input type="text" class="col-sm-6 col-xs-12" name="cdCroqui" placeholder="Código Croqui" required="required" >
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <span class="lbl">${anotCroqui.cdCroqui}</span> 
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                    </label>
-                                                    <label class="col-sm-1 col-xs-12">
-                                                        <span class = "lbl"><strong>Área:</strong></span>
-                                                    </label>
-                                                    <label class="col-sm-3 col-xs-12">
-                                                        <c:choose>
-                                                            <c:when test="${execucao == 'edit'}">
-                                                                    <input type="text" class="col-sm-7 col-xs-12" name="cdArea" value="${anotCroqui.cdArea}" placeholder="Código da Área" required="required">
-                                                            </c:when>
-                                                            <c:when test="${execucao == 'insert'}">
-                                                                <input type="text" class="col-sm-7 col-xs-12" name="cdArea" placeholder="Código da Área" required="required" >
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <span class="lbl">${anotCroqui.cdArea}</span> 
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                    </label>                                                   
+                                            <div class="form-group">
+                                                <div class="inline col-sm-2 col-xs-12"
+                                                     <span class="lbl"><strong>Coqui:</strong></span>
                                                 </div>
 
-                                                <div class="space-1"></div>
-
-                                                <div class="form-group">
-                                                    <div class="inline col-sm-2 col-xs-12">
-                                                        <span class="lbl"><strong>Nº Informação DGPI: </strong></span>
-                                                    </div>
-                                                    <label class="col-sm-6 col-xs-12">
-                                                        <c:choose>
-                                                            <c:when test="${execucao == 'edit'}">
-                                                                <input type="text" class="col-sm-5 col-xs-12" name="nrInformacaoDgpi" value="${anotCroqui.nrInformacaoDgpi}" placeholder="Nº Informação DGPI" required="required"  >
-                                                            </c:when>
-                                                            <c:when test="${execucao == 'insert'}">
-                                                                <input type="text" class="col-sm-5 col-xs-12"  name="nrInformacaoDgpi"  placeholder="Nº Informação DGPI" required="required"  >
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <span class="lbl">${anotCroqui.nrInformacaoDgpi}</span> 
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                    </label>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="inline col-md-2 col-xs-12">
-                                                        <span class="lbl"><strong>Nº Processo:</strong></span>
-                                                    </label>
-                                                    
-                                                        <c:choose>
-                                                            <c:when test="${execucao == 'edit'}">
-                                                                <label class="inline col-md-3 col-xs-12">
-                                                                    <input type="text"  class="col-xs-12 col-md-12" name="nrprocesso" id="nrprocesso" value="${anotCroqui.cdProcesso}" placeholder="nº do processo"  required="required"  onKeyPress="return somenteNum(event);"  >
-                                                                </label>
-                                                                <label class="col-xs-12 col-md-1">
-                                                                    <input name="tpProcesso" id="sei" value="SEI" type="radio" class="ace" onclick="maskProcesso();">
-                                                                    <span class="lbl"><strong> SEI</strong></span>
-                                                                </label>
-                                                                <label class="col-xs-12 col-md-1">
-                                                                    <input name="tpProcesso" id="pa" value="PA" type="radio" class="ace" onclick="maskProcesso();">
-                                                                    <span class="lbl"><strong> P.A.</strong></span>
-                                                                </label>
-                                                                <label class="col-xs-12 col-md-1">
-                                                                    <input name="tpProcesso" id="tid" value="TID" type="radio" class="ace" onclick="maskProcesso();">
-                                                                    <span class="lbl"><strong> TID</strong></span>
-                                                                </label>
-                                                                <label class="col-xs-12 col-md-1">
-                                                                    <input name="tpProcesso" id="cid" value="CID" type="radio" class="ace" onclick="maskProcesso();">
-                                                                    <span class="lbl"><strong> CID</strong></span>
-                                                                </label>
-                                                                <label class="col-xs-12 col-md-3">
-                                                                    <span id="msgProcesso"></span>
-                                                                </label> 
-                                                            </c:when>
-                                                            <c:when test="${execucao == 'insert'}">
-                                                                <label class="inline col-md-3 col-xs-12">
-                                                                    <input type="text"  class="col-xs-12 col-md-12" name="nrprocesso" id="nrprocesso"  placeholder="nº do processo" required="required"  onKeyPress="return somenteNum(event);"  >
-                                                                </label>
-                                                                <label class="col-xs-12 col-md-1">
-                                                                    <input name="tpProcesso" id="sei" value="SEI" type="radio" class="ace" onclick="maskProcesso();">
-                                                                    <span class="lbl"><strong> SEI</strong></span>
-                                                                </label>
-                                                                <label class="col-xs-12 col-md-1">
-                                                                    <input name="tpProcesso" id="pa" value="PA" type="radio" class="ace" onclick="maskProcesso();">
-                                                                    <span class="lbl"><strong> P.A.</strong></span>
-                                                                </label>
-                                                                <label class="col-xs-12 col-md-1">
-                                                                    <input name="tpProcesso" id="tid" value="TID" type="radio" class="ace" onclick="maskProcesso();">
-                                                                    <span class="lbl"><strong> TID</strong></span>
-                                                                </label>
-                                                                <label class="col-xs-12 col-md-1">
-                                                                    <input name="tpProcesso" id="cid" value="CID" type="radio" class="ace" onclick="maskProcesso();">
-                                                                    <span class="lbl"><strong> CID</strong></span>
-                                                                </label>
-                                                                <label class="col-xs-12 col-md-3">
-                                                                    <span id="msgProcesso"></span>
-                                                                </label>    
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <label class="inline col-md-10 col-xs-12">
-                                                                    <span class="lbl">${anotCroqui.cdProcesso}</span>
-                                                                </label>
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                   
-                                                    
-                                                </div>
-
-                                                <div class="space-1"></div>
-                                                <div class="form-group">
-                                                    <div class="inline col-sm-2 col-xs-12">
-                                                        <span class="lbl"><strong>Nº Tid: </strong></span>
-                                                    </div>
-                                                    <label class="col-sm-6 col-xs-12">
-                                                        <c:choose>
-                                                            <c:when test="${execucao == 'edit'}">
-                                                                <input type="text" class="col-sm-5 col-xs-12" name="cdTid" value="${anotCroqui.cdTid}" placeholder="Nº Informação DGPI" required="required"  >
-                                                            </c:when>
-                                                            <c:when test="${execucao == 'insert'}">
-                                                                <input type="text" class="col-sm-5 col-xs-12"  name="cdTid"  placeholder="Nº do Tid" required="required"  >
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <span class="lbl">${anotCroqui.cdTid}</span> 
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                    </label>
-                                                </div>
-                                                
-                                                <div class="space-1"></div>
-
-                                                <div class="form-group">
-                                                    <div class="inline col-sm-2 col-xs-12">
-                                                        <span class="lbl"><strong>Nº de Expediente:</strong></span>
-                                                    </div>
-
-                                                    <label class="inline col-sm-6 col-xs-12" >
-                                                        <c:choose>
-                                                            <c:when test="${execucao == 'edit'}">
-                                                                <input type="text" class="col-sm-5 col-xs-12"  name="cdExpediente" value="${anotCroqui.cdExpediente}" placeholder="Nº Expediente" required="required" >
-                                                            </c:when>
-                                                            <c:when test="${execucao == 'insert'}">
-                                                                <input type="text" class="col-sm-5 col-xs-12"  name="cdExpediente" placeholder="Nº Expediente" required="required" >
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <span class="lbl">${anotCroqui.cdExpediente}</span> 
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                    </label>
-                                                </div>
-
-                                                <div class="space-1"></div>
-
-                                                <div class="form-group">
-                                                    <div class="inline col-sm-2 col-xs-12">
-                                                        <span class="lbl"><strong>Interessado:</strong></span>
-                                                    </div>
-
-                                                    <label class="col-sm-8 col-xs-12">
-                                                        <c:choose>
-                                                            <c:when test="${execucao == 'edit'}">
-                                                                <input type="text" class="col-sm-8 col-xs-12"  name="nmInteressado" value="${anotCroqui.nmInteressado}" placeholder="Nome do Interessado" required="required" >
-                                                            </c:when>
-                                                            <c:when test="${execucao == 'insert'}">
-                                                                <input type="text" class="col-sm-8 col-xs-12"  name="nmInteressado" placeholder="Nome do Interessado" required="required" >
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <span class="lbl">${anotCroqui.nmInteressado}</span> 
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                    </label>
-                                                </div>
-
-                                                <div class="space-1"></div>
-
-                                                <div class="form-group">
-                                                    <div class="inline col-sm-2 col-xs-12">
-                                                        <span class="lbl"><strong>Assunto:</strong></span>
-                                                    </div>
-
-                                                    <label class="col-sm-8 col-xs-12">
-                                                        <c:choose>
-                                                            <c:when test="${execucao == 'edit'}">
-                                                                <input type="text" class="col-sm-10 col-xs-12"  name="dsAssunto" value="${anotCroqui.dsAssunto}" placeholder="Descrição do assunto" required="required" >
-                                                            </c:when>
-                                                            <c:when test="${execucao == 'insert'}">
-                                                                <input type="text" class="col-sm-10 col-xs-12"  name="dsAssunto" placeholder="Descrição do assunto" required="required" >
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <span class="lbl">${anotCroqui.dsAssunto}</span> 
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                    </label>
-                                                </div>
-
-                                                <div class="space-1"></div>
-
-                                                <c:choose>
-                                                    <c:when test="${execucao == 'edit'}">
-                                                        <div class="form-group">
-                                                            <label class="inline col-md-2 col-xs-12" >
-                                                                <span class="lbl"><strong>CEP</strong></span>
-                                                            </label>
-                                                            <label class="inline col-md-10 col-xs-12" >
-                                                                <input type="hidden" name="pkLogradouro" id="pkLogradouro">
-                                                                <input type="text" class="col-xs-12 col-md-2" name="nrcep" id="nrcep"  placeholder="nº do CEP">
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="inline col-md-2 col-xs-12" >
-                                                                <span class="lbl"><strong>Endereço:</strong></span>
-                                                            </label>
-                                                            <label class="inline col-md-10 col-xs-12" >
-                                                                <input type="text" class="col-xs-12 col-md-8" name="nmendereco" id="nmendereco" onkeyup="pesquisaNomeLogradouro(this.value)" placeholder="nome do endereço" required="required" >
-                                                                <div id="listaEndereco" style="padding-top:35px"></div>
-                                                            </label>
-                                                        </div>
-                                                        <div class="space-1"></div>
-
-                                                        <div class="form-group">
-                                                            <label class="inline col-md-2 col-xs-12" >
-                                                                <span class="lbl"><strong>número:</strong></span>
-                                                            </label>
-                                                            <label class="inline col-md-2 col-xs-12" >
-                                                                <input type="text" class="col-xs-12 col-md-12" name="nrnumeroend" id="nrnumeroend" placeholder="nº">
-                                                            </label>
-                                                            <label class="inline col-md-2 col-xs-12" >
-                                                                <span class="lbl"><strong>Complemento:</strong></span>
-                                                            </label>
-                                                            <label class="inline col-md-3 col-xs-12" >
-                                                                <input type="text" class="col-xs-12 col-md-12" name="nmcomplementoend" id="nmcomplementoend" placeholder="complemento do endereço" >
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="inline col-md-2 col-xs-12" >
-                                                                <span class="lbl"><strong>Bairro:</strong></span>
-                                                            </label>
-                                                            <label class="inline col-md-10 col-xs-12" >
-                                                                <input type="text" class="col-xs-12 col-md-5" name="nmbairro" id="nmbairro" placeholder="nome do bairro">
-                                                            </label>
-                                                        </div>
-                                                        <div class="space-1"></div>
-
-                                                        <div class="form-group">
-                                                            <label class="inline col-md-2 col-xs-12" >  
-                                                                <span class="lbl"><strong>Referência:</strong></span>
-                                                            </label>
-                                                            <label class="inline col-md-8 col-xs-12" >
-                                                                <input type="text" class="col-xs-12 col-md-12" name="nmreferenciaend" id="nmreferenciaend" placeholder="referencia do endereço" >
-                                                            </label>
-                                                        </div>    
+                                                <label class="col-sm-3 col-xs-12">
+                                                    <c:choose>
+                                                        <c:when test="${execucao == 'edit'}">
+                                                            <input type="text" class="col-sm-6 col-xs-12" name="cdCroqui" value="${anotCroqui.cdCroqui}" placeholder="Código Croqui" required="required">
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
-                                                            <div class="form-group">
-                                                                <label class="inline col-md-2 col-xs-12" >
-                                                                    <span class="lbl"><strong>CEP</strong></span>
-                                                                </label>
-                                                                <label class="inline col-md-10 col-xs-12" >
-                                                                    <input type="hidden" name="pkLogradouro" id="pkLogradouro">
-                                                                    <input type="text" class="col-xs-12 col-md-2" name="nrcep" id="nrcep"  placeholder="nº do CEP">
-                                                                </label>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label class="inline col-md-2 col-xs-12" >
-                                                                    <span class="lbl"><strong>Endereço:</strong></span>
-                                                                </label>
-                                                                <label class="inline col-md-10 col-xs-12" >
-                                                                    <input type="text" class="col-xs-12 col-md-8" name="nmendereco" id="nmendereco" onkeyup="pesquisaNomeLogradouro(this.value)" placeholder="nome do endereço" required="required" >
-                                                                    <div id="listaEndereco" style="padding-top:35px"></div>
-                                                                </label>
-                                                            </div>
-                                                            <div class="space-1"></div>
-
-                                                            <div class="form-group">
-                                                                <label class="inline col-md-2 col-xs-12" >
-                                                                    <span class="lbl"><strong>número:</strong></span>
-                                                                </label>
-                                                                <label class="inline col-md-2 col-xs-12" >
-                                                                    <input type="text" class="col-xs-12 col-md-12" name="nrnumeroend" id="nrnumeroend" placeholder="nº">
-                                                                </label>
-                                                                <label class="inline col-md-2 col-xs-12" >
-                                                                    <span class="lbl"><strong>Complemento:</strong></span>
-                                                                </label>
-                                                                <label class="inline col-md-3 col-xs-12" >
-                                                                    <input type="text" class="col-xs-12 col-md-12" name="nmcomplementoend" id="nmcomplementoend" placeholder="complemento do endereço" >
-                                                                </label>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label class="inline col-md-2 col-xs-12" >
-                                                                    <span class="lbl"><strong>Bairro:</strong></span>
-                                                                </label>
-                                                                <label class="inline col-md-10 col-xs-12" >
-                                                                    <input type="text" class="col-xs-12 col-md-5" name="nmbairro" id="nmbairro" placeholder="nome do bairro">
-                                                                </label>
-                                                            </div>
-                                                            <div class="space-1"></div>
-
-                                                            <div class="form-group">
-                                                                <label class="inline col-md-2 col-xs-12" >  
-                                                                    <span class="lbl"><strong>Referência:</strong></span>
-                                                                </label>
-                                                                <label class="inline col-md-8 col-xs-12" >
-                                                                    <input type="text" class="col-xs-12 col-md-12" name="nmreferenciaend" id="nmreferenciaend" placeholder="referencia do endereço" >
-                                                                </label>
-                                                            </div>    
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                            <div class="form-group">
-                                                                <label class="inline col-md-2 col-xs-12" >
-                                                                    <span class="lbl"><strong>CEP</strong></span>
-                                                                </label>
-                                                                <label class="inline col-md-10 col-xs-12" >
-                                                                     <span class="lbl">Txt</span> 
-                                                                </label>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label class="inline col-md-2 col-xs-12" >
-                                                                    <span class="lbl"><strong>Endereço:</strong></span>
-                                                                </label>
-                                                                <label class="inline col-md-10 col-xs-12" >
-                                                                    <span class="lbl">Txt</span> 
-                                                                </label>
-                                                            </div>
-                                                            <div class="space-1"></div>
-
-                                                            <div class="form-group">
-                                                                <label class="inline col-md-2 col-xs-12" >
-                                                                    <span class="lbl"><strong>número:</strong></span>
-                                                                </label>
-                                                                <label class="inline col-md-2 col-xs-12" >
-                                                                    <span class="lbl">Txt</span> 
-                                                                </label>
-                                                                    
-                                                                <label class="inline col-md-2 col-xs-12" >
-                                                                    <span class="lbl"><strong>Complemento:</strong></span>
-                                                                </label>
-                                                                <label class="inline col-md-3 col-xs-12">    
-                                                                    <span class="lbl">Txt</span> 
-                                                                </label>    
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label class="inline col-md-2 col-xs-12" >
-                                                                    <span class="lbl"><strong>Bairro:</strong></span>
-                                                                </label>
-                                                                <label class="inline col-md-10 col-xs-12" >
-                                                                    <span class="lbl">Txt</span> 
-                                                                </label>    
-                                                            </div>
-                                                            <div class="space-1"></div>
-
-                                                            <div class="form-group">
-                                                                <label class="inline col-md-2 col-xs-12" >  
-                                                                    <span class="lbl"><strong>Referência:</strong></span>
-                                                                </label>
-                                                                <label class="inline col-md-8 col-xs-12" >
-                                                                    <span class="lbl">${anotCroqui.nmReferenciaEndereco}</span> 
-                                                                </label>
-                                                                
-                                                            </div> 
-                                                                
-                                                            </c:otherwise>
-                                                        </c:choose>                
-                                                
-                                                        
-                                                <div class="space-1"></div>
-
-                                        <div class="form-group">
-                                            <div class="inline col-sm-2 col-xs-12">
-                                                <span class="lbl"><strong>Anotação:</strong></span>
+                                                            <input type="text" class="col-sm-6 col-xs-12" name="cdCroqui" placeholder="Código Croqui" required="required" >
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <span class="lbl">${anotCroqui.cdCroqui}</span> 
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </label>
+                                                <label class="col-sm-1 col-xs-12">
+                                                    <span class = "lbl"><strong>Área:</strong></span>
+                                                </label>
+                                                <label class="col-sm-3 col-xs-12">
+                                                    <c:choose>
+                                                        <c:when test="${execucao == 'edit'}">
+                                                            <input type="text" class="col-sm-7 col-xs-12" name="cdArea" value="${anotCroqui.cdArea}" placeholder="Código da Área" maxlength="4" required="required">
+                                                        </c:when>
+                                                        <c:when test="${execucao == 'insert'}">
+                                                            <input type="text" class="col-sm-7 col-xs-12" name="cdArea" placeholder="Código da Área" required="required" maxlength="4" required="required" >
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <span class="lbl">${anotCroqui.cdArea}</span> 
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </label>                                                   
                                             </div>
 
-                                            <label class="col-sm-2 col-xs-12" >
+                                            <div class="space-1"></div>
+
+                                            <div class="form-group">
+                                                <div class="inline col-sm-2 col-xs-12">
+                                                    <span class="lbl"><strong>Nº Informação DGPI: </strong></span>
+                                                </div>
+                                                <label class="col-sm-6 col-xs-12">
+                                                    <c:choose>
+                                                        <c:when test="${execucao == 'edit'}">
+                                                            <input type="text" class="col-sm-8 col-xs-12" name="nrInformacaoDgpi" value="${anotCroqui.nrInformacaoDgpi}" placeholder="Nº Informação DGPI" required="required"  >
+                                                        </c:when>
+                                                        <c:when test="${execucao == 'insert'}">
+                                                            <input type="text" class="col-sm-8 col-xs-12"  name="nrInformacaoDgpi"  placeholder="Nº Informação DGPI" required="required"  >
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <span class="lbl">${anotCroqui.nrInformacaoDgpi}</span> 
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="inline col-md-2 col-xs-12">
+                                                    <span class="lbl"><strong>Nº Processo:</strong></span>
+                                                </label>
+
                                                 <c:choose>
                                                     <c:when test="${execucao == 'edit'}">
-                                                        <c:choose>
-                                                            <c:when test="${anotCroqui.nrAnotacao == '1'}">
-                                                                <label class="pull-left inline">
-                                                                    <input id="id-button-borders"  type="checkbox" id="" name="nrvigor" value="true" class="ace ace-switch ace-switch-5"  >
-                                                                    <span class="lbl middle"></span>
-                                                                </label>
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <label class="pull-left inline">
-                                                                    <input id="id-button-borders"  type="checkbox" id="" name="nrvigor" value="true" checked="" class="ace ace-switch ace-switch-5"  >
-                                                                    <span class="lbl middle"></span>
-                                                                </label>
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                    </c:when>
-                                                    <c:when test="${execucao == 'insert'}">
-                                                        <label class="pull-left inline">
-                                                            <input id="id-button-borders"  type="checkbox" id="" name="nrAnotacao" value="true" class="ace ace-switch ace-switch-5"  >
-                                                            <span class="lbl middle"></span>
+                                                        <label class="inline col-md-3 col-xs-12">
+                                                            <input type="text"  class="col-xs-12 col-md-12" name="nrprocesso" id="nrprocesso" value="${anotCroqui.cdProcesso}" placeholder="nº do processo"  required="required"    >
                                                         </label>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <c:choose>
-                                                            <c:when test="${anotCroqui.nrAnotacao == 1}">
-                                                                <span class="label label-success arrowed" title="SIM">
-                                                                    <i class="ace-icon fa fa-check bigger-120"></i>
-                                                                    Sim
-                                                                </span>
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <span class="label label-danger arrowed" title="NÃO">
-                                                                    <i class="ace-icon fa fa-ban bigger-120"></i>
-                                                                    Não
-                                                                </span>
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </label>
-
-                                            <label class="col-sm-2 col-xs-12" >  
-                                                <span class="lbl"><strong>Informação:</strong></span>
-                                            </label>                
-
-                                            <label class="col-sm-3 col-xs-12" >                                                  
-                                                <c:choose>
-                                                    <c:when test="${execucao == 'edit'}">
-                                                        <c:choose>
-                                                            <c:when test="${anotCroqui.nrInformacao == '1'}">
-                                                                <label class="pull-left inline">
-                                                                    <input id="id-button-borders"  type="checkbox" id="" name="nrvigor" value="true" class="ace ace-switch ace-switch-5"  >
-                                                                    <span class="lbl middle"></span>
-                                                                </label>
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <label class="pull-left inline">
-                                                                    <input id="id-button-borders"  type="checkbox" id="" name="nrvigor" value="true" checked="" class="ace ace-switch ace-switch-5"  >
-                                                                    <span class="lbl middle"></span>
-                                                                </label>
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                    </c:when>
-                                                    <c:when test="${execucao == 'insert'}">
-                                                        <label class="pull-left inline">
-                                                            <input id="id-button-borders"  type="checkbox" id="" name="nrAnotacao" value="true" class="ace ace-switch ace-switch-5"  >
-                                                            <span class="lbl middle"></span>
+                                                        <label class="col-xs-12 col-md-1">
+                                                            <input name="tpProcesso" id="sei" value="SEI" type="radio" class="ace" onclick="maskProcesso();" required="required">
+                                                            <span class="lbl"><strong> SEI</strong></span>
                                                         </label>
+                                                        <label class="col-xs-12 col-md-1">
+                                                            <input name="tpProcesso" id="pa" value="PA" type="radio" class="ace" onclick="maskProcesso();">
+                                                            <span class="lbl"><strong> P.A.</strong></span>
+                                                        </label>
+                                                        <label class="col-xs-12 col-md-1">
+                                                            <input name="tpProcesso" id="cid" value="CID" type="radio" class="ace" onclick="maskProcesso();">
+                                                            <span class="lbl"><strong> CID</strong></span>
+                                                        </label>
+                                                        <label class="col-xs-12 col-md-3">
+                                                            <span id="msgProcesso"></span>
+                                                        </label> 
+                                                    </c:when>
+                                                    <c:when test="${execucao == 'insert'}">
+                                                        <label class="inline col-md-3 col-xs-12">
+                                                            <input type="text"  class="col-xs-12 col-md-12" name="nrprocesso" id="nrprocesso"  placeholder="nº do processo" required="required"  onKeyPress="return somenteNum(event);"  >
+                                                        </label>
+                                                        <label class="col-xs-12 col-md-1">
+                                                            <input name="tpProcesso" id="sei" value="SEI" type="radio" class="ace" onclick="maskProcesso();" required="required">
+                                                            <span class="lbl"><strong> SEI</strong></span>
+                                                        </label>
+                                                        <label class="col-xs-12 col-md-1">
+                                                            <input name="tpProcesso" id="pa" value="PA" type="radio" class="ace" onclick="maskProcesso();">
+                                                            <span class="lbl"><strong> P.A.</strong></span>
+                                                        </label>
+                                                        <label class="col-xs-12 col-md-1">
+                                                            <input name="tpProcesso" id="cid" value="CID" type="radio" class="ace" onclick="maskProcesso();">
+                                                            <span class="lbl"><strong> CID</strong></span>
+                                                        </label>
+                                                        <label class="col-xs-12 col-md-3">
+                                                            <span id="msgProcesso"></span>
+                                                        </label>    
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <c:choose>
-                                                            <c:when test="${'1' == anotCroqui.nrInformacao}">
-                                                                <span class="label label-success arrowed" title="SIM">
-                                                                    <i class="ace-icon fa fa-check bigger-120"></i>
-                                                                    Sim
-                                                                </span>
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <span class="label label-danger arrowed" title="NÃO">
-                                                                    <i class="ace-icon fa fa-ban bigger-120"></i>
-                                                                    Não
-                                                                </span>
-                                                            </c:otherwise>
-                                                        </c:choose>
+                                                        <label class="inline col-md-10 col-xs-12">
+                                                            <span class="lbl">${anotCroqui.cdProcesso}</span>
+                                                        </label>
                                                     </c:otherwise>
                                                 </c:choose>
-                                            </label>
-                                        </div>
 
-                                        <div class="space-1"></div>
 
-                                        <div class="form-group">
-                                            <div class="inline col-sm-2 col-xs-12">
-                                                <span class="lbl"><strong>Despacho:</strong></span>
                                             </div>
-                                            <label class="inline col-sm-8 col-xs-12" >
-                                                <c:choose>
-                                                    <c:when test="${execucao == 'edit'}">
-                                                        <input type="text" id="form-field-1" class="col-sm-10 col-xs-12"  name="cdExpediente" 
-                                                               value="${anotCroqui.dsDespacho}" placeholder="Escrever o despacho" required="required" >
-                                                    </c:when>
-                                                    <c:when test="${execucao == 'insert'}">
-                                                        <input type="text" id="form-field-1" class="col-sm-10 col-xs-12"  name="cdExpediente" 
-                                                               placeholder="Escrever o despacho" required="required" >
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <span class="lbl">${anotCroqui.dsDespacho}</span> 
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </label>
-                                        </div>
 
-                                        <div class="space-1"></div>
-
-                                        <div class="form-group">
-                                            <div class="inline col-sm-2 col-xs-12">
-                                                <span class="lbl"><strong>Publicado no DOM:</strong></span>
+                                            <div class="space-1"></div>
+                                            <div class="form-group">
+                                                <div class="inline col-sm-2 col-xs-12">
+                                                    <span class="lbl"><strong>Nº Tid: </strong></span>
+                                                </div>
+                                                <label class="col-sm-6 col-xs-12">
+                                                    <c:choose>
+                                                        <c:when test="${execucao == 'edit'}">
+                                                            <input type="text" class="col-sm-5 col-xs-12" name="cdTid" value="${anotCroqui.cdTid}" placeholder="Nº do Tid" required="required" onKeyPress="return somenteNum(event);"  >
+                                                        </c:when>
+                                                        <c:when test="${execucao == 'insert'}">
+                                                            <input type="text" class="col-sm-5 col-xs-12"  name="cdTid"  placeholder="Nº do Tid" required="required"  onKeyPress="return somenteNum(event);" >
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <span class="lbl">${anotCroqui.cdTid}</span> 
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </label>
                                             </div>
-                                            <label class="inline col-sm-6 col-xs-12" >
-                                                <c:choose>
-                                                    <c:when test="${execucao == 'edit'}">
-                                                        <c:set var = "dtPubli" value = "${anotCroqui.dtPublicacao}" />
-                                                        <fmt:parseDate value = "${dtPubli}" var = "converteDTPlub" pattern="yyyy-MM-dd" />
-                                                        <fmt:formatDate type= "date" value="${converteDTPlub}" var="dtAtuPubli"/>
-                                                        <input type="date" id="form-field-1" class="col-sm-4 col-xs-12"  name="cdExpediente" 
-                                                               value="${dtAtuPubli}" placeholder="" required="required" >
-                                                    </c:when>
-                                                    <c:when test="${execucao == 'insert'}">
-                                                        <input type="date" id="form-field-1" class="col-sm-4 col-xs-12"  name="cdExpediente" 
-                                                               placeholder="" required="required" >
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <c:set var = "dtPubli" value = "${anotCroqui.dtPublicacao}" />
-                                                        <fmt:parseDate value = "${dtPubli}" var = "converteDTPlub" pattern="yyyy-MM-dd" />
-                                                        <fmt:formatDate type= "date" value="${converteDTPlub}" var="dtAtuPubli"/>
-                                                        <span class="lbl">${dtAtuPubli}</span> 
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </label>
-                                        </div>
 
-                                        <div class="space-1"></div>
+                                            <div class="space-1"></div>
 
-                                        <div class="form-group">
-                                            <div class="inline col-sm-2 col-xs-12">
-                                                <span class="lbl"><strong>Data de Tramitação:</strong></span>
+                                            <div class="form-group">
+                                                <div class="inline col-sm-2 col-xs-12">
+                                                    <span class="lbl"><strong>Nº de Expediente:</strong></span>
+                                                </div>
+
+                                                <label class="inline col-sm-6 col-xs-12" >
+                                                    <c:choose>
+                                                        <c:when test="${execucao == 'edit'}">
+                                                            <input type="text" class="col-sm-8 col-xs-12"  name="cdExpediente" value="${anotCroqui.cdExpediente}" placeholder="Nº Expediente" required="required" >
+                                                        </c:when>
+                                                        <c:when test="${execucao == 'insert'}">
+                                                            <input type="text" class="col-sm-8 col-xs-12"  name="cdExpediente" placeholder="Nº Expediente" required="required" >
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <span class="lbl">${anotCroqui.cdExpediente}</span> 
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </label>
                                             </div>
-                                            <label class="inline col-sm-6 col-xs-12" >
-                                                <c:choose>
-                                                    <c:when test="${execucao == 'edit'}">
-                                                        <input type="date" id="form-field-1" class="col-sm-4 col-xs-12"  name="cdExpediente" 
-                                                               value="${anotCroqui.dtAnotacao}" placeholder="Escrever o despacho" required="required" >
-                                                    </c:when>
-                                                    <c:when test="${execucao == 'insert'}">
-                                                        <input type="date" id="form-field-1" class="col-sm-4 col-xs-12"  name="cdExpediente" 
-                                                               placeholder="Escrever o despacho" required="required" >
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <span class="lbl">${anotCroqui.dtAnotacao}</span> 
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </label>
-                                        </div>
 
-                                        <div class="space-1"></div>
+                                            <div class="space-1"></div>
 
-                                        <div class="form-group">
-                                            <div class="inline col-sm-2 col-xs-12">
-                                                <span class="lbl"><strong>Observação:</strong></span>
+                                            <div class="form-group">
+                                                <div class="inline col-sm-2 col-xs-12">
+                                                    <span class="lbl"><strong>Interessado:</strong></span>
+                                                </div>
+
+                                                <label class="col-sm-8 col-xs-12">
+                                                    <c:choose>
+                                                        <c:when test="${execucao == 'edit'}">
+                                                            <input type="text" class="col-sm-10 col-xs-12"  name="nmInteressado" value="${anotCroqui.nmInteressado}" placeholder="Nome do Interessado" required="required" >
+                                                        </c:when>
+                                                        <c:when test="${execucao == 'insert'}">
+                                                            <input type="text" class="col-sm-10 col-xs-12"  name="nmInteressado" placeholder="Nome do Interessado" required="required" >
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <span class="lbl">${anotCroqui.nmInteressado}</span> 
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </label>
                                             </div>
-                                            <label class="inline col-sm-9 col-xs-12" >
-                                                <c:choose>
-                                                    <c:when test="${execucao == 'edit'}">
-                                                        <textarea class="form-control" id="form-field-8" name="dsObservacao" placeholder="Observação" 
-                                                                  style="margin: 0px 102.656px 0px 0px; width: 700px; height: 90px;">${anotCroqui.dsObservacao}</textarea>
-                                                    </c:when>
-                                                    <c:when test="${execucao == 'insert'}">
-                                                        <textarea class="form-control" id="form-field-8" name="dsObservacao" placeholder="Observação" 
-                                                                  style="margin: 0px 102.656px 0px 0px; width: 700px; height: 90px;"></textarea>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <span class="lbl">${anotCroqui.dsObservacao}</span>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </label>
-                                        </div>
 
+                                            <div class="space-1"></div>
 
-                                        <div class="form-group">
-                                            <div class="inline col-sm-2 col-xs-12">
-                                                <span class="lbl"><strong>Data:</strong></span>
+                                            <div class="form-group">
+                                                <div class="inline col-sm-2 col-xs-12">
+                                                    <span class="lbl"><strong>Assunto:</strong></span>
+                                                </div>
+
+                                                <label class="col-sm-8 col-xs-12">
+                                                    <c:choose>
+                                                        <c:when test="${execucao == 'edit'}">
+                                                            <textarea class="form-control" id="form-field-8" name="dsAssunto" placeholder="Descrição do assunto" style="margin: 0px 102.656px 0px 0px; width: 500px; height: 70px;">${anotCroqui.dsAssunto}</textarea>
+                                                        </c:when>
+                                                        <c:when test="${execucao == 'insert'}">
+                                                            <textarea class="form-control" id="form-field-8" name="dsAssunto" placeholder="Descrição do assunto" style="margin: 0px 102.656px 0px 0px; width: 500px; height: 70px;"></textarea>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <span class="lbl">${anotCroqui.dsAssunto}</span> 
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </label>
                                             </div>
-                                            <label class="inline col-sm-3 col-xs-12" >
-                                                <c:choose>
-                                                    <c:when test="${execucao == 'edit'}">
-                                                        <input type="date" id="form-field-1" class="col-sm-10 col-xs-12"  name="dtData" 
-                                                               value="${anotCroqui.dtData}" required="required" >
-                                                    </c:when>
-                                                    <c:when test="${execucao == 'insert'}">
-                                                        <input type="date" id="form-field-1" class="col-sm-10 col-xs-12"  name="dtData" 
-                                                               value ="$" required="required" >
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <span class="lbl">
-                                                            <c:set var = "dt" value = "${anotCroqui.dtData}" />
-                                                            <fmt:parseDate value = "${dt}" var = "converteDT" pattern="yyyy-MM-dd" />
-                                                            <fmt:formatDate type= "date" value="${converteDT}" var="dtAtu"/>
-                                                            <c:out value="${dtAtu}"/>
-                                                        </span> 
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </label>
 
-                                            <label class="col-sm-1 col-xs-12" >  
-                                                <span class="lbl"><strong>Nome:</strong></span>
-                                            </label> 
+                                            <div class="space-1"></div>
 
-                                            <label class="col-sm-4 col-xs-12">
-                                                <c:choose>
-                                                    <c:when test="${execucao == 'edit'}">
-                                                        <input type="text" id="form-field-1" class="col-sm-8 col-xs-12"  name="nmInteressado" 
-                                                               value="${anotCroqui.nmNome}" placeholder="Nome " required="required" >
-                                                    </c:when>
-                                                    <c:when test="${execucao == 'insert'}">
-                                                        <input type="text" id="form-field-1" class="col-sm-8 col-xs-12"  name="nmInteressado" 
-                                                               placeholder="Nome " required="required" >
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <span class="lbl">${anotCroqui.nmNome}</span> 
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </label>
-                                        </div>    
-
-
-
-
-                                        <!-- Botões-->
-                                        <div class="form-actions center ">
                                             <c:choose>
+                                                <c:when test="${execucao == 'edit'}">
+                                                    <div class="form-group">
+                                                        <label class="inline col-md-2 col-xs-12" >
+                                                            <span class="lbl"><strong>CEP</strong></span>
+                                                        </label>
+                                                        <label class="inline col-md-10 col-xs-12" >
+                                                            <input type="hidden" name="pkLogradouro" id="pkLogradouro" required="required">
+                                                            <input type="text" class="col-xs-12 col-md-2" name="nrcep" id="nrcep"  placeholder="nº do CEP" required="required">
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="inline col-md-2 col-xs-12" >
+                                                            <span class="lbl"><strong>Endereço:</strong></span>
+                                                        </label>
+                                                        <label class="inline col-md-10 col-xs-12" >
+                                                            <input type="text" class="col-xs-12 col-md-8" name="nmendereco" id="nmendereco" onkeyup="pesquisaNomeLogradouro(this.value)" onblur="validarEndereco();" onclick="clickEndereco();" placeholder="nome do endereço" required="required" >
+                                                            <div id="listaEndereco" style="padding-top:35px"></div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="space-1"></div>
+
+                                                    <div class="form-group">
+                                                        <label class="inline col-md-2 col-xs-12" >
+                                                            <span class="lbl"><strong>número:</strong></span>
+                                                        </label>
+                                                        <label class="inline col-md-2 col-xs-12" >
+                                                            <input type="text" class="col-xs-12 col-md-12" name="nrnumeroend" id="nrnumeroend" placeholder="nº" required="required">
+                                                        </label>
+                                                        <label class="inline col-md-2 col-xs-12" >
+                                                            <span class="lbl"><strong>Complemento:</strong></span>
+                                                        </label>
+                                                        <label class="inline col-md-3 col-xs-12" >
+                                                            <input type="text" class="col-xs-12 col-md-12" name="nmcomplementoend" id="nmcomplementoend" placeholder="complemento do endereço" >
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="inline col-md-2 col-xs-12" >
+                                                            <span class="lbl"><strong>Bairro:</strong></span>
+                                                        </label>
+                                                        <label class="inline col-md-10 col-xs-12" >
+                                                            <input type="text" class="col-xs-12 col-md-5" name="nmbairro" id="nmbairro" placeholder="nome do bairro" required="required">
+                                                        </label>
+                                                    </div>
+                                                    <div class="space-1"></div>
+
+                                                    <div class="form-group">
+                                                        <label class="inline col-md-2 col-xs-12" >  
+                                                            <span class="lbl"><strong>Referência:</strong></span>
+                                                        </label>
+                                                        <label class="inline col-md-8 col-xs-12" >
+                                                            <input type="text" class="col-xs-12 col-md-12" name="nmreferenciaend" id="nmreferenciaend" value="${anotCroqui.nmReferenciaEndereco}" placeholder="referencia do endereço" >
+                                                        </label>
+                                                    </div>    
+                                                </c:when>
                                                 <c:when test="${execucao == 'insert'}">
-                                                    <button class="btn btn-yellow" type="reset" onclick=" location.href = 'AnotacaoCroqui.jsp';">
-                                                        <i class="ace-icon fa fa-undo bigger-110"></i>
-                                                        Voltar
-                                                    </button>
+                                                    <div class="form-group">
+                                                        <label class="inline col-md-2 col-xs-12" >
+                                                            <span class="lbl"><strong>CEP</strong></span>
+                                                        </label>
+                                                        <label class="inline col-md-10 col-xs-12" >
+                                                            <input type="hidden" name="pkLogradouro" id="pkLogradouro" required="required">
+                                                            <input type="text" class="col-xs-12 col-md-2" name="nrcep" id="nrcep"  placeholder="nº do CEP" required="required">
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="inline col-md-2 col-xs-12" >
+                                                            <span class="lbl"><strong>Endereço:</strong></span>
+                                                        </label>
+                                                        <label class="inline col-md-10 col-xs-12" >
+                                                            <input type="text" class="col-xs-12 col-md-8" name="nmendereco" id="nmendereco" onkeyup="pesquisaNomeLogradouro(this.value)" placeholder="nome do endereço" required="required" >
+                                                            <div id="listaEndereco" style="padding-top:35px"></div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="space-1"></div>
+
+                                                    <div class="form-group">
+                                                        <label class="inline col-md-2 col-xs-12" >
+                                                            <span class="lbl"><strong>número:</strong></span>
+                                                        </label>
+                                                        <label class="inline col-md-2 col-xs-12" >
+                                                            <input type="text" class="col-xs-12 col-md-12" name="nrnumeroend" id="nrnumeroend" placeholder="nº" required="required">
+                                                        </label>
+                                                        <label class="inline col-md-2 col-xs-12" >
+                                                            <span class="lbl"><strong>Complemento:</strong></span>
+                                                        </label>
+                                                        <label class="inline col-md-3 col-xs-12" >
+                                                            <input type="text" class="col-xs-12 col-md-12" name="nmcomplementoend" id="nmcomplementoend" placeholder="complemento do endereço" >
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="inline col-md-2 col-xs-12" >
+                                                            <span class="lbl"><strong>Bairro:</strong></span>
+                                                        </label>
+                                                        <label class="inline col-md-10 col-xs-12" >
+                                                            <input type="text" class="col-xs-12 col-md-5" name="nmbairro" id="nmbairro" placeholder="nome do bairro" required="required">
+                                                        </label>
+                                                    </div>
+                                                    <div class="space-1"></div>
+
+                                                    <div class="form-group">
+                                                        <label class="inline col-md-2 col-xs-12" >  
+                                                            <span class="lbl"><strong>Referência:</strong></span>
+                                                        </label>
+                                                        <label class="inline col-md-8 col-xs-12" >
+                                                            <input type="text" class="col-xs-12 col-md-12" name="nmreferenciaend" id="nmreferenciaend" placeholder="referencia do endereço" >
+                                                        </label>
+                                                    </div>    
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <button class="btn btn-yellow" type="reset" onclick=" location.href = 'ControllerServlet?acao=AnotacaoCroquiLista&pg=${pg}&pi=${pi}&pf=${pf}&qCroqui=${qCroqui}&qArea=${qArea}&qNome=${qNome}&qEndereco=${qEndereco}&qAssunto=${qAssunto}&dtIni=${dtIni}&dtFim=${dtFim}';">
-                                                        <i class="ace-icon fa fa-undo bigger-110"></i>
-                                                        Voltar
-                                                    </button>
+                                                    <div class="form-group">
+                                                        <label class="inline col-md-2 col-xs-12" >
+                                                            <span class="lbl"><strong>CEP</strong></span>
+                                                        </label>
+                                                        <label class="inline col-md-10 col-xs-12" >
+                                                            <span class="lbl">Txt</span> 
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="inline col-md-2 col-xs-12" >
+                                                            <span class="lbl"><strong>Endereço:</strong></span>
+                                                        </label>
+                                                        <label class="inline col-md-10 col-xs-12" >
+                                                            <span class="lbl">Txt</span> 
+                                                        </label>
+                                                    </div>
+                                                    <div class="space-1"></div>
+
+                                                    <div class="form-group">
+                                                        <label class="inline col-md-2 col-xs-12" >
+                                                            <span class="lbl"><strong>número:</strong></span>
+                                                        </label>
+                                                        <label class="inline col-md-2 col-xs-12" >
+                                                            <span class="lbl">Txt</span> 
+                                                        </label>
+
+                                                        <label class="inline col-md-2 col-xs-12" >
+                                                            <span class="lbl"><strong>Complemento:</strong></span>
+                                                        </label>
+                                                        <label class="inline col-md-3 col-xs-12">    
+                                                            <span class="lbl">Txt</span> 
+                                                        </label>    
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="inline col-md-2 col-xs-12" >
+                                                            <span class="lbl"><strong>Bairro:</strong></span>
+                                                        </label>
+                                                        <label class="inline col-md-10 col-xs-12" >
+                                                            <span class="lbl">Txt</span> 
+                                                        </label>    
+                                                    </div>
+                                                    <div class="space-1"></div>
+
+                                                    <div class="form-group">
+                                                        <label class="inline col-md-2 col-xs-12" >  
+                                                            <span class="lbl"><strong>Referência:</strong></span>
+                                                        </label>
+                                                        <label class="inline col-md-8 col-xs-12" >
+                                                            <span class="lbl">${anotCroqui.nmReferenciaEndereco}</span> 
+                                                        </label>
+
+                                                    </div> 
+
                                                 </c:otherwise>
-                                            </c:choose>    
+                                            </c:choose>                
 
-                                            <c:if test="${execucao !='view'}" >
-                                                <button class="btn btn-success" type="submit" id="salvar">
-                                                    <i class="ace-icon fa fa-save bigger-110"></i>
-                                                    Salvar
-                                                </button>
 
-                                                <button class="btn" type="reset">
-                                                    <i class="ace-icon fa fa-eraser bigger-110"></i>
-                                                    Limpar
-                                                </button>
-                                            </c:if>
-                                        </div>
+                                            <div class="space-1"></div>
+
+                                            <div class="form-group">
+                                                <div class="inline col-sm-2 col-xs-12">
+                                                    <span class="lbl"><strong>Anotação:</strong></span>
+                                                </div>
+
+                                                <label class="col-sm-2 col-xs-12" >
+                                                    <c:choose>
+                                                        <c:when test="${execucao == 'edit'}">
+                                                            <c:choose>
+                                                                <c:when test="${anotCroqui.nrAnotacao == '1'}">
+                                                                    <label class="pull-left inline">
+                                                                        <input id="id-button-borders"  type="checkbox" id="" name="nrAnotacao" value="true" class="ace ace-switch ace-switch-5"  >
+                                                                        <span class="lbl middle"></span>
+                                                                    </label>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <label class="pull-left inline">
+                                                                        <input id="id-button-borders"  type="checkbox" id="" name="nrAnotacao" value="true" checked="" class="ace ace-switch ace-switch-5"  >
+                                                                        <span class="lbl middle"></span>
+                                                                    </label>
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                        </c:when>
+                                                        <c:when test="${execucao == 'insert'}">
+                                                            <label class="pull-left inline">
+                                                                <input id="id-button-borders"  type="checkbox" id="" name="nrAnotacao" value="true" class="ace ace-switch ace-switch-5"  >
+                                                                <span class="lbl middle"></span>
+                                                            </label>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <c:choose>
+                                                                <c:when test="${anotCroqui.nrAnotacao == 1}">
+                                                                    <span class="label label-success arrowed" title="SIM">
+                                                                        <i class="ace-icon fa fa-check bigger-120"></i>
+                                                                        Sim
+                                                                    </span>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <span class="label label-danger arrowed" title="NÃO">
+                                                                        <i class="ace-icon fa fa-ban bigger-120"></i>
+                                                                        Não
+                                                                    </span>
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </label>
+
+                                                <label class="col-sm-2 col-xs-12" >  
+                                                    <span class="lbl"><strong>Informação:</strong></span>
+                                                </label>                
+
+                                                <label class="col-sm-3 col-xs-12" >                                                  
+                                                    <c:choose>
+                                                        <c:when test="${execucao == 'edit'}">
+                                                            <c:choose>
+                                                                <c:when test="${anotCroqui.nrInformacao == '1'}">
+                                                                    <label class="pull-left inline">
+                                                                        <input id="id-button-borders"  type="checkbox" id="" name="nrInformacao" value="true" class="ace ace-switch ace-switch-5"  >
+                                                                        <span class="lbl middle"></span>
+                                                                    </label>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <label class="pull-left inline">
+                                                                        <input id="id-button-borders"  type="checkbox" id="" name="nrInformacao" value="true" checked="" class="ace ace-switch ace-switch-5"  >
+                                                                        <span class="lbl middle"></span>
+                                                                    </label>
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                        </c:when>
+                                                        <c:when test="${execucao == 'insert'}">
+                                                            <label class="pull-left inline">
+                                                                <input id="id-button-borders"  type="checkbox" id="" name="nrInformacao" value="true" class="ace ace-switch ace-switch-5"  >
+                                                                <span class="lbl middle"></span>
+                                                            </label>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <c:choose>
+                                                                <c:when test="${'1' == anotCroqui.nrInformacao}">
+                                                                    <span class="label label-success arrowed" title="SIM">
+                                                                        <i class="ace-icon fa fa-check bigger-120"></i>
+                                                                        Sim
+                                                                    </span>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <span class="label label-danger arrowed" title="NÃO">
+                                                                        <i class="ace-icon fa fa-ban bigger-120"></i>
+                                                                        Não
+                                                                    </span>
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </label>
+                                            </div>
+
+                                            <div class="space-1"></div>
+
+                                            <div class="form-group">
+                                                <div class="inline col-sm-2 col-xs-12">
+                                                    <span class="lbl"><strong>Despacho:</strong></span>
+                                                </div>
+                                                <label class="inline col-sm-8 col-xs-12" >
+                                                    <c:choose>
+                                                        <c:when test="${execucao == 'edit'}">
+                                                            <input type="text" id="form-field-1" class="col-sm-10 col-xs-12"  name="dsDespacho" 
+                                                                   value="${anotCroqui.dsDespacho}" placeholder="Escrever o despacho" required="required" >
+                                                        </c:when>
+                                                        <c:when test="${execucao == 'insert'}">
+                                                            <input type="text" id="form-field-1" class="col-sm-10 col-xs-12"  name="dsDespacho" 
+                                                                   placeholder="Escrever o despacho" required="required" >
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <span class="lbl">${anotCroqui.dsDespacho}</span> 
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </label>
+                                            </div>
+
+                                            <div class="space-1"></div>
+
+                                            <div class="form-group">
+                                                <div class="inline col-sm-2 col-xs-12">
+                                                    <span class="lbl"><strong>Publicado no DOM:</strong></span>
+                                                </div>
+                                                <label class="inline col-sm-6 col-xs-12" >
+                                                    <c:choose>
+                                                        <c:when test="${execucao == 'edit'}">
+                                                            <c:set var = "dtPubli" value = "${anotCroqui.dtPublicacao}" />
+                                                            <fmt:parseDate value = "${dtPubli}" var = "converteDTPlub" pattern="yyyy-MM-dd" />
+                                                            <fmt:formatDate type= "date" value="${converteDTPlub}" var="dtAtuPubli"/>
+                                                            <input type="date" id="form-field-1" class="col-sm-4 col-xs-12"  name="dtPublicacao" 
+                                                                   value="${dtAtuPubli}" placeholder="" required="required" >
+                                                        </c:when>
+                                                        <c:when test="${execucao == 'insert'}">
+                                                            <input type="date" id="form-field-1" class="col-sm-4 col-xs-12"  name="dtPublicacao" 
+                                                                   placeholder="" required="required" >
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <c:set var = "dtPubli" value = "${anotCroqui.dtPublicacao}" />
+                                                            <fmt:parseDate value = "${dtPubli}" var = "converteDTPlub" pattern="yyyy-MM-dd" />
+                                                            <fmt:formatDate type= "date" value="${converteDTPlub}" var="dtAtuPubli"/>
+                                                            <span class="lbl">${dtAtuPubli}</span> 
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </label>
+                                            </div>
+
+                                            <div class="space-1"></div>
+
+                                            <div class="form-group">
+                                                <div class="inline col-sm-2 col-xs-12">
+                                                    <span class="lbl"><strong>Data de Tramitação:</strong></span>
+                                                </div>
+                                                <label class="inline col-sm-6 col-xs-12" >
+                                                    <c:choose>
+                                                        <c:when test="${execucao == 'edit'}">
+                                                            <input type="date" id="form-field-1" class="col-sm-4 col-xs-12"  name="dtAnotacao" 
+                                                                   value="${anotCroqui.dtAnotacao}" placeholder="Escrever o despacho" required="required" >
+                                                        </c:when>
+                                                        <c:when test="${execucao == 'insert'}">
+                                                            <input type="date" id="form-field-1" class="col-sm-4 col-xs-12"  name="dtAnotacao" 
+                                                                   placeholder="Escrever o despacho" required="required" >
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <span class="lbl">${anotCroqui.dtAnotacao}</span> 
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </label>
+                                            </div>
+
+                                            <div class="space-1"></div>
+
+                                            <div class="form-group">
+                                                <div class="inline col-sm-2 col-xs-12">
+                                                    <span class="lbl"><strong>Observação:</strong></span>
+                                                </div>
+                                                <label class="inline col-sm-9 col-xs-12" >
+                                                    <c:choose>
+                                                        <c:when test="${execucao == 'edit'}">
+                                                            <textarea class="form-control" id="form-field-8" name="dsObservacao" placeholder="Observação" 
+                                                                      style="margin: 0px 102.656px 0px 0px; width: 700px; height: 90px;">${anotCroqui.dsObservacao}</textarea>
+                                                        </c:when>
+                                                        <c:when test="${execucao == 'insert'}">
+                                                            <textarea class="form-control" id="form-field-8" name="dsObservacao" placeholder="Observação" 
+                                                                      style="margin: 0px 102.656px 0px 0px; width: 700px; height: 90px;"></textarea>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <span class="lbl">${anotCroqui.dsObservacao}</span>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </label>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <div class="inline col-sm-2 col-xs-12">
+                                                    <span class="lbl"><strong>Data:</strong></span>
+                                                </div>
+                                                <label class="inline col-sm-3 col-xs-12" >
+                                                    <c:choose>
+                                                        <c:when test="${execucao == 'edit'}">
+                                                            <input type="date" id="form-field-1" class="col-sm-10 col-xs-12"  name="dtData" 
+                                                                   <c:set var="hoje" value="<%= new java.util.Date()%>" />
+                                                                   <c:set var="dt" value = "${anotCroqui.dtData}" />
+                                                                   <fmt:parseDate var="converteDT" value="${dt}" pattern="yyyy-MM-dd" />
+                                                                   <c:choose>
+                                                                       <c:when test="${converteDT gt hoje }">
+
+                                                                       </c:when>
+                                                                       <c:otherwise>
+                                                                           value="${anotCroqui.dtData}" 
+                                                                       </c:otherwise>
+                                                                   </c:choose>
+                                                                   required="required" >
+                                                        </c:when>
+                                                        <c:when test="${execucao == 'insert'}">
+                                                            <input type="date" id="form-field-1" class="col-sm-10 col-xs-12"  name="dtData" 
+                                                                   value ="$" required="required" >
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <span class="lbl">
+                                                                <c:set var="hoje" value="<%= new java.util.Date()%>" />
+                                                                <c:set var="dt" value = "${anotCroqui.dtData}" />
+                                                                <fmt:parseDate var="converteDT" value="${dt}" pattern="yyyy-MM-dd" />
+                                                                <fmt:formatDate var="dtAtu" value="${converteDT}" type= "date" />
+                                                                <c:choose>
+                                                                    <c:when test="${converteDT gt hoje }">
+                                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <c:out value="${dtAtu}"/>   
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                                            </span> 
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </label>
+
+                                                <label class="col-sm-1 col-xs-12" >  
+                                                    <span class="lbl"><strong>Nome:</strong></span>
+                                                </label> 
+
+                                                <label class="col-sm-4 col-xs-12">
+                                                    <c:choose>
+                                                        <c:when test="${execucao == 'edit'}">
+                                                            <input type="text" id="form-field-1" class="col-sm-8 col-xs-12"  name="nmAutor" 
+                                                                   value="${anotCroqui.nmAutor}" placeholder="Nome " required="required" >
+                                                        </c:when>
+                                                        <c:when test="${execucao == 'insert'}">
+                                                            <input type="text" id="form-field-1" class="col-sm-8 col-xs-12"  name="nmAutor" 
+                                                                   placeholder="Nome " required="required" >
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <span class="lbl">${anotCroqui.nmAutor}</span> 
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </label>
+                                            </div>    
+                                <!-- Botões-->
+                                            <div class="form-actions center ">
+                                                <c:choose>
+                                                    <c:when test="${execucao == 'insert'}">
+                                                        <button class="btn btn-yellow" type="reset" onclick=" location.href = 'AnotacaoCroqui.jsp';">
+                                                            <i class="ace-icon fa fa-undo bigger-110"></i>
+                                                            Voltar
+                                                        </button>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <button class="btn btn-yellow" type="reset" onclick=" location.href = 'ControllerServlet?acao=AnotacaoCroquiLista&pg=${pg}&pi=${pi}&pf=${pf}&qCroqui=${qCroqui}&qArea=${qArea}&qNome=${qNome}&qEndereco=${qEndereco}&qAssunto=${qAssunto}&dtIni=${dtIni}&dtFim=${dtFim}';">
+                                                            <i class="ace-icon fa fa-undo bigger-110"></i>
+                                                            Voltar
+                                                        </button>
+                                                    </c:otherwise>
+                                                </c:choose>    
+
+                                                <c:if test="${execucao !='view'}" >
+                                                    <button class="btn btn-success" type="submit" id="salvar">
+                                                        <i class="ace-icon fa fa-save bigger-110"></i>
+                                                        Salvar
+                                                    </button>
+
+                                                    <button class="btn" type="reset">
+                                                        <i class="ace-icon fa fa-eraser bigger-110"></i>
+                                                        Limpar
+                                                    </button>
+                                                </c:if>
+                                            </div>
+                                        </form>
                                     </div>
+                                
+                                <!--Inicio da tab-pane Documento Anexo -->        
+                                    <div id="doc-anexo" class="tab-pane">
+                                        <div class="form-group">
+                                         
+                                            <form action="ControllerServlet?acao=ArquivoUpload" enctype="multipart/form-data" method="POST" >
+                                                <h4 class="header smaller lbl "><strong>Documentos Anexo</strong></h4>   
+                                                <input type="hidden" name="pkAutoStage" value="${anotCroqui.pkAnotacaoExpediente}" />
+                                                <input type="hidden" name="execucao" value="${execucao}" />
+                                                <input type="hidden" name="tipoArquivo" value="croqui" />
+                                                <input type="hidden" name="Origem" value="AnotacaoExpediente" />
+                                                <input type="hidden" name="nrVerCroqui" value="1" />
+                                                
+                                                
+                                                <c:set var="arCroqui"  value="${Arquivo.pkArquivo(anotCroqui.pkAnotacaoExpediente,'AnotacaoExpediente','Croqui')}"  />
+                                                    <input type="hidden" name="pkArquivo" value="<c:out value="${arCroqui.pkArquivo}" />" />   
+                                                
 
+                                                <label class="inline col-md-2 col-xs-12"><strong>Croqui:</strong></label>
+                                                <label class="col-md-1 col-xs-12">
+                                                    <c:forEach var="ar" items="${Arquivo.listArquivo(anotCroqui.pkAnotacaoExpediente, 'Croqui')}">
+                                                        <c:if test="${ar.nmTipo == 'Croqui'}">
+                                                            <a href="<c:out value="${pageContext.servletContext.contextPath}" />/Arquivo/Croqui/${ar.nmNomeArquivo}" target="_blank"><img src="img/img-planta.png" title="${ar.nmNome}" width="60%" height="60%"/></a>
+                                                        </c:if>    
+                                                    </c:forEach>
+                                                </label>
+                                                <c:if test="${(sessionSgDivisao == 'DIPI' &&sessionSgSetor == 'SIC') && (execucao=='insert' || execucao=='edit')}">
+                                                    <label class="inline col-md-3">
+                                                        <input type="text" class="col-xs-12 col-md-12" name="nmNome" placeholder="Nome do Croqui" required="required" >
+                                                    </label>
 
+                                                    <label class="inline col-md-3 col-xs-12">
+                                                        <input type="file"  id="id-input-file-2" name="UploadCroqui" required="required"><span class="ace-file-container" data-title="Choose"><span class="ace-file-name" data-title="No File ..."></span></span>
+                                                    </label>
+                                                    <label class="inline col-md-2 col-xs-12">
+                                                        <c:set var="idCroqui"  value="${Arquivo.pkArquivo(anotCroqui.pkAnotacaoExpediente,'AnotacaoExpediente', 'Croqui')}"  />  
+                                                        <c:choose>
+                                                            <c:when test="${ idCroqui.pkArquivo != '0'}" >
+                                                                <button class="btn btn-yellow"  type="submit">
+                                                                    <i class="ace-icon fa fa-save bigger-110"></i>
+                                                                    Substituir
+                                                                </button>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <button class="btn btn-success"  type="submit">
+                                                                    <i class="ace-icon fa fa-save bigger-110"></i>
+                                                                    Salvar
+                                                                </button>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </label> 
+                                                </c:if>    
+                                            </form>
+                                        </div>    
+                                    </div>
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
                                 </div>
                             </div>
                         </div>    

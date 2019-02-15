@@ -93,7 +93,7 @@ public class AnotacaoDiversasDAO {
                         anotCroqui.setPkAnotacaoExpediente(rs.getInt("id_anotacao_expediente"));
                         anotCroqui.setCdCroqui(rs.getString("cd_croqui"));
                         anotCroqui.setCdArea(rs.getString("cd_area"));
-                        anotCroqui.setNmNome(rs.getString("nm_nome"));
+                        anotCroqui.setNmAutor(rs.getString("nm_nome"));
                         anotCroqui.setNmReferenciaEndereco(rs.getString("ds_local"));
                         anotCroqui.setDsAssunto(rs.getString("ds_assunto"));
                         anotCroqui.setDtData(rs.getString("dt_data"));
@@ -118,7 +118,7 @@ public class AnotacaoDiversasDAO {
                 ResultSet rs = stmt.executeQuery();
                 while(rs.next()){
                     AnotacaoCroqui note = new AnotacaoCroqui ();
-                        note.setNmNome(rs.getString("nm_nome"));
+                        note.setNmAutor(rs.getString("nm_nome"));
                     lisNome.add(note);
                 }
             return lisNome;
@@ -150,14 +150,14 @@ public class AnotacaoDiversasDAO {
                     anotCroqui.setNmInteressado(rs.getString("nm_interessado"));
                     anotCroqui.setDsAssunto(rs.getString("ds_assunto"));
                     anotCroqui.setNmReferenciaEndereco(rs.getString("ds_local"));
-                    anotCroqui.setNrAnotacao(rs.getInt("nr_anotacao"));
-                    anotCroqui.setNrInformacao(rs.getInt("nr_informacao"));
+                    anotCroqui.setNrAnotacao(rs.getString("nr_anotacao"));
+                    anotCroqui.setNrInformacao(rs.getString("nr_informacao"));
                     anotCroqui.setDsDespacho(rs.getString("ds_despacho"));
                     anotCroqui.setDtPublicacao(rs.getString("dt_publicacao"));
                     anotCroqui.setDtAnotacao(rs.getString("dt_anotacao"));
                     anotCroqui.setDsObservacao(rs.getString("ds_observacao"));
                     anotCroqui.setDtData(rs.getString("dt_data"));
-                    anotCroqui.setNmNome(rs.getString("nm_nome"));
+                    anotCroqui.setNmAutor(rs.getString("nm_nome"));
                 return anotCroqui;
                 }
             stmt.execute();
