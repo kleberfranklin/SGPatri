@@ -38,7 +38,7 @@
         <c:when test="${not empty checkList}">
             <c:forEach var="logPadrao" items="${bean.pesquisaNomeLogradouro(endereco)}"  >
                 <tr class="tr-endereco">
-                    <td onclick="pesquisaCepLogradouro('${logPadrao.nrCep}')" title="${logPadrao.nrCep}"> ${logPadrao.nmLogradouroCompleto}</td>
+                    <td onclick="pesquisaCepLogradouro('${logPadrao.nrCep}')" title="${logPadrao.nmBairro}"> ${logPadrao.nmLogradouroCompleto}</td>
                 </tr>
             </c:forEach>
         </c:when>

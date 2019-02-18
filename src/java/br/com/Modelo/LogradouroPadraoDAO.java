@@ -27,7 +27,7 @@ public class LogradouroPadraoDAO {
     
     
     public List<LogradouroPadrao> pesquisaNomeLogradouro(String nmLogradouro){
-            String sql = "SELECT nm_logradouro_completo, nr_cep "
+            String sql = "SELECT nm_logradouro_completo, nr_cep, nm_bairro "
                     + "FROM tbl_logradouro_padrao "
                     + "WHERE nm_logradouro_completo ILIKE ? "
 //                    + "GROUP BY nm_nome_log, nr_cep_d "
@@ -43,6 +43,7 @@ public class LogradouroPadraoDAO {
                 LogradouroPadrao logpadrao = new LogradouroPadrao();
 //                    logpadrao.setPkLogradouroPadrao(rs.getInt("id_dados_logradouros"));
                     logpadrao.setNmLogradouroCompleto(rs.getString("nm_logradouro_completo"));
+                    logpadrao.setNmBairro(rs.getString("nm_bairro"));
                     logpadrao.setNrCep(rs.getString("nr_cep"));
                 listLogradouro.add(logpadrao);
             }

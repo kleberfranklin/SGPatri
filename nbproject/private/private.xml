@@ -12,7 +12,10 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/d732229/Documents/PROJETOS/SGPatri/src/java/br/com/Controle/ArquivoUpload.java</file>
+            <file>file:/C:/Users/d732229/Documents/PROJETOS/SGPatri/web/AnotacaoCroquiCRU.jsp</file>
+            <file>file:/C:/Users/d732229/Documents/PROJETOS/SGPatri/src/java/br/com/Controle/AnotacaoCroquiUC.java</file>
+            <file>file:/C:/Users/d732229/Documents/PROJETOS/SGPatri/src/java/br/com/Modelo/AnotacaoCroquiDAO.java</file>
+            <file>file:/C:/Users/d732229/Documents/PROJETOS/SGPatri/src/java/br/com/Modelo/AnotacaoCroqui.java</file>
         </group>
     </open-files>
 </project-private>

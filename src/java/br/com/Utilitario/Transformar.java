@@ -10,6 +10,8 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.Normalizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -28,8 +30,6 @@ public class Transformar {
         }
         return out;
     }
-    
-          
 
 //Converte padronização o texto para a Primeira Letra da frase em Maiuscula    
     public static String priMaiuscula(String value) {
@@ -60,6 +60,23 @@ public class Transformar {
         str = str.replaceAll("[^\\p{ASCII}]", "");
         return str;
     }
-
+    
+    public static String substituiEspacoHifen(String str){
+            str = str.replaceAll("\\s+","-");
+        return str;
+    }
+    
+    public static String retiraEspacosDuplicados(String str) {
+            String patternStr = "\\s+";
+            String replaceStr = " ";
+            Pattern pattern = Pattern.compile(patternStr);
+            Matcher matcher = pattern.matcher(str);
+            str = matcher.replaceAll(replaceStr);
+        return str;
+    }
+    
+    
+    
+    
     
 }

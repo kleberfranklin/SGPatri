@@ -71,6 +71,16 @@ public class ArquivoUpload implements Logica{
                 nrVerArqAc = Integer.parseInt(req.getParameter("nrVerArqAc"));
                 autoVaDAO.upAutoCessaoVerificadoArquivoAc(pkAutoStage, nrVerArqAc);
             break;
+            
+            case "Croqui":
+                pastaArquivar+= "Arquivo"+File.separator+"Croqui";
+                Part uploadCroqui = req.getPart("UploadCroqui");
+                nomeDoArquivo = Transformar.substituiEspacoHifen(Transformar.retiraEspacosDuplicados(Transformar.removeAccents(uploadCroqui.getSubmittedFileName())));
+                arquivoCarregado = uploadCroqui.getInputStream();
+                caminhoArquivo = up.upload(pastaArquivar, nomeDoArquivo, arquivoCarregado);
+                //nrVerArqAc = Integer.parseInt(req.getParameter("nrVerArqAc"));
+                //autoVaDAO.upAutoCessaoVerificadoArquivoAc(pkAutoStage, nrVerArqAc);
+            break;
             case "Deletar":
             break;
             default:
@@ -90,6 +100,10 @@ public class ArquivoUpload implements Logica{
                 }    
             }
             
+            if("Croqui".equals(tipoArquivo)){
+                return  "ControllerServlet?acao=AnotacaoCroquiDetalhe&pkAnotacaoExpediente="+pkAutoStage+"&execucao="+execucao;
+            }
+            
             if(null !=finalizar && finalizar.equals("1")){
                 autoVaDAO.upAutoCessaoVerificadoValidacao(0, 1, pkAutoStage, "Validado");
                 //execucao = "";
@@ -102,7 +116,7 @@ public class ArquivoUpload implements Logica{
            }
         return "ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage="+pkAutoStage+"&execucao="+execucao+"&pgValidacao"+pgValidacao;  
     }   
-
+     
    
     
 }

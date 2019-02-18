@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -20,6 +21,9 @@ import java.util.List;
 public class AnotacaoCroquiDAO {
 
     private final Connection connection;
+    
+    
+    Calendar data = Calendar.getInstance();
 
 //Construtor
     public AnotacaoCroquiDAO() {
@@ -29,16 +33,15 @@ public class AnotacaoCroquiDAO {
     //Metodo de quantidade de linhas
     public int qtdAntoCroqui(String qCroqui, String qArea, String qNome, String qInteressado, String qEndereco, String qAssunto,
             Date dtIni, Date dtFim) {
-        String sql = ("SELECT COUNT(*) as total FROM tbl_anotacao_expediente_oficial "
+        String sql = ("SELECT COUNT(*) as total FROM tbl_anotacao_expediente "
                 + "WHERE cd_croqui ILIKE ? "
                 + "and cd_area ILIKE ? "
-                + "and nm_nome ILIKE ? "
+                + "and nm_autor ILIKE ? "
                 + "and nm_interessado ILIKE ? "
                 + "and nm_referencia_endereco ILIKE ? "
                 + "and ds_assunto ILIKE ? "
                 + "and dt_data between ? and ? "
-                + "and cd_croqui is not null "
-                + "and cd_croqui != '' ");
+                + "and nm_tipo_expediente = 'CROQUI' ");
         try {
             int total = 0;
             try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -65,16 +68,15 @@ public class AnotacaoCroquiDAO {
     //METODO lista os atributos do cadastro de croqui das pesquisas e paginado
     public List<AnotacaoCroqui> listAnotaCroqui(String qCroqui, String qArea, String qNome, String qInteressado, String qEndereco, String qAssunto,
             Date dtIni, Date dtFim, int qtLinha, int offset) {
-        String sql = ("SELECT * FROM tbl_anotacao_expediente_oficial "
+        String sql = ("SELECT * FROM tbl_anotacao_expediente "
                 + "WHERE cd_croqui ILIKE ? "
                 + "and cd_area ILIKE ? "
-                + "and nm_nome ILIKE ? "
+                + "and nm_autor ILIKE ? "
                 + "and nm_interessado ILIKE ? "
                 + "and nm_referencia_endereco ILIKE ? "
                 + "and ds_assunto ILIKE ? "
                 + "and dt_data between ? and ? "
-                + "and cd_croqui is not null "
-                + "and cd_croqui != '' "
+                + "and nm_tipo_expediente = 'CROQUI' "
                 + "ORDER BY dt_data DESC "
                 + "LIMIT ? OFFSET ?");
         try {
@@ -97,7 +99,7 @@ public class AnotacaoCroquiDAO {
                 anotCroqui.setPkAnotacaoExpediente(rs.getInt("id_anotacao_expediente"));
                 anotCroqui.setCdCroqui(rs.getString("cd_croqui"));
                 anotCroqui.setCdArea(rs.getString("cd_area"));
-                anotCroqui.setNmAutor(rs.getString("nm_nome"));
+                anotCroqui.setNmAutor(rs.getString("nm_autor"));
                 anotCroqui.setNmInteressado(rs.getString("nm_interessado"));
                 anotCroqui.setNmReferenciaEndereco(rs.getString("nm_referencia_endereco"));
                 anotCroqui.setDsAssunto(rs.getString("ds_assunto"));
@@ -115,6 +117,7 @@ public class AnotacaoCroquiDAO {
     //METODO uilizado para listar o nome do da tabela 
     public List<AnotacaoCroqui> listNome() {
         String sql = ("SELECT COUNT(*)qtd, nm_autor FROM tbl_anotacao_expediente "
+                + "WHERE nm_tipo_expediente = 'CROQUI' "
                 + "GROUP BY nm_autor "
                 + "ORDER BY nm_autor ");
         try {
@@ -174,53 +177,121 @@ public class AnotacaoCroquiDAO {
     }
 
 //    METODO utilizado para inserir dados em um novo croqui
-    public void insAnotacaoCroqui(AnotacaoCroqui anotCroqui) {
-        String sql = "INSERT INTO tbl_anotacao_expediente ( cd_croqui, cd_area, nr_informacao_dgpi, cd_processo, cd_tid, cd_expediente, nm_interessado ,"
-                + "ds_assunto, nm_referencia_endereco, ds_observacao, nm_login, dthr_atualizacao ) "
-                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,? )";
+    public int cAnotacaoCroqui(AnotacaoCroqui anotCroqui) {
+        int pkCroqui=0;
+        String strPublicacao, strData;
+        Date dtPubicacao, dtData;
+        
+        strPublicacao = anotCroqui.getDtPublicacao();
+        strData = anotCroqui.getDtData();
+            
+        if ("".equals(strPublicacao)){
+            dtPubicacao = null;
+        }else{
+            dtPubicacao = java.sql.Date.valueOf(strPublicacao);
+        }
+            
+        if ("".equals(strData)){
+            dtData = null;
+        }else{
+            dtData = java.sql.Date.valueOf(strData);
+        }
+                
+        String sql = "INSERT INTO tbl_anotacao_expediente (fk_logradouro, cd_croqui, cd_area, cd_expediente, nm_interessado, ds_assunto, ds_despacho, ds_observacao, nm_autor, "
+                + "nm_login, cd_processo, cd_tid, dt_anotacao, nr_informacao_dgpi, dt_publicacao, nm_referencia_endereco, dt_data, nm_tipo_processo, nm_tipo_expediente, nr_anotacao, "
+                + "nr_informacao, nr_endereco, nm_complemento_endereco, dthr_atualizacao) "
+                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, anotCroqui.getCdCroqui());
-            stmt.setString(2, anotCroqui.getCdArea());
-            stmt.setString(3, anotCroqui.getNrInformacaoDgpi());
-            stmt.setString(4, anotCroqui.getCdProcesso());
-            stmt.setString(5, anotCroqui.getCdTid());
-            stmt.setString(6, anotCroqui.getCdExpediente());
-            stmt.setString(7, anotCroqui.getNmInteressado());
-            stmt.setString(8, anotCroqui.getDsAssunto());
-            stmt.setString(9, anotCroqui.getNmReferenciaEndereco());
-            stmt.setString(10, anotCroqui.getDsObservacao());
-            stmt.setString(11, anotCroqui.getNmLogin());
-            stmt.setTimestamp(12, java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
-
-            stmt.execute();
+            PreparedStatement stmt = connection.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
+                    stmt.setInt(1, anotCroqui.getFkLogradouro());
+                    stmt.setString(2, anotCroqui.getCdCroqui());
+                    stmt.setString(3, anotCroqui.getCdArea());
+                    stmt.setString(4, anotCroqui.getCdExpediente());
+                    stmt.setString(5, anotCroqui.getNmInteressado());
+                    stmt.setString(6, anotCroqui.getDsAssunto());
+                    stmt.setString(7, anotCroqui.getDsDespacho());
+                    stmt.setString(8, anotCroqui.getDsObservacao());
+                    stmt.setString(9, anotCroqui.getNmAutor());
+                    stmt.setString(10, anotCroqui.getNmLogin());
+                    stmt.setString(11, anotCroqui.getCdProcesso());
+                    stmt.setString(12, anotCroqui.getCdTid());
+                    stmt.setString(13, anotCroqui.getDtAnotacao());
+                    stmt.setString(14, anotCroqui.getNrInformacaoDgpi());
+                    stmt.setDate(15, dtPubicacao);
+                    stmt.setString(16, anotCroqui.getNmReferenciaEndereco());
+                    stmt.setDate(17, dtData);
+                    stmt.setString(18, anotCroqui.getNmTipoProcesso());
+                    stmt.setString(19, anotCroqui.getNmTipoExpediente());
+                    stmt.setString(20, anotCroqui.getNrAnotacao());
+                    stmt.setString(21, anotCroqui.getNrInformacao());
+                    stmt.setString(22, anotCroqui.getNrEndereco());
+                    stmt.setString(23, anotCroqui.getNmComplementoEndereco());
+                    stmt.setTimestamp(24, java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
+                stmt.executeUpdate();
+            
+                ResultSet rs = stmt.getGeneratedKeys();
+                if(rs.next()){
+                    pkCroqui = rs.getInt("id_anotacao_expediente");
+                }
             stmt.close();
-
+            return pkCroqui;
+                  
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
     public void upAnotacaoCroqui(AnotacaoCroqui anotCroqui) {
+        String strPublicacao, strData;
+        Date dtPubicacao, dtData;
+        
+        strPublicacao = anotCroqui.getDtPublicacao();
+        strData = anotCroqui.getDtData();
+            
+        if ("".equals(strPublicacao)){
+            dtPubicacao = null;
+        }else{
+            dtPubicacao = java.sql.Date.valueOf(strPublicacao);
+        }
+            
+        if ("".equals(strData)){
+            dtData = null;
+        }else{
+            dtData = java.sql.Date.valueOf(strData);
+        }
+        
         String sql = "UPDATE tbl_anotacao_expediente "
-                + "SET cd_croqui=?, cd_area=?, nr_informacao_dgpi=?, cd_processo=?, cd_tid=?, cd_expediente=?, nm_interessado=?, ds_assunto=?, nm_referencia_endereco=?,"
-                + "ds_observacao=?, nm_login=?, dthr_atualizacao=? "
+                + "SET fk_logradouro, cd_croqui, cd_area, cd_expediente, nm_interessado, ds_assunto, ds_despacho, ds_observacao, nm_autor, "
+                + "nm_login, cd_processo, cd_tid, dt_anotacao, nr_informacao_dgpi, dt_publicacao, nm_referencia_endereco, dt_data, nm_tipo_processo, nm_tipo_expediente, nr_anotacao, "
+                + "nr_informacao, nr_endereco, nm_complemento_endereco, dthr_atualizacao "
                 + "WHERE id_anotacao_expediente = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, anotCroqui.getCdCroqui());
-            stmt.setString(2, anotCroqui.getCdArea());
-            stmt.setString(3, anotCroqui.getNrInformacaoDgpi());
-            stmt.setString(4, anotCroqui.getCdProcesso());
-            stmt.setString(5, anotCroqui.getCdTid());
-            stmt.setString(6, anotCroqui.getCdExpediente());
-            stmt.setString(7, anotCroqui.getNmInteressado());
-            stmt.setString(8, anotCroqui.getDsAssunto());
-            stmt.setString(9, anotCroqui.getNmReferenciaEndereco());
-            stmt.setString(10, anotCroqui.getDsObservacao());
-            stmt.setString(11, anotCroqui.getNmLogin());
-            stmt.setTimestamp(12, java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
-
+            stmt.setInt(1, anotCroqui.getFkLogradouro());
+                    stmt.setString(2, anotCroqui.getCdCroqui());
+                    stmt.setString(3, anotCroqui.getCdArea());
+                    stmt.setString(4, anotCroqui.getCdExpediente());
+                    stmt.setString(5, anotCroqui.getNmInteressado());
+                    stmt.setString(6, anotCroqui.getDsAssunto());
+                    stmt.setString(7, anotCroqui.getDsDespacho());
+                    stmt.setString(8, anotCroqui.getDsObservacao());
+                    stmt.setString(9, anotCroqui.getNmAutor());
+                    stmt.setString(10, anotCroqui.getNmLogin());
+                    stmt.setString(11, anotCroqui.getCdProcesso());
+                    stmt.setString(12, anotCroqui.getCdTid());
+                    stmt.setString(13, anotCroqui.getDtAnotacao());
+                    stmt.setString(14, anotCroqui.getNrInformacaoDgpi());
+                    stmt.setDate(15, dtPubicacao);
+                    stmt.setString(16, anotCroqui.getNmReferenciaEndereco());
+                    stmt.setDate(17, dtData);
+                    stmt.setString(18, anotCroqui.getNmTipoProcesso());
+                    stmt.setString(19, anotCroqui.getNmTipoExpediente());
+                    stmt.setString(20, anotCroqui.getNrAnotacao());
+                    stmt.setString(21, anotCroqui.getNrInformacao());
+                    stmt.setString(22, anotCroqui.getNrEndereco());
+                    stmt.setString(23, anotCroqui.getNmComplementoEndereco());
+                    stmt.setTimestamp(24, java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
+                    stmt.setInt(25,anotCroqui.getPkAnotacaoExpediente());
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {

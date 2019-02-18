@@ -13,13 +13,69 @@ public class AnotacaoCroqui {
 
 //Atributos
     private int pkAnotacaoExpediente, fkLogradouro;
-    private String nmTipoExpediente, cdCroqui, cdArea, cdExpediente, nmInteressado, dsAssunto, dsDespacho, dsObservacao, nmAutor, nmLogin, 
-            cdProcesso, cdTid, dtAnotacao, nrInformacaoDgpi, dtPublicacao,  nmReferenciaEndereco, dtData, nmTipoProcesso,
-            nmProcesso, nrAnotacao, nrInformacao,  nrEndereco, nmComplementoEndereco;
+    private String nmTipoExpediente, cdCroqui, cdArea, cdExpediente, nmInteressado, dsAssunto, dsDespacho, dsObservacao, nmAutor,  
+            cdProcesso, cdTid, dtAnotacao, nrInformacaoDgpi, dtPublicacao,  nmReferenciaEndereco, dtData, nmTipoProcesso, nrAnotacao, 
+            nrInformacao,  nrEndereco, nmComplementoEndereco, nmLogin, dthrAtualizacao;
     
 //Construtor    
     public AnotacaoCroqui() {
     }
+
+    public AnotacaoCroqui(int fkLogradouro, String nmTipoExpediente, String cdCroqui, String cdArea, String cdExpediente, String nmInteressado, String dsAssunto, String dsDespacho, String dsObservacao, String nmAutor, String cdProcesso, String cdTid, String dtAnotacao, String nrInformacaoDgpi, String dtPublicacao, String nmReferenciaEndereco, String dtData, String nmTipoProcesso, String nrAnotacao, String nrInformacao, String nrEndereco, String nmComplementoEndereco, String nmLogin) {
+        this.fkLogradouro = fkLogradouro;
+        this.nmTipoExpediente = nmTipoExpediente;
+        this.cdCroqui = cdCroqui;
+        this.cdArea = cdArea;
+        this.cdExpediente = cdExpediente;
+        this.nmInteressado = nmInteressado;
+        this.dsAssunto = dsAssunto;
+        this.dsDespacho = dsDespacho;
+        this.dsObservacao = dsObservacao;
+        this.nmAutor = nmAutor;
+        this.cdProcesso = cdProcesso;
+        this.cdTid = cdTid;
+        this.dtAnotacao = dtAnotacao;
+        this.nrInformacaoDgpi = nrInformacaoDgpi;
+        this.dtPublicacao = dtPublicacao;
+        this.nmReferenciaEndereco = nmReferenciaEndereco;
+        this.dtData = dtData;
+        this.nmTipoProcesso = nmTipoProcesso;
+        this.nrAnotacao = nrAnotacao;
+        this.nrInformacao = nrInformacao;
+        this.nrEndereco = nrEndereco;
+        this.nmComplementoEndereco = nmComplementoEndereco;
+        this.nmLogin = nmLogin;
+    }
+
+    public AnotacaoCroqui(int pkAnotacaoExpediente, int fkLogradouro, String nmTipoExpediente, String cdCroqui, String cdArea, String cdExpediente, String nmInteressado, String dsAssunto, String dsDespacho, String dsObservacao, String nmAutor, String cdProcesso, String cdTid, String dtAnotacao, String nrInformacaoDgpi, String dtPublicacao, String nmReferenciaEndereco, String dtData, String nmTipoProcesso, String nrAnotacao, String nrInformacao, String nrEndereco, String nmComplementoEndereco, String nmLogin) {
+        this.pkAnotacaoExpediente = pkAnotacaoExpediente;
+        this.fkLogradouro = fkLogradouro;
+        this.nmTipoExpediente = nmTipoExpediente;
+        this.cdCroqui = cdCroqui;
+        this.cdArea = cdArea;
+        this.cdExpediente = cdExpediente;
+        this.nmInteressado = nmInteressado;
+        this.dsAssunto = dsAssunto;
+        this.dsDespacho = dsDespacho;
+        this.dsObservacao = dsObservacao;
+        this.nmAutor = nmAutor;
+        this.cdProcesso = cdProcesso;
+        this.cdTid = cdTid;
+        this.dtAnotacao = dtAnotacao;
+        this.nrInformacaoDgpi = nrInformacaoDgpi;
+        this.dtPublicacao = dtPublicacao;
+        this.nmReferenciaEndereco = nmReferenciaEndereco;
+        this.dtData = dtData;
+        this.nmTipoProcesso = nmTipoProcesso;
+        this.nrAnotacao = nrAnotacao;
+        this.nrInformacao = nrInformacao;
+        this.nrEndereco = nrEndereco;
+        this.nmComplementoEndereco = nmComplementoEndereco;
+        this.nmLogin = nmLogin;
+    }
+    
+    
+    
  
 //Getter's & Setter's     
 
@@ -183,14 +239,6 @@ public class AnotacaoCroqui {
         this.nmTipoProcesso = nmTipoProcesso;
     }
 
-    public String getNmProcesso() {
-        return nmProcesso;
-    }
-
-    public void setNmProcesso(String nmProcesso) {
-        this.nmProcesso = nmProcesso;
-    }
-
     public String getNrAnotacao() {
         return nrAnotacao;
     }
@@ -221,6 +269,14 @@ public class AnotacaoCroqui {
 
     public void setNmComplementoEndereco(String nmComplementoEndereco) {
         this.nmComplementoEndereco = nmComplementoEndereco;
+    }
+
+    public String getDthrAtualizacao() {
+        return dthrAtualizacao;
+    }
+
+    public void setDthrAtualizacao(String dthrAtualizacao) {
+        this.dthrAtualizacao = dthrAtualizacao;
     }
     
     

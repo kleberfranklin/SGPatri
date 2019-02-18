@@ -76,6 +76,7 @@
                                     <div id="cad-croqui" class="tab-pane in active"  >
                                         <form action="ControllerServlet?acao=AnotacaoCroquiUC" method="POST" >
                                             <input type="hidden" name="pkAnotacaoExpediente" value="${anotCroqui.pkAnotacaoExpediente}" />
+                                            <input type="hidden" name="nmTipoExpediente" value="croqui" />
                                             <input type="hidden" name="execucao" value="${execucao}" />
                                             <h4 class="header smaller lbl "><strong>Cadastro Croqui</strong></h4>
 
@@ -306,13 +307,13 @@
                                                             <span class="lbl"><strong>número:</strong></span>
                                                         </label>
                                                         <label class="inline col-md-2 col-xs-12" >
-                                                            <input type="text" class="col-xs-12 col-md-12" name="nrnumeroend" id="nrnumeroend" placeholder="nº" required="required">
+                                                            <input type="text" class="col-xs-12 col-md-12" name="nrNumeroEnd" id="nrnumeroend" placeholder="nº" required="required">
                                                         </label>
                                                         <label class="inline col-md-2 col-xs-12" >
                                                             <span class="lbl"><strong>Complemento:</strong></span>
                                                         </label>
                                                         <label class="inline col-md-3 col-xs-12" >
-                                                            <input type="text" class="col-xs-12 col-md-12" name="nmcomplementoend" id="nmcomplementoend" placeholder="complemento do endereço" >
+                                                            <input type="text" class="col-xs-12 col-md-12" name="nmComplementoEnd" id="nmcomplementoend" placeholder="complemento do endereço" >
                                                         </label>
                                                     </div>
                                                     <div class="form-group">
@@ -330,7 +331,7 @@
                                                             <span class="lbl"><strong>Referência:</strong></span>
                                                         </label>
                                                         <label class="inline col-md-8 col-xs-12" >
-                                                            <input type="text" class="col-xs-12 col-md-12" name="nmreferenciaend" id="nmreferenciaend" value="${anotCroqui.nmReferenciaEndereco}" placeholder="referencia do endereço" >
+                                                            <input type="text" class="col-xs-12 col-md-12" name="nmReferenciaEnd" id="nmreferenciaend" value="${anotCroqui.nmReferenciaEndereco}" placeholder="referencia do endereço" >
                                                         </label>
                                                     </div>    
                                                 </c:when>
@@ -360,13 +361,13 @@
                                                             <span class="lbl"><strong>número:</strong></span>
                                                         </label>
                                                         <label class="inline col-md-2 col-xs-12" >
-                                                            <input type="text" class="col-xs-12 col-md-12" name="nrnumeroend" id="nrnumeroend" placeholder="nº" required="required">
+                                                            <input type="text" class="col-xs-12 col-md-12" name="nrNumeroEnd" id="nrnumeroend" placeholder="nº" required="required">
                                                         </label>
                                                         <label class="inline col-md-2 col-xs-12" >
                                                             <span class="lbl"><strong>Complemento:</strong></span>
                                                         </label>
                                                         <label class="inline col-md-3 col-xs-12" >
-                                                            <input type="text" class="col-xs-12 col-md-12" name="nmcomplementoend" id="nmcomplementoend" placeholder="complemento do endereço" >
+                                                            <input type="text" class="col-xs-12 col-md-12" name="nmComplementoEnd" id="nmcomplementoend" placeholder="complemento do endereço" >
                                                         </label>
                                                     </div>
                                                     <div class="form-group">
@@ -384,7 +385,7 @@
                                                             <span class="lbl"><strong>Referência:</strong></span>
                                                         </label>
                                                         <label class="inline col-md-8 col-xs-12" >
-                                                            <input type="text" class="col-xs-12 col-md-12" name="nmreferenciaend" id="nmreferenciaend" placeholder="referencia do endereço" >
+                                                            <input type="text" class="col-xs-12 col-md-12" name="nmReferenciaEnd" id="nmreferenciaend" placeholder="referencia do endereço" >
                                                         </label>
                                                     </div>    
                                                 </c:when>
@@ -459,13 +460,13 @@
                                                             <c:choose>
                                                                 <c:when test="${anotCroqui.nrAnotacao == '1'}">
                                                                     <label class="pull-left inline">
-                                                                        <input id="id-button-borders"  type="checkbox" id="" name="nrAnotacao" value="true" class="ace ace-switch ace-switch-5"  >
+                                                                        <input id="id-button-borders"  type="checkbox" id="" name="nrAnotacao" value="1" class="ace ace-switch ace-switch-5"  >
                                                                         <span class="lbl middle"></span>
                                                                     </label>
                                                                 </c:when>
                                                                 <c:otherwise>
                                                                     <label class="pull-left inline">
-                                                                        <input id="id-button-borders"  type="checkbox" id="" name="nrAnotacao" value="true" checked="" class="ace ace-switch ace-switch-5"  >
+                                                                        <input id="id-button-borders"  type="checkbox" id="" name="nrAnotacao" value="1" checked="" class="ace ace-switch ace-switch-5"  >
                                                                         <span class="lbl middle"></span>
                                                                     </label>
                                                                 </c:otherwise>
@@ -473,7 +474,7 @@
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
                                                             <label class="pull-left inline">
-                                                                <input id="id-button-borders"  type="checkbox" id="" name="nrAnotacao" value="true" class="ace ace-switch ace-switch-5"  >
+                                                                <input id="id-button-borders"  type="checkbox" id="" name="nrAnotacao" value="1" class="ace ace-switch ace-switch-5"  >
                                                                 <span class="lbl middle"></span>
                                                             </label>
                                                         </c:when>
@@ -506,13 +507,13 @@
                                                             <c:choose>
                                                                 <c:when test="${anotCroqui.nrInformacao == '1'}">
                                                                     <label class="pull-left inline">
-                                                                        <input id="id-button-borders"  type="checkbox" id="" name="nrInformacao" value="true" class="ace ace-switch ace-switch-5"  >
+                                                                        <input id="id-button-borders"  type="checkbox" id="" name="nrInformacao" value="1" class="ace ace-switch ace-switch-5"  >
                                                                         <span class="lbl middle"></span>
                                                                     </label>
                                                                 </c:when>
                                                                 <c:otherwise>
                                                                     <label class="pull-left inline">
-                                                                        <input id="id-button-borders"  type="checkbox" id="" name="nrInformacao" value="true" checked="" class="ace ace-switch ace-switch-5"  >
+                                                                        <input id="id-button-borders"  type="checkbox" id="" name="nrInformacao" value="1" checked="" class="ace ace-switch ace-switch-5"  >
                                                                         <span class="lbl middle"></span>
                                                                     </label>
                                                                 </c:otherwise>
@@ -520,7 +521,7 @@
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
                                                             <label class="pull-left inline">
-                                                                <input id="id-button-borders"  type="checkbox" id="" name="nrInformacao" value="true" class="ace ace-switch ace-switch-5"  >
+                                                                <input id="id-button-borders"  type="checkbox" id="" name="nrInformacao" value="1" class="ace ace-switch ace-switch-5"  >
                                                                 <span class="lbl middle"></span>
                                                             </label>
                                                         </c:when>
@@ -554,11 +555,11 @@
                                                     <c:choose>
                                                         <c:when test="${execucao == 'edit'}">
                                                             <input type="text" id="form-field-1" class="col-sm-10 col-xs-12"  name="dsDespacho" 
-                                                                   value="${anotCroqui.dsDespacho}" placeholder="Escrever o despacho" required="required" >
+                                                                   value="${anotCroqui.dsDespacho}" placeholder="Escrever o despacho" >
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
                                                             <input type="text" id="form-field-1" class="col-sm-10 col-xs-12"  name="dsDespacho" 
-                                                                   placeholder="Escrever o despacho" required="required" >
+                                                                   placeholder="Escrever o despacho"  >
                                                         </c:when>
                                                         <c:otherwise>
                                                             <span class="lbl">${anotCroqui.dsDespacho}</span> 
@@ -580,11 +581,11 @@
                                                             <fmt:parseDate value = "${dtPubli}" var = "converteDTPlub" pattern="yyyy-MM-dd" />
                                                             <fmt:formatDate type= "date" value="${converteDTPlub}" var="dtAtuPubli"/>
                                                             <input type="date" id="form-field-1" class="col-sm-4 col-xs-12"  name="dtPublicacao" 
-                                                                   value="${dtAtuPubli}" placeholder="" required="required" >
+                                                                   value="${dtAtuPubli}" placeholder="" >
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
                                                             <input type="date" id="form-field-1" class="col-sm-4 col-xs-12"  name="dtPublicacao" 
-                                                                   placeholder="" required="required" >
+                                                                   placeholder="" >
                                                         </c:when>
                                                         <c:otherwise>
                                                             <c:set var = "dtPubli" value = "${anotCroqui.dtPublicacao}" />
@@ -606,11 +607,11 @@
                                                     <c:choose>
                                                         <c:when test="${execucao == 'edit'}">
                                                             <input type="date" id="form-field-1" class="col-sm-4 col-xs-12"  name="dtAnotacao" 
-                                                                   value="${anotCroqui.dtAnotacao}" placeholder="Escrever o despacho" required="required" >
+                                                                   value="${anotCroqui.dtAnotacao}" placeholder="Escrever o despacho" >
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
                                                             <input type="date" id="form-field-1" class="col-sm-4 col-xs-12"  name="dtAnotacao" 
-                                                                   placeholder="Escrever o despacho" required="required" >
+                                                                   placeholder="Escrever o despacho" >
                                                         </c:when>
                                                         <c:otherwise>
                                                             <span class="lbl">${anotCroqui.dtAnotacao}</span> 
@@ -665,8 +666,7 @@
                                                                    required="required" >
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
-                                                            <input type="date" id="form-field-1" class="col-sm-10 col-xs-12"  name="dtData" 
-                                                                   value ="$" required="required" >
+                                                            <input type="date" id="form-field-1" class="col-sm-10 col-xs-12"  name="dtData" >
                                                         </c:when>
                                                         <c:otherwise>
                                                             <span class="lbl">
@@ -700,8 +700,8 @@
                                                                    value="${anotCroqui.nmAutor}" placeholder="Nome " required="required" >
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
-                                                            <input type="text" id="form-field-1" class="col-sm-8 col-xs-12"  name="nmAutor" 
-                                                                   placeholder="Nome " required="required" >
+                                                            <input type="text" id="form-field-1" class="col-sm-8 col-xs-12"  name="nmAutor" value="<c:out value="${sessionNome}" />" 
+                                                                   placeholder="Nome " required="required" readonly="readonly" >
                                                         </c:when>
                                                         <c:otherwise>
                                                             <span class="lbl">${anotCroqui.nmAutor}</span> 
@@ -749,7 +749,7 @@
                                                 <h4 class="header smaller lbl "><strong>Documentos Anexo</strong></h4>   
                                                 <input type="hidden" name="pkAutoStage" value="${anotCroqui.pkAnotacaoExpediente}" />
                                                 <input type="hidden" name="execucao" value="${execucao}" />
-                                                <input type="hidden" name="tipoArquivo" value="croqui" />
+                                                <input type="hidden" name="tipoArquivo" value="Croqui" />
                                                 <input type="hidden" name="Origem" value="AnotacaoExpediente" />
                                                 <input type="hidden" name="nrVerCroqui" value="1" />
                                                 
@@ -760,7 +760,7 @@
 
                                                 <label class="inline col-md-2 col-xs-12"><strong>Croqui:</strong></label>
                                                 <label class="col-md-1 col-xs-12">
-                                                    <c:forEach var="ar" items="${Arquivo.listArquivo(anotCroqui.pkAnotacaoExpediente, 'Croqui')}">
+                                                    <c:forEach var="ar" items="${Arquivo.listArquivo(anotCroqui.pkAnotacaoExpediente, 'AnotacaoExpediente')}">
                                                         <c:if test="${ar.nmTipo == 'Croqui'}">
                                                             <a href="<c:out value="${pageContext.servletContext.contextPath}" />/Arquivo/Croqui/${ar.nmNomeArquivo}" target="_blank"><img src="img/img-planta.png" title="${ar.nmNome}" width="60%" height="60%"/></a>
                                                         </c:if>    
