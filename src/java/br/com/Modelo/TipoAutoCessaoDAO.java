@@ -28,67 +28,86 @@ public class TipoAutoCessaoDAO {
 
 
 //Metodo de quantidade de linhas
-    public int qdTipoCessao (String q){
-        String sql = ("SELECT COUNT(*) as total FROM tbl_tipocessao "
+    public int qdTipoCessao (String q) throws SQLException{
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        int total = 0;
+        String sql = ("SELECT COUNT(*) as total "
+                    + "FROM tbl_tipocessao "
                     + "WHERE nm_tipocessao LIKE ? ");
         try{
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt = connection.prepareStatement(sql);
                 stmt.setString(1, '%'+q+'%');
-            ResultSet rs = stmt.executeQuery();
-                int total = 0;
+            rs = stmt.executeQuery();
+                
                 if(rs.next()){
                     total = rs.getInt("total");
                 }
             stmt.execute();
-            stmt.close();
         return total;
         }catch (SQLException e){
             throw new RuntimeException(e);
-            }
+        }finally{
+            rs.close();
+            stmt.close();
+            connection.close();
+        }
     }    
 
 //METODO lista os Tipos de Auto de Cessão das pesquisas e paginada
-    public List<TipoAutoCessao> listTpCessao (int qtLinha, int offset, String q ){
-        String sql = ("SELECT * FROM vw_tipocessaocompleto "
+    public List<TipoAutoCessao> listTpCessao (int qtLinha, int offset, String q ) throws SQLException{
+        PreparedStatement stmt = null;
+        ResultSet rs = null;      
+        List<TipoAutoCessao> lisTpCessao = new ArrayList<TipoAutoCessao>();
+        
+        String sql = ("SELECT id_tipocessao, fk_categoriauto, sg_categoriauto, nm_categoriaauto, nm_tipocessao, "
+                    + "nm_tipocessao, nm_login, dthr_atualizacao "
+                    + "FROM vw_tipocessaocompleto "
                     + "WHERE nm_tipocessao LIKE ? "
                     + "ORDER BY nm_tipocessao "
                     + "LIMIT ? OFFSET ? ");
         try{
-            List<TipoAutoCessao> lisTpCessao = new ArrayList<TipoAutoCessao>();
-                PreparedStatement stmt = connection.prepareStatement(sql);
-                    stmt.setString(1,'%'+q+'%');
-                    stmt.setInt(2, qtLinha);
-                    stmt.setInt(3, offset);
-                
-                 ResultSet rs = stmt.executeQuery();
-                    while (rs.next()){
-                    TipoAutoCessao tpCessao = new TipoAutoCessao();
-                        tpCessao.setPkTipoAutoCessao(rs.getInt("id_tipocessao"));
-                        tpCessao.setFkCatAutoCessao(rs.getInt("fk_categoriauto"));
-                        tpCessao.setSgCatAutoCessao(rs.getString("sg_categoriauto"));
-                        tpCessao.setNmCatAutoCessao(rs.getString("nm_categoriaauto"));
-                        tpCessao.setNmTipoAutoCessao(rs.getString("nm_tipocessao"));
-                        tpCessao.setNmLogin(rs.getString("nm_login"));
-                        tpCessao.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
-                     lisTpCessao.add(tpCessao);
-                    }
-                stmt.close();
-         return lisTpCessao;
+            stmt = connection.prepareStatement(sql);
+                stmt.setString(1,'%'+q+'%');
+                stmt.setInt(2, qtLinha);
+                stmt.setInt(3, offset);
+                rs = stmt.executeQuery();
+
+                while (rs.next()){
+                TipoAutoCessao tpCessao = new TipoAutoCessao();
+                    tpCessao.setPkTipoAutoCessao(rs.getInt("id_tipocessao"));
+                    tpCessao.setFkCatAutoCessao(rs.getInt("fk_categoriauto"));
+                    tpCessao.setSgCatAutoCessao(rs.getString("sg_categoriauto"));
+                    tpCessao.setNmCatAutoCessao(rs.getString("nm_categoriaauto"));
+                    tpCessao.setNmTipoAutoCessao(rs.getString("nm_tipocessao"));
+                    tpCessao.setNmLogin(rs.getString("nm_login"));
+                    tpCessao.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
+                 lisTpCessao.add(tpCessao);
+                }
+            return lisTpCessao;
         }catch (SQLException e){
             throw new RuntimeException(e);
+        }finally{
+            rs.close();
+            stmt.close();
+            connection.close();
         }
         
     }    
 
 //METODO utilizado para retornar as informação de um Tipo de Auto Cessão
-    public TipoAutoCessao detalheTpCessao(int pkTipoAutoCessao){
-        String sql = "SELECT * FROM vw_tipocessaocompleto WHERE id_tipocessao = ?";
+    public TipoAutoCessao detalheTpCessao(int pkTipoAutoCessao) throws SQLException{
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        TipoAutoCessao tpCessao = new TipoAutoCessao();
+        
+        String sql = "SELECT id_tipocessao, fk_categoriauto, sg_categoriauto, nm_categoriaauto, nm_tipocessao, nm_login, dthr_atualizacao "
+                    + "FROM vw_tipocessaocompleto "
+                    + "WHERE id_tipocessao = ?";
         try{
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, pkTipoAutoCessao);
-            ResultSet rs = stmt.executeQuery();
-                    
-            TipoAutoCessao tpCessao = new TipoAutoCessao();
+            stmt = connection.prepareStatement(sql);
+                stmt.setInt(1, pkTipoAutoCessao);
+                rs = stmt.executeQuery();
             if(rs.next()){
                 tpCessao.setPkTipoAutoCessao(rs.getInt("id_tipocessao"));
                 tpCessao.setFkCatAutoCessao(rs.getInt("fk_categoriauto"));
@@ -98,79 +117,97 @@ public class TipoAutoCessaoDAO {
                 tpCessao.setNmLogin(rs.getString("nm_login"));
                 tpCessao.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
             }
-         stmt.close();
-         return tpCessao;
+            return tpCessao;
         }catch (SQLException e){
           throw new RuntimeException(e);
+        }finally{
+            rs.close();
+            stmt.close();
+//            connection.close();
         }
     }   
     
     
 //METODO utilizado para inserir uma novo Tipo de Auto de Cessao no BANCO
-    public void cTipoCessao(TipoAutoCessao tpCessao){
-        String sql = "INSERT INTO tbl_tipocessao ( fk_categoriauto, nm_tipocessao, nm_login, dthr_atualizacao ) "
+    public void cTipoCessao(TipoAutoCessao tpCessao) throws SQLException{
+        PreparedStatement stmt = null;
+        
+        String sql = "INSERT INTO tbl_tipocessao "
+                + "(fk_categoriauto, nm_tipocessao, nm_login, dthr_atualizacao ) "
                 + "VALUES (?,?,?,? )";
             try{
-                PreparedStatement stmt = connection.prepareStatement(sql);
+                stmt = connection.prepareStatement(sql);
                     stmt.setInt(1, tpCessao.getFkCatAutoCessao());
                     stmt.setString(2, tpCessao.getNmTipoAutoCessao());
                     stmt.setString(3, tpCessao.getNmLogin());
                     stmt.setTimestamp(4,java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
                 stmt.execute();
-                stmt.close();
             }catch (SQLException e){
                 throw new RuntimeException(e);
-            }
+            }finally{
+//            stmt.close();
+//            connection.close();
+        }
     }          
     
     
 //MEDOTO utilizado para realizar a alteração das informações de um Tipo de Auto de Cessão
-    public void upTipoCessao(TipoAutoCessao tpCessao){
-        String sql = "UPDATE tbl_tipocessao SET fk_categoriauto=?, nm_tipocessao=?, nm_login=?, dthr_atualizacao=? "
-                + "WHERE id_tipocessao = ?";
+    public void upTipoCessao(TipoAutoCessao tpCessao) throws SQLException{
+        PreparedStatement stmt = null;
+        
+        String sql = "UPDATE tbl_tipocessao "
+                    +"SET fk_categoriauto=?, nm_tipocessao=?, nm_login=?, dthr_atualizacao=? "
+                    +"WHERE id_tipocessao = ?";
         try{
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt = connection.prepareStatement(sql);
                 stmt.setInt(1, tpCessao.getFkCatAutoCessao());
                 stmt.setString(2, tpCessao.getNmTipoAutoCessao());
                 stmt.setString(3, tpCessao.getNmLogin() );
                 stmt.setTimestamp(4,java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
                 stmt.setInt(5, tpCessao.getPkTipoAutoCessao());
             stmt.execute();
-            stmt.close();
         }catch (SQLException e){
            throw new RuntimeException(e);
+        }finally{
+//            stmt.close();
+//            connection.close();
         }
     } 
     
     
 //METODO lista os Tipo de Auto Cessão para campo select
-    public List<TipoAutoCessao> listSelectTpCessao() {
-    String sql = "SELECT * FROM vw_tipocessaocompleto ORDER BY nm_tipocessao ";
-    
-    try {
-        List<TipoAutoCessao> lisTpCessao = new ArrayList<TipoAutoCessao>();
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();  
-            
-            while (rs.next()){
-             TipoAutoCessao tpCessao = new TipoAutoCessao();
-                tpCessao.setPkTipoAutoCessao(rs.getInt("id_tipocessao"));
-                tpCessao.setFkCatAutoCessao(rs.getInt("fk_categoriauto"));
-                tpCessao.setSgCatAutoCessao(rs.getString("sg_categoriauto"));
-                tpCessao.setNmCatAutoCessao(rs.getString("nm_categoriaauto"));
-                tpCessao.setNmTipoAutoCessao(rs.getString("nm_tipocessao"));
-                tpCessao.setNmLogin(rs.getString("nm_login"));
-                tpCessao.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
-             lisTpCessao.add(tpCessao);
-            }       
-            stmt.execute();
-            stmt.close();                                                                                                                                                                
-        return lisTpCessao;
-    
-    } catch (SQLException e) {
-        throw new RuntimeException(e);
-      }
-    } 
+    public List<TipoAutoCessao> listSelectTpCessao() throws SQLException {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String sql = "SELECT id_tipocessao, fk_categoriauto, sg_categoriauto, nm_categoriaauto, "
+                    + "nm_tipocessao, nm_login, dthr_atualizacao "
+                    + "FROM vw_tipocessaocompleto "
+                    + "ORDER BY nm_tipocessao ";
+        try {
+            stmt = connection.prepareStatement(sql);
+            rs = stmt.executeQuery();  
+            List<TipoAutoCessao> lisTpCessao = new ArrayList<TipoAutoCessao>();
+                while (rs.next()){
+                 TipoAutoCessao tpCessao = new TipoAutoCessao();
+                    tpCessao.setPkTipoAutoCessao(rs.getInt("id_tipocessao"));
+                    tpCessao.setFkCatAutoCessao(rs.getInt("fk_categoriauto"));
+                    tpCessao.setSgCatAutoCessao(rs.getString("sg_categoriauto"));
+                    tpCessao.setNmCatAutoCessao(rs.getString("nm_categoriaauto"));
+                    tpCessao.setNmTipoAutoCessao(rs.getString("nm_tipocessao"));
+                    tpCessao.setNmLogin(rs.getString("nm_login"));
+                    tpCessao.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
+                 lisTpCessao.add(tpCessao);
+                }       
+                stmt.execute();
+            return lisTpCessao;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }finally{
+                rs.close();
+                stmt.close();
+                connection.close();
+            }
+       } 
     
     
 

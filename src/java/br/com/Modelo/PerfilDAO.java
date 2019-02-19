@@ -27,11 +27,14 @@ public class PerfilDAO {
     }
     
  //METODO utilizado para inserir uma novo Perfil no BANCO
-    public void cPerfil(Perfil per){
-        String sql = "INSERT INTO tbl_perfil (nm_perfil, ds_perfil, nr_ler, nr_inserir, nr_editar, nr_excluir, nr_gerencia, nm_login, dthr_atualizacao) "
+    public void cPerfil(Perfil per) throws SQLException{
+        PreparedStatement stmt = null;
+        String sql = "INSERT INTO tbl_perfil "
+                + "(nm_perfil, ds_perfil, nr_ler, nr_inserir, nr_editar, "
+                + "nr_excluir, nr_gerencia, nm_login, dthr_atualizacao) "
                 + "VALUES (?,?,?,?,?,?,?,?,?)";
             try{
-                PreparedStatement stmt = connection.prepareStatement(sql);
+                stmt = connection.prepareStatement(sql);
                     stmt.setString(1, per.getNmPerfil());
                     stmt.setString(2, per.getDsPerfil());
                     stmt.setInt(3, per.getNrLer());
@@ -42,18 +45,23 @@ public class PerfilDAO {
                     stmt.setString(8, per.getNmLogin());
                     stmt.setTimestamp(9,java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
                 stmt.execute();
-                stmt.close();
             }catch (SQLException e){
                 throw new RuntimeException(e);
+            }finally{
+                stmt.close();
+                connection.close();
             }
     }   
 
 //MEDOTO utilizado para realizar a alteração das informações do Perfil
-    public void upPerfil(Perfil per){
-        String sql = "UPDATE tbl_perfil SET nm_perfil=?, ds_perfil=?, nr_ler=?, nr_inserir=?, nr_editar=?, nr_excluir=?, nr_gerencia=?, nm_login=?, dthr_atualizacao=? "
+    public void upPerfil(Perfil per) throws SQLException{
+        PreparedStatement stmt = null;
+        String sql = "UPDATE tbl_perfil "
+                + "SET nm_perfil=?, ds_perfil=?, nr_ler=?, nr_inserir=?, nr_editar=?, nr_excluir=?, nr_gerencia=?, "
+                + "nm_login=?, dthr_atualizacao=? "
                 + "WHERE id_perfil = ?";
         try{
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt = connection.prepareStatement(sql);
                 stmt.setString(1, per.getNmPerfil());
                 stmt.setString(2, per.getDsPerfil());
                 stmt.setInt(3, per.getNrLer());
@@ -68,12 +76,18 @@ public class PerfilDAO {
             stmt.close();
         }catch (SQLException e){
            throw new RuntimeException(e);
+        }finally{
+            stmt.close();
+            connection.close();
         }
     }    
     
 //METODO utilizado para retornar as informação de um Perfil
     public Perfil detalhePerfil(int pkPerfil){
-        String sql = "SELECT * FROM tbl_perfil WHERE id_perfil = ?";
+        String sql = "SELECT id_perfil, nm_perfil, ds_perfil, nm_login, dthr_atualizacao, "
+                + "nr_editar, nr_excluir, nr_gerencia, nr_inserir,  nr_ler "
+                + "FROM tbl_perfil "
+                + "WHERE id_perfil = ?";
         try{
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, pkPerfil);

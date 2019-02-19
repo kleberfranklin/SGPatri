@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import org.eclipse.jdt.internal.compiler.ast.Statement;
 
 /**
  *
@@ -26,16 +25,19 @@ public class ValidacaoDAO {
     }
     
 //METODO utilizado para retornar as informação de um Validação
-    public Validacao detalheValidacaoAutoCessao(int fkAutoCessao){
-        String sql = "SELECT * FROM tbl_validacao_autocessao "
-                + "WHERE fk_autocessao = ? ";
-                
+    public Validacao detalheValidacaoAutoCessao(int fkAutoCessao) throws SQLException {
+        PreparedStatement stmt =null;
+        ResultSet rs = null;
+        Validacao val = new Validacao();
+        
+        String sql = "SELECT id_validacao_autocessao, fk_autocessao, fk_divisao, nm_status, "
+                    + "nm_problema, nm_tarefa, ds_obs, nm_login, dthr_atualizacao "
+                    + "FROM tbl_validacao_autocessao "
+                    + "WHERE fk_autocessao = ? ";
         try{
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, fkAutoCessao);
-            ResultSet rs = stmt.executeQuery();
-                    
-            Validacao val = new Validacao();
+            stmt = connection.prepareStatement(sql);
+                stmt.setInt(1, fkAutoCessao);
+            rs = stmt.executeQuery();
             if(rs.next()){
                val.setPkValidacao(rs.getInt("id_validacao_autocessao"));
                val.setFkAutoCessao(rs.getInt("fk_autocessao"));
@@ -47,22 +49,27 @@ public class ValidacaoDAO {
                val.setNmLogin(rs.getString("nm_login"));
                val.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
             }
-         stmt.close();
-         return val;
+            return val;
         }catch (SQLException e){
           throw new RuntimeException(e);
+        }finally{
+            rs.close();
+            stmt.close();
         }
     } 
     
     
 //METODO utilizado para inserir uma nova Validação no BANCO
-    public int cValidacao(Validacao val){
+    public int cValidacao(Validacao val) throws SQLException{
         int pkValidacao = 0;
-        String sql = "INSERT INTO tbl_validacao_autocessao (fk_autocessao, fk_divisao, nm_status, nm_problema, nm_tarefa, ds_obs, nm_login, dthr_atualizacao) "
+        PreparedStatement stmt =null;
+        ResultSet rs = null;
+        
+        String sql = "INSERT INTO tbl_validacao_autocessao (fk_autocessao, fk_divisao, nm_status, "
+                + "nm_problema, nm_tarefa, ds_obs, nm_login, dthr_atualizacao) "
                 + "VALUES (?,?,?,?,?,?,?,?)";
-            
             try{
-                PreparedStatement stmt = connection.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
+                stmt = connection.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
                     stmt.setInt(1, val.getFkAutoCessao());
                     stmt.setInt(2, val.getFkDivisao());
                     stmt.setString(3, val.getNmStatus());
@@ -71,26 +78,29 @@ public class ValidacaoDAO {
                     stmt.setString(6, val.getDsObsservacao());
                     stmt.setString(7, val.getNmLogin());
                     stmt.setTimestamp(8,java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
-//                stmt.execute();
                   stmt.executeUpdate();
 
-                ResultSet rs = stmt.getGeneratedKeys();
+                rs = stmt.getGeneratedKeys();
                 if(rs.next()){
-                    pkValidacao = rs.getInt(1);
+                    pkValidacao = rs.getInt("id_validacao_autocessao");
                 }
-                stmt.close();
             }catch (SQLException e){
                 throw new RuntimeException(e);
+            }finally{
+                rs.close();
+                stmt.close();
             }
             return pkValidacao;
     }    
     
 //MEDOTO utilizado para realizar a alteração das informações da Validação
-    public void upValidacao(Validacao val){
+    public void upValidacao(Validacao val) throws SQLException {
+        PreparedStatement stmt = null;
+                
         String sql = "UPDATE tbl_validacao_autocessao SET fk_autocessao=?, fk_divisao=?, nm_status=?, nm_problema=?, nm_tarefa=?, ds_obs=?, nm_login=?, dthr_atualizacao=? "
                 + "WHERE id_validacao_autocessao = ?";
         try{
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt = connection.prepareStatement(sql);
                 stmt.setInt(1, val.getFkAutoCessao());
                 stmt.setInt(2, val.getFkDivisao());
                 stmt.setString(3, val.getNmStatus());
@@ -101,41 +111,49 @@ public class ValidacaoDAO {
                 stmt.setTimestamp(8,java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
                 stmt.setInt(9, val.getPkValidacao());
             stmt.execute();
-            stmt.close();
         }catch (SQLException e){
            throw new RuntimeException(e);
+        }finally {
+            stmt.close();
         }
     }     
 
 //METODO lista os setor de um Divisão, utilizado no o select da pagina cadastro e alteração de ususário
-    public List<Validacao> lisValidacao(int pkAutoCessao) {
-        String sql = ("SELECT * FROM tbl_validacao_autocessao "
-                + "WHERE fk_autocessao = ? "
-                + "ORDER BY id_validacao_autocessao DESC");
-    try {
+    public List<Validacao> lisValidacao(int pkAutoCessao) throws SQLException {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
         List<Validacao> listValidacao = new ArrayList<Validacao>();
-            PreparedStatement stmt = connection.prepareStatement(sql);
+
+        String sql = ("SELECT id_validacao_autocessao, fk_autocessao, fk_divisao, nm_status, nm_tarefa, nm_problema "
+                    + "ds_obs, nm_login, dthr_atualizacao "
+                    + "FROM tbl_validacao_autocessao "
+                    + "WHERE fk_autocessao = ? "
+                    + "ORDER BY id_validacao_autocessao DESC");
+        try {
+        
+            stmt = connection.prepareStatement(sql);
                 stmt.setInt(1, pkAutoCessao);
-            ResultSet rs = stmt.executeQuery();  
+            rs = stmt.executeQuery();  
             while (rs.next()){
-            Validacao va = new Validacao();
-                va.setPkValidacao(rs.getInt("id_validacao_autocessao"));
-                va.setFkAutoCessao(rs.getInt("fk_autocessao"));
-                va.setFkDivisao(rs.getInt("fk_divisao"));
-                va.setNmStatus(rs.getString("nm_status"));
-                va.setNmTarefa(rs.getString("nm_tarefa"));
-                va.setNmProblema(rs.getString("nm_problema"));
-                va.setDsObsservacao(rs.getString("ds_obs"));
-                va.setNmLogin(rs.getString("nm_login"));
-                va.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
+                Validacao va = new Validacao();
+                    va.setPkValidacao(rs.getInt("id_validacao_autocessao"));
+                    va.setFkAutoCessao(rs.getInt("fk_autocessao"));
+                    va.setFkDivisao(rs.getInt("fk_divisao"));
+                    va.setNmStatus(rs.getString("nm_status"));
+                    va.setNmTarefa(rs.getString("nm_tarefa"));
+                    va.setNmProblema(rs.getString("nm_problema"));
+                    va.setDsObsservacao(rs.getString("ds_obs"));
+                    va.setNmLogin(rs.getString("nm_login"));
+                    va.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
              listValidacao.add(va);
-            }       
-            stmt.close();                                                                                                                                                                
+            }
         return listValidacao;
     
-    } catch (SQLException e) {
-        throw new RuntimeException(e);
-      }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally{
+            stmt.close();
+        }
     } 
     
     
