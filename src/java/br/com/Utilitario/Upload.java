@@ -21,7 +21,7 @@ public class Upload {
     public String upload(String pasta, String nomeDoArquivo,
             InputStream arquivoCarregado) throws FileNotFoundException {
         
-        String caminhoArquivo = pasta + "\\" + nomeDoArquivo;
+        String caminhoArquivo = pasta +File.separator+ nomeDoArquivo;
         File novoArquivo = new File(caminhoArquivo);
         FileOutputStream saida = new FileOutputStream(novoArquivo);
         copiar(arquivoCarregado, saida);
@@ -47,7 +47,7 @@ public class Upload {
    
     public boolean deltar(String pasta, String nomeDoArquivo) throws FileNotFoundException {
         boolean deletar;
-        String caminhoArquivo = pasta + "\\" + nomeDoArquivo;
+        String caminhoArquivo = pasta +File.separator+ nomeDoArquivo;
         File file = new File(caminhoArquivo);
         
         if(file.exists()){

@@ -26,23 +26,27 @@ public class ArquivoUpload implements Logica{
     @Override    
      public String executa(HttpServletRequest req,
                      HttpServletResponse res) throws Exception {
-        
+
+//Objetos          
         Upload up = new Upload(); 
         AutoCessaoValidacaoDAO autoVaDAO = new AutoCessaoValidacaoDAO();
         ArquivoDAO arDAO = new ArquivoDAO();
+        AnotacaoCroquiDAO anotoCroquiDAO = new AnotacaoCroquiDAO();
         Arquivo ar = new Arquivo();
         HttpSession session = req.getSession();
 
+//Atributos        
         String nomeDoArquivo="", caminhoArquivo="", tipoArquivo, origem, nome, pgValidacao, execucao, finalizar, loginSessio;
-        int pkArquivo, pkAutoStage,nrVerArqAc, nrVerArqPlanta;
+        int pkArquivo, pkAutoStage,nrVerArqAc, nrVerArqPlanta, pkDocumento;
         InputStream arquivoCarregado;
                 
         
-        
+//Populando atritubos        
         tipoArquivo = req.getParameter("tipoArquivo");
         origem = req.getParameter("Origem");
         nome = req.getParameter("nmNome");
-        pkAutoStage = Integer.parseInt(req.getParameter("pkAutoStage"));
+//        pkAutoStage = Integer.parseInt(req.getParameter("pkAutoStage")); //remover esse e patronizar todos para pkDocumento
+        pkDocumento = Integer.parseInt(req.getParameter("pkDocumento"));
         pkArquivo = Integer.parseInt(req.getParameter("pkArquivo"));
         execucao = req.getParameter("execucao");
         pgValidacao = req.getParameter("pgValidacao");
@@ -59,7 +63,7 @@ public class ArquivoUpload implements Logica{
                 arquivoCarregado = uploadPlanta.getInputStream();
                 caminhoArquivo = up.upload(pastaArquivar, nomeDoArquivo, arquivoCarregado);
                 nrVerArqPlanta = Integer.parseInt(req.getParameter("nrVerArqPlanta"));
-                autoVaDAO.upAutoCessaoVerificadoArquivoPlanta(pkAutoStage, nrVerArqPlanta);
+                autoVaDAO.upAutoCessaoVerificadoArquivoPlanta(pkDocumento, nrVerArqPlanta);
             break;
 
             case "AC":
@@ -69,7 +73,7 @@ public class ArquivoUpload implements Logica{
                 arquivoCarregado = uploadAC.getInputStream();
                 caminhoArquivo = up.upload(pastaArquivar, nomeDoArquivo, arquivoCarregado);
                 nrVerArqAc = Integer.parseInt(req.getParameter("nrVerArqAc"));
-                autoVaDAO.upAutoCessaoVerificadoArquivoAc(pkAutoStage, nrVerArqAc);
+                autoVaDAO.upAutoCessaoVerificadoArquivoAc(pkDocumento, nrVerArqAc);
             break;
             
             case "Croqui":
@@ -78,8 +82,7 @@ public class ArquivoUpload implements Logica{
                 nomeDoArquivo = Transformar.substituiEspacoHifen(Transformar.retiraEspacosDuplicados(Transformar.removeAccents(uploadCroqui.getSubmittedFileName())));
                 arquivoCarregado = uploadCroqui.getInputStream();
                 caminhoArquivo = up.upload(pastaArquivar, nomeDoArquivo, arquivoCarregado);
-                //nrVerArqAc = Integer.parseInt(req.getParameter("nrVerArqAc"));
-                //autoVaDAO.upAutoCessaoVerificadoArquivoAc(pkAutoStage, nrVerArqAc);
+                anotoCroquiDAO.upAnotacaoCroquiVerificadoArquivo(pkDocumento);
             break;
             case "Deletar":
             break;
@@ -90,31 +93,35 @@ public class ArquivoUpload implements Logica{
                 
             
             if(pkArquivo != 0){
-                ar = new Arquivo(pkArquivo, pkAutoStage, origem, tipoArquivo, nomeDoArquivo, caminhoArquivo, nome, loginSessio);
+                ar = new Arquivo(pkArquivo, pkDocumento, origem, tipoArquivo, nomeDoArquivo, caminhoArquivo, nome, loginSessio);
                 arDAO.upArquivo(ar);
             }else{
-                boolean duplicidade = arDAO.duplicidade(pkAutoStage,tipoArquivo);
+                boolean duplicidade = arDAO.duplicidade(pkDocumento,tipoArquivo);
                 if(duplicidade == false){
-                    ar = new Arquivo(pkAutoStage, origem, tipoArquivo, nomeDoArquivo, caminhoArquivo, nome, loginSessio);
+                    ar = new Arquivo(pkDocumento, origem, tipoArquivo, nomeDoArquivo, caminhoArquivo, nome, loginSessio);
                     arDAO.cArquivo(ar);
                 }    
             }
             
             if("Croqui".equals(tipoArquivo)){
-                return  "ControllerServlet?acao=AnotacaoCroquiDetalhe&pkAnotacaoExpediente="+pkAutoStage+"&execucao="+execucao;
+                req.setAttribute("msg", "gravou");
+                return  "ControllerServlet?acao=AnotacaoCroquiDetalhe&pkAnotacaoExpediente="+pkDocumento
+                        +"&execucao=view"
+//                        +"&msg=gravou"
+                        ;
             }
             
             if(null !=finalizar && finalizar.equals("1")){
-                autoVaDAO.upAutoCessaoVerificadoValidacao(0, 1, pkAutoStage, "Validado");
+                autoVaDAO.upAutoCessaoVerificadoValidacao(0, 1, pkDocumento, "Validado");
                 //execucao = "";
                 req.setAttribute("execucao", "ola");
-                return "ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage="+pkAutoStage+"&execucao=";
+                return "ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage="+pkDocumento+"&execucao=";
             } 
             
             if ((null == pgValidacao || pgValidacao.equals("")) && execucao == "edit") {
-                return "ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage="+pkAutoStage+"&execucao=";
+                return "ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage="+pkDocumento+"&execucao=";
            }
-        return "ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage="+pkAutoStage+"&execucao="+execucao+"&pgValidacao"+pgValidacao;  
+        return "ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage="+pkDocumento+"&execucao="+execucao+"&pgValidacao"+pgValidacao;  
     }   
      
    

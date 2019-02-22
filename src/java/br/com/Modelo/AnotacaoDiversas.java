@@ -5,19 +5,29 @@
  */
 package br.com.Modelo;
 
+import java.util.Date;
+
 /**
  *
- * @author d732229
+ * @author x369482
  */
 public class AnotacaoDiversas {
+
+//Atributos
+    private int pkAnotacaoExpediente, fkLogradouro, nrVerExpediente, nrVerArquivo;
+    private String nmTipoExpediente, cdArea, cdExpediente, nmInteressado, dsAssunto, dsDespacho, dsObservacao, nmAutor,  
+            cdSetor, cdQuadra, cdLote, cdProcesso, cdTid, dtAnotacao, dsInformacaoGeral, nrInformacaoDgpi, nmReferenciaEndereco, nmTipoProcesso, nrAnotacao, 
+            nrInformacao,  nrEndereco, nmComplementoEndereco, nmLogin, dthrAtualizacao;
+    private Date dtPublicacao, dtData;
     
-    private int pkAnotacaoExpediente, nrAnotacao, nrInformacao, fkUsuario, fkCatFormularios, nrCodigo;
-
-    private String cdCroqui, cdArea, cdExpediente, nmInformacaoDgpi, nmInteressado, dsAssunto, dsDespacho, dsObservacao, nmNome, cdSetor, cdQuadra, cdLote,
-            dtPublicacao, dsLocal, dtData, dthrAtualizacao, nmLogin, dtAnotacao, nmPublicadoPor, dsInfoGeral, cdTid, cdProcesso;
-
+//Construtor    
     public AnotacaoDiversas() {
     }
+
+    
+    
+ 
+//Getter's & Setter's     
 
     public int getPkAnotacaoExpediente() {
         return pkAnotacaoExpediente;
@@ -27,52 +37,36 @@ public class AnotacaoDiversas {
         this.pkAnotacaoExpediente = pkAnotacaoExpediente;
     }
 
-    public int getNrAnotacao() {
-        return nrAnotacao;
+    public int getFkLogradouro() {
+        return fkLogradouro;
     }
 
-    public void setNrAnotacao(int nrAnotacao) {
-        this.nrAnotacao = nrAnotacao;
+    public void setFkLogradouro(int fkLogradouro) {
+        this.fkLogradouro = fkLogradouro;
     }
 
-    public int getNrInformacao() {
-        return nrInformacao;
+    public int getNrVerExpediente() {
+        return nrVerExpediente;
     }
 
-    public void setNrInformacao(int nrInformacao) {
-        this.nrInformacao = nrInformacao;
+    public void setNrVerExpediente(int nrVerExpediente) {
+        this.nrVerExpediente = nrVerExpediente;
     }
 
-    public int getFkUsuario() {
-        return fkUsuario;
+    public int getNrVerArquivo() {
+        return nrVerArquivo;
     }
 
-    public void setFkUsuario(int fkUsuario) {
-        this.fkUsuario = fkUsuario;
+    public void setNrVerArquivo(int nrVerArquivo) {
+        this.nrVerArquivo = nrVerArquivo;
     }
 
-    public int getFkCatFormularios() {
-        return fkCatFormularios;
+    public String getNmTipoExpediente() {
+        return nmTipoExpediente;
     }
 
-    public void setFkCatFormularios(int fkCatFormularios) {
-        this.fkCatFormularios = fkCatFormularios;
-    }
-
-    public int getNrCodigo() {
-        return nrCodigo;
-    }
-
-    public void setNrCodigo(int nrCodigo) {
-        this.nrCodigo = nrCodigo;
-    }
-
-    public String getCdCroqui() {
-        return cdCroqui;
-    }
-
-    public void setCdCroqui(String cdCroqui) {
-        this.cdCroqui = cdCroqui;
+    public void setNmTipoExpediente(String nmTipoExpediente) {
+        this.nmTipoExpediente = nmTipoExpediente;
     }
 
     public String getCdArea() {
@@ -89,14 +83,6 @@ public class AnotacaoDiversas {
 
     public void setCdExpediente(String cdExpediente) {
         this.cdExpediente = cdExpediente;
-    }
-
-    public String getNmInformacaoDgpi() {
-        return nmInformacaoDgpi;
-    }
-
-    public void setNmInformacaoDgpi(String nmInformacaoDgpi) {
-        this.nmInformacaoDgpi = nmInformacaoDgpi;
     }
 
     public String getNmInteressado() {
@@ -131,12 +117,12 @@ public class AnotacaoDiversas {
         this.dsObservacao = dsObservacao;
     }
 
-    public String getNmNome() {
-        return nmNome;
+    public String getNmAutor() {
+        return nmAutor;
     }
 
-    public void setNmNome(String nmNome) {
-        this.nmNome = nmNome;
+    public void setNmAutor(String nmAutor) {
+        this.nmAutor = nmAutor;
     }
 
     public String getCdSetor() {
@@ -163,68 +149,12 @@ public class AnotacaoDiversas {
         this.cdLote = cdLote;
     }
 
-    public String getDtPublicacao() {
-        return dtPublicacao;
+    public String getCdProcesso() {
+        return cdProcesso;
     }
 
-    public void setDtPublicacao(String dtPublicacao) {
-        this.dtPublicacao = dtPublicacao;
-    }
-
-    public String getDsLocal() {
-        return dsLocal;
-    }
-
-    public void setDsLocal(String dsLocal) {
-        this.dsLocal = dsLocal;
-    }
-
-    public String getDtData() {
-        return dtData;
-    }
-
-    public void setDtData(String dtData) {
-        this.dtData = dtData;
-    }
-
-    public String getDthrAtualizacao() {
-        return dthrAtualizacao;
-    }
-
-    public void setDthrAtualizacao(String dthrAtualizacao) {
-        this.dthrAtualizacao = dthrAtualizacao;
-    }
-
-    public String getNmLogin() {
-        return nmLogin;
-    }
-
-    public void setNmLogin(String nmLogin) {
-        this.nmLogin = nmLogin;
-    }
-
-    public String getDtAnotacao() {
-        return dtAnotacao;
-    }
-
-    public void setDtAnotacao(String dtAnotacao) {
-        this.dtAnotacao = dtAnotacao;
-    }
-
-    public String getNmPublicadoPor() {
-        return nmPublicadoPor;
-    }
-
-    public void setNmPublicadoPor(String nmPublicadoPor) {
-        this.nmPublicadoPor = nmPublicadoPor;
-    }
-
-    public String getDsInfoGeral() {
-        return dsInfoGeral;
-    }
-
-    public void setDsInfoGeral(String dsInfoGeral) {
-        this.dsInfoGeral = dsInfoGeral;
+    public void setCdProcesso(String cdProcesso) {
+        this.cdProcesso = cdProcesso;
     }
 
     public String getCdTid() {
@@ -235,17 +165,115 @@ public class AnotacaoDiversas {
         this.cdTid = cdTid;
     }
 
-    public String getCdProcesso() {
-        return cdProcesso;
+    public String getDtAnotacao() {
+        return dtAnotacao;
     }
 
-    public void setCdProcesso(String cdProcesso) {
-        this.cdProcesso = cdProcesso;
+    public void setDtAnotacao(String dtAnotacao) {
+        this.dtAnotacao = dtAnotacao;
     }
+
+    public String getDsInformacaoGeral() {
+        return dsInformacaoGeral;
+    }
+
+    public void setDsInformacaoGeral(String dsInformacaoGeral) {
+        this.dsInformacaoGeral = dsInformacaoGeral;
+    }
+
+    public String getNrInformacaoDgpi() {
+        return nrInformacaoDgpi;
+    }
+
+    public void setNrInformacaoDgpi(String nrInformacaoDgpi) {
+        this.nrInformacaoDgpi = nrInformacaoDgpi;
+    }
+
+    public String getNmReferenciaEndereco() {
+        return nmReferenciaEndereco;
+    }
+
+    public void setNmReferenciaEndereco(String nmReferenciaEndereco) {
+        this.nmReferenciaEndereco = nmReferenciaEndereco;
+    }
+
+    public String getNmTipoProcesso() {
+        return nmTipoProcesso;
+    }
+
+    public void setNmTipoProcesso(String nmTipoProcesso) {
+        this.nmTipoProcesso = nmTipoProcesso;
+    }
+
+    public String getNrAnotacao() {
+        return nrAnotacao;
+    }
+
+    public void setNrAnotacao(String nrAnotacao) {
+        this.nrAnotacao = nrAnotacao;
+    }
+
+    public String getNrInformacao() {
+        return nrInformacao;
+    }
+
+    public void setNrInformacao(String nrInformacao) {
+        this.nrInformacao = nrInformacao;
+    }
+
+    public String getNrEndereco() {
+        return nrEndereco;
+    }
+
+    public void setNrEndereco(String nrEndereco) {
+        this.nrEndereco = nrEndereco;
+    }
+
+    public String getNmComplementoEndereco() {
+        return nmComplementoEndereco;
+    }
+
+    public void setNmComplementoEndereco(String nmComplementoEndereco) {
+        this.nmComplementoEndereco = nmComplementoEndereco;
+    }
+
+    public String getNmLogin() {
+        return nmLogin;
+    }
+
+    public void setNmLogin(String nmLogin) {
+        this.nmLogin = nmLogin;
+    }
+
+    public String getDthrAtualizacao() {
+        return dthrAtualizacao;
+    }
+
+    public void setDthrAtualizacao(String dthrAtualizacao) {
+        this.dthrAtualizacao = dthrAtualizacao;
+    }
+
+    public Date getDtPublicacao() {
+        return dtPublicacao;
+    }
+
+    public void setDtPublicacao(Date dtPublicacao) {
+        this.dtPublicacao = dtPublicacao;
+    }
+
+    public Date getDtData() {
+        return dtData;
+    }
+
+    public void setDtData(Date dtData) {
+        this.dtData = dtData;
+    }
+
+    
+    
     
     
     
     
 
-    
 }

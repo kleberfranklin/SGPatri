@@ -42,6 +42,8 @@
         <c:set var="qAssunto" value="${param.qAssunto}" />
         <c:set var="dtIni" value="${param.dtIni}" />
         <c:set var="dtFim" value="${param.dtFim}" />
+        <c:set var="msg" value="${param.msg}" />
+        
            
 
         <div class="breadcrumbs ace-save-state" id="breadcrumbs">
@@ -54,30 +56,47 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="col-sm-offset-1 col-sm-10">
-                        <h2>Anotação Croqui</h2>
+                        <h2>Anotação Croqui : <c:out value="${msg}"/></h2>
                         <div class="space-14"></div>
                         <div class="form-horizontal">
                             <div class="tabbable">
                                 <ul class="nav nav-tabs padding-0">
-                                    <li class="active">
+                                    <li class="in active">
                                         <a data-toggle="tab" href="#cad-croqui" aria-expanded="true">
                                             Anotação Croqui
+                                            <c:choose>
+                                                <c:when test="${anotCroqui.nrVerExpediente == '0'}">
+                                                    <span class="badge badge-transparent" title="Pendente Validação"><i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i></span>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                    <span class="badge badge-transparent" title="Validado"><i class="ace-icon fa fa-check-square-o green bigger-130"></i></span>
+                                                </c:otherwise>    
+                                            </c:choose>
                                         </a>
                                     </li>
                                     <li class="">
                                         <a data-toggle="tab" href="#doc-anexo" aria-expanded="true">
                                             Documentos Anexo
+                                            <c:choose>
+                                                <c:when test="${anotCroqui.nrVerArquivo == '0'}">
+                                                    <span class="badge badge-transparent" title="Pendente Validação"><i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i></span>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                    <span class="badge badge-transparent" title="Validado"><i class="ace-icon fa fa-check-square-o green bigger-130"></i></span>
+                                                </c:otherwise>    
+                                            </c:choose>
                                         </a>
                                     </li>
                                 </ul>
                                 <div class="tab-content profile-edit-tab-content" >
 
                                 <!--Inicio da tab-pane Cadastro Croqui-->
-                                    <div id="cad-croqui" class="tab-pane in active"  >
+                                    <div id="cad-croqui" class="tab-pane in active">
                                         <form action="ControllerServlet?acao=AnotacaoCroquiUC" method="POST" >
                                             <input type="hidden" name="pkAnotacaoExpediente" value="${anotCroqui.pkAnotacaoExpediente}" />
                                             <input type="hidden" name="nmTipoExpediente" value="croqui" />
                                             <input type="hidden" name="execucao" value="${execucao}" />
+                                            <input type="hidden" name="verExpediente" value="1" />
                                             <h4 class="header smaller lbl "><strong>Cadastro Croqui</strong></h4>
 
                                             <div class="form-group">
@@ -147,15 +166,15 @@
                                                             <input type="text"  class="col-xs-12 col-md-12" name="nrprocesso" id="nrprocesso" value="${anotCroqui.cdProcesso}" placeholder="nº do processo"  required="required"    >
                                                         </label>
                                                         <label class="col-xs-12 col-md-1">
-                                                            <input name="tpProcesso" id="sei" value="SEI" type="radio" class="ace" onclick="maskProcesso();" required="required">
+                                                            <input name="tpProcesso" id="sei" value="SEI" type="radio" class="ace" onclick="maskProcesso();" <c:if test="${anotCroqui.nmTipoProcesso == 'SEI'}">checked="checked" </c:if> required="required">
                                                             <span class="lbl"><strong> SEI</strong></span>
                                                         </label>
                                                         <label class="col-xs-12 col-md-1">
-                                                            <input name="tpProcesso" id="pa" value="PA" type="radio" class="ace" onclick="maskProcesso();">
+                                                            <input name="tpProcesso" id="pa" value="PA" type="radio" class="ace" onclick="maskProcesso();" <c:if test="${anotCroqui.nmTipoProcesso == 'PA'}">checked="checked" </c:if> >
                                                             <span class="lbl"><strong> P.A.</strong></span>
                                                         </label>
                                                         <label class="col-xs-12 col-md-1">
-                                                            <input name="tpProcesso" id="cid" value="CID" type="radio" class="ace" onclick="maskProcesso();">
+                                                            <input name="tpProcesso" id="cid" value="CID" type="radio" class="ace" onclick="maskProcesso();" <c:if test="${anotCroqui.nmTipoProcesso == 'CID'}">checked="checked"</c:if> >
                                                             <span class="lbl"><strong> CID</strong></span>
                                                         </label>
                                                         <label class="col-xs-12 col-md-3">
@@ -184,7 +203,7 @@
                                                     </c:when>
                                                     <c:otherwise>
                                                         <label class="inline col-md-10 col-xs-12">
-                                                            <span class="lbl">${anotCroqui.cdProcesso}</span>
+                                                            <span class="lbl">${anotCroqui.nmTipoProcesso}: ${anotCroqui.cdProcesso}</span>
                                                         </label>
                                                     </c:otherwise>
                                                 </c:choose>
@@ -287,8 +306,8 @@
                                                             <span class="lbl"><strong>CEP</strong></span>
                                                         </label>
                                                         <label class="inline col-md-10 col-xs-12" >
-                                                            <input type="hidden" name="pkLogradouro" id="pkLogradouro" required="required">
-                                                            <input type="text" class="col-xs-12 col-md-2" name="nrcep" id="nrcep"  placeholder="nº do CEP" required="required">
+                                                            <input type="hidden" name="pkLogradouro" id="pkLogradouro" value="${lograPadrao.pkLogradouroPadrao}" required="required">
+                                                            <input type="text" class="col-xs-12 col-md-2" name="nrcep" id="nrcep" value="${lograPadrao.nrCep}"  placeholder="nº do CEP" required="required">
                                                         </label>
                                                     </div>
                                                     <div class="form-group">
@@ -296,7 +315,7 @@
                                                             <span class="lbl"><strong>Endereço:</strong></span>
                                                         </label>
                                                         <label class="inline col-md-10 col-xs-12" >
-                                                            <input type="text" class="col-xs-12 col-md-8" name="nmendereco" id="nmendereco" onkeyup="pesquisaNomeLogradouro(this.value)" onblur="validarEndereco();" onclick="clickEndereco();" placeholder="nome do endereço" required="required" >
+                                                            <input type="text" class="col-xs-12 col-md-8" name="nmendereco" id="nmendereco" value="${lograPadrao.nmLogradouroCompleto}" onkeyup="pesquisaNomeLogradouro(this.value)" onblur="validarEndereco();" onclick="clickEndereco();" placeholder="nome do endereço" required="required" >
                                                             <div id="listaEndereco" style="padding-top:35px"></div>
                                                         </label>
                                                     </div>
@@ -307,13 +326,13 @@
                                                             <span class="lbl"><strong>número:</strong></span>
                                                         </label>
                                                         <label class="inline col-md-2 col-xs-12" >
-                                                            <input type="text" class="col-xs-12 col-md-12" name="nrNumeroEnd" id="nrnumeroend" placeholder="nº" required="required">
+                                                            <input type="text" class="col-xs-12 col-md-12" name="nrNumeroEnd" id="nrnumeroend" value="${anotCroqui.nrEndereco}" placeholder="nº" required="required">
                                                         </label>
                                                         <label class="inline col-md-2 col-xs-12" >
                                                             <span class="lbl"><strong>Complemento:</strong></span>
                                                         </label>
                                                         <label class="inline col-md-3 col-xs-12" >
-                                                            <input type="text" class="col-xs-12 col-md-12" name="nmComplementoEnd" id="nmcomplementoend" placeholder="complemento do endereço" >
+                                                            <input type="text" class="col-xs-12 col-md-12" name="nmComplementoEnd" id="nmcomplementoend" value="${anotCroqui.nmComplementoEndereco}" placeholder="complemento do endereço" >
                                                         </label>
                                                     </div>
                                                     <div class="form-group">
@@ -321,7 +340,7 @@
                                                             <span class="lbl"><strong>Bairro:</strong></span>
                                                         </label>
                                                         <label class="inline col-md-10 col-xs-12" >
-                                                            <input type="text" class="col-xs-12 col-md-5" name="nmbairro" id="nmbairro" placeholder="nome do bairro" required="required">
+                                                            <input type="text" class="col-xs-12 col-md-5" name="nmbairro" id="nmbairro" value="${lograPadrao.nmBairro}" placeholder="nome do bairro" required="required">
                                                         </label>
                                                     </div>
                                                     <div class="space-1"></div>
@@ -341,8 +360,8 @@
                                                             <span class="lbl"><strong>CEP</strong></span>
                                                         </label>
                                                         <label class="inline col-md-10 col-xs-12" >
-                                                            <input type="hidden" name="pkLogradouro" id="pkLogradouro" required="required">
-                                                            <input type="text" class="col-xs-12 col-md-2" name="nrcep" id="nrcep"  placeholder="nº do CEP" required="required">
+                                                            <input type="hidden" name="pkLogradouro" id="pkLogradouro"  required="required">
+                                                            <input type="text" class="col-xs-12 col-md-2" name="nrcep" id="nrcep"   placeholder="nº do CEP" required="required">
                                                         </label>
                                                     </div>
                                                     <div class="form-group">
@@ -395,7 +414,7 @@
                                                             <span class="lbl"><strong>CEP</strong></span>
                                                         </label>
                                                         <label class="inline col-md-10 col-xs-12" >
-                                                            <span class="lbl">Txt</span> 
+                                                            <span class="lbl">${lograPadrao.nrCep}</span> 
                                                         </label>
                                                     </div>
                                                     <div class="form-group">
@@ -403,7 +422,7 @@
                                                             <span class="lbl"><strong>Endereço:</strong></span>
                                                         </label>
                                                         <label class="inline col-md-10 col-xs-12" >
-                                                            <span class="lbl">Txt</span> 
+                                                            <span class="lbl">${lograPadrao.nmLogradouroCompleto}</span> 
                                                         </label>
                                                     </div>
                                                     <div class="space-1"></div>
@@ -413,14 +432,14 @@
                                                             <span class="lbl"><strong>número:</strong></span>
                                                         </label>
                                                         <label class="inline col-md-2 col-xs-12" >
-                                                            <span class="lbl">Txt</span> 
+                                                            <span class="lbl">${anotCroqui.nrEndereco}</span> 
                                                         </label>
 
                                                         <label class="inline col-md-2 col-xs-12" >
                                                             <span class="lbl"><strong>Complemento:</strong></span>
                                                         </label>
                                                         <label class="inline col-md-3 col-xs-12">    
-                                                            <span class="lbl">Txt</span> 
+                                                            <span class="lbl">${anotCroqui.nmComplementoEndereco}</span> 
                                                         </label>    
                                                     </div>
                                                     <div class="form-group">
@@ -428,7 +447,7 @@
                                                             <span class="lbl"><strong>Bairro:</strong></span>
                                                         </label>
                                                         <label class="inline col-md-10 col-xs-12" >
-                                                            <span class="lbl">Txt</span> 
+                                                            <span class="lbl">${lograPadrao.nmBairro}</span> 
                                                         </label>    
                                                     </div>
                                                     <div class="space-1"></div>
@@ -666,7 +685,9 @@
                                                                    required="required" >
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
-                                                            <input type="date" id="form-field-1" class="col-sm-10 col-xs-12"  name="dtData" >
+                                                            <c:set var = "now" value = "<%= new java.util.Date()%>" />
+                                                            <fmt:formatDate var="hoje" pattern = "yyyy-MM-dd" value = "${now}" />
+                                                            <input type="date" id="form-field-1" class="col-sm-10 col-xs-12"  name="dtData" value="${hoje}" readonly="readonly">
                                                         </c:when>
                                                         <c:otherwise>
                                                             <span class="lbl">
@@ -697,7 +718,7 @@
                                                     <c:choose>
                                                         <c:when test="${execucao == 'edit'}">
                                                             <input type="text" id="form-field-1" class="col-sm-8 col-xs-12"  name="nmAutor" 
-                                                                   value="${anotCroqui.nmAutor}" placeholder="Nome " required="required" >
+                                                                   value="${anotCroqui.nmAutor}" placeholder="Nome " required="required" readonly="readonly" >
                                                         </c:when>
                                                         <c:when test="${execucao == 'insert'}">
                                                             <input type="text" id="form-field-1" class="col-sm-8 col-xs-12"  name="nmAutor" value="<c:out value="${sessionNome}" />" 
@@ -712,8 +733,14 @@
                                 <!-- Botões-->
                                             <div class="form-actions center ">
                                                 <c:choose>
-                                                    <c:when test="${execucao == 'insert'}">
+                                                    <c:when test="${execucao == 'insert' }">
                                                         <button class="btn btn-yellow" type="reset" onclick=" location.href = 'AnotacaoCroqui.jsp';">
+                                                            <i class="ace-icon fa fa-undo bigger-110"></i>
+                                                            Voltar
+                                                        </button>
+                                                    </c:when>
+                                                    <c:when test="${pq == '' || pg == null }">
+                                                        <button class="btn btn-yellow" type="reset" onclick=" location.href = 'ControllerServlet?acao=AnotacaoCroquiLista';">
                                                             <i class="ace-icon fa fa-undo bigger-110"></i>
                                                             Voltar
                                                         </button>
@@ -742,16 +769,15 @@
                                     </div>
                                 
                                 <!--Inicio da tab-pane Documento Anexo -->        
-                                    <div id="doc-anexo" class="tab-pane">
+                                    <div id="doc-anexo" class="tab-pane <c:if test="${execucao=='insert'}" >disabled-li-menu</c:if> ">
                                         <div class="form-group">
                                          
                                             <form action="ControllerServlet?acao=ArquivoUpload" enctype="multipart/form-data" method="POST" >
                                                 <h4 class="header smaller lbl "><strong>Documentos Anexo</strong></h4>   
-                                                <input type="hidden" name="pkAutoStage" value="${anotCroqui.pkAnotacaoExpediente}" />
+                                                <input type="hidden" name="pkDocumento" value="${anotCroqui.pkAnotacaoExpediente}" />
                                                 <input type="hidden" name="execucao" value="${execucao}" />
                                                 <input type="hidden" name="tipoArquivo" value="Croqui" />
                                                 <input type="hidden" name="Origem" value="AnotacaoExpediente" />
-                                                <input type="hidden" name="nrVerCroqui" value="1" />
                                                 
                                                 
                                                 <c:set var="arCroqui"  value="${Arquivo.pkArquivo(anotCroqui.pkAnotacaoExpediente,'AnotacaoExpediente','Croqui')}"  />
@@ -766,7 +792,7 @@
                                                         </c:if>    
                                                     </c:forEach>
                                                 </label>
-                                                <c:if test="${(sessionSgDivisao == 'DIPI' &&sessionSgSetor == 'SIC') && (execucao=='insert' || execucao=='edit')}">
+                                                <c:if test="${(sessionSgDivisao == 'DIPI' &&sessionSgSetor == 'SIC')}">
                                                     <label class="inline col-md-3">
                                                         <input type="text" class="col-xs-12 col-md-12" name="nmNome" placeholder="Nome do Croqui" required="required" >
                                                     </label>
@@ -793,16 +819,8 @@
                                                     </label> 
                                                 </c:if>    
                                             </form>
-                                        </div>    
+                                        </div>
                                     </div>
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
                                 </div>
                             </div>
                         </div>    

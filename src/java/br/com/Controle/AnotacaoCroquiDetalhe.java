@@ -8,8 +8,7 @@ package br.com.Controle;
 import br.com.Modelo.Logica;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import br.com.Modelo.AnotacaoCroqui;
-import br.com.Modelo.AnotacaoCroquiDAO;
+import br.com.Modelo.*;
         
 
 
@@ -25,6 +24,8 @@ public class AnotacaoCroquiDetalhe implements Logica {
             HttpServletResponse res) throws Exception {
 
         AnotacaoCroquiDAO anotaCroquiDAO = new AnotacaoCroquiDAO();
+        LogradouroPadraoDAO lograPadraoDAO = new LogradouroPadraoDAO();
+        LogradouroPadrao lograPadrao = new LogradouroPadrao();
 
 //Atributos
         int pkAnotacaoExpediente = 0;
@@ -41,7 +42,12 @@ public class AnotacaoCroquiDetalhe implements Logica {
 
 //Consulta no banco e popula o objeto        
         AnotacaoCroqui anotCroqui = anotaCroquiDAO.detalheAnotacaoCroqui(pkAnotacaoExpediente);
+        lograPadrao = lograPadraoDAO.pequisaPkLogradouro(anotCroqui.getFkLogradouro());
+        
+        
+        
         req.setAttribute("anotCroqui", anotCroqui);
+        req.setAttribute("lograPadrao", lograPadrao);
         req.setAttribute("execucao", execucao);
         return "AnotacaoCroquiCRU.jsp";
     }

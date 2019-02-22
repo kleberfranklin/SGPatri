@@ -9,11 +9,7 @@ import br.com.Modelo.AnotacaoCroqui;
 import br.com.Modelo.AnotacaoCroquiDAO;
 import br.com.Modelo.Logica;
 import br.com.Utilitario.Transformar;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.Locale;
+import java.sql.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -35,10 +31,11 @@ public class AnotacaoCroquiUC implements Logica {
         
 
 // Atributo
-    int  pkAnotacaoExpediente=0, pkLogradouro;
+    int  pkAnotacaoExpediente=0, pkLogradouro, verExpediente;
     String  nmTipoExpediente, cdCroqui, cdArea, nrInformacaoDgpi, nrProcesso, tpProcesso, cdTid, cdExpediente, nmInteressado, 
-            dsAssunto, nrNumeroEnd, nmComplementoEnd, nmReferenciaEnd, nrAnotacao, nrInformacao, dsDespacho, dtPublicacao, dtAnotacao, 
-            dsObservacao, dtData, loginSessio, nmAutor, execucao;
+            dsAssunto, nrNumeroEnd, nmComplementoEnd, nmReferenciaEnd, nrAnotacao, nrInformacao, dsDespacho, dtAnotacao, 
+            dsObservacao, loginSessio, nmAutor, execucao, strPublicacao, strData;
+    Date dtPublicacao, dtData;
 
 //Carregando os atributos com as informações do formulário  
     pkLogradouro = Integer.parseInt(req.getParameter("pkLogradouro")); 
@@ -58,24 +55,44 @@ public class AnotacaoCroquiUC implements Logica {
     nrAnotacao =  req.getParameter("nrAnotacao");
     nrInformacao =  req.getParameter("nrInformacao");
     dsDespacho =  req.getParameter("dsDespacho").toUpperCase().trim();
-    dtPublicacao =  req.getParameter("dtPublicacao");
+    strPublicacao =  req.getParameter("dtPublicacao");
     dtAnotacao =  req.getParameter("dtAnotacao");
     dsObservacao =  Transformar.removeAccents(req.getParameter("dsObservacao")).toUpperCase().trim();
-    dtData =  req.getParameter("dtData");
+    strData =  req.getParameter("dtData");
     execucao  =  req.getParameter("execucao");
     loginSessio = (String) session.getAttribute("sessionLogin");
     nmAutor =  (String) session.getAttribute("sessionNome");
+    nmAutor = nmAutor.toUpperCase().trim();
+    verExpediente = Integer.parseInt(req.getParameter("verExpediente"));
+    
+            
+    
+    
     
     
     
                 
 //Tratando para executar o inserir ou alterar, populando o objeto e gravando no banco   
+        if ("".equals(strPublicacao)){
+            dtPublicacao = null;
+        }else{
+            dtPublicacao = java.sql.Date.valueOf(strPublicacao);
+        }
+            
+        if ("".equals(strData)){
+            dtData = null;
+        }else{
+            dtData = java.sql.Date.valueOf(strData);
+        }
+
+
+//        
         if ("edit".equals(execucao)) {
                 pkAnotacaoExpediente = Integer.parseInt(req.getParameter("pkAnotacaoExpediente"));
                 anotaCroqui = new AnotacaoCroqui(pkAnotacaoExpediente, pkLogradouro, nmTipoExpediente, cdCroqui, cdArea, cdExpediente, 
                         nmInteressado, dsAssunto, dsDespacho, dsObservacao, nmAutor, nrProcesso, cdTid, dtAnotacao, nrInformacaoDgpi, 
                         dtPublicacao, nmReferenciaEnd, dtData, tpProcesso, nrAnotacao, nrInformacao, nrNumeroEnd, nmComplementoEnd, 
-                        loginSessio);
+                        loginSessio,verExpediente);
                 anotaCroquiDAO.upAnotacaoCroqui(anotaCroqui);
                 req.setAttribute("msg", "alterou");
                 
@@ -84,7 +101,7 @@ public class AnotacaoCroquiUC implements Logica {
                 anotaCroqui = new AnotacaoCroqui(pkLogradouro, nmTipoExpediente, cdCroqui, cdArea, cdExpediente, 
                         nmInteressado, dsAssunto, dsDespacho, dsObservacao, nmAutor, nrProcesso, cdTid, dtAnotacao, nrInformacaoDgpi, 
                         dtPublicacao, nmReferenciaEnd, dtData, tpProcesso, nrAnotacao, nrInformacao, nrNumeroEnd, nmComplementoEnd, 
-                        loginSessio);
+                        loginSessio, verExpediente);
                pkAnotacaoExpediente = anotaCroquiDAO.cAnotacaoCroqui(anotaCroqui);
             req.setAttribute("msg", "gravou");
         }

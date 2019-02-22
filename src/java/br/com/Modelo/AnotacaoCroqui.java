@@ -5,6 +5,8 @@
  */
 package br.com.Modelo;
 
+import java.util.Date;
+
 /**
  *
  * @author x369482
@@ -12,16 +14,21 @@ package br.com.Modelo;
 public class AnotacaoCroqui {
 
 //Atributos
-    private int pkAnotacaoExpediente, fkLogradouro;
+    private int pkAnotacaoExpediente, fkLogradouro, nrVerExpediente, nrVerArquivo;
     private String nmTipoExpediente, cdCroqui, cdArea, cdExpediente, nmInteressado, dsAssunto, dsDespacho, dsObservacao, nmAutor,  
-            cdProcesso, cdTid, dtAnotacao, nrInformacaoDgpi, dtPublicacao,  nmReferenciaEndereco, dtData, nmTipoProcesso, nrAnotacao, 
+            cdProcesso, cdTid, dtAnotacao, nrInformacaoDgpi, nmReferenciaEndereco, nmTipoProcesso, nrAnotacao, 
             nrInformacao,  nrEndereco, nmComplementoEndereco, nmLogin, dthrAtualizacao;
+    private Date dtPublicacao, dtData;
     
 //Construtor    
     public AnotacaoCroqui() {
     }
 
-    public AnotacaoCroqui(int fkLogradouro, String nmTipoExpediente, String cdCroqui, String cdArea, String cdExpediente, String nmInteressado, String dsAssunto, String dsDespacho, String dsObservacao, String nmAutor, String cdProcesso, String cdTid, String dtAnotacao, String nrInformacaoDgpi, String dtPublicacao, String nmReferenciaEndereco, String dtData, String nmTipoProcesso, String nrAnotacao, String nrInformacao, String nrEndereco, String nmComplementoEndereco, String nmLogin) {
+    public AnotacaoCroqui(int fkLogradouro, String nmTipoExpediente, String cdCroqui, String cdArea, String cdExpediente, 
+            String nmInteressado, String dsAssunto, String dsDespacho, String dsObservacao, String nmAutor, String cdProcesso, 
+            String cdTid, String dtAnotacao, String nrInformacaoDgpi, Date dtPublicacao, String nmReferenciaEndereco, 
+            Date dtData, String nmTipoProcesso, String nrAnotacao, String nrInformacao, String nrEndereco, 
+            String nmComplementoEndereco, String nmLogin, int verCroqui) {
         this.fkLogradouro = fkLogradouro;
         this.nmTipoExpediente = nmTipoExpediente;
         this.cdCroqui = cdCroqui;
@@ -45,9 +52,14 @@ public class AnotacaoCroqui {
         this.nrEndereco = nrEndereco;
         this.nmComplementoEndereco = nmComplementoEndereco;
         this.nmLogin = nmLogin;
+        this.nrVerExpediente = verCroqui;
     }
 
-    public AnotacaoCroqui(int pkAnotacaoExpediente, int fkLogradouro, String nmTipoExpediente, String cdCroqui, String cdArea, String cdExpediente, String nmInteressado, String dsAssunto, String dsDespacho, String dsObservacao, String nmAutor, String cdProcesso, String cdTid, String dtAnotacao, String nrInformacaoDgpi, String dtPublicacao, String nmReferenciaEndereco, String dtData, String nmTipoProcesso, String nrAnotacao, String nrInformacao, String nrEndereco, String nmComplementoEndereco, String nmLogin) {
+    public AnotacaoCroqui(int pkAnotacaoExpediente, int fkLogradouro, String nmTipoExpediente, String cdCroqui, String cdArea, String cdExpediente,
+            String nmInteressado, String dsAssunto, String dsDespacho, String dsObservacao, String nmAutor, String cdProcesso, 
+            String cdTid, String dtAnotacao, String nrInformacaoDgpi, Date dtPublicacao, String nmReferenciaEndereco, 
+            Date dtData, String nmTipoProcesso, String nrAnotacao, String nrInformacao, String nrEndereco, String nmComplementoEndereco, 
+            String nmLogin, int verCroqui) {
         this.pkAnotacaoExpediente = pkAnotacaoExpediente;
         this.fkLogradouro = fkLogradouro;
         this.nmTipoExpediente = nmTipoExpediente;
@@ -72,6 +84,7 @@ public class AnotacaoCroqui {
         this.nrEndereco = nrEndereco;
         this.nmComplementoEndereco = nmComplementoEndereco;
         this.nmLogin = nmLogin;
+        this.nrVerExpediente = verCroqui;
     }
     
     
@@ -207,11 +220,11 @@ public class AnotacaoCroqui {
         this.nrInformacaoDgpi = nrInformacaoDgpi;
     }
 
-    public String getDtPublicacao() {
+    public Date getDtPublicacao() {
         return dtPublicacao;
     }
 
-    public void setDtPublicacao(String dtPublicacao) {
+    public void setDtPublicacao(Date dtPublicacao) {
         this.dtPublicacao = dtPublicacao;
     }
 
@@ -223,11 +236,11 @@ public class AnotacaoCroqui {
         this.nmReferenciaEndereco = nmReferenciaEndereco;
     }
 
-    public String getDtData() {
+    public Date getDtData() {
         return dtData;
     }
 
-    public void setDtData(String dtData) {
+    public void setDtData(Date dtData) {
         this.dtData = dtData;
     }
 
@@ -277,6 +290,22 @@ public class AnotacaoCroqui {
 
     public void setDthrAtualizacao(String dthrAtualizacao) {
         this.dthrAtualizacao = dthrAtualizacao;
+    }
+
+    public int getNrVerExpediente() {
+        return nrVerExpediente;
+    }
+
+    public void setNrVerExpediente(int nrVerExpediente) {
+        this.nrVerExpediente = nrVerExpediente;
+    }
+
+    public int getNrVerArquivo() {
+        return nrVerArquivo;
+    }
+
+    public void setNrVerArquivo(int nrVerArquivo) {
+        this.nrVerArquivo = nrVerArquivo;
     }
     
     

@@ -78,7 +78,29 @@ public class LogradouroPadraoDAO {
         
     }
     
-    
+    public LogradouroPadrao pequisaPkLogradouro(int pkLogradouro){
+        LogradouroPadrao lograPadrao = new LogradouroPadrao();
+        String sql = "SELECT id_logradouro_padrao, nr_cep, nm_bairro, nm_logradouro_completo "
+                    + "FROM tbl_logradouro_padrao "
+                    + "WHERE id_logradouro_padrao = ? ";
+        
+        try{
+            PreparedStatement stmt = connection.prepareStatement(sql);
+                stmt.setInt(1, pkLogradouro);
+                ResultSet rs = stmt.executeQuery();
+                if(rs.next()){
+                    lograPadrao.setPkLogradouroPadrao(rs.getInt("id_logradouro_padrao"));
+                    lograPadrao.setNrCep(rs.getString("nr_cep"));
+                    lograPadrao.setNmBairro(rs.getString("nm_bairro"));
+                    lograPadrao.setNmLogradouroCompleto(rs.getString("nm_logradouro_completo"));
+                }
+                stmt.close();
+            return lograPadrao;    
+        }catch (SQLException e){
+            throw new RuntimeException (e);
+        }
+        
+    }
     
     
     

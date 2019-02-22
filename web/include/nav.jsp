@@ -95,7 +95,7 @@
                         <b class="arrow fa fa-angle-down"></b>
                     </a>
                     <b class="arrow"></b>
-                    <ul class="submenu">
+                    <ul class="submenu disabled-li-menu">
                         <li class="">
                             <a href="AutoCessao.jsp" title="Auto de Cessão">Autos de Cessão</a>
                             <b class="arrow"></b>
@@ -161,7 +161,7 @@
                             <a href="AnotacaoCroqui.jsp" title="Anotação e Informação Cadastral de Croqui">Anotação Croqui </a>
                             <b class="arrow"></b>
                         </li>
-                        <li class="">
+                        <li class="disabled-li-menu">
                             <a href="AnotacaoDiversa.jsp" title="Anotação e Informação Cadastral Diversas">Anotação Diversas </a>
                             <b class="arrow"></b>
                         </li>
