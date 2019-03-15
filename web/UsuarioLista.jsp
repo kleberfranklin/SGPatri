@@ -20,15 +20,12 @@
     <c:set var="acessoPerfil" value="${sessionPerfil}" />
     <jsp:directive.include file="include/ControleAcesso.jsp" />
 
- 
-    
-        <c:set var="pg" value="${param.pg}" />
-        <c:set var="pf" value="${param.pf}" />
-        <c:set var="pi" value="${param.pi}" />
-        <c:set var="qtdPg" value="${param.qtdPg}" />
-        <c:set var="totalRes" value="${param.totalRes}" />
-        <c:set var="q" value="${param.q}" />
-        <c:set var="sgDivisao" value="${param.sgDivisao}" />
+    <c:set var="pg" value="${param.pg}" />
+    <c:set var="pf" value="${param.pf}" />
+    <c:set var="pi" value="${param.pi}" />
+    <c:set var="qtdPg" value="${param.qtdPg}" />
+    <c:set var="totalRes" value="${param.totalRes}" />
+        
     
     
     <div class="breadcrumbs ace-save-state" id="breadcrumbs">
@@ -154,7 +151,7 @@
                 Voltar
             </button>            
 
-            <button class="btn btn-success" type="button" onclick=" location.href='UsuarioC.jsp?pg=${pg}&pi=${pi}&pf=${pf}&q=${q}&sgDivisao=${sgDivisao}';">
+            <button class="btn btn-success" type="button" onclick=" location.href='ControllerServlet?acao=UsuarioDetalhe&pg=${pg}&pi=${pi}&pf=${pf}&q=${q}&sgDivisao=${sgDivisao}&execucao=insert';">
                 <i class="ace-icon fa fa-user-plus bigger-110"></i>
                 Usuário
             </button>

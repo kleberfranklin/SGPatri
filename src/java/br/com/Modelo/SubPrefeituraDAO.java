@@ -32,7 +32,6 @@ public class SubPrefeituraDAO {
         String sql = "SELECT id_subprefeitura, sg_subprefeitura, nm_subprefeitura "
                 + "FROM tbl_subprefeitura "
                 + "ORDER BY nm_subprefeitura ";
-     
         try {
             stmt = connection.prepareStatement(sql);
             rs = stmt.executeQuery();  
@@ -45,7 +44,6 @@ public class SubPrefeituraDAO {
             }       
             stmt.execute();
         return subPref;
-        
         } catch (SQLException e) {
         throw new RuntimeException(e);
         }finally{

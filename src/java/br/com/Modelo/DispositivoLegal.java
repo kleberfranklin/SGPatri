@@ -14,7 +14,8 @@ public class DispositivoLegal {
     
     private int pkDisplegal,  fkAutoCessao, fkTipoDisplegal;
     private String nrDisp,  nmTitulo,  dtDisp, nmLogin, dthr_atualicacao;
-
+    private TipoDispositivoLegal tipoDispositivo;
+    
     public DispositivoLegal() {
     }
 
@@ -26,8 +27,7 @@ public class DispositivoLegal {
         this.nmLogin = nmLogin;
     }
 
-    
-    
+       
     
     
     
@@ -94,6 +94,14 @@ public class DispositivoLegal {
 
     public void setDthr_atualicacao(String dthr_atualicacao) {
         this.dthr_atualicacao = dthr_atualicacao;
+    }
+
+    public TipoDispositivoLegal getTipoDispositivo() {
+        return tipoDispositivo;
+    }
+
+    public void setTipoDispositivo(TipoDispositivoLegal tipoDispositivo) {
+        this.tipoDispositivo = tipoDispositivo;
     }
     
     

@@ -83,17 +83,18 @@ public class PerfilDAO {
     }    
     
 //METODO utilizado para retornar as informação de um Perfil
-    public Perfil detalhePerfil(int pkPerfil){
+    public Perfil detalhePerfil(int pkPerfil) throws SQLException{
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Perfil per = new Perfil();
         String sql = "SELECT id_perfil, nm_perfil, ds_perfil, nm_login, dthr_atualizacao, "
                 + "nr_editar, nr_excluir, nr_gerencia, nr_inserir,  nr_ler "
                 + "FROM tbl_perfil "
                 + "WHERE id_perfil = ?";
         try{
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, pkPerfil);
-            ResultSet rs = stmt.executeQuery();
-                    
-            Perfil per = new Perfil();
+            stmt = connection.prepareStatement(sql);
+                stmt.setInt(1, pkPerfil);
+            rs = stmt.executeQuery();
             if(rs.next()){
                 per.setPkPerfil(rs.getInt("id_perfil"));
                 per.setNmPerfil(rs.getString("nm_perfil"));
@@ -106,49 +107,59 @@ public class PerfilDAO {
                 per.setNrInserir(rs.getInt("nr_inserir"));
                 per.setNrLer(rs.getInt("nr_ler"));
             }
-         stmt.close();
          return per;
         }catch (SQLException e){
           throw new RuntimeException(e);
+        }finally{
+            rs.close();
+            stmt.close();
+            connection.close();
         }
+            
     }
 
 
 //Metodo de quantidade de linhas
-    public int qdPerfil(String q){
+    public int qdPerfil(String q) throws SQLException{
+        PreparedStatement stmt = null;
+        ResultSet rs =null;
         String sql = ("SELECT COUNT(*) as total FROM tbl_perfil "
-                    + "WHERE nm_perfil LIKE ? ");
+                    + "WHERE nm_perfil ILIKE ? ");
         try{
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt = connection.prepareStatement(sql);
                 stmt.setString(1, '%'+q+'%');
-            ResultSet rs = stmt.executeQuery();
+            rs = stmt.executeQuery();
                 int total = 0;
                 if(rs.next()){
                     total = rs.getInt("total");
                 }
-            stmt.execute();
-            stmt.close();
         return total;
         }catch (SQLException e){
             throw new RuntimeException(e);
-            }
+        }finally{
+            rs.close();
+            stmt.close();
+            connection.close();
+        }
     }    
     
     
 //METODO lista os perfil das pesquisas e paginado
-    public List<Perfil> lisPerfil(int qtLinha, int offset, String q ){
-        String sql = ("SELECT * FROM tbl_perfil "
-                    + "WHERE nm_perfil LIKE ? "
+    public List<Perfil> lisPerfil(int qtLinha, int offset, String q ) throws SQLException{
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Perfil> perlista = new ArrayList<Perfil>();
+        String sql = ("SELECT id_perfil, nm_perfil, ds_perfil, nm_login, dthr_atualizacao, nr_editar, nr_excluir, nr_gerencia, nr_inserir, nr_ler "
+                    + "FROM tbl_perfil "
+                    + "WHERE nm_perfil ILIKE ? "
                     + "ORDER BY nm_perfil, nm_perfil ASC "
                     + "LIMIT ? OFFSET ? ");
-        try{
-            List<Perfil> perlista = new ArrayList<Perfil>();
-                PreparedStatement stmt = connection.prepareStatement(sql);
+            try{
+                 stmt = connection.prepareStatement(sql);
                     stmt.setString(1,'%'+q+'%');
                     stmt.setInt(2, qtLinha);
                     stmt.setInt(3, offset);
-                
-                 ResultSet rs = stmt.executeQuery();
+                  rs = stmt.executeQuery();
                     while (rs.next()){
                     Perfil per = new Perfil();
                         per.setPkPerfil(rs.getInt("id_perfil"));
@@ -163,23 +174,27 @@ public class PerfilDAO {
                         per.setNrLer(rs.getInt("nr_ler"));
                      perlista.add(per);
                     }
+            return perlista;
+            }catch (SQLException e){
+                throw new RuntimeException(e);
+            }finally{
+                rs.close();
                 stmt.close();
-         return perlista;
-        }catch (SQLException e){
-            throw new RuntimeException(e);
-        }
-        
+                connection.close();
+            }
     }
     
 //METODO lista os perfil cadastrados, utilizado no campo select da pagina cadastrado e alteração de usuário
-    public List<Perfil> listSelectPerfil(){
-    String sql = "SELECT * FROM tbl_perfil "
-            + "WHERE id_perfil <> 3";
-    
-    try {
+    public List<Perfil> listSelectPerfil() throws SQLException{
+        PreparedStatement  stmt = null;
+        ResultSet rs = null;
         List<Perfil> perLista = new ArrayList<Perfil>();
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();  
+        String sql = "SELECT id_perfil, nm_perfil, ds_perfil, nm_login, dthr_atualizacao "
+                +"FROM tbl_perfil "
+                +"WHERE id_perfil <> 3";
+        try {
+            stmt = connection.prepareStatement(sql);
+            rs = stmt.executeQuery();  
             while (rs.next()){
             Perfil per = new Perfil();
                 per.setPkPerfil(rs.getInt("id_perfil"));
@@ -189,13 +204,14 @@ public class PerfilDAO {
                 per.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
              perLista.add(per);
             }       
-            stmt.execute();
-            stmt.close();                                                                                                                                                                
         return perLista;
-    
-    } catch (SQLException e) {
-        throw new RuntimeException(e);
-      }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally{
+            rs.close();
+            stmt.close();
+            connection.close();
+        }
     } 
     
     

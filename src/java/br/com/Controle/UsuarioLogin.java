@@ -73,13 +73,14 @@ public class UsuarioLogin implements Logica {
                 session.setAttribute("sessionExcluir", per.getNrExcluir());
                 session.setAttribute("sessionPainel", per.getNrGerenciar());
                 session.setAttribute("sessionDesPerfil", per.getDsPerfil());
+                session.setAttribute("sessionId", session.getId());
                 
                     if (us.getNrAtivo() == 0){
                         pagina = "AcessoNegado.jsp";
                         msg = "Seu acesso esta destivado momentaneamente!";
                         msg2= "Contetade o Diretor da sua divisão para regualizar.";
                     }else{
-                        pagina = "Index.jsp";
+                        pagina = "ControllerServlet?acao=Dashborad";
                     }
             }else{
                 pagina = "AcessoNegado.jsp";

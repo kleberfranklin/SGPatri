@@ -12,9 +12,7 @@
 <!--Verificação de acesso  -->
     <c:set var="acessoPerfil" value="${sessionPerfil}" />
     <jsp:directive.include file="include/ControleAcesso.jsp" />
-        
-
-    <jsp:useBean id="tpAuto" class= "br.com.Modelo.TipoAutoCessaoDAO" />
+    
     
     <c:set var="pg" value="${param.pg}" />
     <c:set var="pf" value="${param.pf}" />
@@ -50,7 +48,7 @@
                     <div class="col-sm-3">
                         <select class=" col-xs-12 col-sm-12" name="qTpcessao">
                             <option value=""></option>
-                            <c:forEach var="tp" items="${tpAuto.listSelectTpCessao()}">
+                            <c:forEach var="tp" items="${lisTpAuto}">
                                 <c:if test="${tp.nmTipoAutoCessao != 'Informacao Nao Cadastrada'}">
                                 <c:choose >
                                     <c:when test="${to.nmCatAutoCessao.length() > 40 }">
@@ -133,8 +131,8 @@
                             <th></th>
                         </tr>
                     </thead>
-                      <c:forEach var="autolist" items="${listAuto}">
-                    <c:set var="selTpAuto" value="${tpAuto.detalheTpCessao(autolist.fkTipoCessaoStage)}" />
+                    
+                    <c:forEach var="autolist" items="${listAuto}">
                     <tbody>
                         <tr>
                             <td class="center hidden-480">
@@ -162,16 +160,16 @@
                                     </c:otherwise>
                                 </c:choose>
                             </td>
-                            <td title="${selTpAuto.nmTipoAutoCessao}">
+                            <td title="${autolist.tipoAutoCessao.nmTipoAutoCessao}">
                                 <c:choose >
-                                    <c:when test="${selTpAuto.nmTipoAutoCessao.length() > 10 }">
-                                        ${selTpAuto.nmTipoAutoCessao.substring(0,10)}...
+                                    <c:when test="${autolist.tipoAutoCessao.nmTipoAutoCessao.length() > 17 }">
+                                        ${autolist.tipoAutoCessao.nmTipoAutoCessao.substring(0,16)}...
                                     </c:when>
                                     <c:otherwise>
-                                        ${selTpAuto.nmTipoAutoCessao}
+                                        ${autolist.tipoAutoCessao.nmTipoAutoCessao}
                                     </c:otherwise>
                                 </c:choose>
-                                </td>
+                            </td>
                             <td class="hidden-480" title="${autolist.nmCessionario}">
                                 <c:choose >
                                     <c:when test="${autolist.nmCessionario.length() > 10 }">

@@ -29,53 +29,64 @@ public class CatEntidadeDAO {
     
     
 //METODO lista de Categoria de Entidades select    
-    public List<CatEntidade> listCatEnt() {
-        String sql = ("SELECT * FROM tbl_categoriaentidade ORDER BY nm_categ_ent");
-    try {
+    public List<CatEntidade> listCatEnt() throws SQLException {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
         List<CatEntidade> lisCatEnt = new ArrayList<>();
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();  
-                
-            while (rs.next()){
-            CatEntidade catent = new CatEntidade();
-                catent.setPkCatEntidade(rs.getInt("id_categ_ent"));
-                catent.setSgCateEntidade(rs.getString("sg_categ_ent"));
-                catent.setNmCatEntidade(rs.getString("nm_categ_ent"));
-                catent.setNmLogin(rs.getString("nm_login"));
-                catent.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
-            lisCatEnt.add(catent);
+        String sql = ("SELECT id_categ_ent, sg_categ_ent, nm_categ_ent, nm_login, dthr_atualizacao "
+                + "FROM tbl_categoriaentidade "
+                + "ORDER BY nm_categ_ent");
+            try {
+                stmt = connection.prepareStatement(sql);
+                    rs = stmt.executeQuery();  
+                while (rs.next()){
+                CatEntidade catent = new CatEntidade();
+                    catent.setPkCatEntidade(rs.getInt("id_categ_ent"));
+                    catent.setSgCateEntidade(rs.getString("sg_categ_ent"));
+                    catent.setNmCatEntidade(rs.getString("nm_categ_ent"));
+                    catent.setNmLogin(rs.getString("nm_login"));
+                    catent.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
+                lisCatEnt.add(catent);
             }       
             stmt.execute();
-            stmt.close();                                                                                                                                                                
-        return lisCatEnt;
-    
-    } catch (SQLException e) {
-        throw new RuntimeException(e);
-      }
+            return lisCatEnt;
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally{
+            rs.close();
+            stmt.close();
+            connection.close();
+        }
     } 
 
 
  //METODO utilizado para retornar as informação de uma Categoria de Entidade
-    public CatEntidade detalheCatEnt(int pkCatEntidade){
-        String sql = "SELECT * FROM tbl_categoriaentidade WHERE id_categ_ent = ?";
-        try{
-            PreparedStatement stmt = connection.prepareStatement(sql);
-                stmt.setInt(1, pkCatEntidade);
-            ResultSet rs = stmt.executeQuery();
-                    
-            CatEntidade catent = new CatEntidade();
-            if(rs.next()){
-                catent.setPkCatEntidade(rs.getInt("id_categ_ent"));
-                catent.setSgCateEntidade(rs.getString("sg_categ_ent"));
-                catent.setNmCatEntidade(rs.getString("nm_categ_ent"));
-                catent.setNmLogin(rs.getString("nm_login"));
-                catent.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
+    public CatEntidade detalheCatEnt(int pkCatEntidade) throws SQLException{
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        CatEntidade catent = new CatEntidade();
+        String sql = "SELECT id_categ_ent, sg_categ_ent, nm_categ_ent, nm_login, dthr_atualizacao "
+                    + "FROM tbl_categoriaentidade "
+                    + "WHERE id_categ_ent = ? ";
+            try{
+                stmt = connection.prepareStatement(sql);
+                    stmt.setInt(1, pkCatEntidade);
+                rs = stmt.executeQuery();
+                if(rs.next()){
+                    catent.setPkCatEntidade(rs.getInt("id_categ_ent"));
+                    catent.setSgCateEntidade(rs.getString("sg_categ_ent"));
+                    catent.setNmCatEntidade(rs.getString("nm_categ_ent"));
+                    catent.setNmLogin(rs.getString("nm_login"));
+                    catent.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
+                }
+            return catent;
+            }catch (SQLException e){
+                throw new RuntimeException(e);
+            }finally{
+                rs.close();
+                stmt.close();
+//                connection.close();
             }
-         stmt.close();
-         return catent;
-        }catch (SQLException e){
-          throw new RuntimeException(e);
-        }
     }       
     
 }

@@ -6,10 +6,9 @@
 // AJAX para o campo select Depto
     function pkDivisao(combo) {
         idDivivisao = combo.value;
-
-        if(idDivivisao === 0) return;
+    if(idDivivisao === 0) return;
+    var url = 'ControllerServlet?acao=SetorListaSelect&idDivivisao='+idDivivisao+'&execucao=insert';
     
-    var url = 'include/selectSetorInserir.jsp?pkDivisao=' + idDivivisao;
     if (window.ActiveXObject){
         xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
     }else if (window.XMLHttpRequest) {

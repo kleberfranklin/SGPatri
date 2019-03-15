@@ -28,13 +28,15 @@ public class ArquivoUpload implements Logica{
                      HttpServletResponse res) throws Exception {
         
         Upload up = new Upload(); 
-        AutoCessaoValidacaoDAO autoVaDAO = new AutoCessaoValidacaoDAO();
+        AutoCessaoDAO autoVaDAO = new AutoCessaoDAO();
         ArquivoDAO arDAO = new ArquivoDAO();
         Arquivo ar = new Arquivo();
         HttpSession session = req.getSession();
-
-        String nomeDoArquivo="", caminhoArquivo="", tipoArquivo, origem, nome, pgValidacao, execucao, finalizar, loginSessio;
-        int pkArquivo, pkAutoStage,nrVerArqAc, nrVerArqPlanta;
+        
+        
+        String nomeDoArquivo="", caminhoArquivo="", tipoArquivo, origem, nome, pgValidacao, execucao, 
+                 finalizar, loginSessio, pastaArquivar="", sistemaOperacional;
+        int pkArquivo=0, pkAutoStage,nrVerArqAc, nrVerArqPlanta;
         InputStream arquivoCarregado;
                 
         
@@ -48,13 +50,35 @@ public class ArquivoUpload implements Logica{
         pgValidacao = req.getParameter("pgValidacao");
         finalizar = req.getParameter("finalizar");
         loginSessio =(String) session.getAttribute("sessionLogin");
+        sistemaOperacional = System.getProperty("os.name");
         
-        String pastaArquivar = req.getServletContext().getRealPath("/");
+        
+        
+        
+        
         switch(tipoArquivo){
             case "planta":
-           
-                pastaArquivar+= "Arquivo"+File.separator+"Planta";
+                
+                if (sistemaOperacional.equals("Linux")) {
+                    File diretorio = new File("/opt/SGPatri/Arquivo/Planta/");
+                    boolean existente = diretorio.exists();
+                    if (!existente) {
+                        diretorio.mkdirs();
+                    }else{
+                        res.sendRedirect("Index.jsp");
+                    }
+                    pastaArquivar = File.separator+"opt"+File.separator+"SGPatri"+File.separator+"Arquivo"+File.separator+"Planta";
+                } else {
+                    File diretorio = new File("C:/SGPatri/Arquivo/Planta");
+                    boolean existente = diretorio.exists();
+                    if (!existente) {
+                        diretorio.mkdirs();
+                    }
+                    pastaArquivar = "C:"+File.separator+"SGPatri"+File.separator+"Arquivo"+File.separator+"Planta";
+                }
+
                 Part uploadPlanta = req.getPart("UploadPlanta");
+                
                 nomeDoArquivo = Transformar.substituiEspacoHifen(Transformar.retiraEspacosDuplicados(Transformar.removeAccents(uploadPlanta.getSubmittedFileName())));
                 arquivoCarregado = uploadPlanta.getInputStream();
                 caminhoArquivo = up.upload(pastaArquivar, nomeDoArquivo, arquivoCarregado);
@@ -63,7 +87,24 @@ public class ArquivoUpload implements Logica{
             break;
 
             case "AC":
-                pastaArquivar+= "Arquivo"+File.separator+"AC";
+                 if (sistemaOperacional.equals("Linux")) {
+                    File diretorio = new File("/opt/SGPatri/Arquivo/AC");
+                    boolean existente = diretorio.exists();
+                    if (!existente) {
+                        diretorio.mkdirs();
+                    }else{
+                        res.sendRedirect("Index.jsp");
+                    }
+                    pastaArquivar = File.separator+"opt"+File.separator+"SGPatri"+File.separator+"Arquivo"+File.separator+"AC";
+                } else {
+                    File diretorio = new File("C:/SGPatri/Arquivo/AC");
+                    boolean existente = diretorio.exists();
+                    if (!existente) {
+                        diretorio.mkdirs();
+                    }
+                    pastaArquivar = "C:"+File.separator+"SGPatri"+File.separator+"Arquivo"+File.separator+"AC";
+                }
+                
                 Part uploadAC = req.getPart("UploadAC");
                 nomeDoArquivo = Transformar.substituiEspacoHifen(Transformar.retiraEspacosDuplicados(Transformar.removeAccents(uploadAC.getSubmittedFileName())));
                 arquivoCarregado = uploadAC.getInputStream();
@@ -71,8 +112,10 @@ public class ArquivoUpload implements Logica{
                 nrVerArqAc = Integer.parseInt(req.getParameter("nrVerArqAc"));
                 autoVaDAO.upAutoCessaoVerificadoArquivoAc(pkAutoStage, nrVerArqAc);
             break;
+            
             case "Deletar":
             break;
+            
             default:
             break;
             }

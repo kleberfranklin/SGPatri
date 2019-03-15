@@ -28,31 +28,32 @@ public class CargoDAO {
 
     
 //METODO lista todos os cargo cadastrados, utilizado com campo select do pagaina cadastro e alteração de usuário
-    public List<Cargo> listCargo() {
-    String sql = "SELECT * FROM tbl_cargo";
-    
-    try {
+    public List<Cargo> listCargo() throws SQLException {
+        PreparedStatement stmt= null;
+        ResultSet rs = null;
         List<Cargo> cgLista = new ArrayList<Cargo>();
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();  
-                
-            while (rs.next()){
-            Cargo cg = new Cargo();
-                cg.setPkCargo(rs.getInt("id_cargo"));
-                cg.setNmCargo(rs.getString("nm_cargo"));
-                cg.setDsCargo(rs.getString("ds_cargo"));
-                cg.setNmLogin(rs.getString("nm_login"));
-                cg.setDsCargo(rs.getString("dthr_atualizacao"));
-             cgLista.add(cg);
-            }       
-            stmt.execute();
-            stmt.close();                                                                                                                                                                
-        
-        return cgLista;
-    
-    } catch (SQLException e) {
-        throw new RuntimeException(e);
-      }
+        String sql = "SELECT id_cargo, nm_cargo, ds_cargo, nm_login, dthr_atualizacao "
+                + "FROM tbl_cargo";
+            try {
+                stmt = connection.prepareStatement(sql);
+                rs = stmt.executeQuery();  
+                while (rs.next()){
+                Cargo cg = new Cargo();
+                    cg.setPkCargo(rs.getInt("id_cargo"));
+                    cg.setNmCargo(rs.getString("nm_cargo"));
+                    cg.setDsCargo(rs.getString("ds_cargo"));
+                    cg.setNmLogin(rs.getString("nm_login"));
+                    cg.setDsCargo(rs.getString("dthr_atualizacao"));
+                 cgLista.add(cg);
+                }       
+            return cgLista;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }finally{
+                rs.close();
+                stmt.close();
+                connection.close();
+            }
     } 
     
     

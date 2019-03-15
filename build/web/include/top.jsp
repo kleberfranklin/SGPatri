@@ -17,8 +17,8 @@
                 <span class="icon-bar"></span>
         </button>
         <div class="navbar-header pull-left">
-            <a href="Index.jsp" class="navbar-brand">
-                <small><img src="img/logo.png" height="6%" width="6%" title="SG-PATRI - Sistema de Gestão das Áreas Públicas"> Sistema Gestão das Áreas Públicas</small>
+            <a href="ControllerServlet?acao=Dashborad" class="navbar-brand">
+                <small><img src="img/logo.png" height="6%" width="6%" title="SGPATRI - Sistema de Gestão das Áreas Públicas"> Sistema Gestão das Áreas Públicas</small>
             </a>
         </div>
         <div class="navbar-buttons navbar-header pull-right" role="navigation">

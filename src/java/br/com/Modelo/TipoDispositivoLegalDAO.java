@@ -26,7 +26,6 @@ public class TipoDispositivoLegalDAO {
         this.connection = new FabricaConexao().getConnetion();
     }
 
-
     
 //Metodo de quantidade de linhas
     public int qdTipoDispLegal (String q) throws SQLException{
@@ -34,7 +33,7 @@ public class TipoDispositivoLegalDAO {
         ResultSet rs = null;
         int total = 0;
         String sql = ("SELECT COUNT(*) as total FROM tbl_tipodispositivolegal "
-                    + "WHERE (sg_tipodisplegal LIKE ? or nm_tipodisplegal LIKE ? ) ");
+                    + "WHERE (sg_tipodisplegal ILIKE ? or nm_tipodisplegal ILIKE ? ) ");
         try{
             stmt = connection.prepareStatement(sql);
                 stmt.setString(1, '%'+q+'%');
@@ -60,19 +59,17 @@ public class TipoDispositivoLegalDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<TipoDispositivoLegal> lisTpDispLegal = new ArrayList<TipoDispositivoLegal>();
-
         String sql = ("SELECT id_tipodisplegal, sg_tipodisplegal, nm_tipodisplegal, nm_login, dthr_atualizacao  "
                     + "FROM tbl_tipodispositivolegal "
-                    + "WHERE (sg_tipodisplegal LIKE ? or nm_tipodisplegal LIKE ? ) "
+                    + "WHERE (sg_tipodisplegal ILIKE ? or nm_tipodisplegal ILIKE ? ) "
                     + "ORDER BY nm_tipodisplegal "
                     + "LIMIT ? OFFSET ? ");
-        try{
+            try{
                 stmt = connection.prepareStatement(sql);
                     stmt.setString(1,'%'+q+'%');
                     stmt.setString(2,'%'+q+'%');
                     stmt.setInt(3, qtLinha);
                     stmt.setInt(4, offset);
-                
                 rs = stmt.executeQuery();
                     while (rs.next()){
                     TipoDispositivoLegal tpdisp = new TipoDispositivoLegal();    
@@ -84,12 +81,12 @@ public class TipoDispositivoLegalDAO {
                      lisTpDispLegal.add(tpdisp);
                     }
                 return lisTpDispLegal;
-        }catch (SQLException e){
-            throw new RuntimeException(e);
-        }finally{
-            rs.close();
-            stmt.close();
-            connection.close();
+            }catch (SQLException e){
+                throw new RuntimeException(e);
+            }finally{
+                rs.close();
+                stmt.close();
+                connection.close();
         }
         
     }    
@@ -99,7 +96,6 @@ public class TipoDispositivoLegalDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         TipoDispositivoLegal tpdisp = new TipoDispositivoLegal();
-        
         String sql = "SELECT id_tipodisplegal, sg_tipodisplegal, nm_tipodisplegal, nm_login, dthr_atualizacao "
                     + "FROM tbl_tipodispositivolegal "
                     + "WHERE id_tipodisplegal = ?";
@@ -121,7 +117,7 @@ public class TipoDispositivoLegalDAO {
         }finally{
             rs.close();
             stmt.close();
-            connection.close();
+//            connection.close();
         }
     }    
 //METODO utilizado para inserir um novo Tipo de Dispositivo Legal no BANCO
@@ -141,8 +137,8 @@ public class TipoDispositivoLegalDAO {
             }catch (SQLException e){
                 throw new RuntimeException(e);
             }finally{
-            stmt.close();
-            connection.close();
+                stmt.close();
+                connection.close(); 
         }
     }       
     
@@ -150,7 +146,6 @@ public class TipoDispositivoLegalDAO {
 //MEDOTO utilizado para realizar a alteração das informações de um Tipo Dispositivo Legal
     public void upTipoDisp(TipoDispositivoLegal tpdisp) throws SQLException{
         PreparedStatement stmt = null;
-        
         String sql = "UPDATE tbl_tipodispositivolegal "
                     +"SET sg_tipodisplegal=?, nm_tipodisplegal=?, nm_login=?, dthr_atualizacao=? "
                     +"WHERE id_tipodisplegal = ?";
@@ -176,11 +171,9 @@ public class TipoDispositivoLegalDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<TipoDispositivoLegal> lisTipoDisp = new ArrayList<TipoDispositivoLegal>();
-        
         String sql = "SELECT id_tipodisplegal, sg_tipodisplegal, nm_tipodisplegal, nm_login, dthr_atualizacao "
                     +"FROM tbl_tipodispositivolegal "
                     +"ORDER BY nm_tipodisplegal";
-    
         try {
             stmt = connection.prepareStatement(sql);
             rs = stmt.executeQuery();  
@@ -195,7 +188,6 @@ public class TipoDispositivoLegalDAO {
                 }       
             stmt.execute();
         return lisTipoDisp;
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
           }finally{
@@ -203,7 +195,7 @@ public class TipoDispositivoLegalDAO {
                 stmt.close();
                 connection.close();
             }
-        } 
+    } 
 
 
 

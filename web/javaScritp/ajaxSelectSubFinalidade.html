@@ -12,7 +12,7 @@ and open the template in the editor.
         idCatFinalidade = combo.value;
         if(idCatFinalidade === 0) return;
     
-    var url = 'include/selectSubFinalidade.jsp?pkCatFinalidade=' + idCatFinalidade;
+    var url = 'ControllerServlet?acao=CatSubFinalidadeListaSelect&pkCatFinalidade='+idCatFinalidade;
     if (window.ActiveXObject){
         xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
     }else if (window.XMLHttpRequest) {
@@ -35,5 +35,4 @@ and open the template in the editor.
         var selecao = document.getElementById("selectSubFinalidade");
         selecao.innerHTML = xmlHttp.responseText;
     }
-
 </script>

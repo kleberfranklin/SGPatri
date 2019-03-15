@@ -29,7 +29,6 @@ public class ValidacaoDAO {
         PreparedStatement stmt =null;
         ResultSet rs = null;
         Validacao val = new Validacao();
-        
         String sql = "SELECT id_validacao_autocessao, fk_autocessao, fk_divisao, nm_status, "
                     + "nm_problema, nm_tarefa, ds_obs, nm_login, dthr_atualizacao "
                     + "FROM tbl_validacao_autocessao "
@@ -55,6 +54,7 @@ public class ValidacaoDAO {
         }finally{
             rs.close();
             stmt.close();
+//            connection.close();
         }
     } 
     
@@ -64,7 +64,6 @@ public class ValidacaoDAO {
         int pkValidacao = 0;
         PreparedStatement stmt =null;
         ResultSet rs = null;
-        
         String sql = "INSERT INTO tbl_validacao_autocessao (fk_autocessao, fk_divisao, nm_status, "
                 + "nm_problema, nm_tarefa, ds_obs, nm_login, dthr_atualizacao) "
                 + "VALUES (?,?,?,?,?,?,?,?)";
@@ -78,8 +77,7 @@ public class ValidacaoDAO {
                     stmt.setString(6, val.getDsObsservacao());
                     stmt.setString(7, val.getNmLogin());
                     stmt.setTimestamp(8,java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
-                  stmt.executeUpdate();
-
+                stmt.executeUpdate();
                 rs = stmt.getGeneratedKeys();
                 if(rs.next()){
                     pkValidacao = rs.getInt("id_validacao_autocessao");
@@ -97,24 +95,26 @@ public class ValidacaoDAO {
     public void upValidacao(Validacao val) throws SQLException {
         PreparedStatement stmt = null;
                 
-        String sql = "UPDATE tbl_validacao_autocessao SET fk_autocessao=?, fk_divisao=?, nm_status=?, nm_problema=?, nm_tarefa=?, ds_obs=?, nm_login=?, dthr_atualizacao=? "
-                + "WHERE id_validacao_autocessao = ?";
-        try{
-            stmt = connection.prepareStatement(sql);
-                stmt.setInt(1, val.getFkAutoCessao());
-                stmt.setInt(2, val.getFkDivisao());
-                stmt.setString(3, val.getNmStatus());
-                stmt.setString(4, val.getNmProblema());
-                stmt.setString(5, val.getNmTarefa());
-                stmt.setString(6, val.getDsObsservacao());
-                stmt.setString(7, val.getNmLogin());
-                stmt.setTimestamp(8,java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
-                stmt.setInt(9, val.getPkValidacao());
-            stmt.execute();
-        }catch (SQLException e){
-           throw new RuntimeException(e);
-        }finally {
-            stmt.close();
+        String sql = "UPDATE tbl_validacao_autocessao SET fk_autocessao=?, fk_divisao=?, nm_status=?, "
+                    + "nm_problema=?, nm_tarefa=?, ds_obs=?, nm_login=?, dthr_atualizacao=? "
+                    + "WHERE id_validacao_autocessao = ?";
+            try{
+                stmt = connection.prepareStatement(sql);
+                    stmt.setInt(1, val.getFkAutoCessao());
+                    stmt.setInt(2, val.getFkDivisao());
+                    stmt.setString(3, val.getNmStatus());
+                    stmt.setString(4, val.getNmProblema());
+                    stmt.setString(5, val.getNmTarefa());
+                    stmt.setString(6, val.getDsObsservacao());
+                    stmt.setString(7, val.getNmLogin());
+                    stmt.setTimestamp(8,java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
+                    stmt.setInt(9, val.getPkValidacao());
+                stmt.execute();
+            }catch (SQLException e){
+                throw new RuntimeException(e);
+            }finally {
+                stmt.close();
+                connection.close();
         }
     }     
 
@@ -123,37 +123,35 @@ public class ValidacaoDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<Validacao> listValidacao = new ArrayList<Validacao>();
-
         String sql = ("SELECT id_validacao_autocessao, fk_autocessao, fk_divisao, nm_status, nm_tarefa, nm_problema "
                     + "ds_obs, nm_login, dthr_atualizacao "
                     + "FROM tbl_validacao_autocessao "
                     + "WHERE fk_autocessao = ? "
                     + "ORDER BY id_validacao_autocessao DESC");
-        try {
-        
-            stmt = connection.prepareStatement(sql);
-                stmt.setInt(1, pkAutoCessao);
-            rs = stmt.executeQuery();  
-            while (rs.next()){
-                Validacao va = new Validacao();
-                    va.setPkValidacao(rs.getInt("id_validacao_autocessao"));
-                    va.setFkAutoCessao(rs.getInt("fk_autocessao"));
-                    va.setFkDivisao(rs.getInt("fk_divisao"));
-                    va.setNmStatus(rs.getString("nm_status"));
-                    va.setNmTarefa(rs.getString("nm_tarefa"));
-                    va.setNmProblema(rs.getString("nm_problema"));
-                    va.setDsObsservacao(rs.getString("ds_obs"));
-                    va.setNmLogin(rs.getString("nm_login"));
-                    va.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
-             listValidacao.add(va);
+            try {
+                stmt = connection.prepareStatement(sql);
+                    stmt.setInt(1, pkAutoCessao);
+                rs = stmt.executeQuery();  
+                while (rs.next()){
+                    Validacao va = new Validacao();
+                        va.setPkValidacao(rs.getInt("id_validacao_autocessao"));
+                        va.setFkAutoCessao(rs.getInt("fk_autocessao"));
+                        va.setFkDivisao(rs.getInt("fk_divisao"));
+                        va.setNmStatus(rs.getString("nm_status"));
+                        va.setNmTarefa(rs.getString("nm_tarefa"));
+                        va.setNmProblema(rs.getString("nm_problema"));
+                        va.setDsObsservacao(rs.getString("ds_obs"));
+                        va.setNmLogin(rs.getString("nm_login"));
+                        va.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
+                listValidacao.add(va);
+                }
+            return listValidacao;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }finally{
+                stmt.close();
+                connection.close();
             }
-        return listValidacao;
-    
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }finally{
-            stmt.close();
-        }
     } 
     
     

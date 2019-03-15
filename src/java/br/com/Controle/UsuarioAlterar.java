@@ -7,10 +7,10 @@ package br.com.Controle;
 
 
 import br.com.Modelo.Logica;
+import br.com.Modelo.Perfil;
+import br.com.Modelo.PerfilDAO;
 import br.com.Utilitario.Transformar;
 import br.com.Modelo.Usuario;
-import br.com.Modelo.Usuario;
-import br.com.Modelo.UsuarioDAO;
 import br.com.Modelo.UsuarioDAO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -59,8 +59,13 @@ public class UsuarioAlterar implements Logica{
 
 //Populando o objeto e alterando as informações        
         Usuario us = new Usuario(pkUsuario, divisao, setor, cargo, ativo, perfil, login, nome, rf, email, loginSession);
-        usDAO.altUsuario(us);
+        usDAO.upUsuario(us);
         us = usDAO.detalheUsuario(pkUsuario);
+
+
+//Atualizar a session        
+        Perfil per = new PerfilDAO().detalhePerfil(us.getPkPerfil());
+            nome = us.getNmNome();
         
         req.setAttribute("us", us);
         req.setAttribute("msg", "gravou");

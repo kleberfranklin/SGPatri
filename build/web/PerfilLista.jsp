@@ -42,7 +42,8 @@
                                     <th>Permissão Gravar</th>
                                     <th>Permissão Alterar</th>
                                     <th>Permissão Excluir</th>
-                                    <th>Permissão Gerenciamento</th>
+                                    <th>Permissão Editar campos Formulários</th>
+                                    <th>Permissão Painel Administrativo</th>
                                     <th class="col-md-3">
                                         <form class="form-search" action="ControllerServlet?acao=PerfilLista" method="POST">
                                             <div class="input-group">
@@ -114,6 +115,22 @@
                                         <td>
                                             <c:choose>
                                                 <c:when test="${'1' == perf.nrExcluir}">
+                                                    <span class="label label-success arrowed" title="SIM">
+                                                        <i class="ace-icon fa fa-check bigger-120"></i>
+                                                        Sim
+                                                    </span>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <span class="label label-danger arrowed" title="NÃO">
+                                                        <i class="ace-icon fa fa-ban bigger-120"></i>
+                                                        Não
+                                                    </span>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </td>
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${'1' == perf.nrGerenciar}">
                                                     <span class="label label-success arrowed" title="SIM">
                                                         <i class="ace-icon fa fa-check bigger-120"></i>
                                                         Sim

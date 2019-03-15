@@ -76,32 +76,46 @@
                                 
                                     <label class="col-sm-2 control-label no-padding-right" for="form-field-1">Divisões: </label>
                                     <div class="col-sm-10">
-                                        <select class="form-control col-xs-12 col-sm-12" id="form-field-select-1" name="divisao" onChange="pkDivisao(this)"  required="required">
-                                            
-                                            <c:choose>
-                                                <c:when test="${sessionPkDivisao == '1'}">
+                                        <c:choose>
+                                            <c:when test="${sessionPerfil == 'Administrador'}">
+                                                <select class="form-control col-xs-12 col-sm-12" id="form-field-select-1" name="divisao" onChange="pkDivisao(this)"  required="required">
                                                     <option value=""></option>
-                                                    <c:forEach var="d" items="${beanDivisao.selectLisDivisao()}">
+                                                    <c:forEach var="d" items="${listDivisao}">
                                                         <option value="${d.pkDivisao}" title="${d.nmDivisao}">${d.sgDivisao} - ${d.nmDivisao}</option>  
                                                     </c:forEach>
-                                                </c:when>
-                                                <c:otherwise>
-                                                        <option value="${sessionPkDivisao}" title="">${sessionSgDivisao}</option>
-                                                </c:otherwise>    
-                                            </c:choose>
-                                            
-                                        </select>
+                                                </select>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <input type="text" id="form-field-1" name="divisao" placeholder="" value="${sessionSgDivisao} - ${sessionNmDivisao}" class="col-xs-12 col-sm-12" readonly="readonly">
+                                            </c:otherwise>    
+                                        </c:choose>
                                     </div>
                                     
                                     <!--Campos select oriundo do include\SelectSetor.jsp -->
-                                    <div  id="selectSetor"></div>
+                                    <c:choose>
+                                        <c:when test="${sessionPerfil == 'Administrador'}">
+                                            <div  id="selectSetor"></div>
+                                        </c:when>
+                                        <c:otherwise>
+                                        <br /><br /><br />
+                                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1">Núcleo: </label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control col-xs-12 col-sm-12" id="form-field-select-1" name="setor" id="setor" required="required">
+                                                <option></option>
+                                                <c:forEach var="s" items="${listSetor}">
+                                                    <option value="${s.pkSetor}" title="${s.nmSetor}">${s.sgSetor} - ${s.nmSetor}</option>  
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                        </c:otherwise>    
+                                    </c:choose>
                                     
                                     <br /><br /><br />
                                     <label class="col-sm-2 control-label no-padding-right" for="form-field-1">Cargo: </label>
                                     <div class="col-sm-4">
                                         <select class="form-control col-xs-12 col-sm-12" id="form-field-select-1" name="cargo" required="required">
                                             <option value=""></option>
-                                            <c:forEach var="c" items="${beanCargo.listCargo()}">
+                                            <c:forEach var="c" items="${listCargo}">
                                                 <option value="${c.pkCargo}" title="${c.dsCargo}">${c.nmCargo}</option>  
                                             </c:forEach>
                                         </select>
@@ -110,7 +124,7 @@
                                     <div class="col-sm-5">
                                         <select class="form-control col-xs-12 col-sm-12" id="form-field-select-1" name="perfil" required="required">
                                         <option value=""></option>
-                                        <c:forEach var="p" items="${beanPerfil.listSelectPerfil()}">
+                                        <c:forEach var="p" items="${listPerfil}">
                                             <option value="${p.pkPerfil}" title="${p.dsPerfil}">${p.nmPerfil}</option>  
                                         </c:forEach>
                                     </select>

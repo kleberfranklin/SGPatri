@@ -6,9 +6,11 @@
 package br.com.Controle;
 
 
-import br.com.Modelo.AutoCessaoValidacao;
-import br.com.Modelo.AutoCessaoValidacaoDAO;
+import br.com.Modelo.AutoCessao;
+import br.com.Modelo.AutoCessaoDAO;
 import br.com.Modelo.Logica;
+import br.com.Modelo.TipoAutoCessao;
+import br.com.Modelo.TipoAutoCessaoDAO;
 import br.com.Utilitario.Transformar;
 import java.net.URLEncoder;
 import java.util.List;
@@ -24,7 +26,9 @@ public class AutoCessaoListaPagFiltro implements Logica{
     public String executa(HttpServletRequest req,
                      HttpServletResponse res) throws Exception {
         
-        AutoCessaoValidacaoDAO autoDAO = new AutoCessaoValidacaoDAO();
+        AutoCessaoDAO autoDAO = new AutoCessaoDAO();
+        TipoAutoCessaoDAO  tpDAO = new TipoAutoCessaoDAO();
+       
        
 /**
 *  Atributos: 
@@ -130,14 +134,9 @@ public class AutoCessaoListaPagFiltro implements Logica{
       
         
 //Carregando a quantidade de registro para calculdo da quantidade de paginas     
-//        if ("".equals(ter) || null == ter){
-            qtdRegistro = autoDAO.qtdAutoPesquisa(qTpcessao, qAC, qProcesso, qCessionario, qCedente, qEndereco, qCroqui, qVigor);
-            qtdPg = qtdRegistro / qtdLinha;
-//        }else{
-//            qtdRegistro = autoDAO.qtdAutoCessaoPesquisaTerceiro(qTpcessao, qAC, qProcesso, qCessionario, qEndereco, qCroqui, qVigor);
-//            qtdPg = qtdRegistro / qtdLinha;   
-//        }
-////Logica da paginação         
+        qtdRegistro = autoDAO.qtdAutoPesquisa(qTpcessao, qAC, qProcesso, qCessionario, qCedente, qEndereco, qCroqui, qVigor);
+        qtdPg = qtdRegistro / qtdLinha;
+     
         if ((qtdRegistro % qtdLinha) != 0) {
             qtdPg = qtdPg+1;
         }
@@ -169,18 +168,18 @@ public class AutoCessaoListaPagFiltro implements Logica{
         offset = ((pg * qtdLinha)- qtdLinha);
         
 //Populando o objeto lista 
-//        List<AutoCessaoValidacao> listAuto;
-//        if ("".equals(ter) || null == ter){
-          List<AutoCessaoValidacao>  listAuto = new AutoCessaoValidacaoDAO().listPagFiltroPesquisa(qTpcessao, qAC, qProcesso, qCessionario, qCedente, qEndereco, qCroqui, qVigor, qtdLinha, offset);
-//        }else{
-//            listAuto = new AutoCessaoAntigoDAO().listPagFiltroTerceiro(qTpcessao, qAC, qProcesso, qCessionario, qEndereco, qCroqui, qVigor, qtdLinha, offset);
-//        }
+          List<AutoCessao>  listAuto = new AutoCessaoDAO().listPagFiltroPesquisa(qTpcessao, qAC, qProcesso, qCessionario, qCedente, qEndereco, qCroqui, qVigor, qtdLinha, offset);
+          
+          List<TipoAutoCessao> lisTpAuto = tpDAO.listSelectTpCessao();
+          
 
-            qCessionario = URLEncoder.encode(qCessionario,"UTF-8");
+//        qCessionario = URLEncoder.encode(qCessionario,"UTF-8");
 //        qCedente = URLEncoder.encode(qCedente,"UTF-8");
 //        qEndereco = URLEncoder.encode(qEndereco,"UTF-8");
 
         req.setAttribute("listAuto", listAuto);
+        req.setAttribute("lisTpAuto", lisTpAuto);
+   
                    
         return  "AutoCessaoLista.jsp?"
                 +"pg="+pg

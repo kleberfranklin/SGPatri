@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="Content-Language" content="pt-br">
     
-    <title>SG-PATRI - Sistema de Gestão das Áreas Públicas</title>
+    <title>SGPatri - Sistema de Gestão das Áreas Públicas</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <meta name="description" content="Common form elements and layouts" />

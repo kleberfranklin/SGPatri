@@ -5,8 +5,8 @@
  */
 package teste.utilitarios;
 
-import br.com.Modelo.AutoCessaoValidacao;
-import br.com.Modelo.AutoCessaoValidacaoDAO;
+import br.com.Modelo.AutoCessao;
+import br.com.Modelo.AutoCessaoDAO;
 import com.sun.xml.internal.ws.util.StringUtils;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;

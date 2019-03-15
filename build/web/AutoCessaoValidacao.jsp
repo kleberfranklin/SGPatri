@@ -28,33 +28,7 @@
     <c:set var="acessoPerfil" value="${sessionPerfil}" />
     <jsp:directive.include file="include/ControleAcesso.jsp" />
     
-    
       
-    <jsp:useBean id="TpCessao" class= "br.com.Modelo.TipoAutoCessaoDAO" />
-    <jsp:useBean id="CatFin" class= "br.com.Modelo.CatFinalidadeDAO" />
-    <jsp:useBean id="CatSubFin" class= "br.com.Modelo.CatSubFinalidadeDAO" />
-    <jsp:useBean id="CatAuto" class= "br.com.Modelo.CatAutoCessaoDAO" />
-    <jsp:useBean id="CatContra" class= "br.com.Modelo.CatContrapartidaDAO" />
-    <jsp:useBean id="TpDis" class= "br.com.Modelo.TipoDispositivoLegalDAO" />
-    <jsp:useBean id="subPref" class= "br.com.Modelo.SubPrefeituraDAO" />
-    <jsp:useBean id="Disp" class= "br.com.Modelo.DispositivoLegalDAO"/>
-    <jsp:useBean id="Arquivo" class= "br.com.Modelo.ArquivoDAO" />
-    <jsp:useBean id="NivelAdm" class= "br.com.Modelo.NivelAdministracaoDAO" />
-    <jsp:useBean id="CatEnt" class= "br.com.Modelo.CatEntidadeDAO" />
-    <jsp:useBean id="Divisao" class= "br.com.Modelo.DivisaoDAO" />
-    <jsp:useBean id="Val" class= "br.com.Modelo.ValidacaoDAO" />
-    <jsp:useBean id="Usuario" class= "br.com.Modelo.UsuarioDAO" />
-    
-    <c:set var="selTpCessao" value="${TpCessao.detalheTpCessao(auto.fkTipoCessaoStage)}" />
-    <c:set var="selCatAuto" value="${CatAuto.detalheCatAuto(auto.fkCatAutoStage)}" />
-    <c:set var="selCatFin" value="${CatFin.detalheCatFinalidade(auto.fkCatFinalidadeStage)}" />
-    <c:set var="selNvAdm" value="${NivelAdm.detalheNivelAdm(auto.fkNivelAdm)}" />
-    <c:set var="selCatEnt" value="${CatEnt.detalheCatEnt(auto.fkCatEntidadeStage)}" />
-    <c:set var="selSubPref" value="${subPref.detalheSubPref(auto.fkSubpref)}" />
-    <c:set var="selCatContra" value="${CatContra.detalheCatContra(auto.fkCatContrapartida)}"/>
-    <c:set var="selCatSubFin" value="${CatSubFin.detalheCatSubFinalidade(auto.fkSubcatfinalidade)}"  />
-    <c:set var="selVal" value="${Val.detalheValidacaoAutoCessao(auto.pkAutoStage)}" />
-   
    
     <c:set var="qAC" value="${param.qAC}" />
     <c:set var="qProcesso" value="${param.qProcesso}" />
@@ -68,10 +42,6 @@
     <c:set var="pgValidacao" value="${param.pgValidacao}"/>
     
    
-    
-    
-     
-
   
     <div class="breadcrumbs ace-save-state" id="breadcrumbs">
         <ul class="breadcrumb">
@@ -90,7 +60,7 @@
         <div class="form-horizontal">
             <div class="tabbable">
                 <ul class="nav nav-tabs padding-0">
-                    <li class="<c:if test="${auto.nrVerAc=='0' || auto.nrVerValidacao== '1' || novo=='1'}">active</c:if>">
+                    <li class="active">
                         <a data-toggle="tab" href="#auto-cessao" aria-expanded="true">
                             Auto de Cessão 
                             <c:choose>
@@ -103,7 +73,7 @@
                             </c:choose>
                         </a>
                     </li>
-                    <li class="<c:if test="${auto.nrVerAc=='1' && auto.nrVerDispLegal=='0'}">active</c:if>">
+                    <li class="">
                         <a data-toggle="tab" href="#disp-legal" aria-expanded="true">
                            Dispositivos Legais
                            <c:choose>
@@ -116,7 +86,7 @@
                             </c:choose>
                         </a>
                     </li>
-                    <li class="<c:if test="${ auto.nrVerAc == '1' && auto.nrVerDispLegal == '1' && (auto.nrVerArqAc == '0' || auto.nrVerArqPlanta == '0')}">active</c:if>">
+                    <li class="">
                         <a data-toggle="tab" href="#anexar-doc" aria-expanded="true">
                            Anexar documentos
                            <c:choose>
@@ -129,8 +99,7 @@
                             </c:choose>
                         </a>
                     </li>
-                    <c:if test="${(sessionSgDivisao == 'DDPI' && sessionSgSetor == 'SCL') && pgValidacao=='pgValidacao'}">
-                    <li class="<c:if test="${auto.nrVerAc == '1' && auto.nrVerDispLegal == '1' && auto.nrVerArqAc == '1' && auto.nrVerArqPlanta == '1' && auto.nrVerValidacao == '0' }">active</c:if>">
+                    <li class="">
                         <a data-toggle="tab" href="#validacao" aria-expanded="true">
                             Validação
                             <c:choose>
@@ -143,23 +112,9 @@
                             </c:choose>
                         </a>
                     </li>
-                    </c:if>
                 </ul>
                 <div class="tab-content profile-edit-tab-content">
-                    <div id="auto-cessao" class="tab-pane 
-                    <c:choose>
-                        <c:when test="${auto.nrVerAc=='0' || auto.nrVerValidacao == '1' || novo=='1'}">
-                            in active
-                        </c:when>
-                        <c:when test="${auto.nrVerAc == '1' && auto.nrVerDispLegal=='1' && auto.nrVerArqAc == '1' && auto.nrVerArqPlanta == '1' && auto.nrVerValidacao == '1' && (execucao!='view' || execucao!='edit')}">
-                            
-                        </c:when>
-                        <c:otherwise>
-                                
-                        </c:otherwise>
-                         
-                    </c:choose>          
-                         ">
+                    <div id="auto-cessao" class="tab-pane in active">
                             <form action="ControllerServlet?acao=AutoCessoValidacaoUC" method="POST" >
                                 <div class="space-4"></div>
                                 <div class="space-2"></div>
@@ -197,7 +152,7 @@
                                                 <select class="col-md-12 col-xs-12" name="pkCatAutoCessao" required="required">
                                                     <option value="${selCatAuto.pkCatAutoCessao}">${selCatAuto.nmCatAutoCessao}</option>
                                                     <option></option>
-                                                    <c:forEach var="CatAuto" items="${CatAuto.listSelectCatAutoCessao()}">
+                                                    <c:forEach var="CatAuto" items="${CatAuto}">
                                                         <c:if test="${CatAuto.nmCatAutoCessao != 'Informação não cadastrada'}" >
                                                             <option value="${CatAuto.pkCatAutoCessao}" title="${CatAuto.nmCatAutoCessao}">${CatAuto.nmCatAutoCessao}</option>  
                                                         </c:if>
@@ -207,7 +162,7 @@
                                             <c:when test="${execucao == 'insert'}">
                                                 <select class="col-md-12 col-xs-12" name="pkCatAutoCessao" required="required">
                                                     <option></option>
-                                                    <c:forEach var="CatAuto" items="${CatAuto.listSelectCatAutoCessao()}">
+                                                    <c:forEach var="CatAuto" items="${CatAuto}">
                                                         <c:if test="${CatAuto.nmCatAutoCessao != 'Informação não cadastrada'}" >
                                                             <option value="${CatAuto.pkCatAutoCessao}" title="${CatAuto.nmCatAutoCessao}">${CatAuto.nmCatAutoCessao}</option>  
                                                         </c:if>
@@ -228,22 +183,19 @@
                                         <c:choose>
                                             <c:when test="${execucao == 'edit'}">
                                                 <div class="input-group">
-                                                    <input class="form-control date-picker" id="id-date-picker-1" name="dtlavratura" value="${auto.dtLavratura}" type="text" placeholder="dd/mm/aaaa" data-date-format="dd/mm/yyyy" required="required">
-                                                    <span class="input-group-addon">
-                                                        <i class="fa fa-calendar bigger-110"></i>
-                                                    </span>
+                                                    <input class="form-control" name="dtlavratura" value="${auto.dtLavratura}" type="date" placeholder="dd/mm/aaaa" required="required">
                                                 </div>
                                             </c:when>
                                             <c:when test="${execucao == 'insert'}">
                                                 <div class="input-group">
-                                                    <input class="form-control date-picker" id="id-date-picker-1" name="dtlavratura" type="text" placeholder="dd/mm/aaaa" data-date-format="dd/mm/yyyy" required="required">
-                                                    <span class="input-group-addon">
-                                                        <i class="fa fa-calendar bigger-110"></i>
-                                                    </span>
+                                                    <input class="form-control" name="dtlavratura" value="${auto.dtLavratura}" type="date" placeholder="dd/mm/aaaa" required="required">
                                                 </div>
                                             </c:when>
                                             <c:otherwise>
-                                               <span class="lbl">${auto.dtLavratura}</span> 
+                                                <c:set var = "dt" value = "${auto.dtLavratura}" />
+                                                <fmt:parseDate value = "${dt}" var = "converteDT" pattern="yyyy-MM-dd" />
+                                                <fmt:formatDate value="${converteDT}" var="dtAtu"/>
+                                               <span class="lbl">${dtAtu}</span> 
                                             </c:otherwise>
                                         </c:choose>
                                         
@@ -257,7 +209,7 @@
                                                 <select class="col-md-12 col-xs-12" name="pkNivelAdm" required="required">
                                                     <option value="${selNvAdm.pkAdm}">${selNvAdm.nmAdm}</option>
                                                     <option value=""></option>    
-                                                    <c:forEach var="nv" items="${NivelAdm.listNivelAdm()}">
+                                                    <c:forEach var="nv" items="${NivelAdm}">
                                                         <c:if test="${nv.nmAdm != 'Informação não cadastrada'}" >
                                                             <option value="${nv.pkAdm}" title="${nv.nmAdm}">${nv.nmAdm}</option>  
                                                         </c:if>
@@ -267,7 +219,7 @@
                                             <c:when test="${execucao == 'insert'}">
                                                 <select class="col-md-12 col-xs-12" name="pkNivelAdm" required="required">
                                                     <option value=""></option>    
-                                                    <c:forEach var="nv" items="${NivelAdm.listNivelAdm()}">
+                                                    <c:forEach var="nv" items="${NivelAdm}">
                                                         <c:if test="${nv.nmAdm != 'Informação não cadastrada'}" >
                                                             <option value="${nv.pkAdm}" title="${nv.nmAdm}">${nv.nmAdm}</option>  
                                                         </c:if>
@@ -295,7 +247,7 @@
                                                 <select class="col-md-12 col-xs-12" name="pkTpcessao" required="required">
                                                     <option value="${selTpCessao.pkTipoAutoCessao}">${selTpCessao.nmTipoAutoCessao}</option>
                                                     <option value=""></option>    
-                                                    <c:forEach var="cat" items="${TpCessao.listSelectTpCessao()}">
+                                                    <c:forEach var="cat" items="${TpCessao}">
                                                         <option value="${cat.pkTipoAutoCessao}" title="${cat.nmTipoAutoCessao}">${cat.nmTipoAutoCessao}</option>  
                                                     </c:forEach>
                                                 </select>
@@ -303,7 +255,7 @@
                                             <c:when test="${execucao == 'insert'}">
                                                 <select class="col-md-12 col-xs-12" name="pkTpcessao" required="required">
                                                     <option value=""></option>    
-                                                    <c:forEach var="cat" items="${TpCessao.listSelectTpCessao()}">
+                                                    <c:forEach var="cat" items="${TpCessao}">
                                                         <option value="${cat.pkTipoAutoCessao}" title="${cat.nmTipoAutoCessao}">${cat.nmTipoAutoCessao}</option>  
                                                     </c:forEach>
                                                 </select>
@@ -374,7 +326,7 @@
                                                 <select class="col-md-12 col-xs-12" name="pkCatEntidade" required="required">
                                                     <option value="${selCatEnt.pkCatEntidade}">${selCatEnt.nmCatEntidade}</option>
                                                     <option value=""></option>    
-                                                    <c:forEach var="ent" items="${CatEnt.listCatEnt()}">
+                                                    <c:forEach var="ent" items="${CatEnt}">
                                                         <c:if test="${ent.nmCatEntidade != 'Informação não cadastrada'}" >
                                                             <option value="${ent.pkCatEntidade}" title="${ent.nmCatEntidade}">${ent.nmCatEntidade}</option>  
                                                         </c:if>
@@ -384,7 +336,7 @@
                                             <c:when test="${execucao == 'insert'}">
                                                 <select class="col-md-12 col-xs-12" name="pkCatEntidade" required="required">
                                                     <option value=""></option>    
-                                                    <c:forEach var="ent" items="${CatEnt.listCatEnt()}">
+                                                    <c:forEach var="ent" items="${CatEnt}">
                                                         <c:if test="${ent.nmCatEntidade != 'Informação não cadastrada'}" >
                                                             <option value="${ent.pkCatEntidade}" title="${ent.nmCatEntidade}">${ent.nmCatEntidade}</option>  
                                                         </c:if>
@@ -411,7 +363,7 @@
                                                 <select class="col-md-12 col-xs-12" name="pkCatFinalidade" id="pkCatFinalidade" onChange="pkCatFin(this)" required="required">
                                                     <option value="${selCatFin.pkCatFinalidade}">${selCatFin.nmCatFinalidade}</option>
                                                     <option></option>    
-                                                    <c:forEach var="catFin" items="${CatFin.listSelectCatFinalidade()}">
+                                                    <c:forEach var="catFin" items="${CatFin}">
                                                         <c:if test="${catFin.nmCatFinalidade != 'Informação não cadastrada'}" >
                                                             <option value="${catFin.pkCatFinalidade}" title="${catFin.nmCatFinalidade}">${catFin.nmCatFinalidade}</option>  
                                                         </c:if>
@@ -421,7 +373,7 @@
                                             <c:when test="${execucao == 'insert'}">
                                                 <select class="col-md-12 col-xs-12" name="pkCatFinalidade" id="pkCatFinalidade" onChange="pkCatFin(this)" required="required">
                                                     <option></option>    
-                                                    <c:forEach var="catFin" items="${CatFin.listSelectCatFinalidade()}">
+                                                    <c:forEach var="catFin" items="${CatFin}">
                                                         <c:if test="${catFin.nmCatFinalidade != 'Informação não cadastrada'}" >
                                                             <option value="${catFin.pkCatFinalidade}" title="${catFin.nmCatFinalidade}">${catFin.nmCatFinalidade}</option>  
                                                         </c:if>
@@ -643,7 +595,7 @@
                                                 <select class="col-md-12 col-xs-12" name="pkSubPref" id="" required="required">
                                                     <option value="${selSubPref.pkSubPrefeitura}" title="${selSubPref.nmSubPrefeitura}">${selSubPref.nmSubPrefeitura}</option>
                                                     <option></option>    
-                                                    <c:forEach var="subPref" items="${subPref.listSelectSubPref()}">
+                                                    <c:forEach var="subPref" items="${subPref}">
                                                         <option value="${subPref.pkSubPrefeitura}" title="${subPref.nmSubPrefeitura}">${subPref.nmSubPrefeitura}</option>  
                                                     </c:forEach>
                                                 </select>
@@ -651,7 +603,7 @@
                                             <c:when test="${execucao == 'insert'}">
                                                <select class="col-md-12 col-xs-12" name="pkSubPref" id="" required="required">
                                                     <option></option>    
-                                                    <c:forEach var="subPref" items="${subPref.listSelectSubPref()}">
+                                                    <c:forEach var="subPref" items="${subPref}">
                                                         <option value="${subPref.pkSubPrefeitura}" title="${subPref.nmSubPrefeitura}">${subPref.nmSubPrefeitura}</option>  
                                                     </c:forEach>
                                                 </select>
@@ -1507,7 +1459,7 @@
                                                 <select class="col-md-12 col-xs-12" name="pkCatContrapartida">
                                                     <option value="${selCatContra.pkCatContrapartida}" title="${selCatContra.nmCatContrapartida}">${selCatContra.nmCatContrapartida}</option>
                                                     <option></option>
-                                                    <c:forEach var="catContra" items="${CatContra.listSelectCatContra()}">
+                                                    <c:forEach var="catContra" items="${CatContra}">
                                                         <option value="${catContra.pkCatContrapartida}" title="${catContra.nmCatContrapartida}">${catContra.nmCatContrapartida}</option>  
                                                     </c:forEach>
                                                 </select>
@@ -1515,7 +1467,7 @@
                                             <c:when test="${execucao == 'insert'}">
                                                 <select class="col-md-12 col-xs-12" name="pkCatContrapartida" required="required">
                                                     <option></option>
-                                                    <c:forEach var="catContra" items="${CatContra.listSelectCatContra()}">
+                                                    <c:forEach var="catContra" items="${CatContra}">
                                                         <option value="${catContra.pkCatContrapartida}" title="${catContra.nmCatContrapartida}">${catContra.nmCatContrapartida}</option>  
                                                     </c:forEach>
                                                 </select>
@@ -1627,7 +1579,7 @@
                                         <label class="inline col-md-3 col-xs-12">
                                             <select class="col-md-12 col-xs-12" name="tpDispositivo" required="required">
                                                 <option></option>
-                                                <c:forEach var="tpdis" items="${TpDis.listSelectTipoDisp()}">
+                                                <c:forEach var="tpdis" items="${TpDis}">
                                                     <option value="${tpdis.pkTipoDispLegal}" title="${tpdis.nmTipoDispLegal}">${tpdis.nmTipoDispLegal}</option>  
                                                 </c:forEach>
                                             </select>
@@ -1663,8 +1615,8 @@
                             </form>
                 </c:if>
                              <!--Lista dos Dispositivo no banco-->
-                            <c:forEach var="di" items="${Disp.listDispositivo(auto.pkAutoStage)}">
-                                <c:set var="TpDisp" value="${TpDis.detalheTpDisp(di.fkTipoDisplegal)}" />
+                            <c:forEach var="di" items="${Disp}">
+                                
                                 <div class="form-group">
                                         <label class="inline col-md-2 col-xs-12" >
                                                 <span class="lbl">
@@ -1672,7 +1624,7 @@
                                                 </span>
                                         </label>
                                         <label class="inline col-md-3 col-xs-12">
-                                                <span class="lbl">${TpDisp.nmTipoDispLegal}</span>
+                                                <span class="lbl">${di.tipoDispositivo.nmTipoDispLegal}</span>
                                         </label>
                                         <label class="inline col-md-1 col-xs-12" >
                                                <span class="lbl"><strong>Número:</strong></span>
@@ -1731,10 +1683,9 @@
                                 <label class="col-md-1 col-xs-12">
                                     <c:forEach var="ar" items="${Arquivo.listArquivo(auto.pkAutoStage, 'AutoCessao')}">
                                         <c:if test="${ar.nmTipo == 'planta'}">
-                                            <a href="<c:out value="${pageContext.servletContext.contextPath}" />/Arquivo/Planta/${ar.nmNomeArquivo}" target="_blank"><img src="img/img-planta.png" title="${ar.nmNome}" width="60%" height="60%"/></a>
+                                            <a href="/SGPatri/planta/${ar.nmNomeArquivo}" target="_blank"><img src="img/img-planta.png" title="${ar.nmNome}" width="60%" height="60%"/></a>
                                         </c:if>    
                                     </c:forEach>
-                                            
                                 </label>
                     <c:if test="${(sessionSgDivisao == 'DDPI' &&sessionSgSetor == 'SCL') && (execucao=='insert' || execucao=='edit')}">
                                 <label class="inline col-md-3">
@@ -1784,7 +1735,7 @@
                                     <label class="col-md-1 col-xs-12">
                                         <c:forEach var="ar" items="${Arquivo.listArquivo(auto.pkAutoStage, 'AutoCessao')}">
                                             <c:if test="${ar.nmTipo == 'AC'}">
-                                                <a href="<c:out value="${pageContext.servletContext.contextPath}" />/Arquivo/AC/${ar.nmNomeArquivo}" target="_blank"><img src="img/img-arquivo.png" title="${ar.nmNome}" width="50%" height="50%"/></a>
+                                                <a href="/SGPatri/AC/${ar.nmNomeArquivo}" target="_blank"><img src="img/img-arquivo.png" title="${ar.nmNome}" width="50%" height="50%"/></a>
                                             </c:if>
                                         </c:forEach>
                                     </label>
@@ -1830,7 +1781,7 @@
                               
                             </c:when>  
                             <c:otherwise>
-                                disabled-li-menu
+                                
                             </c:otherwise>    
                         </c:choose>    
                              ">
@@ -1879,11 +1830,7 @@
                                     <label class="inline col-md-3 col-xs-12">
                                         <select class="" name="fkDivisao" id="Divisao">
                                             <option></option>
-                                            <c:forEach var="dv" items="${Divisao.selectLisDivisao()}" >
-                                                <c:if test="${dv.sgDivisao != 'OUTRO DEPTO'}">
-                                                    <option value="${dv.pkDivisao}"> ${dv.sgDivisao}</option>
-                                                </c:if>
-                                            </c:forEach>
+                                            
                                         </select>
                                     </label>
                                 </div>
@@ -1923,7 +1870,7 @@
                         </form>
                         </c:if>
                                 <c:forEach var="va" items="${Val.lisValidacao(auto.pkAutoStage)}">
-                                    <c:set var="selDivisao" value="${Divisao.detalheDivisao(va.fkDivisao)}"/>
+                                    
                                     <div class="form-group">
                                     <label class="inline col-md-2 col-xs-12" >
                                             <span class="lbl"><strong>Situação:</strong></span>
@@ -1946,7 +1893,7 @@
                                     </label>
                                     
                                     <label class="inline col-md-3 col-xs-12">
-                                        <span class="lbl">${selDivisao.sgDivisao}</span>
+                                        <span class="lbl"></span>
                                     </label>
                                 </div>
                             <div class="form-group">

@@ -8,7 +8,7 @@
 <div id="sidebar" class="sidebar responsive ace-save-state">
     <ul class="nav nav-list">
         <li class="">
-            <a href="Index.jsp">
+            <a href="ControllerServlet?acao=Dashborad">
                 <i class="menu-icon fa fa-tachometer"></i>
                 <span class="menu-text"> Dashboard </span>
             </a>
@@ -19,9 +19,7 @@
         <li class="">
             <a href="#" class="dropdown-toggle" title="Gabinete da Coordenadoria">
                 <i class="menu-icon fa fa-folder"></i>
-                <span class="menu-text">
-                        GABINETE
-                </span>
+                <span class="menu-text">Gabinete</span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
             <b class="arrow"></b>
@@ -56,9 +54,9 @@
         
 <!-- Menu DDPI -->
         <li class="">
-            <a href="#" class="dropdown-toggle" title="Divisão de Destinação do Patrimônio Imobiliário">
+            <a href="#" class="dropdown-toggle" title="Divisão de Destinação">
                 <i class="menu-icon fa fa-folder"></i>
-                    <span class="menu-text"> DDPI </span>
+                    <span class="menu-text">Destinação</span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
             <b class="arrow"></b>
@@ -113,9 +111,9 @@
         
 <!-- Menu DIPI -->
         <li class="">
-            <a href="#" class="dropdown-toggle" title="Divisão de Informação do Patrimônio Imobiliário">
+            <a href="#" class="dropdown-toggle" title="Divisão de Informação">
                 <i class="menu-icon fa fa-folder"></i>
-                <span class="menu-text"> DIPI </span>
+                <span class="menu-text">Informação</span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
             <b class="arrow"></b>
@@ -168,9 +166,9 @@
         
 <!-- Menu DEAPI -->
         <li class="">
-            <a href="#" class="dropdown-toggle" title="Divisão de Engenharia do Patrimônio Imobiliário">
+            <a href="#" class="dropdown-toggle" title="Divisão de Engenharia">
                 <i class="menu-icon fa fa-folder"></i>
-                <span class="menu-text"> DEPI </span>
+                <span class="menu-text">Engenharia</span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
             <b class="arrow"></b>
@@ -219,9 +217,9 @@
         
 <!-- Menu DAPI -->
         <li class="">
-            <a href="#" class="dropdown-toggle" title="Divisão de Avaliação do Patrimônio Imobiliário">
+            <a href="#" class="dropdown-toggle" title="Divisão de Avaliação">
                 <i class="menu-icon fa fa-folder"></i>
-                <span class="menu-text">DAPI</span>
+                <span class="menu-text">Avaliação</span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
             <b class="arrow"></b>

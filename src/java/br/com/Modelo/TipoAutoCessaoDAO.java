@@ -16,9 +16,9 @@ import java.util.List;
  *
  * @author d732229
  */
-public class TipoAutoCessaoDAO {
+public class TipoAutoCessaoDAO extends FabricaConexao {
     
-     private final Connection connection;
+     private Connection connection = getConnetion();
     
 
 //Construtor
@@ -34,12 +34,11 @@ public class TipoAutoCessaoDAO {
         int total = 0;
         String sql = ("SELECT COUNT(*) as total "
                     + "FROM tbl_tipocessao "
-                    + "WHERE nm_tipocessao LIKE ? ");
+                    + "WHERE nm_tipocessao ILIKE ? ");
         try{
             stmt = connection.prepareStatement(sql);
                 stmt.setString(1, '%'+q+'%');
             rs = stmt.executeQuery();
-                
                 if(rs.next()){
                     total = rs.getInt("total");
                 }
@@ -59,11 +58,10 @@ public class TipoAutoCessaoDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;      
         List<TipoAutoCessao> lisTpCessao = new ArrayList<TipoAutoCessao>();
-        
         String sql = ("SELECT id_tipocessao, fk_categoriauto, sg_categoriauto, nm_categoriaauto, nm_tipocessao, "
                     + "nm_tipocessao, nm_login, dthr_atualizacao "
                     + "FROM vw_tipocessaocompleto "
-                    + "WHERE nm_tipocessao LIKE ? "
+                    + "WHERE nm_tipocessao ILIKE ? "
                     + "ORDER BY nm_tipocessao "
                     + "LIMIT ? OFFSET ? ");
         try{
@@ -72,7 +70,6 @@ public class TipoAutoCessaoDAO {
                 stmt.setInt(2, qtLinha);
                 stmt.setInt(3, offset);
                 rs = stmt.executeQuery();
-
                 while (rs.next()){
                 TipoAutoCessao tpCessao = new TipoAutoCessao();
                     tpCessao.setPkTipoAutoCessao(rs.getInt("id_tipocessao"));
@@ -100,7 +97,6 @@ public class TipoAutoCessaoDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         TipoAutoCessao tpCessao = new TipoAutoCessao();
-        
         String sql = "SELECT id_tipocessao, fk_categoriauto, sg_categoriauto, nm_categoriaauto, nm_tipocessao, nm_login, dthr_atualizacao "
                     + "FROM vw_tipocessaocompleto "
                     + "WHERE id_tipocessao = ?";
@@ -131,7 +127,6 @@ public class TipoAutoCessaoDAO {
 //METODO utilizado para inserir uma novo Tipo de Auto de Cessao no BANCO
     public void cTipoCessao(TipoAutoCessao tpCessao) throws SQLException{
         PreparedStatement stmt = null;
-        
         String sql = "INSERT INTO tbl_tipocessao "
                 + "(fk_categoriauto, nm_tipocessao, nm_login, dthr_atualizacao ) "
                 + "VALUES (?,?,?,? )";
@@ -145,8 +140,8 @@ public class TipoAutoCessaoDAO {
             }catch (SQLException e){
                 throw new RuntimeException(e);
             }finally{
-//            stmt.close();
-//            connection.close();
+            stmt.close();
+            connection.close();
         }
     }          
     
@@ -154,7 +149,6 @@ public class TipoAutoCessaoDAO {
 //MEDOTO utilizado para realizar a alteração das informações de um Tipo de Auto de Cessão
     public void upTipoCessao(TipoAutoCessao tpCessao) throws SQLException{
         PreparedStatement stmt = null;
-        
         String sql = "UPDATE tbl_tipocessao "
                     +"SET fk_categoriauto=?, nm_tipocessao=?, nm_login=?, dthr_atualizacao=? "
                     +"WHERE id_tipocessao = ?";
@@ -169,8 +163,8 @@ public class TipoAutoCessaoDAO {
         }catch (SQLException e){
            throw new RuntimeException(e);
         }finally{
-//            stmt.close();
-//            connection.close();
+            stmt.close();
+            connection.close();
         }
     } 
     
@@ -179,6 +173,7 @@ public class TipoAutoCessaoDAO {
     public List<TipoAutoCessao> listSelectTpCessao() throws SQLException {
         PreparedStatement stmt = null;
         ResultSet rs = null;
+        List<TipoAutoCessao> lisTpCessao = new ArrayList<TipoAutoCessao>();
         String sql = "SELECT id_tipocessao, fk_categoriauto, sg_categoriauto, nm_categoriaauto, "
                     + "nm_tipocessao, nm_login, dthr_atualizacao "
                     + "FROM vw_tipocessaocompleto "
@@ -186,7 +181,6 @@ public class TipoAutoCessaoDAO {
         try {
             stmt = connection.prepareStatement(sql);
             rs = stmt.executeQuery();  
-            List<TipoAutoCessao> lisTpCessao = new ArrayList<TipoAutoCessao>();
                 while (rs.next()){
                  TipoAutoCessao tpCessao = new TipoAutoCessao();
                     tpCessao.setPkTipoAutoCessao(rs.getInt("id_tipocessao"));
@@ -199,15 +193,15 @@ public class TipoAutoCessaoDAO {
                  lisTpCessao.add(tpCessao);
                 }       
                 stmt.execute();
-            return lisTpCessao;
+        return lisTpCessao;
         } catch (SQLException e) {
             throw new RuntimeException(e);
-          }finally{
-                rs.close();
-                stmt.close();
-                connection.close();
-            }
-       } 
+        }finally{
+            rs.close();
+            stmt.close();
+            connection.close();
+        }
+    } 
     
     
 

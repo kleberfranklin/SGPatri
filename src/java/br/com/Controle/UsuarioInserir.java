@@ -11,8 +11,6 @@ package br.com.Controle;
 import br.com.Modelo.Logica;
 import br.com.Utilitario.Transformar;
 import br.com.Modelo.Usuario;
-import br.com.Modelo.Usuario;
-import br.com.Modelo.UsuarioDAO;
 import br.com.Modelo.UsuarioDAO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

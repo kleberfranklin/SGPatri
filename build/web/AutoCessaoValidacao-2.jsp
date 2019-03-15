@@ -24,8 +24,6 @@
     <c:set var="acessoPerfil" value="${sessionPerfil}" />
     <jsp:directive.include file="include/ControleAcesso.jsp" />
     
-    
-      
     <jsp:useBean id="TpCessao" class= "br.com.Modelo.TipoAutoCessaoDAO" />
     <jsp:useBean id="CatFin" class= "br.com.Modelo.CatFinalidadeDAO" />
     <jsp:useBean id="CatAuto" class= "br.com.Modelo.CatAutoCessaoDAO" />
@@ -34,8 +32,13 @@
     <jsp:useBean id="subPref" class= "br.com.Modelo.SubPrefeituraDAO" />
     <jsp:useBean id="Disp" class= "br.com.Modelo.DispositivoLegalDAO"/>
     <jsp:useBean id="Arquivo" class= "br.com.Modelo.ArquivoDAO" />
-    <jsp:useBean id="NvAdm" class= "br.com.Modelo.NivelAdministracaoDAO" />
-   
+    <jsp:useBean id="NvAdm" class= "br.com.Modelo.NivelAdministracaoDAO" />    
+
+    <c:set var="selTpCessao" value="${TpCessao.detalheTpCessao(auto.fkTipoCessaoStage)}" />
+    <c:set var="selCatAuto" value="${CatAuto.detalheCatAuto(auto.fkCatAutoStage)}" />
+    <c:set var="selCatFin" value="${CatFin.detalheCatFinalidade(auto.fkCatFinalidadeStage)}" />
+
+    
     <c:set var="ter" value="${param.ter}" />
     <c:set var="qProcesso" value="${param.qProcesso}" />
     <c:set var="qAC" value="${param.qAC}" />
@@ -43,11 +46,6 @@
     <c:set var="pg" value="${param.pg}" />
     <c:set var="pf" value="${param.pf}" />
     <c:set var="pi" value="${param.pi}" />
-    
-    <c:set var="selTpCessao" value="${TpCessao.detalheTpCessao(auto.fkTipoCessaoStage)}" />
-    <c:set var="selCatAuto" value="${CatAuto.detalheCatAuto(auto.fkCatAutoStage)}" />
-    <c:set var="selCatFin" value="${CatFin.detalheCatFinalidade(auto.fkCatFinalidadeStage)}" />
-     
 
   
     <div class="breadcrumbs ace-save-state" id="breadcrumbs">

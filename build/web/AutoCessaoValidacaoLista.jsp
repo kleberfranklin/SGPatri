@@ -19,9 +19,6 @@
     <c:set var="acessoPerfil" value="${sessionPerfil}" />
     <jsp:directive.include file="include/ControleAcesso.jsp" />
         
-
-    <jsp:useBean id="TpCessao" class= "br.com.Modelo.TipoAutoCessaoDAO" />
-    
         <c:set var="pg" value="${param.pg}" />
         <c:set var="pf" value="${param.pf}" />
         <c:set var="pi" value="${param.pi}" />
@@ -45,8 +42,6 @@
     <div class="page-content">
         <div class="row">
         <div class="col-xs-12 col-md-12">
-            
-        
             <div class="form-actions col-md-12 col-xs-12">
                 <h4 class="widget-title">Filtros</h4>
                 <form class="form-search" action="ControllerServlet?acao=AutoCessaoValidacaoLista" method="POST">

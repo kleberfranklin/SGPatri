@@ -57,7 +57,7 @@ public class UsuarioListaPaginada implements Logica{
         }else if(!"".equals(q)){
             q = Transformar.utf8(Transformar.priMaiuscula(q));
         }
-        
+    //A condição baixo permite que o perfil Administrador veja todas as Divisões
         if(session.getAttribute("sessionPerfil").equals("Administrador")){
             sgDivisao = "";
         }

@@ -32,28 +32,23 @@ public class NivelAdministracaoDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<NivelAdministracao> lisNivelAdm = new ArrayList<>();
-        
         String sql = ("SELECT id_niveladministracao, sg_administracao, nm_administracao, nm_login, dthr_atualizacao "
                     + "FROM tbl_niveladministracao "
                     + "ORDER BY nm_administracao");
         try {
-
-                stmt = connection.prepareStatement(sql);
-                rs = stmt.executeQuery();  
-
-                while (rs.next()){
-                NivelAdministracao nvadm = new NivelAdministracao();
-                    nvadm.setPkAdm(rs.getInt("id_niveladministracao"));
-                    nvadm.setSgAdm(rs.getString("sg_administracao"));
-                    nvadm.setNmAdm(rs.getString("nm_administracao"));
-                    nvadm.setNmLogin(rs.getString("nm_login"));
-                    nvadm.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
-                lisNivelAdm.add(nvadm);
-                }       
-                stmt.execute();
-                stmt.close();                                                                                                                                                                
-            return lisNivelAdm;
-
+            stmt = connection.prepareStatement(sql);
+            rs = stmt.executeQuery();  
+            while (rs.next()){
+            NivelAdministracao nvadm = new NivelAdministracao();
+                nvadm.setPkAdm(rs.getInt("id_niveladministracao"));
+                nvadm.setSgAdm(rs.getString("sg_administracao"));
+                nvadm.setNmAdm(rs.getString("nm_administracao"));
+                nvadm.setNmLogin(rs.getString("nm_login"));
+                nvadm.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
+            lisNivelAdm.add(nvadm);
+            }       
+            stmt.execute();
+        return lisNivelAdm;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }finally{

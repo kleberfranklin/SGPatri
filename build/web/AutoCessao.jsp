@@ -50,24 +50,23 @@
             <div class="infobox">
                 <div class="btn-group-lg">
                     <!--<button class="btn btn-primary btn-white btn-block" onclick="#">-->
-                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href='AutoCessaoValidacao.jsp?execucao=insert&novo=1';">
+                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href='ControllerServlet?acao=AutoCessaoValidacaoDetalhe&execucao=insert&novo=1';">
                         <i class="ace-icon fa fa-plus"></i>
                         Novo
                     </button>
                 </div>
             </div>
             </c:if>
-            <!--<div class="infobox">
+            <div class="infobox">
                 <div class="btn-group-lg">
-                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href='ControllerServlet?acao=AutoCessaoPrazo&ter=${ter}';">
-                    <button class="btn btn-primary btn-white btn-block" onclick="#">
-                        <i class="glyphicon glyphicon-search"></i>
-                        Prazo
+                    <button class="btn btn-primary btn-white btn-block" onclick="location.href='ControllerServlet?acao=AutoCessaoGrafico';">
+                        <i class="fa fa-bar-chart"></i>
+                        Processo de Validação
                     </button>
                 </div>
             </div>
 
-            <div class="infobox">
+            <!--<div class="infobox">
                 <div class="btn-group-lg">
                     <button class="btn btn-primary btn-white btn-block" onclick="location.href='ControllerServlet?acao=AutoCessaoVencida&ter=${ter}';">
                     <button class="btn btn-primary btn-white btn-block" onclick="#">

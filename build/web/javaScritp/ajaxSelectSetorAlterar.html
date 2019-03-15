@@ -12,8 +12,7 @@ and open the template in the editor.
         idDivivisao = combo.value;
 
         if(idDivivisao === 0) return;
-    
-    var url = 'include/selectSetorAlterar.jsp?pkDivisao=' + idDivivisao;
+    var url = 'ControllerServlet?acao=SetorListaSelect&idDivivisao='+idDivivisao+'&execucao=edit';
     if (window.ActiveXObject){
         xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
     }else if (window.XMLHttpRequest) {

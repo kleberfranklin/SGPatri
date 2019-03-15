@@ -7,8 +7,6 @@ package br.com.Controle;
 
 import br.com.Modelo.Logica;
 import br.com.Modelo.Usuario;
-import br.com.Modelo.Usuario;
-import br.com.Modelo.UsuarioDAO;
 import br.com.Modelo.UsuarioDAO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,6 +36,9 @@ public class UsuarioAltStatus implements Logica {
 //Populando o objeto e alterando informações        
         Usuario us = new Usuario(pkUs, status, loginSession);
         usDAO.atuStatus(us);
+        us = usDAO.detalheUsuario(pkUs);
+        
+                    
         
         return "ControllerServlet?acao=UsuarioListaPaginada";
     }

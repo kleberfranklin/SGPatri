@@ -120,7 +120,7 @@ public class DivisaoLista implements Logica {
         List<Divisao> lisDivisao = new DivisaoDAO().listDivisao(qtdLinha, offset, q);
         req.setAttribute("lisDivisao", lisDivisao);
     
-    return "DivisaoLista.jsp?pg="+pg+"&pi="+pi+"&pf="+pf+"&qtdPg="+qtdPg+"&totalRes="+qtdRegistro+"&q="+q;
+        return "DivisaoLista.jsp?pg="+pg+"&pi="+pi+"&pf="+pf+"&qtdPg="+qtdPg+"&totalRes="+qtdRegistro+"&q="+q;
     }
     
     

@@ -16,4 +16,8 @@
         <c:set var="msg3" value="${true}" scope="session" />
         <c:redirect url="/AcessoNegado.jsp" />
     </c:when>
+    <c:when test="${sessionStatus == 0}" >
+        <c:set var="msg" value="${true}" scope="session" />
+        <c:redirect url="/AcessoNegado.jsp" />
+    </c:when>
 </c:choose>

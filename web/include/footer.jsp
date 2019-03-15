@@ -14,7 +14,7 @@
     <div class="footer-inner">
         <div class="footer-content">
             <span class="bigger-120">
-                <span class="bolder">SG-PATRI</span> - Sistema de Gestão das Áreas Públicas
+                <span class="bolder">SGPatri</span> - Sistema de Gestão das Áreas Públicas
             </span>
         </div>
     </div>

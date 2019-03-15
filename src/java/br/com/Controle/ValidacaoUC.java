@@ -6,7 +6,7 @@
 package br.com.Controle;
 
 
-import br.com.Modelo.AutoCessaoValidacaoDAO;
+import br.com.Modelo.AutoCessaoDAO;
 import br.com.Modelo.Logica;
 import br.com.Modelo.Validacao;
 import br.com.Modelo.ValidacaoDAO;
@@ -26,7 +26,7 @@ public class ValidacaoUC implements Logica {
         
     Validacao va = new Validacao();
     ValidacaoDAO vaDAO = new ValidacaoDAO();
-    AutoCessaoValidacaoDAO autoDAO = new AutoCessaoValidacaoDAO();
+    AutoCessaoDAO autoDAO = new AutoCessaoDAO();
     
     HttpSession session = req.getSession();
 

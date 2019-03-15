@@ -19,12 +19,6 @@
     <c:set var="acessoPerfil" value="${sessionPerfil}" />
     <jsp:directive.include file="include/ControleAcesso.jsp" />
 
-<!-- bean para cria as lista dos select-->    
-    <jsp:useBean id="beanDivisao" class= "br.com.Modelo.DivisaoDAO" />
-    <jsp:useBean id="beanPerfil" class= "br.com.Modelo.PerfilDAO" />
-    <jsp:useBean id="beanCargo" class= "br.com.Modelo.CargoDAO" />
-    <jsp:useBean id="beanSetor" class= "br.com.Modelo.SetorDAO" />
-
 <!-- parametro para paginação e pesquisa -->    
     <c:set var="pg" value="${param.pg}" />
     <c:set var="pf" value="${param.pf}" />
@@ -166,7 +160,7 @@
                                                         <select class="form-control col-xs-12 col-sm-12" id="form-field-select-1" name="divisao" onChange="pkDivisao(this)"  required="required">
                                                             <option value="${us.pkDivisao}" title="${us.nmDivisao}" selected="selected">${us.sgDivisao} - ${us.nmDivisao}</option>
                                                                 <option></option>
-                                                                <c:forEach var="d" items="${beanDivisao.selectLisDivisao()}">
+                                                                <c:forEach var="d" items="${listDivisao}">
                                                                     <option value="${d.pkDivisao}" title="${d.nmDivisao}">${d.sgDivisao} - ${d.nmDivisao}</option>  
                                                                 </c:forEach>
                                                         </select>
@@ -187,7 +181,7 @@
                                                             <div  id="selectSetor" >
                                                                 <select class="form-control col-xs-12 col-sm-12" name="setor" required="required">
                                                                     <option value="${us.pkSetor}" title="${us.nmSetor}" selected="selected">${us.sgSetor} - ${us.nmSetor}</option>
-                                                                    <c:forEach var="s" items="${beanSetor.selecSetor(us.pkDivisao)}">
+                                                                    <c:forEach var="s" items="${listSetor}">
                                                                         <option value="${s.pkSetor}" title="${s.nmSetor}">${s.sgSetor} - ${s.nmSetor}</option>  
                                                                     </c:forEach>
                                                                 </select>
@@ -212,7 +206,7 @@
                                                         <select class="form-control col-xs-12 col-sm-12" id="form-field-select-1" name="cargo" required="required">
                                                             <option value="${us.pkCargo}">${us.nmCargo}</option>
                                                             <option></option>
-                                                            <c:forEach var="c" items="${beanCargo.listCargo()}">
+                                                            <c:forEach var="c" items="${listCargo}">
                                                                 <option value="${c.pkCargo}" title="${c.dsCargo}">${c.nmCargo}</option>  
                                                             </c:forEach>
                                                         </select>
@@ -233,7 +227,7 @@
                                                         <select class="form-control col-xs-12 col-sm-12" id="form-field-select-1" name="perfil" required="required">
                                                             <option value="${us.pkPerfil}">${us.nmPerfil}</option>
                                                             <option></option>
-                                                            <c:forEach var="p" items="${beanPerfil.listSelectPerfil()}">
+                                                            <c:forEach var="p" items="${listPerfil}">
                                                                 <option value="${p.pkPerfil}" title="${p.dsPerfil}">${p.nmPerfil}</option>  
                                                             </c:forEach>
                                                         </select>
