@@ -1,5 +1,5 @@
 <%-- 
-    Document   : PesquisaSic
+    Document   : AnotacaoCroquiLista
     Created on : 23/01/2019, 15:17:29
     Author     : x369482
 --%>
@@ -65,8 +65,8 @@
                                     <select name="qNome" placeholder="" class="col-sm-5 col-xs-12" >
                                         <option></option>
                                         <c:forEach var="lis" items="${expe.listNome()}">
-                                            <c:if test="${lis.nmNome != ''}">
-                                                <option>${lis.nmNome}</option>
+                                            <c:if test="${lis.nmAutor != ''}">
+                                                <option>${lis.nmAutor}</option>
                                             </c:if>
                                         </c:forEach>
                                     </select>
@@ -169,13 +169,13 @@
                                                 </c:otherwise>
                                             </c:choose>
                                         </td>
-                                        <td title="${lcroqui.dsLocal}">
+                                        <td title="${lcroqui.nmReferenciaEndereco}">
                                             <c:choose >
-                                                <c:when test="${lcroqui.dsLocal.length() > 30 }">
-                                                    ${lcroqui.dsLocal.substring(0,30)}...
+                                                <c:when test="${lcroqui.nmReferenciaEndereco.length() > 30 }">
+                                                    ${lcroqui.nmReferenciaEndereco.substring(0,30)}...
                                                 </c:when>
                                                 <c:otherwise>
-                                                    ${lcroqui.dsLocal}
+                                                    ${lcroqui.nmReferenciaEndereco}
                                                 </c:otherwise>
                                             </c:choose>
                                         </td>
@@ -211,14 +211,14 @@
                                             </c:choose>
                                         </td>
 
-                                        <td class="hidden-480" title="${lcroqui.nmNome}">
+                                        <td class="hidden-480" title="${lcroqui.nmAutor}">
                                             <c:choose >
-                                                <c:when test="${lcroqui.nmNome.length() > 10 }">
-                                                    ${lcroqui.nmNome.substring(0,10)}...
+                                                <c:when test="${lcroqui.nmAutor.length() > 10 }">
+                                                    ${lcroqui.nmAutor.substring(0,10)}...
                                                 </c:when>
 
                                                 <c:otherwise>
-                                                    ${lcroqui.nmNome}
+                                                    ${lcroqui.nmAutor}
                                                 </c:otherwise>
                                             </c:choose>
                                         </td>  

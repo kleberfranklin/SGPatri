@@ -213,6 +213,10 @@ public class Usuario {
     public void setDthrAtualizacao(String dthrAtualizacao) {
         this.dthrAtualizacao = dthrAtualizacao;
     }
+
+    void setPkUsuarioCap(int aInt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
     

@@ -1,5 +1,5 @@
 <%-- 
-    Document   : CadastroCroqui
+    Document   : AnotacaoCroquiCRU
     Created on : 20/12/2018, 12:26:59
     Author     : x369482
 --%>
@@ -262,7 +262,7 @@
                                                             </div>
                                                             <label class="col-sm-8 col-xs-12" >
                                                                 <input type="text" id="form-field-1" class="col-sm-12 col-xs-12" name="nmEndereco" 
-                                                                       value="${anotCroqui.dsLocal}"  placeholder="Descrição do local" required="required">
+                                                                       value="${anotCroqui.nmReferenciaEndereco}"  placeholder="Descrição do local" required="required">
                                                             </label>
                                                         </div>
                                                     </c:when>
@@ -336,7 +336,7 @@
                                                                 <span class="lbl"><strong>Local:</strong></span>
                                                             </div>
                                                             <label class="col-sm-8 col-xs-12" >
-                                                                <span class="lbl">${anotCroqui.dsLocal}</span>
+                                                                <span class="lbl">${anotCroqui.nmReferenciaEndereco}</span>
                                                             </label>
                                                         </div>
                                                     </c:otherwise>
@@ -528,7 +528,7 @@
                                                                   style="margin: 0px 102.656px 0px 0px; width: 700px; height: 90px;">${anotCroqui.dsObservacao}</textarea>
                                                     </c:when>
                                                     <c:when test="${execucao == 'insert'}">
-                                                        <textarea class="form-control" id="form-field-8" name="dsObservacao" placeholder="Observação" 
+                                                        <textarea class="form-control col-xs-12" id="form-field-8" name="dsObservacao" placeholder="Observação" 
                                                                   style="margin: 0px 102.656px 0px 0px; width: 700px; height: 90px;"></textarea>
                                                     </c:when>
                                                     <c:otherwise>
@@ -572,14 +572,14 @@
                                                 <c:choose>
                                                     <c:when test="${execucao == 'edit'}">
                                                         <input type="text" id="form-field-1" class="col-sm-8 col-xs-12"  name="nmInteressado" 
-                                                               value="${anotCroqui.nmNome}" placeholder="Nome " required="required" >
+                                                               value="${anotCroqui.nmAutor}" placeholder="Nome " required="required" >
                                                     </c:when>
                                                     <c:when test="${execucao == 'insert'}">
                                                         <input type="text" id="form-field-1" class="col-sm-8 col-xs-12"  name="nmInteressado" 
                                                                placeholder="Nome " required="required" >
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <span class="lbl">${anotCroqui.nmNome}</span> 
+                                                        <span class="lbl">${anotCroqui.nmAutor}</span> 
                                                     </c:otherwise>
                                                 </c:choose>
                                             </label>
@@ -618,20 +618,16 @@
                                             </c:if>
                                         </div>
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>    
+                        <jsp:include page = "include/footer.jsp" />
+                        <jsp:include page = "javaScritp/carregado.html" />
                     </div>    
-
-                    <jsp:include page = "include/footer.jsp" />
-                    <jsp:include page = "javaScritp/carregado.html" />
-
                 </div>
-
-
-                </body>
-                </html>
+            </div>
+        </div>
+    </body>
+</html>
 
 

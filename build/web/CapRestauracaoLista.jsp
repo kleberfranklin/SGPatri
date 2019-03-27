@@ -77,14 +77,6 @@
                                     </label>
                                 </div>
 
-                                <!--
-                                <label class="col-sm-1 col-xs-12"> Local </label>
-                                <div class="col-sm-4 col-xs-12">
-                                    <input type="text" name="qEndereco" placeholder="<c:out value="${nmEndereco}" />" class="col-lg-12 col-lg-12" />
-                                </div>    
-
-                                <br/><br/>
-                                -->
                                 <div class="form-group">
                                     <div class="col-xs-1 col-xs-12">
                                         <span class="lbl">Nº Croqui:</span>
@@ -95,6 +87,7 @@
                                 </div>
 
                                 <!--Botoes-->
+
                                 <span class="input-group-btn col-sm-12 col-sm-offset-10">
                                     <button type="submit" class="btn btn-inverse btn-white" title="Pesquisar">
                                         <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
@@ -109,8 +102,6 @@
                                     </button>
                                 </span>
                             </form>
-
-
                         </div>
 
                         <div class="space-10" ></div>    
@@ -283,7 +274,7 @@
                         </div>
 
                         <div class="col-sm-12 " >
-                            <button class="btn btn-yellow right" type="reset" onclick=" location.href = 'CapRestauracao.jsp?ter=${ter}';">
+                            <button class="btn btn-yellow right" type="reset" onclick=" location.href = 'Cap.jsp';">
                                 <i class="ace-icon fa fa-undo bigger-110"></i>
                                 Voltar
                             </button>    

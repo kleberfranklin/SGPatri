@@ -38,19 +38,18 @@
                         </div>
 
                         <div class="form-group" style=" padding-top:30px">
-                            <div class="btn-group-lg col-xs-2 ">
+                            <div class="btn-group-lg infobox">
                                 <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'AnotacaoDocumentalLista.jsp';">
                                     <i class="glyphicon glyphicon-search"></i>
                                     Pesquisa
                                 </button>
                             </div>
 
-                            <div class="space-4"></div>
-                            <br/><br/>
+                            <br/>
 
                             <c:if test="${sessionSgDivisao == 'DIPI' && sessionSgSetor == 'SGD'}"> 
                             </c:if>
-                            <div class="btn-group-lg col-xs-2 ">
+                            <div class="btn-group-lg infobox">
                                 <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'AnotacaoDocumentalCRU.jsp?execucao=insert&novo=1';">
                                     <i class="ace-icon fa fa-plus"></i>
                                     Novo

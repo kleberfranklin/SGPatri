@@ -14,8 +14,8 @@ public class AnotacaoCroqui {
 //Atributos
     private int pkAnotacaoExpediente, nrAnotacao, nrInformacao, fkUsuario, fkCatFormularios, nrCodigo;
 
-    private String cdCroqui, cdArea, cdExpediente, nrInformacaoDgpi, nmInteressado, dsAssunto, dsDespacho, dsObservacao, nmNome, cdSetor, cdQuadra, 
-            cdLote, dtPublicacao, dsLocal, dtData, dthrAtualizacao, nmLogin, dtAnotacao, nmPublicadoPor, dsInfoGeral, cdTid, cdProcesso;
+    private String cdCroqui, cdArea, cdExpediente, nrInformacaoDgpi, nmInteressado, dsAssunto, dsDespacho, dsObservacao, nmAutor, cdSetor, cdQuadra, 
+            cdLote, dtPublicacao, nmReferenciaEndereco, dtData, dthrAtualizacao, nmLogin, dtAnotacao, nmPublicadoPor, dsInfoGeral, cdTid, cdProcesso;
 
 //Construtor    
     public AnotacaoCroqui() {
@@ -156,12 +156,12 @@ public class AnotacaoCroqui {
         this.dsObservacao = dsObservacao;
     }
 
-    public String getNmNome() {
-        return nmNome;
+    public String getNmAutor() {
+        return nmAutor;
     }
 
-    public void setNmNome(String nmNome) {
-        this.nmNome = nmNome;
+    public void setNmAutor(String nmAutor) {
+        this.nmAutor = nmAutor;
     }
 
     public String getCdSetor() {
@@ -244,12 +244,12 @@ public class AnotacaoCroqui {
         this.dsInfoGeral = dsInfoGeral;
     }
 
-    public String getDsLocal() {
-        return dsLocal;
+    public String getNmReferenciaEndereco() {
+        return nmReferenciaEndereco;
     }
 
-    public void setDsLocal(String dsLocal) {
-        this.dsLocal = dsLocal;
+    public void setNmReferenciaEndereco(String nmReferenciaEndereco) {
+        this.nmReferenciaEndereco = nmReferenciaEndereco;
     }
     
     

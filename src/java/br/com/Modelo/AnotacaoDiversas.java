@@ -10,10 +10,10 @@ package br.com.Modelo;
  * @author d732229
  */
 public class AnotacaoDiversas {
-    
+
     private int pkAnotacaoExpediente, nrAnotacao, nrInformacao, fkUsuario, fkCatFormularios, nrCodigo;
 
-    private String cdCroqui, cdArea, cdExpediente, nmInformacaoDgpi, nmInteressado, dsAssunto, dsDespacho, dsObservacao, nmNome, cdSetor, cdQuadra, cdLote,
+    private String cdCroqui, cdArea, cdExpediente, nmInformacaoDgpi, nmInteressado, dsAssunto, dsDespacho, dsObservacao, nmAutor, cdSetor, cdQuadra, cdLote,
             dtPublicacao, dsLocal, dtData, dthrAtualizacao, nmLogin, dtAnotacao, nmPublicadoPor, dsInfoGeral, cdTid, cdProcesso;
 
     public AnotacaoDiversas() {
@@ -131,12 +131,12 @@ public class AnotacaoDiversas {
         this.dsObservacao = dsObservacao;
     }
 
-    public String getNmNome() {
-        return nmNome;
+    public String getNmAutor() {
+        return nmAutor;
     }
 
-    public void setNmNome(String nmNome) {
-        this.nmNome = nmNome;
+    public void setNmAutor(String nmAutor) {
+        this.nmAutor = nmAutor;
     }
 
     public String getCdSetor() {
@@ -242,10 +242,5 @@ public class AnotacaoDiversas {
     public void setCdProcesso(String cdProcesso) {
         this.cdProcesso = cdProcesso;
     }
-    
-    
-    
-    
 
-    
 }

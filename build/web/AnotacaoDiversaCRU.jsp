@@ -1034,7 +1034,7 @@
 
                                                 <!-- BOTOES -->
                                                 <div class="form-actions center">
-                                                    <button class="btn btn-yellow" type="reset" onclick=" location.href = 'AnotacaoExpediente.jsp';">
+                                                    <button class="btn btn-yellow" type="reset" onclick=" location.href = 'AnotacaoDiversa.jsp';">
                                                         <i class="ace-icon fa fa-undo bigger-110"></i>
                                                         Voltar
                                                     </button>

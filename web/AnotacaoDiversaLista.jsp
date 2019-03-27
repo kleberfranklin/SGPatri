@@ -73,7 +73,7 @@
 
                                 <label class="col-sm-1 col-xs-12"> Nome:</label>
                                 <div class="col-sm-4 col-xs-12">
-                                    <input type="text" name="nmNome" placeholder="<c:out value="${nmNome}" />" class="col-xs-10 col-sm-12" />
+                                    <input type="text" name="nmAutor" placeholder="<c:out value="${nmAutor}" />" class="col-xs-10 col-sm-12" />
                                 </div>    
 
                                 <br/><br/> 
@@ -277,7 +277,7 @@
                                         <c:set var="qCessionario" value="${qCessionario}" />
                                         <c:if test="${pi != 0 && pi == i}">
                                             <li>
-                                                <a href="ControllerServlet?acao=AnotacaoExpedienteListaPagFiltro&pg=${i}&pi=${pi}&pf=${pf}&cdProcesso=${cdProcesso}&nmInteressado=${nmInteressado}&nmAssunto=${nmAssunto}&cdCroqui=${cdCroqui}&nmNome=${nmNome}&ter=${ter}">
+                                                <a href="ControllerServlet?acao=AnotacaoExpedienteListaPagFiltro&pg=${i}&pi=${pi}&pf=${pf}&cdProcesso=${cdProcesso}&nmInteressado=${nmInteressado}&nmAssunto=${nmAssunto}&cdCroqui=${cdCroqui}&nmAutor=${nmAutor}&ter=${ter}">
                                                     <i class="ace-icon fa fa-angle-double-left"></i></a>
                                             </li>
                                         </c:if>    
@@ -292,7 +292,7 @@
 
                                                 <c:otherwise>
                                                     <li>
-                                                        <a href="ControllerServlet?acao=AnotacaoExpedienteListaPagFiltro&pg=${i}&pi=${pi}&pf=${pf}&cdProcesso=${cdProcesso}&nmInteressado=${nmInteressado}&nmAssunto=${nmAssunto}&cdCroqui=${cdCroqui}&nmNome=${nmNome}&ter=${ter}"/>
+                                                        <a href="ControllerServlet?acao=AnotacaoExpedienteListaPagFiltro&pg=${i}&pi=${pi}&pf=${pf}&cdProcesso=${cdProcesso}&nmInteressado=${nmInteressado}&nmAssunto=${nmAssunto}&cdCroqui=${cdCroqui}&nmAutor=${nmAutor}&ter=${ter}"/>
                                                     </li>
                                                 </c:otherwise>
                                             </c:choose>
