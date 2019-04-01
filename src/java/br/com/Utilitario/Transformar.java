@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
 public class Transformar {
 
 //Converte String para o padrão UTF8    
-    public static String utf8(String s) {
+    public static String getUFT8(String s) {
         String out;
         try {
 //            out = new String(s.getBytes("ISO-8859-1"), "UTF-8");
@@ -32,7 +32,7 @@ public class Transformar {
     }
 
 //Converte padronização o texto para a Primeira Letra da frase em Maiuscula    
-    public static String priMaiuscula(String value) {
+    public static String getPriMaiuscula(String value) {
         value = value.toLowerCase();    	
         String result = "";
         String[] nomes = value.split("\\s+");
@@ -42,7 +42,7 @@ public class Transformar {
 	} 
 
 //Criptografia o texto para o padrão MD5 (Message-Digest algorithm 5)
-    public static String md5(String senha){
+    public static String getMD5(String senha){
 		String sen = "";
 		MessageDigest md = null;
 		try {
@@ -55,18 +55,18 @@ public class Transformar {
 		return sen;
 	}    
 
-    public static String removeAccents(String str) {
+    public static String getRemoveAccents(String str) {
         str = Normalizer.normalize(str, Normalizer.Form.NFD);
         str = str.replaceAll("[^\\p{ASCII}]", "");
         return str;
     }
     
-    public static String substituiEspacoHifen(String str){
+    public static String getSubstituiEspacoHifen(String str){
             str = str.replaceAll("\\s+","-");
         return str;
     }
     
-    public static String retiraEspacosDuplicados(String str) {
+    public static String getRetiraEspacosDuplicados(String str) {
             String patternStr = "\\s+";
             String replaceStr = " ";
             Pattern pattern = Pattern.compile(patternStr);
@@ -75,7 +75,14 @@ public class Transformar {
         return str;
     }
     
-    
+    public static String getFileExtension(String filename) {
+        if (filename.contains("."))
+//            return filename.substring(filename.lastIndexOf(".") + 1);
+            return filename.substring(filename.lastIndexOf("."));
+            
+        else
+            return "";
+    }
     
     
     

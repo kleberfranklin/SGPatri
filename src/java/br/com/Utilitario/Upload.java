@@ -44,21 +44,35 @@ public class Upload {
       e.printStackTrace();
     }
 }
-   
-    public boolean deltar(String pasta, String nomeDoArquivo) throws FileNotFoundException {
+
+   public boolean deltar(String pasta) throws FileNotFoundException {
         boolean deletar;
         
-        String caminhoArquivo = pasta + File.separator + nomeDoArquivo;
-        File file = new File(caminhoArquivo);
+        File file = new File(pasta);
         
         if(file.exists()){
             file.deleteOnExit();
-            deletar = true;
+            deletar = file.delete();
         }else{
             deletar = false;
        }            
        return deletar; 
     }
+
    
+//    public boolean deltar(String pasta, String nomeDoArquivo) throws FileNotFoundException {
+//        boolean deletar;
+//        
+//        String caminhoArquivo = pasta + File.separator + nomeDoArquivo;
+//        File file = new File(caminhoArquivo);
+//        
+//        if(file.exists()){
+//            file.deleteOnExit();
+//            deletar = true;
+//        }else{
+//            deletar = false;
+//       }            
+//       return deletar; 
+//    }
     
 }

@@ -32,8 +32,8 @@ public class PerfilCU implements Logica{
     
 //Carregando os atributos com as informações do formulário
     execucao = req.getParameter("execucao");
-    perfil = Transformar.priMaiuscula(req.getParameter("perfil"));
-    descricao = Transformar.removeAccents(req.getParameter("descricao")).toUpperCase().trim();
+    perfil = Transformar.getPriMaiuscula(req.getParameter("perfil"));
+    descricao = Transformar.getRemoveAccents(req.getParameter("descricao")).toUpperCase().trim();
     loginSessio =(String) session.getAttribute("sessionLogin");
     
 //Validação dos atributos carregdos com as informações do formulário.       

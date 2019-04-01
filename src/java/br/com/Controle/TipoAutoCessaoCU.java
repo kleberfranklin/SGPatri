@@ -33,7 +33,7 @@ public class TipoAutoCessaoCU implements Logica{
 //Carregando os atributos com as informações do formulário
     execucao = req.getParameter("execucao");
     fkCatAutoCessao = Integer.parseInt(req.getParameter("fkCatAutoCessao"));
-    nmTipoAtuoCessao = Transformar.removeAccents(req.getParameter("nmTipoAtuoCessao")).toUpperCase().trim();
+    nmTipoAtuoCessao = Transformar.getRemoveAccents(req.getParameter("nmTipoAtuoCessao")).toUpperCase().trim();
     loginSessio =(String) session.getAttribute("sessionLogin");
     
 

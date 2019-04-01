@@ -37,7 +37,7 @@ public class UsuarioAlterar implements Logica{
 //Carregando atributos com as informações do formulário
         login = req.getParameter("login");
         rf = req.getParameter("rf");
-        nome = Transformar.utf8(Transformar.priMaiuscula(req.getParameter("nome")));
+        nome = Transformar.getUFT8(Transformar.getPriMaiuscula(req.getParameter("nome")));
         email = req.getParameter("email");
         loginSession = (String) session.getAttribute("sessionLogin");
         pkUsuario = Integer.parseInt(req.getParameter("pkUsuario"));

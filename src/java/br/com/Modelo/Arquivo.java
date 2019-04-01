@@ -11,30 +11,27 @@ package br.com.Modelo;
  */
 public class Arquivo {
     
-    private int pkArquivo, fkTipoArquivo;
-    private String nmOrigem, nmTipo, nmNomeArquivo, nmDiretorio, nmNome, dthrAtualizacao, nmLogin;
+    private int pkArquivo, fkAutocessao, nrRetiRatificacao;
+    private String nmTipo, nmArquivo, nmExtensao, nmDiretorio, nmNomeclatura, dthrAtualizacao, nmLogin;
 
     public Arquivo() {
     }
 
-  
-
-    public Arquivo(int fkTipoArquivo, String nmOrigem, String nmTipo, String nmNomeArquivo, String nmDiretorio, String nmNome, String nmLogin) {
-        this.fkTipoArquivo = fkTipoArquivo;
-        this.nmOrigem = nmOrigem;
+    public Arquivo(int fkAutocessao, int nrRetiRatificacao, String nmTipo, String nmArquivo, String nmExtensao, String nmDiretorio, String nmNomeclatura, String nmLogin) {
+        this.fkAutocessao = fkAutocessao;
+        this.nrRetiRatificacao = nrRetiRatificacao;
         this.nmTipo = nmTipo;
-        this.nmNomeArquivo = nmNomeArquivo;
+        this.nmArquivo = nmArquivo;
+        this.nmExtensao = nmExtensao;
         this.nmDiretorio = nmDiretorio;
-        this.nmNome = nmNome;
+        this.nmNomeclatura = nmNomeclatura;
         this.nmLogin = nmLogin;
     }
     
-    
-    public Arquivo(int pkArquivo, int fkTipoArquivo, String nmOrigem, String nmTipo, String nmNomeArquivo, String nmDiretorio, String nmNome, String nmLogin) {
-        this(fkTipoArquivo, nmOrigem, nmTipo,nmNomeArquivo, nmDiretorio, nmNome, nmLogin);
+    public Arquivo(int pkArquivo, int fkAutocessao, int nrRetiRatificacao,  String nmTipo, String nmArquivo,String nmExtensao, String nmDiretorio, String nmNomeclatura, String nmLogin) {
+        this(fkAutocessao, nrRetiRatificacao, nmTipo, nmArquivo, nmExtensao, nmDiretorio, nmNomeclatura, nmLogin);
         this.pkArquivo = pkArquivo;
     }
-
     
     public int getPkArquivo() {
         return pkArquivo;
@@ -44,22 +41,22 @@ public class Arquivo {
         this.pkArquivo = pkArquivo;
     }
 
-    public int getFkTipoArquivo() {
-        return fkTipoArquivo;
+    public int getFkAutocessao() {
+        return fkAutocessao;
     }
 
-    public void setFkTipoArquivo(int fkTipoArquivo) {
-        this.fkTipoArquivo = fkTipoArquivo;
+    public void setFkAutocessao(int fkAutocessao) {
+        this.fkAutocessao = fkAutocessao;
     }
 
-    public String getNmOrigem() {
-        return nmOrigem;
+    public int getNrRetiRatificacao() {
+        return nrRetiRatificacao;
     }
 
-    public void setNmOrigem(String nmOrigem) {
-        this.nmOrigem = nmOrigem;
+    public void setNrRetiRatificacao(int nrRetiRatificacao) {
+        this.nrRetiRatificacao = nrRetiRatificacao;
     }
-
+    
     public String getNmTipo() {
         return nmTipo;
     }
@@ -68,12 +65,20 @@ public class Arquivo {
         this.nmTipo = nmTipo;
     }
 
-    public String getNmNomeArquivo() {
-        return nmNomeArquivo;
+    public String getNmArquivo() {
+        return nmArquivo;
     }
 
-    public void setNmNomeArquivo(String nmNomeArquivo) {
-        this.nmNomeArquivo = nmNomeArquivo;
+    public void setNmArquivo(String nmArquivo) {
+        this.nmArquivo = nmArquivo;
+    }
+
+    public String getNmExtensao() {
+        return nmExtensao;
+    }
+
+    public void setNmExtensao(String nmExtensao) {
+        this.nmExtensao = nmExtensao;
     }
 
     public String getNmDiretorio() {
@@ -84,12 +89,12 @@ public class Arquivo {
         this.nmDiretorio = nmDiretorio;
     }
     
-      public String getNmNome() {
-        return nmNome;
+      public String getNmNomeclatura() {
+        return nmNomeclatura;
     }
 
-    public void setNmNome(String nmNome) {
-        this.nmNome = nmNome;
+    public void setNmNomeclatura(String nmNomeclatura) {
+        this.nmNomeclatura = nmNomeclatura;
     }
     
     public String getDthrAtualizacao() {

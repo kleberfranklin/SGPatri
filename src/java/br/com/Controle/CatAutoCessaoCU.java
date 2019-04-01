@@ -34,7 +34,7 @@ public class CatAutoCessaoCU implements Logica {
 //Carregando os atributos com as informações do formulário
     execucao = req.getParameter("execucao");
     sigla = req.getParameter("sigla").toUpperCase();
-    catautocessao = Transformar.removeAccents(req.getParameter("catautocessao")).toUpperCase().trim();
+    catautocessao = Transformar.getRemoveAccents(req.getParameter("catautocessao")).toUpperCase().trim();
     loginSessio =(String) session.getAttribute("sessionLogin");
     
 

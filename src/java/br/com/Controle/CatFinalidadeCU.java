@@ -33,7 +33,7 @@ public class CatFinalidadeCU  implements Logica{
 //Carregando os atributos com as informações do formulário
     execucao = req.getParameter("execucao");
     sigla = req.getParameter("sigla").toUpperCase();
-    catFinalidade = Transformar.utf8(Transformar.priMaiuscula(req.getParameter("catFinalidade")));
+    catFinalidade = Transformar.getUFT8(Transformar.getPriMaiuscula(req.getParameter("catFinalidade")));
     loginSessio =(String) session.getAttribute("sessionLogin");
     
 

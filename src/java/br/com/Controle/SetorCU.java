@@ -35,7 +35,7 @@ public class SetorCU implements Logica{
     fkDivisao = Integer.parseInt(req.getParameter("fkDivisao"));
     
     sigla = req.getParameter("sigla").toUpperCase();
-    setor = Transformar.removeAccents(req.getParameter("setor")).toUpperCase().trim();
+    setor = Transformar.getRemoveAccents(req.getParameter("setor")).toUpperCase().trim();
     nrSimproc = req.getParameter("nrSimproc");
     nrSei = req.getParameter("nrSei");
     loginSessio =(String) session.getAttribute("sessionLogin");

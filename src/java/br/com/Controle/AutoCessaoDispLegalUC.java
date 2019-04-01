@@ -34,15 +34,15 @@ public class AutoCessaoDispLegalUC implements Logica {
         String[] tpDispositivo;
         String[] nrDispositivo;
         String[] dtDispositivo;
-        String pgValidacao, execucao,loginSessio;
+        String execucao,loginSessio;
         int pkAutoStage, cont, nrVerDisplegal;
         
         execucao = req.getParameter("execucao");
-        pgValidacao = req.getParameter("pgValidacao");
+        
         tpDispositivo = req.getParameterValues("tpDispositivo");
         nrDispositivo = req.getParameterValues("numDispositivo");
         dtDispositivo = req.getParameterValues("dtDispositivo");
-        pkAutoStage = Integer.parseInt(req.getParameter("pkAutoStage"));
+        pkAutoStage = Integer.parseInt(req.getParameter("pkAutoCessao"));
         loginSessio = (String) session.getAttribute("sessionLogin");
         nrVerDisplegal = Integer.parseInt(req.getParameter("nrVerDisplegal"));
         cont = tpDispositivo.length;
@@ -54,20 +54,17 @@ public class AutoCessaoDispLegalUC implements Logica {
             disp.setNrDisp(nrDispositivo[i]);
             disp.setDtDisp(dtDispositivo[i]);
             disp.setNmLogin(loginSessio);
-//            System.out.println(dtDispositivo[i]);
         lisDis.add(disp);             
         }
         
         for(DispositivoLegal d : lisDis){
             dispDAO.cDisLegal(d);
-            System.out.println(d);
         }
         autoDAO.upAutoCessaoVerificadoDisLegal(pkAutoStage, nrVerDisplegal);
-       
-        if ((null==pgValidacao ||pgValidacao.equals("")) && execucao =="edit"){
-            return "ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage="+pkAutoStage+"&execucao=";
-        }
-        
-        return "ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage="+pkAutoStage+"&execucao="+execucao+"&pgValidacao"+pgValidacao;  
+        req.setAttribute("msg", "true");
+        req.setAttribute("tipoAler", "success");
+        req.setAttribute("alert", "Sucesso! ");
+        req.setAttribute("txtAlert", "O(s) dispositivo(s) legal(is) foi(ram) salvo(s)");
+        return "ControllerServlet?acao=AutoCessaoDetalhe&pkAutoStage="+pkAutoStage+"&execucao="+execucao;  
     }
 }

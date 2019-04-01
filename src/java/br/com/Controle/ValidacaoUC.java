@@ -27,20 +27,15 @@ public class ValidacaoUC implements Logica {
     Validacao va = new Validacao();
     ValidacaoDAO vaDAO = new ValidacaoDAO();
     AutoCessaoDAO autoDAO = new AutoCessaoDAO();
-    
     HttpSession session = req.getSession();
 
 //Atributo       
-    int pkValidacao=0, pkAutoStage, fkDivisao, nrVerValidacao;
-    String divisao, nmstatus, nmProblema, nmTarefa, dsObsservacao, loginSessio, pgValidacao, execucao, qAC;
+    int pkValidacao, pkAutoCessao, fkDivisao;
+    String divisao, nmstatus, nmProblema, nmTarefa, dsObsservacao, loginSessio;
     
 //Carregando os atributos com as informações do formulário
-    execucao = req.getParameter("execucao");
-    pgValidacao = req.getParameter("pgValidacao");
+    pkAutoCessao = Integer.parseInt(req.getParameter("pkAutoCessao"));
     nmstatus = req.getParameter("nmstatus");
-    qAC = req.getParameter("qAC");
-    nrVerValidacao = Integer.parseInt(req.getParameter("nrVerValidacao"));
-    pkAutoStage = Integer.parseInt(req.getParameter("pkAutoStage"));
     nmProblema = req.getParameter("nmProblema");
     nmTarefa = req.getParameter("nmTarefa");
     dsObsservacao = req.getParameter("dsObsservacao");
@@ -55,39 +50,26 @@ public class ValidacaoUC implements Logica {
     }
     
     if(null == dsObsservacao || !dsObsservacao.equals("")){
-        dsObsservacao =  Transformar.removeAccents(dsObsservacao).toUpperCase().trim();
+        dsObsservacao =  Transformar.getRemoveAccents(dsObsservacao).toUpperCase().trim();
     }
-    
         
-//Tratando para executar o inserir ou alterar, populando o objeto e gravando no banco   
-    if ("edit".equals(execucao)){
-        pkValidacao = Integer.parseInt(req.getParameter("pkValidacao"));
-        va = new Validacao(pkAutoStage, fkDivisao, nmProblema, nmTarefa, nmstatus, dsObsservacao, loginSessio, pkValidacao);
-        vaDAO.upValidacao(va);
-        req.setAttribute("msg","alterou");
+    va = new Validacao(pkAutoCessao, fkDivisao, nmProblema, nmTarefa, nmstatus, dsObsservacao, loginSessio);
+    pkValidacao = vaDAO.cValidacao(va);
+    
+    req.setAttribute("msg", "true");
+    req.setAttribute("tipoAler", "success");
+    req.setAttribute("alert", "Sucesso! ");
 
-    }else if ("insert".equals(execucao)) {
-        va = new Validacao(pkAutoStage, fkDivisao, nmProblema, nmTarefa, nmstatus, dsObsservacao, loginSessio);
-        pkValidacao = vaDAO.cValidacao(va);
-        req.setAttribute("msg","gravou");
+    if("Validado".equals(nmstatus)){
+        req.setAttribute("txtAlert", "Finalizado o processo de validação do Auto Cessão");
+        autoDAO.upAutoCessaoVerificadoValidacao(pkValidacao, 1, pkAutoCessao, nmstatus);
+    }else{
+        req.setAttribute("txtAlert", "A(s) informação(ões) foi(ram) salva(s).");
+        autoDAO.upAutoCessaoVerificadoValidacao(pkValidacao, 0, pkAutoCessao, nmstatus);
     }
-//    if ("EmCorrecao".equals(nmstatus)){
-//        autoDAO.upAutoCessaoVerificadoArquivoAc(pkAutoStage, 0);
-//        autoDAO.upAutoCessaoVerificadoArquivoPlanta(pkAutoStage, 0);
-//        autoDAO.upAutoCessaoVerificadoDisLegal(pkAutoStage, 0);
-//        autoDAO.upAutoCessaoVerificadoAuto(pkAutoStage,0);
-//        autoDAO.upAutoCessaoVerificadoValidacao(pkValidacao, 0, pkAutoStage, nmstatus);
-//    }else{
-//        autoDAO.upAutoCessaoVerificadoValidacao(pkValidacao, nrVerValidacao, pkAutoStage, nmstatus);
-//        return "ControllerServlet?acao=AutoCessaoValidacaoLista";
-//    }
-//    
-        
     
-    autoDAO.upAutoCessaoVerificadoValidacao(pkValidacao, nrVerValidacao, pkAutoStage, nmstatus);
-    req.setAttribute("qAC", qAC);
-    return "ControllerServlet?acao=AutoCessaoValidacaoLista";
-//    return "ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage="+pkAutoStage;
+    return "ControllerServlet?acao=AutoCessaoDetalhe&pkAutoCessao="+pkAutoCessao+"&execucao=view";
+
     
     }
 }

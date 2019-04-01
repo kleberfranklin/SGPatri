@@ -8,10 +8,13 @@
     <jsp:include page = "include/top.jsp"/>
     <div class="main-container ace-save-state" id="main-container">
     <jsp:include page = "include/nav.jsp" />
+    <jsp:include page = "javaScritp/maskProcesso.html" />
+    <jsp:include page = "javaScritp/somenteNum.html" />
 
 <!--Verificação de acesso  -->
     <c:set var="acessoPerfil" value="${sessionPerfil}" />
     <jsp:directive.include file="include/ControleAcesso.jsp" />
+    
     
     
     <c:set var="pg" value="${param.pg}" />
@@ -22,6 +25,7 @@
     <c:set var="qTpcessao" value="${param.qTpcessao}" />
     <c:set var="qAC" value="${param.qAC}" />
     <c:set var="qProcesso" value="${param.qProcesso}" />
+    <c:set var="qTpProcesso" value="${param.qTpProcesso}" />
     <c:set var="qCessionario" value="${param.qCessionario}" />
     <c:set var="qCedente" value="${param.qCedente}" />
     <c:set var="qEndereco" value="${param.qEndereco}" />
@@ -41,12 +45,18 @@
             
         
             <div class="form-actions col-md-12 col-xs-12">
+                
                 <h4 class="widget-title">Filtros</h4>
-                <form class="form-search" action="ControllerServlet?acao=AutoCessaoListaPagFiltro" method="POST">
+                <form class="form-search" action="ControllerServlet?acao=AutoCessaoLista" method="POST">
+                    
+                    <label class="col-sm-1 col-xs-12 "> A/C nº: </label>
+                    <div class="col-sm-2 col-xs-12">
+                        <input type="text" name="qAC" placeholder="<c:out value="${qAC}" />" class="col-xs-12 col-sm-6" />
+                    </div>
                     
                     <label class="col-sm-2 col-xs-12">Tipo de Cessão </label>
-                    <div class="col-sm-3">
-                        <select class=" col-xs-12 col-sm-12" name="qTpcessao">
+                    <div class="col-sm-7">
+                        <select class=" col-xs-12 col-sm-8" name="qTpcessao">
                             <option value=""></option>
                             <c:forEach var="tp" items="${lisTpAuto}">
                                 <c:if test="${tp.nmTipoAutoCessao != 'Informacao Nao Cadastrada'}">
@@ -63,56 +73,78 @@
                             </c:forEach>
                         </select>
                     </div>
-                
-                <label class="col-sm-1 col-xs-12 "> A/C nº: </label>
-                <div class="col-sm-2 col-xs-12">
-                    <input type="text" name="qAC" placeholder="<c:out value="${qAC}" />" class="col-xs-10 col-sm-12" />
-                </div>     
-                
-                <label class="col-sm-1 col-xs-12 "> Processo: </label>
-                <div class="col-sm-2 col-xs-12">
-                    <input type="text" name="qProcesso" placeholder="<c:out value="${qProcesso}" />" class="col-xs-10 col-sm-12" />
-                </div>
-               
-                <br /><br />
-                <label class="col-sm-2 col-xs-12" > Cessionário:</label>
-                <div class="col-sm-3 col-xs-12">
-                    <input type="text" name="qCessionario" placeholder="<c:out value="${qCessionario}"/>" class="col-xs-10 col-sm-12" />
-                </div>
+                    <br /><br />
+                    <label class="col-sm-1 col-xs-12 "> Processo: </label>
+                    <div class="col-sm-2 col-xs-12">
+                        <input class="col-xs-10 col-sm-12" type="text" name="qProcesso" id="nrprocesso" placeholder="<c:out value="${qProcesso}"/>" onKeyPress="return somenteNum(event);"  />
+                    </div>
+                    <label class="col-md-9 col-xs-12">
+                        <div class="radio-inline col-md-2">
+                            <label>
+                                <input name="qTpProcesso" id="sei" value="SEI" type="radio" class="ace" onclick="maskProcesso();">
+                                <span class="lbl"><strong> SEI</strong></span>
+                            </label>
+                        </div>
+                        <div class="radio-inline col-md-2">
+                            <label>
+                                <input name="qTpProcesso" id="pa" value="PA" type="radio" class="ace" onclick="maskProcesso();">
+                                <span class="lbl"><strong> P.A.</strong></span>
+                            </label>
+                        </div>
+                        <div class="radio-inline col-md-2">
+                            <label>
+                                <input name="qTpProcesso" id="tid" value="TID" type="radio" class="ace" onclick="maskProcesso();">
+                                <span class="lbl"><strong> TID</strong></span>
+                            </label>
+                        </div>
+                        <div class="radio-inline col-md-2">
+                            <label>
+                                <input name="qTpProcesso" id="cid" value="CID" type="radio" class="ace" onclick="maskProcesso();">
+                                <span class="lbl"><strong> CID</strong></span>
+                            </label>
+                        </div>
+                        &nbsp;<span id="msgProcesso"></span>
+                    </label>
+                    <!--<lable id="msgProcesso"></lable>-->
+                    <br /><br />
+                    <label class="col-sm-1 col-xs-12" > Cessionário:</label>
+                    <div class="col-sm-3 col-xs-12">
+                        <input type="text" name="qCessionario" placeholder="<c:out value="${qCessionario}"/>" class="col-xs-10 col-sm-12" />
+                    </div>
 
-                <label class="col-sm-1 col-xs-12" > Cedente:</label>
-                <div class="col-sm-5 col-xs-12">
-                    <input type="text" name="qCedente" placeholder="<c:out value="${qCedente}" />" class="col-xs-12 col-sm-7" />
-                </div>
-                 
-                <br /><br />
-                <label class="col-sm-2 col-xs-12 la"> Local </label>
-                <div class="col-sm-10 col-xs-12">
-                    <input type="text" name="qEndereco" placeholder="<c:out value="${qEndereco}" />" class="col-xs-12 col-sm-6" />
-                </div>    
-                
-                <br /><br />
-                <label class="col-sm-2 col-xs-12 la"> Croqui </label>
-                <div class="col-sm-3 col-xs-12">
-                    <input type="text" name="qCroqui" placeholder="<c:out value="${qCroqui}" />"  class="col-xs-10 col-sm-12" />
-                </div>
-                <label class="col-sm-1 col-xs-12"> Em Vigor </label>
-                <div class="col-sm-3 col-xs-12">
-                    <select class="col-sm-4 col-xs-12" name="qVigor">
-                        
-                        <option value=""> </option>
-                        <option value="true">Sim</option>
-                        <option value="false">Não</option>
-                    </select>
-                    <span class="input-group-btn col-sm-6 col-sm-offset-6">
-                        <button type="submit" class="btn btn-inverse btn-white" title="duplo clik limpa pesquisa">
-                            <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
-                            Pesquisa
-                        </button>
-                    </span>
-                </div>
-            </form>
-            <div class="space-10" ></div>    
+                    <label class="col-sm-1 col-xs-12" > Cedente:</label>
+                    <div class="col-sm-5 col-xs-12">
+                        <input type="text" name="qCedente" placeholder="<c:out value="${qCedente}" />" class="col-xs-12 col-sm-7" />
+                    </div>
+
+                    <br /><br />
+                    <label class="col-sm-1 col-xs-12 la"> Local </label>
+                    <div class="col-sm-10 col-xs-12">
+                        <input type="text" name="qEndereco" placeholder="<c:out value="${qEndereco}" />" class="col-xs-12 col-sm-6" />
+                    </div>    
+
+                    <br /><br />
+                    <label class="col-sm-1 col-xs-12 la"> Croqui </label>
+                    <div class="col-sm-3 col-xs-12">
+                        <input type="text" name="qCroqui" placeholder="<c:out value="${qCroqui}" />"  class="col-xs-10 col-sm-6" />
+                    </div>
+                    <label class="col-sm-1 col-xs-12"> Em Vigor </label>
+                    <div class="col-sm-3 col-xs-12">
+                        <select class="col-sm-4 col-xs-12" name="qVigor">
+
+                            <option value=""> </option>
+                            <option value="true">Sim</option>
+                            <option value="false">Não</option>
+                        </select>
+                        <span class="input-group-btn col-sm-6 col-sm-offset-6">
+                            <button type="submit" class="btn btn-inverse btn-white" title="duplo clik limpa pesquisa">
+                                <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
+                                Pesquisa
+                            </button>
+                        </span>
+                    </div>
+                </form>
+                <div class="space-10" ></div>    
             </div>
             
             
@@ -137,7 +169,7 @@
                         <tr>
                             <td class="center hidden-480">
                             <div class="action-buttons ">
-                                <a href="ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage=${autolist.pkAutoStage}&pg=${pg}&pi=${pi}&pf=${pf}&qAC=${qAC}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}&execucao=view"><i class="ace-icon fa fa-search-plus"></i></a>
+                                <a href="ControllerServlet?acao=AutoCessaoDetalhe&pkAutoCessao=${autolist.pkAutoCessao}&pg=${pg}&pi=${pi}&pf=${pf}&qAC=${qAC}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}&execucao=view"><i class="ace-icon fa fa-search-plus"></i></a>
                             </div>
                             </td>
                             <td class="hidden-480" title="${autolist.nmCodAc}">
@@ -230,7 +262,7 @@
                             <c:choose>
                                 <c:when test="${sessionSgDivisao == 'DDPI' &&  sessionSgSetor == 'SCL'}">
                                 <div class="hidden-sm hidden-xs btn-group">
-                                    <button class="btn btn-xs btn-info"  onclick="location.href='ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage=${autolist.pkAutoStage}&pg=${pg}&pi=${pi}&pf=${pf}&qAC=${qAC}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}&execucao=edit'">
+                                    <button class="btn btn-xs btn-info"  onclick="location.href='ControllerServlet?acao=AutoCessaoDetalhe&pkAutoCessao=${autolist.pkAutoCessao}&pg=${pg}&pi=${pi}&pf=${pf}&qAC=${qAC}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}&execucao=edit'">
                                         <i class="ace-icon fa fa-pencil bigger-120"></i>
                                         Editar
                                     </button>                                                                                                                                
@@ -270,7 +302,7 @@
                                         <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
                                               
                                             <li>
-                                                <a href="ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage=${autolist.pkAutoStage}&pg=${pg}&pi=${pi}&pf=${pf}&qAC=${qAC}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}&execucao=edit" class="tooltip-success" data-rel="tooltip" title="" data-original-title="Edit">
+                                                <a href="ControllerServlet?acao=AutoCessaoDetalhe&pkAutoCessao=${autolist.pkAutoCessao}&pg=${pg}&pi=${pi}&pf=${pf}&qAC=${qAC}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}&execucao=edit" class="tooltip-success" data-rel="tooltip" title="" data-original-title="Edit">
                                                     <span class="green">
                                                         <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
                                                     </span>
@@ -318,7 +350,7 @@
                             <c:set var="qCessionario" value="${qCessionario}" />
                             <c:if test="${pi != 0 && pi == i}">
                                 <li>
-                                    <a href="ControllerServlet?acao=AutoCessaoListaPagFiltro&pg=${i}&pi=${pi}&pf=${pf}&qAC=${qAC}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCedente=${qCedente}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}&ter=${ter}">
+                                    <a href="ControllerServlet?acao=AutoCessaoLista&pg=${i}&pi=${pi}&pf=${pf}&qAC=${qAC}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCedente=${qCedente}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}&ter=${ter}">
                                     <i class="ace-icon fa fa-angle-double-left"></i></a>
                                 </li>
                             </c:if>    
@@ -331,14 +363,14 @@
                                     </c:when>
                                     <c:otherwise>
                                         <li>
-                                            <a href="ControllerServlet?acao=AutoCessaoListaPagFiltro&pg=${i}&pi=${pi}&pf=${pf}&qAC=${qAC}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCedente=${qCedente}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}&ter=${ter}">${i}</a>
+                                            <a href="ControllerServlet?acao=AutoCessaoLista&pg=${i}&pi=${pi}&pf=${pf}&qAC=${qAC}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCedente=${qCedente}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}&ter=${ter}">${i}</a>
                                         </li>
                                     </c:otherwise>
                                 </c:choose>
                             </c:if>
                             <c:if test="${i == pf && pf != qtdPg && i <= qtdPg  }">
                                 <li>
-                                    <a href="ControllerServlet?acao=AutoCessaoListaPagFiltro&pg=${i}&pi=${pi}&pf=${pf}&qAC=${qAC}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCedente=${qCedente}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}&ter=${ter}">
+                                    <a href="ControllerServlet?acao=AutoCessaoLista&pg=${i}&pi=${pi}&pf=${pf}&qAC=${qAC}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCedente=${qCedente}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}&ter=${ter}">
                                         <i class="ace-icon fa fa-angle-double-right"></i></a>
                                 </li>
                             </c:if>    
@@ -348,16 +380,11 @@
                 </div>
                 
                 <div class="col-sm-12 " >
-                    <button class="btn btn-yellow right" type="reset" onclick=" location.href='AutoCessao.jsp?ter=${ter}';">
+                    <button class="btn btn-yellow right" type="reset" onclick=" location.href='AutoCessao.jsp';">
                         <i class="ace-icon fa fa-undo bigger-110"></i>
                         Voltar
                     </button>    
                 </div>
-        
-        
-            
-        
-     
     <jsp:include page = "include/footer.jsp" />
    <!-- /.main-container --> 
     </body>

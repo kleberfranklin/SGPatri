@@ -64,7 +64,7 @@ public class DivisaoLista implements Logica {
         if (q == null){
             q = "";
         }else if(!"".equals(q)) {
-            q = Transformar.priMaiuscula(q);
+            q = Transformar.getPriMaiuscula(q);
         }
         if (pgS == null) {
             pg = 0;

@@ -5,44 +5,34 @@
  */
 package teste.normalizacao;
 
-import br.com.Modelo.AutoCessao;
-import br.com.Modelo.AutoCessaoDAO;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author d732229
  */
 public class Padronizar {
-    public static void main(String args[]){
     
-//      AutoCessaoDAO autoDAO = new AutoCessaoDAO();
-//        List<AutoCessaoValidacao> lisAuto = new ArrayList();
-//        lisAuto = autoDAO.listIdAuto();
-//        
-//        int PkAutoStage =0;
-//        String qEndereco="", qReferenciaEnd="";
-//                
-//        for (AutoCessao auto :lisAuto){
-//            PkAutoStage = auto.getPkAutoStage();
-////            qEndereco = auto.getNmEndereco();
-////            qReferenciaEnd = auto.getNmReferencialEndereco();
-//            
-//            
-////            autoDAO.normalizar(PkAutoStage, qCessionario, qCedente, qEndereco);
-//              autoDAO.normalizar(PkAutoStage, qReferenciaEnd);
-//              System.out.println(PkAutoStage);
-////            System.out.print(" - "+ qCessionario);
-////            System.out.print("- "+ qCedente);
-////            System.out.println("- "+qEndereco);
-//        }
-         System.out.println("---------------------------/Concluido/-----------------------------");   
-        
-        
+    public int pkInt;
+    public String txtDados;
+
+    public Padronizar() {
     }
-    
-    
+
+
+    public int getPkInt() {
+        return pkInt;
+    }
+
+    public void setPkInt(int pkInt) {
+        this.pkInt = pkInt;
+    }
+
+    public String getTxtDados() {
+        return txtDados;
+    }
+
+    public void setTxtDados(String txtDados) {
+        this.txtDados = txtDados;
+    }
     
     
     

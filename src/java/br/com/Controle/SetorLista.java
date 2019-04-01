@@ -54,7 +54,7 @@ public class SetorLista implements Logica{
         if (q == null){
             q ="";
         }else if(!"".equals(q)) {
-            q = Transformar.removeAccents(q).toUpperCase().trim();
+            q = Transformar.getRemoveAccents(q).toUpperCase().trim();
         }
         if (pgS == null) {
             pg = 0;

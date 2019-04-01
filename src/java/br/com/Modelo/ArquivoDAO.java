@@ -24,80 +24,30 @@ public class ArquivoDAO {
     public ArquivoDAO (){
         this.connection = new FabricaConexao().getConnetion();
     }
-    
-//METODO utilizado para inserir uma nova Arquivo no BANCO
-    public void cArquivo(Arquivo ar) throws SQLException{
-        PreparedStatement stmt = null;
-        String sql = "INSERT INTO tbl_arquivo "
-                + "(fk_tipo_arquivo, nm_origem, nm_tipo, nm_nome_arquivo, nm_diretorio, nm_nome, nm_login, dthr_atualizacao) "
-                + "VALUES (?,?,?,?,?,?,?,?)";
-            try{
-                stmt = connection.prepareStatement(sql);
-                    stmt.setInt(1, ar.getFkTipoArquivo());
-                    stmt.setString(2, ar.getNmOrigem());
-                    stmt.setString(3, ar.getNmTipo());
-                    stmt.setString(4, ar.getNmNomeArquivo());
-                    stmt.setString(5, ar.getNmDiretorio());
-                    stmt.setString(6, ar.getNmNome());
-                    stmt.setString(7, ar.getNmLogin());
-                    stmt.setTimestamp(8,java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
-                stmt.execute();
-            }catch (SQLException e){
-                throw new RuntimeException(e);
-            }finally{
-                stmt.close();
-                connection.close();
-            }
-    }
-    
-//METODO utilizado para atualizar  Arquivo no BANCO
-    public void upArquivo(Arquivo ar) throws SQLException{
-        PreparedStatement stmt = null;
-        String sql = "UPDATE tbl_arquivo "
-                + "SET fk_tipo_arquivo=?, nm_origem=?, nm_tipo=?, nm_nome_arquivo=?, nm_diretorio=?, nm_nome=?, nm_login=?, dthr_atualizacao=? "
-                + "WHERE id_arquivo=? ";
-            try{
-                stmt = connection.prepareStatement(sql);
-                    stmt.setInt(1, ar.getFkTipoArquivo());
-                    stmt.setString(2, ar.getNmOrigem());
-                    stmt.setString(3, ar.getNmTipo());
-                    stmt.setString(4, ar.getNmNomeArquivo());
-                    stmt.setString(5, ar.getNmDiretorio());
-                    stmt.setString(6, ar.getNmNome());
-                    stmt.setString(7, ar.getNmLogin());
-                    stmt.setTimestamp(8,java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
-                    stmt.setInt(9, ar.getPkArquivo());
-                stmt.execute();
-            }catch (SQLException e){
-                throw new RuntimeException(e);
-            }finally{
-                stmt.close();
-                connection.close();
-            }
-    }
-    
+
 //METODO utilizado para lista os arquivos realiconado com o Auto de Cessão    
-    public List<Arquivo> listArquivo(int pkTipo, String origem) throws SQLException {
+    public List<Arquivo> listArquivo(int pkAutoCessao) throws SQLException {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<Arquivo> arList = new ArrayList<Arquivo>();
-        String sql = ("SELECT id_arquivo, fk_tipo_arquivo, nm_origem, nm_tipo, nm_nome_arquivo, nm_nome, nm_diretorio "
-                    + "FROM tbl_arquivo "
-                    + "WHERE fk_tipo_arquivo = ? and nm_origem = ? " );
+        String sql = ("SELECT id_arquivo, fk_autocessao, nm_tipo, nm_arquivo, nm_extensao, nm_nomeclatura, nm_diretorio, nr_reti_ratificacao "
+                    + "FROM tbl_anexo_auto_cessao "
+                    + "WHERE fk_autocessao = ? " 
+                    + "ORDER BY nm_tipo ASC, id_arquivo DESC" );
         try {
             stmt = connection.prepareStatement(sql);
-                stmt.setInt(1, pkTipo);
-                stmt.setString(2, origem);
+                stmt.setInt(1, pkAutoCessao);
             rs = stmt.executeQuery();  
             while (rs.next()){
                 Arquivo arquivo = new Arquivo();   
                     arquivo.setPkArquivo(rs.getInt("id_arquivo"));
-                    arquivo.setFkTipoArquivo(rs.getInt("fk_tipo_arquivo"));
-                    arquivo.setNmOrigem(rs.getString("nm_origem"));
+                    arquivo.setFkAutocessao(rs.getInt("fk_autocessao"));
                     arquivo.setNmTipo(rs.getString("nm_tipo"));
-                    arquivo.setNmNomeArquivo(rs.getString("nm_nome_arquivo"));
-                    arquivo.setNmNome(rs.getString("nm_nome"));
+                    arquivo.setNmArquivo(rs.getString("nm_arquivo"));
+                    arquivo.setNmExtensao(rs.getString("nm_extensao"));
+                    arquivo.setNmNomeclatura(rs.getString("nm_nomeclatura"));
                     arquivo.setNmDiretorio(rs.getString("nm_diretorio"));
+                    arquivo.setNrRetiRatificacao(rs.getInt("nr_reti_ratificacao"));
                 arList.add(arquivo);
             }       
         return arList;
@@ -108,29 +58,28 @@ public class ArquivoDAO {
             stmt.close();
             connection.close();
         }
-    }
-    
+    }    
+
 //METODO utilizado para retorno id e o diretorio do Arquivo    
-    public Arquivo pkArquivo(int pkTipo, String origem, String Tipo) throws SQLException {
+    public Arquivo pkArquivo(int pkArquivo) throws SQLException {
         PreparedStatement stmt = null;
         ResultSet  rs = null;
         Arquivo arquivo = new Arquivo();
-        String sql = ("SELECT id_arquivo, nm_origem, nm_tipo, nm_nome, nm_diretorio "
-                    + "FROM tbl_arquivo "
-                    + "WHERE fk_tipo_arquivo = ? and nm_origem = ? and nm_tipo = ? " );
+        String sql = ("SELECT id_arquivo, nm_tipo, nm_arquivo, nm_extensao, nm_diretorio, nm_nomeclatura, nr_reti_ratificacao "
+                    + "FROM tbl_anexo_auto_cessao "
+                    + "WHERE id_arquivo = ? ");
             try {
-
              stmt = connection.prepareStatement(sql);
-                stmt.setInt(1, pkTipo);
-                stmt.setString(2, origem);
-                stmt.setString(3, Tipo);
+                stmt.setInt(1, pkArquivo);
             rs = stmt.executeQuery();  
                 if (rs.next()){
                     arquivo.setPkArquivo(rs.getInt("id_arquivo"));
-                    arquivo.setNmOrigem(rs.getString("nm_origem"));
                     arquivo.setNmTipo(rs.getString("nm_tipo"));
-                    arquivo.setNmNome(rs.getString("nm_nome"));
+                    arquivo.setNmArquivo(rs.getString("nm_arquivo"));
+                    arquivo.setNmExtensao(rs.getString("nm_extensao"));
                     arquivo.setNmDiretorio(rs.getString("nm_diretorio"));
+                    arquivo.setNmNomeclatura(rs.getString("nm_nomeclatura"));
+                    arquivo.setNrRetiRatificacao(rs.getInt("nr_reti_ratificacao"));
                 }       
             return arquivo;
             } catch (SQLException e) {
@@ -142,30 +91,104 @@ public class ArquivoDAO {
             }
     }
     
+    
+    
+//METODO utilizado para inserir uma nova Arquivo no BANCO
+    public void cArquivo(Arquivo ar) throws SQLException{
+        PreparedStatement stmt = null;
+        String sql = "INSERT INTO tbl_anexo_auto_cessao "
+                + "(fk_autocessao, nm_tipo, nm_arquivo, nm_extensao, nm_diretorio, nm_nomeclatura, nr_reti_ratificacao, nm_login, dthr_atualizacao) "
+                + "VALUES (?,?,?,?,?,?,?,?,?)";
+            try{
+                stmt = connection.prepareStatement(sql);
+                    stmt.setInt(1, ar.getFkAutocessao());
+                    stmt.setString(2, ar.getNmTipo());
+                    stmt.setString(3, ar.getNmArquivo());
+                    stmt.setString(4, ar.getNmExtensao());
+                    stmt.setString(5, ar.getNmDiretorio());
+                    stmt.setString(6, ar.getNmNomeclatura());
+                    stmt.setInt(7, ar.getNrRetiRatificacao());
+                    stmt.setString(8, ar.getNmLogin());
+                    stmt.setTimestamp(9,java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
+                stmt.execute();
+            }catch (SQLException e){
+                throw new RuntimeException(e);
+            }finally{
+//                stmt.close();
+//                connection.close();
+            }
+    }
+    
+//METODO utilizado para atualizar  Arquivo no BANCO
+    public void upArquivo(Arquivo ar) throws SQLException{
+        PreparedStatement stmt = null;
+        String sql = "UPDATE tbl_anexo_auto_cessao "
+                + "SET fk_autocessao=?, nm_tipo=?, nm_arquivo=?, nm_extensao=?, nm_diretorio=?, nm_nomeclatura=?, nr_reti_ratificacao=?, nm_login=?, dthr_atualizacao=? "
+                + "WHERE id_arquivo=? ";
+            try{
+                stmt = connection.prepareStatement(sql);
+                    stmt.setInt(1, ar.getFkAutocessao());
+                    stmt.setString(2, ar.getNmTipo());
+                    stmt.setString(3, ar.getNmArquivo());
+                    stmt.setString(4, ar.getNmExtensao());
+                    stmt.setString(5, ar.getNmDiretorio());
+                    stmt.setString(6, ar.getNmNomeclatura());
+                    stmt.setInt(7, ar.getNrRetiRatificacao());
+                    stmt.setString(8, ar.getNmLogin());
+                    stmt.setTimestamp(9,java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
+                    stmt.setInt(10, ar.getPkArquivo());
+                stmt.execute();
+            }catch (SQLException e){
+                throw new RuntimeException(e);
+            }finally{
+//                stmt.close();
+//                connection.close();
+            }
+    }
+    
+
+    
+//METODO utilizado para deletar arquivo do banco
+    public void deleteArquvio (int pkArquivo) throws SQLException{
+        PreparedStatement stmt = null;
+        String sql = "DELETE FROM tbl_anexo_auto_cessao "
+                    +"WHERE id_arquivo = ? ";
+        try{
+            stmt = connection.prepareCall(sql);
+                stmt.setInt(1, pkArquivo);
+            stmt.execute();
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }finally{
+//        stmt.close();
+//        connection.close();
+        }
+    }
+    
+    
 //METODO utilizado para não ocorrer duplicidade      
-    public boolean duplicidade (int pkArquivo, String nmTipo) throws SQLException{
+    public int qtdRepetidos (int pkAutoCessao, String nmTipo) throws SQLException{
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        boolean encontrado = false;
-        String sql = "SELECT id_arquivo, nm_nome_arquivo, nm_diretorio "
-                    + "FROM tbl_arquivo "
-                    + "WHERE fk_tipo_arquivo = ? and nm_tipo = ? "; 
+        int qtd = 10;
+        String sql = "SELECT COUNT(*) AS qtd "
+                    + "FROM tbl_anexo_auto_cessao "
+                    + "WHERE fk_autocessao = ? and nm_tipo = ? "; 
             try{
                 stmt = connection.prepareCall(sql);
-                    stmt.setInt(1, pkArquivo);
+                    stmt.setInt(1, pkAutoCessao);
                     stmt.setString(2, nmTipo);
                  rs = stmt.executeQuery();
                 if(rs.next()){
-                   encontrado = true;
+                   qtd = rs.getInt("qtd");
                 }
-                stmt.close();
-                return encontrado;
+                return qtd;
             }catch (SQLException e){
                 throw new RuntimeException(e);
             }finally{
                 rs.close();
                 stmt.close();
-                connection.close();
+//                connection.close();
             }
     }
 

@@ -33,7 +33,7 @@ public String executa(HttpServletRequest req,
 //Carregando os atributos com as informações do formulário
     execucao = req.getParameter("execucao");
     sigla = req.getParameter("sigla").toUpperCase();
-    divisao = Transformar.removeAccents(req.getParameter("divisao")).toUpperCase().trim();
+    divisao = Transformar.getRemoveAccents(req.getParameter("divisao")).toUpperCase().trim();
     nrSimproc = req.getParameter("nrSimproc");
     nrSei = req.getParameter("nrSei");
     loginSessio =(String) session.getAttribute("sessionLogin");

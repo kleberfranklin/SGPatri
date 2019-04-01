@@ -123,9 +123,15 @@
                 <div id="autoCessao" style="height: 300px;"></div>
             </div>
         </div>-->
-
+     
+        <div class="col-sm-12 " >
+            <button class="btn btn-yellow right" type="reset" onclick=" location.href='AutoCessao.jsp';">
+                <i class="ace-icon fa fa-undo bigger-110"></i>
+                Voltar
+            </button>    
+        </div>
         <jsp:include page = "include/footer.jsp" />
-   </div><!-- /.main-container --> 
+        </div><!-- /.main-container --> 
     </body>
 </html>
 

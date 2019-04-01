@@ -5,8 +5,11 @@
  */
 package br.com.Controle;
 
+import br.com.Modelo.AutoCessaoDAO;
+import br.com.Modelo.DispositivoLegal;
 import br.com.Modelo.DispositivoLegalDAO;
 import br.com.Modelo.Logica;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,16 +23,27 @@ public class DispositivoLegalDelete implements Logica {
             HttpServletResponse res) throws Exception {
         
         DispositivoLegalDAO disDAO = new DispositivoLegalDAO();
+        AutoCessaoDAO autoDAO = new AutoCessaoDAO();
+        String execucao;
+        int pkDispLegal, pkAutoCessao;
         
-        int pkDispLegal, pkAutoStage;
-        
+        execucao = req.getParameter("execucao");
         pkDispLegal = Integer.parseInt(req.getParameter("pkDispLegal"));
-        pkAutoStage = Integer.parseInt(req.getParameter("pkAutoStage"));
+        pkAutoCessao = Integer.parseInt(req.getParameter("pkAutoCessao"));
         
-        disDAO.delDispositivo(pkDispLegal, pkAutoStage);
+        disDAO.delDispositivo(pkDispLegal, pkAutoCessao);
         
+        List <DispositivoLegal> listDisp = disDAO.listDispositivo(pkAutoCessao);
         
-        return "ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage="+pkAutoStage;
+        if(listDisp.isEmpty()){
+            autoDAO.upAutoCessaoVerificadoDisLegal(pkAutoCessao, 0);
+        }
+        
+        req.setAttribute("msg", "true");
+        req.setAttribute("tipoAler", "success");
+        req.setAttribute("alert", "Sucesso! ");
+        req.setAttribute("txtAlert", "O dispositivo legal foi excluido.");
+        return "ControllerServlet?acao=AutoCessaoDetalhe&pkAutoCessao="+pkAutoCessao+"&execucao="+execucao;
     }
     
 }

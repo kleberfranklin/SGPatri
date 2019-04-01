@@ -12,6 +12,7 @@ public final class adicionarCampo_jsp extends org.apache.jasper.runtime.HttpJspB
   private static java.util.List<String> _jspx_dependants;
 
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_forEach_var_items;
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_if_test;
 
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
 
@@ -21,10 +22,12 @@ public final class adicionarCampo_jsp extends org.apache.jasper.runtime.HttpJspB
 
   public void _jspInit() {
     _jspx_tagPool_c_forEach_var_items = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+    _jspx_tagPool_c_if_test = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
   }
 
   public void _jspDestroy() {
     _jspx_tagPool_c_forEach_var_items.release();
+    _jspx_tagPool_c_if_test.release();
   }
 
   public void _jspService(HttpServletRequest request, HttpServletResponse response)
@@ -75,10 +78,10 @@ public final class adicionarCampo_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("\t\te.preventDefault();\r\n");
       out.write("\t\tif(x < max_fields){ //max input box allowed\r\n");
       out.write("\t\t\tx++; //text box increment\r\n");
-      out.write("                    $(wrapper).append('<div class=\"space-1\"></div><div class=\"form-group input_fields_wrap\"><label class=\"inline col-md-2 col-xs-12\" ><span class=\"lbl\"><strong>Tipo de Dispositivo:</strong></span></label><label class=\"inline col-md-3 col-xs-12\"><select class=\"col-md-12 col-xs-12\" name=\"tpDispositivo\" required=\"required\"><option></option>");
+      out.write("                        $(wrapper).append('<div class=\"space-1\"></div><div class=\"form-group input_fields_wrap\"><label class=\"inline col-md-2 col-xs-12\" ><span class=\"lbl\"><strong>Tipo de Dispositivo:</strong></span></label><label class=\"inline col-md-3 col-xs-12\"><select class=\"col-md-12 col-xs-12\" name=\"tpDispositivo\" required=\"required\"><option></option>");
       if (_jspx_meth_c_forEach_0(_jspx_page_context))
         return;
-      out.write("</select></label><label class=\"inline col-md-1 col-xs-12\" ><span class=\"lbl\"><strong>N&#250;mero:</strong></span></label><label class=\"inline col-md-2 col-xs-12\"><input type=\"number\" id=\"form-field-1\" class=\"col-xs-12 col-md-12\" placeholder=\"numero\" name=\"numDispositivo\" ></label><label class=\"inline col-md-1 col-xs-12\" ><span class=\"lbl\"><strong>Data:</strong></span></label><label class=\"inline col-md-2 col-xs-12\"><div class=\"input-group\"><input class=\"form-control date-picker\" id=\"id-date-picker-1\" name=\"dtDispositivo\" type=\"text\" placeholder=\"dd/mm/aaaa\" data-date-format=\"dd/mm/yyyy\"><span class=\"input-group-addon\"><i class=\"fa fa-calendar bigger-110\"></i></span></div></label><a href=\"#\" class=\"red remove_field\" title=\"remover campos\"><span class=\"label label-danger arrowed-right\"><i class=\" glyphicon glyphicon-minus-sign\"></i></a></div>'); //add input box\r\n");
+      out.write("</select></label><label class=\"inline col-md-1 col-xs-12\" ><span class=\"lbl\"><strong>N&#250;mero:</strong></span></label><label class=\"inline col-md-2 col-xs-12\"><input type=\"text\" class=\"col-xs-12 col-md-12\" placeholder=\"numero\" name=\"numDispositivo\" ></label><label class=\"inline col-md-1 col-xs-12\" ><span class=\"lbl\"><strong>Data:</strong></span></label><label class=\"inline col-md-2 col-xs-12\"><div class=\"input-group\"><input type=\"date\" class=\"col-xs-10 col-md-10\" name=\"dtDispositivo\"  placeholder=\"dd/mm/aaaa\"></div></label><a href=\"#\" class=\"red remove_field\" title=\"remover campos\"><span class=\"label label-danger arrowed-right\"><i class=\" glyphicon glyphicon-minus-sign\"></i></a></div>'); //add input box\r\n");
       out.write("\t\t}\r\n");
       out.write("\t});\r\n");
       out.write("\t\r\n");
@@ -115,14 +118,8 @@ public final class adicionarCampo_jsp extends org.apache.jasper.runtime.HttpJspB
       int _jspx_eval_c_forEach_0 = _jspx_th_c_forEach_0.doStartTag();
       if (_jspx_eval_c_forEach_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
-          out.write("<option value=\"");
-          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${tpdis.pkTipoDispLegal}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("\" title=\"");
-          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${tpdis.nmTipoDispLegal}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write('"');
-          out.write('>');
-          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${tpdis.nmTipoDispLegal}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("</option>");
+          if (_jspx_meth_c_if_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
+            return true;
           int evalDoAfterBody = _jspx_th_c_forEach_0.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
             break;
@@ -139,6 +136,39 @@ public final class adicionarCampo_jsp extends org.apache.jasper.runtime.HttpJspB
       _jspx_th_c_forEach_0.doFinally();
       _jspx_tagPool_c_forEach_var_items.reuse(_jspx_th_c_forEach_0);
     }
+    return false;
+  }
+
+  private boolean _jspx_meth_c_if_0(javax.servlet.jsp.tagext.JspTag _jspx_th_c_forEach_0, PageContext _jspx_page_context, int[] _jspx_push_body_count_c_forEach_0)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:if
+    org.apache.taglibs.standard.tag.rt.core.IfTag _jspx_th_c_if_0 = (org.apache.taglibs.standard.tag.rt.core.IfTag) _jspx_tagPool_c_if_test.get(org.apache.taglibs.standard.tag.rt.core.IfTag.class);
+    _jspx_th_c_if_0.setPageContext(_jspx_page_context);
+    _jspx_th_c_if_0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_forEach_0);
+    _jspx_th_c_if_0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${tpdis.nmTipoDispLegal != 'Informacao nao cadastrada' }", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
+    int _jspx_eval_c_if_0 = _jspx_th_c_if_0.doStartTag();
+    if (_jspx_eval_c_if_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      do {
+        out.write("<option value=\"");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${tpdis.pkTipoDispLegal}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("\" title=\"");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${tpdis.nmTipoDispLegal}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write('"');
+        out.write('>');
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${tpdis.nmTipoDispLegal}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("</option>");
+        int evalDoAfterBody = _jspx_th_c_if_0.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+    }
+    if (_jspx_th_c_if_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_0);
+      return true;
+    }
+    _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_0);
     return false;
   }
 }

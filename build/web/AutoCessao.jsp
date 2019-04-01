@@ -36,10 +36,10 @@
             </h1>
         </div>
     
-        <div class="col-sm-12 infobox-small" style=" padding-top:30px">
+        <div class="col-sm-12" style=" padding-top:30px">
             <div class="infobox">
                 <div class="btn-group-lg ">
-                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href='ControllerServlet?acao=AutoCessaoListaPagFiltro&ter=${ter}';">
+                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href='ControllerServlet?acao=AutoCessaoLista';">
                     <!--<button class="btn btn-primary btn-white btn-block" onclick="#"> -->
                         <i class="glyphicon glyphicon-search"></i>
                         Pesquisa
@@ -50,9 +50,18 @@
             <div class="infobox">
                 <div class="btn-group-lg">
                     <!--<button class="btn btn-primary btn-white btn-block" onclick="#">-->
-                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href='ControllerServlet?acao=AutoCessaoValidacaoDetalhe&execucao=insert&novo=1';">
+                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href='ControllerServlet?acao=AutoCessaoDetalhe&execucao=insert';">
                         <i class="ace-icon fa fa-plus"></i>
                         Novo
+                    </button>
+                </div>
+            </div>
+            <div class="infobox">
+                <div class="btn-group-lg">
+                    <!--<button class="btn btn-primary btn-white btn-block" onclick="#">-->
+                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href='ControllerServlet?acao=AutoCessaoListaValidacao';">
+                        <i class="fa fa-check-square-o"></i> 
+                        Validação Auto Cessão
                     </button>
                 </div>
             </div>

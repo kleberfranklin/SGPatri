@@ -123,8 +123,8 @@ public class ValidacaoDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<Validacao> listValidacao = new ArrayList<Validacao>();
-        String sql = ("SELECT id_validacao_autocessao, fk_autocessao, fk_divisao, nm_status, nm_tarefa, nm_problema "
-                    + "ds_obs, nm_login, dthr_atualizacao "
+        String sql = ("SELECT id_validacao_autocessao, fk_autocessao, fk_divisao, nm_status,  "
+                    + " nm_tarefa, nm_problema, ds_obs, nm_login, dthr_atualizacao "
                     + "FROM tbl_validacao_autocessao "
                     + "WHERE fk_autocessao = ? "
                     + "ORDER BY id_validacao_autocessao DESC");

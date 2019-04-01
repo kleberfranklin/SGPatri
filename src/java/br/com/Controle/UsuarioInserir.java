@@ -34,7 +34,7 @@ public class UsuarioInserir implements Logica{
 //Carregando os atributos com as informações do formulário        
         login = req.getParameter("login");
         rf = req.getParameter("rf");
-        nome = Transformar.utf8(Transformar.priMaiuscula(req.getParameter("nome")));
+        nome = Transformar.getUFT8(Transformar.getPriMaiuscula(req.getParameter("nome")));
         email = req.getParameter("email");
         loginSessio = (String) session.getAttribute("sessionLogin");
         divisao = Integer.parseInt(req.getParameter("divisao"));

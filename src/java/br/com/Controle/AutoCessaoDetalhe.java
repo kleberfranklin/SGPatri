@@ -38,18 +38,26 @@ public class AutoCessaoDetalhe implements Logica{
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
 //Atributos
-        int pkAutoStage = 0;
-        String execucao;
+        int pkAutoCessao = 0;
+        String execucao, duplicidade, idAutoCessao, msg;
+        
+        
 //Carregando atributos com a informações do formlário. 
+        idAutoCessao = req.getParameter("pkAutoCessao");
         execucao = req.getParameter("execucao");
-        if( !"insert".equals(execucao)){
-            pkAutoStage = Integer.parseInt(req.getParameter("pkAutoStage"));
-//Validação dos atributos carregdos com as informações do formulário.  
-            if (pkAutoStage == 0){
-                return "ControllerServlet?acao=AutoCessaoListaPagFiltro";
+        duplicidade = req.getParameter("duplicidade");
+//        msg = req.getParameter("msg");
+        
+
+        
+//Validação dos atributos carregdos com as informações do formulário.          
+        if(null != idAutoCessao){
+            pkAutoCessao = Integer.parseInt(idAutoCessao);
+            if (pkAutoCessao == 0){
+                return "ControllerServlet?acao=AutoCessaoLista";
             }
 //Consulta no banco e popula o objeto        
-            auto = autoVaDAO.detalheAutoCessao(pkAutoStage);            
+            auto = autoVaDAO.detalheAutoCessao(pkAutoCessao);            
         }
         
         TipoAutoCessao selTpCessao = tpCessaoDAO.detalheTpCessao(auto.getFkTipoCessaoStage());
@@ -60,7 +68,8 @@ public class AutoCessaoDetalhe implements Logica{
         SubPrefeitura selSubPref = subPrefDAO.detalheSubPref(auto.getFkSubpref());
         CatContrapartida selCatContra = catContraDAO.detalheCatContra(auto.getFkCatContrapartida());
         CatSubFinalidade selCatSubFin = catSubFinDAO.detalheCatSubFinalidade(auto.getFkSubcatfinalidade());
-        Validacao selVal = valDAO.detalheValidacaoAutoCessao(auto.getPkAutoStage());
+        Validacao selVal = valDAO.detalheValidacaoAutoCessao(auto.getPkAutoCessao());
+        Usuario selUsuario = usuarioDAO.nomeUsuario(selVal.getNmLogin());
 
         List<TipoAutoCessao> lisTpCessao = tpCessaoDAO.listSelectTpCessao();
         List<CatAutoCessao> listCatAuto = catAutoDAO.listSelectCatAutoCessao();
@@ -71,16 +80,17 @@ public class AutoCessaoDetalhe implements Logica{
         List<SubPrefeitura> listSubPref = subPrefDAO.listSelectSubPref();
         List<CatContrapartida> listCatContra =  catContraDAO.listSelectCatContra();        
         List<TipoDispositivoLegal> lisTpDis = tpDisDAO.listSelectTipoDisp();
-        List<DispositivoLegal> listDisp = dispDAO.listDispositivo(pkAutoStage);
+        List<DispositivoLegal> listDisp = dispDAO.listDispositivo(pkAutoCessao);
         List<Divisao> listDivisao = diviDAO.selectLisDivisao();
-//          List<Arquivo> listArquivo = arquivoDAO.listArquivo(pkAutoStage, );
+        List<Arquivo> listArquivo = arquivoDAO.listArquivo(pkAutoCessao);
+        List<Validacao> listValidaco = valDAO.lisValidacao(pkAutoCessao);
         
-        req.setAttribute("Usuario", ListNvAdm);
-        
+               
+        req.setAttribute("Validacao", listValidaco);
+        req.setAttribute("Arquivo", listArquivo);
         req.setAttribute("Divisao", listDivisao);
         req.setAttribute("NivelAdm", ListNvAdm);
         req.setAttribute("CatEnt",lisCatEnt);
-//        req.setAttribute("Arquivo", auto);
         req.setAttribute("Disp", listDisp);
         req.setAttribute("subPref", listSubPref);
         req.setAttribute("TpDis", lisTpDis);
@@ -89,7 +99,6 @@ public class AutoCessaoDetalhe implements Logica{
         req.setAttribute("CatSubFin", lisCatSub);
         req.setAttribute("CatFin", listCatFan);
         req.setAttribute("TpCessao", lisTpCessao);
-        
         
         req.setAttribute("selTpCessao", selTpCessao);
         req.setAttribute("selCatAuto", selCatAuto);
@@ -100,14 +109,10 @@ public class AutoCessaoDetalhe implements Logica{
         req.setAttribute("selCatContra", selCatContra);
         req.setAttribute("selCatSubFin", selCatSubFin);
         req.setAttribute("selVal", selVal);
-        
-        
-        
-        
-        
+        req.setAttribute("selUsuario", selUsuario);
+
         req.setAttribute("auto", auto);
-        req.setAttribute("execucao", execucao);
-        return "AutoCessaoValidacao.jsp";
+        return "AutoCessaoDetalhe.jsp?execucao"+execucao+"&duplicidade="+duplicidade;
         
     }    
 }

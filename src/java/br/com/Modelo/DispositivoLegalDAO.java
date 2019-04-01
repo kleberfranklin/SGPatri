@@ -43,8 +43,8 @@ public class DispositivoLegalDAO {
             }catch (SQLException e) {
                 throw new RuntimeException(e);
             }finally{
-                stmt.close();
-                connection.close();
+//                stmt.close();
+//                connection.close();
             }
     }
     
@@ -62,8 +62,8 @@ public class DispositivoLegalDAO {
             }catch(SQLException e){
               throw new RuntimeException(e);
             }finally{
-                stmt.close();
-                connection.close();
+//                stmt.close();
+//                connection.close();
             }
     }
     

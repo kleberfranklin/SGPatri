@@ -99,6 +99,12 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("    ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "include/nav.jsp", out, false);
       out.write("\r\n");
+      out.write("    ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "javaScritp/maskProcesso.html", out, false);
+      out.write("\r\n");
+      out.write("    ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "javaScritp/somenteNum.html", out, false);
+      out.write("\r\n");
       out.write("\r\n");
       out.write("<!--Verificação de acesso  -->\r\n");
       out.write("    ");
@@ -115,6 +121,7 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
       if (_jspx_meth_c_choose_0(_jspx_page_context))
         return;
       out.write("\r\n");
+      out.write("    \r\n");
       out.write("    \r\n");
       out.write("    \r\n");
       out.write("    ");
@@ -169,6 +176,10 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
       if (_jspx_meth_c_set_15(_jspx_page_context))
         return;
       out.write("\r\n");
+      out.write("    ");
+      if (_jspx_meth_c_set_16(_jspx_page_context))
+        return;
+      out.write("\r\n");
       out.write("    \r\n");
       out.write("    <div class=\"breadcrumbs ace-save-state\" id=\"breadcrumbs\">\r\n");
       out.write("        <ul class=\"breadcrumb\">\r\n");
@@ -183,12 +194,21 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("            \r\n");
       out.write("        \r\n");
       out.write("            <div class=\"form-actions col-md-12 col-xs-12\">\r\n");
+      out.write("                \r\n");
       out.write("                <h4 class=\"widget-title\">Filtros</h4>\r\n");
-      out.write("                <form class=\"form-search\" action=\"ControllerServlet?acao=AutoCessaoListaPagFiltro\" method=\"POST\">\r\n");
+      out.write("                <form class=\"form-search\" action=\"ControllerServlet?acao=AutoCessaoLista\" method=\"POST\">\r\n");
+      out.write("                    \r\n");
+      out.write("                    <label class=\"col-sm-1 col-xs-12 \"> A/C nº: </label>\r\n");
+      out.write("                    <div class=\"col-sm-2 col-xs-12\">\r\n");
+      out.write("                        <input type=\"text\" name=\"qAC\" placeholder=\"");
+      if (_jspx_meth_c_out_0(_jspx_page_context))
+        return;
+      out.write("\" class=\"col-xs-12 col-sm-6\" />\r\n");
+      out.write("                    </div>\r\n");
       out.write("                    \r\n");
       out.write("                    <label class=\"col-sm-2 col-xs-12\">Tipo de Cessão </label>\r\n");
-      out.write("                    <div class=\"col-sm-3\">\r\n");
-      out.write("                        <select class=\" col-xs-12 col-sm-12\" name=\"qTpcessao\">\r\n");
+      out.write("                    <div class=\"col-sm-7\">\r\n");
+      out.write("                        <select class=\" col-xs-12 col-sm-8\" name=\"qTpcessao\">\r\n");
       out.write("                            <option value=\"\"></option>\r\n");
       out.write("                            ");
       if (_jspx_meth_c_forEach_0(_jspx_page_context))
@@ -196,74 +216,93 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("\r\n");
       out.write("                        </select>\r\n");
       out.write("                    </div>\r\n");
-      out.write("                \r\n");
-      out.write("                <label class=\"col-sm-1 col-xs-12 \"> A/C nº: </label>\r\n");
-      out.write("                <div class=\"col-sm-2 col-xs-12\">\r\n");
-      out.write("                    <input type=\"text\" name=\"qAC\" placeholder=\"");
-      if (_jspx_meth_c_out_0(_jspx_page_context))
-        return;
-      out.write("\" class=\"col-xs-10 col-sm-12\" />\r\n");
-      out.write("                </div>     \r\n");
-      out.write("                \r\n");
-      out.write("                <label class=\"col-sm-1 col-xs-12 \"> Processo: </label>\r\n");
-      out.write("                <div class=\"col-sm-2 col-xs-12\">\r\n");
-      out.write("                    <input type=\"text\" name=\"qProcesso\" placeholder=\"");
+      out.write("                    <br /><br />\r\n");
+      out.write("                    <label class=\"col-sm-1 col-xs-12 \"> Processo: </label>\r\n");
+      out.write("                    <div class=\"col-sm-2 col-xs-12\">\r\n");
+      out.write("                        <input class=\"col-xs-10 col-sm-12\" type=\"text\" name=\"qProcesso\" id=\"nrprocesso\" placeholder=\"");
       if (_jspx_meth_c_out_1(_jspx_page_context))
         return;
-      out.write("\" class=\"col-xs-10 col-sm-12\" />\r\n");
-      out.write("                </div>\r\n");
-      out.write("               \r\n");
-      out.write("                <br /><br />\r\n");
-      out.write("                <label class=\"col-sm-2 col-xs-12\" > Cessionário:</label>\r\n");
-      out.write("                <div class=\"col-sm-3 col-xs-12\">\r\n");
-      out.write("                    <input type=\"text\" name=\"qCessionario\" placeholder=\"");
+      out.write("\" onKeyPress=\"return somenteNum(event);\"  />\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                    <label class=\"col-md-9 col-xs-12\">\r\n");
+      out.write("                        <div class=\"radio-inline col-md-2\">\r\n");
+      out.write("                            <label>\r\n");
+      out.write("                                <input name=\"qTpProcesso\" id=\"sei\" value=\"SEI\" type=\"radio\" class=\"ace\" onclick=\"maskProcesso();\">\r\n");
+      out.write("                                <span class=\"lbl\"><strong> SEI</strong></span>\r\n");
+      out.write("                            </label>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        <div class=\"radio-inline col-md-2\">\r\n");
+      out.write("                            <label>\r\n");
+      out.write("                                <input name=\"qTpProcesso\" id=\"pa\" value=\"PA\" type=\"radio\" class=\"ace\" onclick=\"maskProcesso();\">\r\n");
+      out.write("                                <span class=\"lbl\"><strong> P.A.</strong></span>\r\n");
+      out.write("                            </label>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        <div class=\"radio-inline col-md-2\">\r\n");
+      out.write("                            <label>\r\n");
+      out.write("                                <input name=\"qTpProcesso\" id=\"tid\" value=\"TID\" type=\"radio\" class=\"ace\" onclick=\"maskProcesso();\">\r\n");
+      out.write("                                <span class=\"lbl\"><strong> TID</strong></span>\r\n");
+      out.write("                            </label>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        <div class=\"radio-inline col-md-2\">\r\n");
+      out.write("                            <label>\r\n");
+      out.write("                                <input name=\"qTpProcesso\" id=\"cid\" value=\"CID\" type=\"radio\" class=\"ace\" onclick=\"maskProcesso();\">\r\n");
+      out.write("                                <span class=\"lbl\"><strong> CID</strong></span>\r\n");
+      out.write("                            </label>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        &nbsp;<span id=\"msgProcesso\"></span>\r\n");
+      out.write("                    </label>\r\n");
+      out.write("                    <!--<lable id=\"msgProcesso\"></lable>-->\r\n");
+      out.write("                    <br /><br />\r\n");
+      out.write("                    <label class=\"col-sm-1 col-xs-12\" > Cessionário:</label>\r\n");
+      out.write("                    <div class=\"col-sm-3 col-xs-12\">\r\n");
+      out.write("                        <input type=\"text\" name=\"qCessionario\" placeholder=\"");
       if (_jspx_meth_c_out_2(_jspx_page_context))
         return;
       out.write("\" class=\"col-xs-10 col-sm-12\" />\r\n");
-      out.write("                </div>\r\n");
+      out.write("                    </div>\r\n");
       out.write("\r\n");
-      out.write("                <label class=\"col-sm-1 col-xs-12\" > Cedente:</label>\r\n");
-      out.write("                <div class=\"col-sm-5 col-xs-12\">\r\n");
-      out.write("                    <input type=\"text\" name=\"qCedente\" placeholder=\"");
+      out.write("                    <label class=\"col-sm-1 col-xs-12\" > Cedente:</label>\r\n");
+      out.write("                    <div class=\"col-sm-5 col-xs-12\">\r\n");
+      out.write("                        <input type=\"text\" name=\"qCedente\" placeholder=\"");
       if (_jspx_meth_c_out_3(_jspx_page_context))
         return;
       out.write("\" class=\"col-xs-12 col-sm-7\" />\r\n");
-      out.write("                </div>\r\n");
-      out.write("                 \r\n");
-      out.write("                <br /><br />\r\n");
-      out.write("                <label class=\"col-sm-2 col-xs-12 la\"> Local </label>\r\n");
-      out.write("                <div class=\"col-sm-10 col-xs-12\">\r\n");
-      out.write("                    <input type=\"text\" name=\"qEndereco\" placeholder=\"");
+      out.write("                    </div>\r\n");
+      out.write("\r\n");
+      out.write("                    <br /><br />\r\n");
+      out.write("                    <label class=\"col-sm-1 col-xs-12 la\"> Local </label>\r\n");
+      out.write("                    <div class=\"col-sm-10 col-xs-12\">\r\n");
+      out.write("                        <input type=\"text\" name=\"qEndereco\" placeholder=\"");
       if (_jspx_meth_c_out_4(_jspx_page_context))
         return;
       out.write("\" class=\"col-xs-12 col-sm-6\" />\r\n");
-      out.write("                </div>    \r\n");
-      out.write("                \r\n");
-      out.write("                <br /><br />\r\n");
-      out.write("                <label class=\"col-sm-2 col-xs-12 la\"> Croqui </label>\r\n");
-      out.write("                <div class=\"col-sm-3 col-xs-12\">\r\n");
-      out.write("                    <input type=\"text\" name=\"qCroqui\" placeholder=\"");
+      out.write("                    </div>    \r\n");
+      out.write("\r\n");
+      out.write("                    <br /><br />\r\n");
+      out.write("                    <label class=\"col-sm-1 col-xs-12 la\"> Croqui </label>\r\n");
+      out.write("                    <div class=\"col-sm-3 col-xs-12\">\r\n");
+      out.write("                        <input type=\"text\" name=\"qCroqui\" placeholder=\"");
       if (_jspx_meth_c_out_5(_jspx_page_context))
         return;
-      out.write("\"  class=\"col-xs-10 col-sm-12\" />\r\n");
-      out.write("                </div>\r\n");
-      out.write("                <label class=\"col-sm-1 col-xs-12\"> Em Vigor </label>\r\n");
-      out.write("                <div class=\"col-sm-3 col-xs-12\">\r\n");
-      out.write("                    <select class=\"col-sm-4 col-xs-12\" name=\"qVigor\">\r\n");
-      out.write("                        \r\n");
-      out.write("                        <option value=\"\"> </option>\r\n");
-      out.write("                        <option value=\"true\">Sim</option>\r\n");
-      out.write("                        <option value=\"false\">Não</option>\r\n");
-      out.write("                    </select>\r\n");
-      out.write("                    <span class=\"input-group-btn col-sm-6 col-sm-offset-6\">\r\n");
-      out.write("                        <button type=\"submit\" class=\"btn btn-inverse btn-white\" title=\"duplo clik limpa pesquisa\">\r\n");
-      out.write("                            <span class=\"ace-icon fa fa-search icon-on-right bigger-110\"></span>\r\n");
-      out.write("                            Pesquisa\r\n");
-      out.write("                        </button>\r\n");
-      out.write("                    </span>\r\n");
-      out.write("                </div>\r\n");
-      out.write("            </form>\r\n");
-      out.write("            <div class=\"space-10\" ></div>    \r\n");
+      out.write("\"  class=\"col-xs-10 col-sm-6\" />\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                    <label class=\"col-sm-1 col-xs-12\"> Em Vigor </label>\r\n");
+      out.write("                    <div class=\"col-sm-3 col-xs-12\">\r\n");
+      out.write("                        <select class=\"col-sm-4 col-xs-12\" name=\"qVigor\">\r\n");
+      out.write("\r\n");
+      out.write("                            <option value=\"\"> </option>\r\n");
+      out.write("                            <option value=\"true\">Sim</option>\r\n");
+      out.write("                            <option value=\"false\">Não</option>\r\n");
+      out.write("                        </select>\r\n");
+      out.write("                        <span class=\"input-group-btn col-sm-6 col-sm-offset-6\">\r\n");
+      out.write("                            <button type=\"submit\" class=\"btn btn-inverse btn-white\" title=\"duplo clik limpa pesquisa\">\r\n");
+      out.write("                                <span class=\"ace-icon fa fa-search icon-on-right bigger-110\"></span>\r\n");
+      out.write("                                Pesquisa\r\n");
+      out.write("                            </button>\r\n");
+      out.write("                        </span>\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                </form>\r\n");
+      out.write("                <div class=\"space-10\" ></div>    \r\n");
       out.write("            </div>\r\n");
       out.write("            \r\n");
       out.write("            \r\n");
@@ -313,18 +352,11 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("                </div>\r\n");
       out.write("                \r\n");
       out.write("                <div class=\"col-sm-12 \" >\r\n");
-      out.write("                    <button class=\"btn btn-yellow right\" type=\"reset\" onclick=\" location.href='AutoCessao.jsp?ter=");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${ter}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("';\">\r\n");
+      out.write("                    <button class=\"btn btn-yellow right\" type=\"reset\" onclick=\" location.href='AutoCessao.jsp';\">\r\n");
       out.write("                        <i class=\"ace-icon fa fa-undo bigger-110\"></i>\r\n");
       out.write("                        Voltar\r\n");
       out.write("                    </button>    \r\n");
       out.write("                </div>\r\n");
-      out.write("        \r\n");
-      out.write("        \r\n");
-      out.write("            \r\n");
-      out.write("        \r\n");
-      out.write("     \r\n");
       out.write("    ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "include/footer.jsp", out, false);
       out.write("\r\n");
@@ -756,8 +788,8 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
     org.apache.taglibs.standard.tag.rt.core.SetTag _jspx_th_c_set_11 = (org.apache.taglibs.standard.tag.rt.core.SetTag) _jspx_tagPool_c_set_var_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.SetTag.class);
     _jspx_th_c_set_11.setPageContext(_jspx_page_context);
     _jspx_th_c_set_11.setParent(null);
-    _jspx_th_c_set_11.setVar("qCessionario");
-    _jspx_th_c_set_11.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${param.qCessionario}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    _jspx_th_c_set_11.setVar("qTpProcesso");
+    _jspx_th_c_set_11.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${param.qTpProcesso}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
     int _jspx_eval_c_set_11 = _jspx_th_c_set_11.doStartTag();
     if (_jspx_th_c_set_11.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_11);
@@ -775,8 +807,8 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
     org.apache.taglibs.standard.tag.rt.core.SetTag _jspx_th_c_set_12 = (org.apache.taglibs.standard.tag.rt.core.SetTag) _jspx_tagPool_c_set_var_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.SetTag.class);
     _jspx_th_c_set_12.setPageContext(_jspx_page_context);
     _jspx_th_c_set_12.setParent(null);
-    _jspx_th_c_set_12.setVar("qCedente");
-    _jspx_th_c_set_12.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${param.qCedente}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    _jspx_th_c_set_12.setVar("qCessionario");
+    _jspx_th_c_set_12.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${param.qCessionario}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
     int _jspx_eval_c_set_12 = _jspx_th_c_set_12.doStartTag();
     if (_jspx_th_c_set_12.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_12);
@@ -794,8 +826,8 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
     org.apache.taglibs.standard.tag.rt.core.SetTag _jspx_th_c_set_13 = (org.apache.taglibs.standard.tag.rt.core.SetTag) _jspx_tagPool_c_set_var_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.SetTag.class);
     _jspx_th_c_set_13.setPageContext(_jspx_page_context);
     _jspx_th_c_set_13.setParent(null);
-    _jspx_th_c_set_13.setVar("qEndereco");
-    _jspx_th_c_set_13.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${param.qEndereco}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    _jspx_th_c_set_13.setVar("qCedente");
+    _jspx_th_c_set_13.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${param.qCedente}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
     int _jspx_eval_c_set_13 = _jspx_th_c_set_13.doStartTag();
     if (_jspx_th_c_set_13.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_13);
@@ -813,8 +845,8 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
     org.apache.taglibs.standard.tag.rt.core.SetTag _jspx_th_c_set_14 = (org.apache.taglibs.standard.tag.rt.core.SetTag) _jspx_tagPool_c_set_var_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.SetTag.class);
     _jspx_th_c_set_14.setPageContext(_jspx_page_context);
     _jspx_th_c_set_14.setParent(null);
-    _jspx_th_c_set_14.setVar("qVigor");
-    _jspx_th_c_set_14.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${param.qVigor}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    _jspx_th_c_set_14.setVar("qEndereco");
+    _jspx_th_c_set_14.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${param.qEndereco}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
     int _jspx_eval_c_set_14 = _jspx_th_c_set_14.doStartTag();
     if (_jspx_th_c_set_14.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_14);
@@ -832,14 +864,51 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
     org.apache.taglibs.standard.tag.rt.core.SetTag _jspx_th_c_set_15 = (org.apache.taglibs.standard.tag.rt.core.SetTag) _jspx_tagPool_c_set_var_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.SetTag.class);
     _jspx_th_c_set_15.setPageContext(_jspx_page_context);
     _jspx_th_c_set_15.setParent(null);
-    _jspx_th_c_set_15.setVar("qCroqui");
-    _jspx_th_c_set_15.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${param.qCroqui}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    _jspx_th_c_set_15.setVar("qVigor");
+    _jspx_th_c_set_15.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${param.qVigor}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
     int _jspx_eval_c_set_15 = _jspx_th_c_set_15.doStartTag();
     if (_jspx_th_c_set_15.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_15);
       return true;
     }
     _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_15);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_set_16(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:set
+    org.apache.taglibs.standard.tag.rt.core.SetTag _jspx_th_c_set_16 = (org.apache.taglibs.standard.tag.rt.core.SetTag) _jspx_tagPool_c_set_var_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.SetTag.class);
+    _jspx_th_c_set_16.setPageContext(_jspx_page_context);
+    _jspx_th_c_set_16.setParent(null);
+    _jspx_th_c_set_16.setVar("qCroqui");
+    _jspx_th_c_set_16.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${param.qCroqui}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    int _jspx_eval_c_set_16 = _jspx_th_c_set_16.doStartTag();
+    if (_jspx_th_c_set_16.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_16);
+      return true;
+    }
+    _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_16);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_out_0(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:out
+    org.apache.taglibs.standard.tag.rt.core.OutTag _jspx_th_c_out_0 = (org.apache.taglibs.standard.tag.rt.core.OutTag) _jspx_tagPool_c_out_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.OutTag.class);
+    _jspx_th_c_out_0.setPageContext(_jspx_page_context);
+    _jspx_th_c_out_0.setParent(null);
+    _jspx_th_c_out_0.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${qAC}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    int _jspx_eval_c_out_0 = _jspx_th_c_out_0.doStartTag();
+    if (_jspx_th_c_out_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_out_value_nobody.reuse(_jspx_th_c_out_0);
+      return true;
+    }
+    _jspx_tagPool_c_out_value_nobody.reuse(_jspx_th_c_out_0);
     return false;
   }
 
@@ -1018,24 +1087,6 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
     return false;
   }
 
-  private boolean _jspx_meth_c_out_0(PageContext _jspx_page_context)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  c:out
-    org.apache.taglibs.standard.tag.rt.core.OutTag _jspx_th_c_out_0 = (org.apache.taglibs.standard.tag.rt.core.OutTag) _jspx_tagPool_c_out_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.OutTag.class);
-    _jspx_th_c_out_0.setPageContext(_jspx_page_context);
-    _jspx_th_c_out_0.setParent(null);
-    _jspx_th_c_out_0.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${qAC}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
-    int _jspx_eval_c_out_0 = _jspx_th_c_out_0.doStartTag();
-    if (_jspx_th_c_out_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-      _jspx_tagPool_c_out_value_nobody.reuse(_jspx_th_c_out_0);
-      return true;
-    }
-    _jspx_tagPool_c_out_value_nobody.reuse(_jspx_th_c_out_0);
-    return false;
-  }
-
   private boolean _jspx_meth_c_out_1(PageContext _jspx_page_context)
           throws Throwable {
     PageContext pageContext = _jspx_page_context;
@@ -1146,8 +1197,8 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
           out.write("                        <tr>\r\n");
           out.write("                            <td class=\"center hidden-480\">\r\n");
           out.write("                            <div class=\"action-buttons \">\r\n");
-          out.write("                                <a href=\"ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage=");
-          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${autolist.pkAutoStage}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("                                <a href=\"ControllerServlet?acao=AutoCessaoDetalhe&pkAutoCessao=");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${autolist.pkAutoCessao}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("&pg=");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pg}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("&pi=");
@@ -2066,8 +2117,8 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
       do {
         out.write("\r\n");
         out.write("                                <div class=\"hidden-sm hidden-xs btn-group\">\r\n");
-        out.write("                                    <button class=\"btn btn-xs btn-info\"  onclick=\"location.href='ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage=");
-        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${autolist.pkAutoStage}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("                                    <button class=\"btn btn-xs btn-info\"  onclick=\"location.href='ControllerServlet?acao=AutoCessaoDetalhe&pkAutoCessao=");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${autolist.pkAutoCessao}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("&pg=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pg}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("&pi=");
@@ -2314,8 +2365,8 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
         out.write("                                        <ul class=\"dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close\">\r\n");
         out.write("                                              \r\n");
         out.write("                                            <li>\r\n");
-        out.write("                                                <a href=\"ControllerServlet?acao=AutoCessaoValidacaoDetalhe&pkAutoStage=");
-        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${autolist.pkAutoStage}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("                                                <a href=\"ControllerServlet?acao=AutoCessaoDetalhe&pkAutoCessao=");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${autolist.pkAutoCessao}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("&pg=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pg}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("&pi=");
@@ -2409,7 +2460,7 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
         do {
           out.write("\r\n");
           out.write("                            ");
-          if (_jspx_meth_c_set_16((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_2, _jspx_page_context, _jspx_push_body_count_c_forEach_2))
+          if (_jspx_meth_c_set_17((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_2, _jspx_page_context, _jspx_push_body_count_c_forEach_2))
             return true;
           out.write("\r\n");
           out.write("                            ");
@@ -2444,22 +2495,22 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
     return false;
   }
 
-  private boolean _jspx_meth_c_set_16(javax.servlet.jsp.tagext.JspTag _jspx_th_c_forEach_2, PageContext _jspx_page_context, int[] _jspx_push_body_count_c_forEach_2)
+  private boolean _jspx_meth_c_set_17(javax.servlet.jsp.tagext.JspTag _jspx_th_c_forEach_2, PageContext _jspx_page_context, int[] _jspx_push_body_count_c_forEach_2)
           throws Throwable {
     PageContext pageContext = _jspx_page_context;
     JspWriter out = _jspx_page_context.getOut();
     //  c:set
-    org.apache.taglibs.standard.tag.rt.core.SetTag _jspx_th_c_set_16 = (org.apache.taglibs.standard.tag.rt.core.SetTag) _jspx_tagPool_c_set_var_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.SetTag.class);
-    _jspx_th_c_set_16.setPageContext(_jspx_page_context);
-    _jspx_th_c_set_16.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_forEach_2);
-    _jspx_th_c_set_16.setVar("qCessionario");
-    _jspx_th_c_set_16.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${qCessionario}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
-    int _jspx_eval_c_set_16 = _jspx_th_c_set_16.doStartTag();
-    if (_jspx_th_c_set_16.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-      _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_16);
+    org.apache.taglibs.standard.tag.rt.core.SetTag _jspx_th_c_set_17 = (org.apache.taglibs.standard.tag.rt.core.SetTag) _jspx_tagPool_c_set_var_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.SetTag.class);
+    _jspx_th_c_set_17.setPageContext(_jspx_page_context);
+    _jspx_th_c_set_17.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_forEach_2);
+    _jspx_th_c_set_17.setVar("qCessionario");
+    _jspx_th_c_set_17.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${qCessionario}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    int _jspx_eval_c_set_17 = _jspx_th_c_set_17.doStartTag();
+    if (_jspx_th_c_set_17.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_17);
       return true;
     }
-    _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_16);
+    _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_17);
     return false;
   }
 
@@ -2477,7 +2528,7 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
       do {
         out.write("\r\n");
         out.write("                                <li>\r\n");
-        out.write("                                    <a href=\"ControllerServlet?acao=AutoCessaoListaPagFiltro&pg=");
+        out.write("                                    <a href=\"ControllerServlet?acao=AutoCessaoLista&pg=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${i}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("&pi=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pi}", java.lang.String.class, (PageContext)_jspx_page_context, null));
@@ -2628,7 +2679,7 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
       do {
         out.write("\r\n");
         out.write("                                        <li>\r\n");
-        out.write("                                            <a href=\"ControllerServlet?acao=AutoCessaoListaPagFiltro&pg=");
+        out.write("                                            <a href=\"ControllerServlet?acao=AutoCessaoLista&pg=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${i}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("&pi=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pi}", java.lang.String.class, (PageContext)_jspx_page_context, null));
@@ -2685,7 +2736,7 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
       do {
         out.write("\r\n");
         out.write("                                <li>\r\n");
-        out.write("                                    <a href=\"ControllerServlet?acao=AutoCessaoListaPagFiltro&pg=");
+        out.write("                                    <a href=\"ControllerServlet?acao=AutoCessaoLista&pg=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${i}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("&pi=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pi}", java.lang.String.class, (PageContext)_jspx_page_context, null));

@@ -98,12 +98,6 @@
                             <a href="AutoCessao.jsp" title="Auto de Cessão">Autos de Cessão</a>
                             <b class="arrow"></b>
                         </li>
-                        <c:if test="${sessionSgDivisao == 'DDPI' && sessionSgSetor == 'SCL'}">
-                        <li class="">
-                            <a href="ControllerServlet?acao=AutoCessaoValidacaoLista" title="Auto de Cessão Validação">Validação Auto Cessão</a>
-                            <b class="arrow"></b>
-                        </li>
-                        </c:if>   
                     </ul>
                 </li>
             </ul>
@@ -303,11 +297,19 @@
            <b class="arrow"></b>
         </li>
         
-        <!-- Wikipedia CGPatri-->
+<!-- Wikipedia CGPatri-->
         <li class="">
             <a class="disabled-li-menu" href="#" title="">
                 <i class="menu-icon fa fa-book"></i>
                 <span class="menu-text"> Wikipedia CGPatri </span>
+            </a>
+           <b class="arrow"></b>
+        </li>
+<!-- Vesrsão do Aplicação-->        
+        <li class="">
+            <a class="" href="#" title="">
+                <i class="menu-icon fa fa-info-circle"></i>
+                <span class="menu-text"> Versão 1.0.4</span>
             </a>
            <b class="arrow"></b>
         </li>
