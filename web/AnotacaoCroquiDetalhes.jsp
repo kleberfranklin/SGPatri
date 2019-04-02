@@ -1,5 +1,5 @@
 <%-- 
-    Document   : AnotacaoCroquiDetalhesTeste
+    Document   : AnotacaoCroquiDetalhes
     Created on : 11/03/2019, 12:22:08
     Author     : x369482
 --%>
@@ -151,7 +151,7 @@
                                                     <span class="lbl">${hCroqui.sgExpediente}Ofício</span>
                                                 </label>
                                             </div>
-                                            <a href="AnotacaoCroquiDetalhesVTeste.jsp"><span class="glyphicon glyphicon-plus-sign"></span>Detalhes</a>
+                                            <a href="AnotacaoCroquiDetalhesV.jsp"><span class="glyphicon glyphicon-plus-sign"></span>Detalhes</a>
                                         </div>
 
                                         <br/>
@@ -200,12 +200,12 @@
                                         </div>
 
                                         <div class="form-actions center ">
-                                            <button class="btn btn-yellow" type="reset" onclick=" location.href = 'AnotacaoCroquiTesteLista.jsp';">
+                                            <button class="btn btn-yellow" type="reset" onclick=" location.href = 'AnotacaoCroquiLista.jsp';">
                                                 <i class="ace-icon fa fa-undo bigger-110"></i>
                                                 Voltar
                                             </button>
 
-                                            <button class="btn btn-success" type="reset" onclick=" location.href = 'AnotacaoCroquiTESTE.jsp';">
+                                            <button class="btn btn-success" type="reset" onclick=" location.href = 'AnotacaoCroqui.jsp';">
                                                 <i class="ace-icon fa fa-plus bigger-110"></i>
                                                 Informação
                                             </button>

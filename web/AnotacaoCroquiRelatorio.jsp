@@ -158,12 +158,12 @@
                                                 </div>
 
                                                 <div class="input_fields_wrap">
-                                                    <div class ="form-group">
+                                                    <div class ="form-group col-xs-1 col-xs-12">
                                                         <a href="#" class="add_field_button" title="Adicionar dispositivos" title="Adicionar campos"><span class="label label-success arrowed"><i class=" glyphicon glyphicon-plus-sign"></i></span></a>
                                                     </div>
                                                 </div>
 
-                                                <br/>
+                                                <br/><br/>
 
                                                 <label>
                                                     <a href="AnotacaoCroquiDetalhesVTeste.jsp"><span class="glyphicon glyphicon-plus-sign"></span>Detalhes</a>
@@ -214,18 +214,26 @@
                                                     </label>
                                                 </div>
 
+                                                <div class="input_fields_wrap">
+                                                    <div class ="form-group col-xs-1 col-xs-12">
+                                                        <a href="#" class="add_field_button" title="Adicionar dispositivos"><span class="label label-success arrowed"><i class=" glyphicon glyphicon-plus-sign"></i></span></a>
+                                                    </div>
+                                                </div>
+
+                                                <br/><br/>
+
                                                 <label>
-                                                    <a href=""><span class="glyphicon glyphicon-plus-sign"></span>Detalhes</a>
+                                                    <a href="AnotacaoCroquiDetalhesVTeste.jsp"><span class="glyphicon glyphicon-plus-sign"></span>Detalhes</a>
                                                 </label>
                                             </div>
 
                                             <div class="form-actions center ">
-                                                <button class="btn btn-yellow" type="reset" onclick=" location.href = 'AnotacaoCroquiTesteLista.jsp';">
+                                                <button class="btn btn-yellow" type="reset" onclick=" location.href = 'AnotacaoCroquiLista.jsp';">
                                                     <i class="ace-icon fa fa-undo bigger-110"></i>
                                                     Voltar
                                                 </button>
 
-                                                <button class="btn btn-success" type="reset" onclick=" location.href = 'AnotacaoCroquiTESTE.jsp';">
+                                                <button class="btn btn-success" type="reset" onclick=" location.href = '';">
                                                     <i class="ace-icon fa fa-plus bigger-110"></i>
                                                     Gerar Relatório
                                                 </button>

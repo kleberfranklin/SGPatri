@@ -1,9 +1,8 @@
 <%-- 
-    Document   : AnotacaoCroquiTesteLista
-    Created on : 11/03/2019, 11:59:54
+    Document   : AnotacaoCroquiRelatorioLista
+    Created on : 28/03/2019, 14:00:46
     Author     : x369482
 --%>
-
 
 <%@page contentType="text/html charset=UTF-8;" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -47,7 +46,7 @@
 
 
                         <div class="form-actions col-sm-12 col-xs-12">
-                                <h4 class="widget-title "><strong>Filtros</strong></h4>
+                            <h4 class="widget-title "><strong>Filtros</strong></h4>
                             <form class="form-search" action="ControllerServlet?acao=AnotacaoCroquiLista" method="POST">
 
                                 <label class="col-sm-2 col-xs-12 "> Croqui:</label>
@@ -62,17 +61,11 @@
 
                                 <br /> <br />
 
-                                <label class="col-sm-2 col-xs-12 "> Endereço:</label>
-                                <div class="input-group col-sm-4 col-xs-12">
-                                    <input type="text" name="qEndereco" placeholder="${qEndereco}" class="col-sm-12 col-xs-12" />
+                                <label class="col-sm-2 col-xs-12" >Número Relatório</label>
+                                <div class="input-group col-sm-1 col-xs-12">
+                                    <input type="text" name="idRelatorio" placeholder="${qAssunto}" class="col-sm-12 col-xs-12 " />
                                 </div>
 
-                                <br /> <br />
-
-                                <label class="col-sm-2 col-xs-12" >Assunto:</label>
-                                <div class="input-group col-sm-4 col-xs-12">
-                                    <input type="text" name="qAssunto" placeholder="${qAssunto}" class="col-sm-12 col-xs-12 " />
-                                </div>
                                 <br /> <br />
 
                                 <label class="col-sm-2 col-xs-12 "> Interessado:</label>
@@ -80,7 +73,26 @@
                                     <input type="text" name="qInteressado" placeholder="${qInteressado}" class="col-sm-8 col-xs-12" />
                                 </div>
 
+                                <br/><br/>
 
+                                <label class="col-sm-2 col-xs-12 ">Período:</label>
+                                <div class="input-group col-sm-1 col-xs-12">
+                                    <input class="form-control" name="dtIni" placeholder="${dtIni}" type="date" data-date-format="dd/mm/yyyy" >
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar bigger-110"></i>
+                                    </span>
+                                </div>
+
+                                <div class="col-sm-1"></div>
+
+                                <div class="input-group col-sm-1 col-xs-12">
+                                    <input class="form-control" name="dtFim" placeholder="${dtFim}" type="date" data-date-format="dd/mm/yyyy" >
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar bigger-110"></i>
+                                    </span>
+                                </div>
+
+                                <div class="col-xs-2 col-xs-12"></div>
                                 <!--Botoes-->
                                 <div class="input-group-btn col-sm-4 col-sm-offset-1 col-xs-12">
                                     <button type="submit" class="btn btn-inverse btn-white">
@@ -98,10 +110,10 @@
                             <thead>
                                 <tr>
                                     <th class="center detail-col">Detalhes</th>
+                                    <th>Número do Relatório</th>
                                     <th>Croqui</th>
                                     <th>Área </th>
-                                    <th>Endereço </th>
-                                    <th>Processo</th>
+                                    <th>Expediente</th>
                                     <th class="hidden-480">Assunto </th>
                                     <th class="hidden-480">Interessado </th>
                                     <th>Relatório</th>
@@ -116,7 +128,7 @@
                                     <td>
                                         <div class=" center action-buttons">
                                             <!-- pagina apenas com os historicos-->  
-                                            <a href="AnotacaoCroquiDetalhesTeste.jsp"><i class="ace-icon fa fa-search-plus"></i></a>
+                                            <a href="AnotacaoCroquiDetalhes.jsp"><i class="ace-icon fa fa-search-plus"></i></a>
                                         </div>
                                     </td>
 
@@ -187,18 +199,17 @@
                                         <div class="hidden-sm hidden-xs btn-group">
                                             <!-- pagina com a parte de inserir um historico para o croqui/area selecionado-->
                                             <label class="col-sm-2 col-xs-12" >
-                                                <input id="id-button-borders"  type="checkbox" id="relatorio" name="relatorio" value="enviar" class="ace ace-switch ace-switch-5" >
+                                                <input id="id-button-borders" type="checkbox" id="relatorio" name="relatorio" value="${anotCroqui.pkAnotacaoCroqui}" class="ace ace-switch ace-switch-5">
                                                 <span class="lbl middle"></span>
                                             </label>                                                                                                                               
                                         </div>
                                     </td>  
-
                                 </tr>
                                 <tr>
                                     <td>
                                         <div class=" center action-buttons">
                                             <!-- pagina apenas com os historicos-->  
-                                            <a href="AnotacaoCroquiDetalhesTeste.jsp"><i class="ace-icon fa fa-search-plus"></i></a>
+                                            <a href="AnotacaoCroquiDetalhes.jsp"><i class="ace-icon fa fa-search-plus"></i></a>
                                         </div>
                                     </td>
 
@@ -267,20 +278,21 @@
 
                                     <td>
                                         <div class="hidden-sm hidden-xs btn-group">
-                                            <!-- pagina com a parte de inserir um historico para o croqui/area selecionado-->
+                                            <!-- botao para inserir um ou mais expediente a pagina de relatorio-->
                                             <label class="col-sm-2 col-xs-12" >
-                                                <input id="id-button-borders"  type="checkbox" id="relatorio" name="relatorio" value="enviar" class="ace ace-switch ace-switch-5" checked="checked">
+                                                <input id="id-button-borders"  type="checkbox" id="relatorio" name="relatorio" value="enviar" class="ace ace-switch ace-switch-5">
                                                 <span class="lbl middle"></span>
                                             </label>                                                                                                                               
                                         </div>
                                     </td>  
-
                                 </tr>
                             </tbody>
-                           
-
-
                         </table>
+
+                        <button class="btn btn-white" type="reset" onclick=" location.href = 'AnotacaoCroquiRelatorio.jsp';">
+                            <i class="glyphicon glyphicon-list-alt bigger-110"></i>
+                            Gerar relatorio
+                        </button> 
 
                         <hr> <!--linha de separação -->
                         <!--Paginação -->
@@ -327,11 +339,6 @@
                         </div>
 
                         <div class="col-sm-12 " >
-                            <button style="color: #002a80" type="reset" onclick=" location.href = 'AnotacaoCroquiRelatorioTeste.jsp';">
-                                <i class="ace-icon fa fa-undo bigger-110"></i>
-                                Gerar relatorio
-                            </button>    
-
                             <button class="btn btn-yellow right" type="reset" onclick=" location.href = 'AnotacaoCroqui.jsp';">
                                 <i class="ace-icon fa fa-undo bigger-110"></i>
                                 Voltar

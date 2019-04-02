@@ -5,6 +5,7 @@
  */
 package br.com.Modelo;
 
+//import br.com.Controle.AnotacaoCroquiRelatorio;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -131,7 +132,7 @@ public class AnotacaoCroquiTesteDAO {
             throw new RuntimeException(e);
         }
     }
-    
+
 //    public List<AnotacaoCroquiTeste> listTipoExpediente() {
 //        String sql = ("SELECT COUNT(*)qtd, sg_tipo_expediente FROM tbl_tipo_expediente "
 //                + "GROUP BY sg_tipo_expediente "
@@ -150,7 +151,6 @@ public class AnotacaoCroquiTesteDAO {
 //            throw new RuntimeException(e);
 //        }
 //    }
-
     //METODO detalhe de uma Anotação Croqui
     public AnotacaoCroqui detalheAnotacaoCroqui(int pkAnotacaoExpediente) {
         String sql = ("SELECT cd_croqui, cd_area, nr_informacao_dgpi, ds_assunto, cd_expediente, nm_interessado, "
@@ -244,5 +244,27 @@ public class AnotacaoCroquiTesteDAO {
             throw new RuntimeException(e);
         }
     }
-
+//
+//    public AnotacaoCroquiRelatorio relatorioAnotacaoCroqui(int pkAnotacaoCroquiRelatorio) {
+//        String sql = "SELECT id_anotacao_croqui FROM tbl_anotacao_croqui";
+//
+//        try {
+//            List<AnotacaoCroquiRelatorio> listRelat = new ArrayList<AnotacaoCroquiRelatorio>();
+//            PreparedStatement stmt = connection.prepareStatement(sql);
+//            stmt.setInt(1, pkAnotacaoCroquiRelatorio);
+//            ResultSet rs = stmt.executeQuery();
+//
+//            while (rs.next()) {
+//                AnotacaoCroquiRelatorio anotCroqRel = new AnotacaoCroquiRelatorio();
+//                anotCroqRel.setPkAnotacaoCroquiRelatorio(rs.getInt("pkAnotacaoCroquiRelatorio"));
+//                listRelat.add(anotCroqRel);
+//            }
+//            stmt.execute();
+//            stmt.close();
+//            return listRelat;
+//
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 }

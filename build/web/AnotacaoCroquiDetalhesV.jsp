@@ -1,5 +1,5 @@
 <%-- 
-    Document   : AnotacaoCroquiDetalhesVTeste
+    Document   : AnotacaoCroquiDetalhesV
     Created on : 12/03/2019, 14:17:46
     Author     : x369482
 --%>
@@ -74,6 +74,20 @@
                                                 <input type="hidden" name="execucao" value="${execucao}" />
                                                 <h4 class="header smaller lbl "><strong>Cadastro de Historico do Croqui</strong></h4>
 
+
+
+                                            </div>
+                                        </div>
+
+                                        <br/>
+
+                                        <div class="tab-content profile-edit-tab-content" >
+                                            <div id="cad-croqui" class="tab-pane in active"  >
+                                                <input type="hidden" name="pkAnotacaoExpediente" value="${anotCroqui.pkAnotacaoExpediente}" />
+                                                <input type="hidden" name="execucao" value="${execucao}" />
+
+                                                <div class="space-14"></div>
+
                                                 <div class="form-group">
                                                     <label class="inline col-sm-2 col-xs-12"
                                                            <span class="lbl"><strong>Croqui:</strong></span>
@@ -113,19 +127,6 @@
                                                         </c:choose>
                                                     </label>                                                   
                                                 </div>
-
-                                            </div>
-                                        </div>
-
-                                        <br/>
-
-                                        <div class="tab-content profile-edit-tab-content" >
-                                            <div id="cad-croqui" class="tab-pane in active"  >
-                                                <input type="hidden" name="pkAnotacaoExpediente" value="${anotCroqui.pkAnotacaoExpediente}" />
-                                                <input type="hidden" name="execucao" value="${execucao}" />
-
-                                                <div class="space-14"></div>
-
 
                                                 <div class="form-group">
                                                     <label class="inline col-sm-2 col-xs-12">
@@ -397,7 +398,7 @@
 
                                                 <!-- Botões-->
                                                 <div class="form-actions center ">
-                                                    <button class="btn btn-yellow" type="reset" onclick=" location.href = 'AnotacaoCroquiDetalhesTeste.jsp';">
+                                                    <button class="btn btn-yellow" type="reset" onclick=" location.href = 'AnotacaoCroquiDetalhes.jsp';">
                                                         <i class="ace-icon fa fa-undo bigger-110"></i>
                                                         Voltar
                                                     </button>

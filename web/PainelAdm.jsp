@@ -143,29 +143,32 @@
                         </div>
                     </c:if>  
 
-                    <div class="col-xs-10" >
-                        <h3 class="header smaller lighter blue"><strong>DIPI/SIC - Divisao de Informação de Patrimonio Imobiliário</strong></h3>
-                        <div class="col-sm-12 infobox-chart" style=" padding-top:30px">
-                            <div class="infobox btn-group-lg ">
-                                <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=TipoAssuntoLista';">
-                                    <i class="ace-icon fa fa-user"></i>
-                                    Tipo de Assunto
-                                </button>
+                    <c:if test="${ ('DIPI' == sessionSgDivisao && sessionSgSetor == 'SIC')  || sessionPerfil == 'Administrador'}">    
+
+                        <div class="col-xs-10" >
+                            <h3 class="header smaller lighter blue"><strong>DIPI/SIC - Divisao de Informação de Patrimonio Imobiliário</strong></h3>
+                            <div class="col-sm-12 infobox-chart" style=" padding-top:30px">
+                                <div class="infobox btn-group-lg ">
+                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=TipoAssuntoLista';">
+                                        <i class="ace-icon fa fa-user"></i>
+                                        Tipo de Assunto
+                                    </button>
+                                </div>
+                                <div class="infobox btn-group-lg">
+                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=TipoExpedienteLista';">
+                                        <i class="ace-icon fa fa-user"></i>
+                                        Tipo de Expediente
+                                    </button>
+                                </div>
+                                <div class="infobox btn-group-lg ">
+                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=TipoDespachoLista';">
+                                        <i class="ace-icon fa fa-user"></i>
+                                        Tipo de Despacho
+                                    </button>
+                                </div>
                             </div>
-                            <div class="infobox btn-group-lg">
-                                <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=TipoExpedienteLista';">
-                                    <i class="ace-icon fa fa-user"></i>
-                                    Tipo de Expediente
-                                </button>
-                            </div>
-                            <div class="infobox btn-group-lg disabled-li-menu ">
-                                <button class="btn btn-primary btn-white btn-block" onclick=" location.href = '';">
-                                    <i class="ace-icon fa fa-user"></i>
-                                    Tipo de Despacho
-                                </button>
-                            </div>
-                        </div>
-                    </div> 
+                        </div> 
+                    </c:if>
 
                     <jsp:include page = "include/footer.jsp" />
 

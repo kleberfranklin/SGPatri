@@ -37,7 +37,7 @@
                             </h1>
                         </div>
                         <div class="form-group" style=" padding-top:30px">
-                            <c:if test="${sessionSgDivisao == 'DIPI' && sessionSgSetor == 'SIC'}"> 
+                            <c:if test="${(sessionSgDivisao == 'DIPI' && sessionSgSetor == 'SIC')  || sessionPerfil == 'Administrador'}"> 
 
                                 <div class="btn-group-lg infobox ">
                                     <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=AnotacaoCroquiLista';">
@@ -48,29 +48,38 @@
 
                                 <br/>
 
-
-
                                 <div class="btn-group-lg infobox ">
                                     <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'AnotacaoCroquiCRU.jsp?pkAnotacaoExpediente=1867&execucao=insert';">
                                         <i class="ace-icon fa fa-plus"></i>
                                         Novo
                                     </button>
                                 </div>    
+
+                                <div class="btn-group-lg infobox">
+                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'AnotacaoCroquiC.jsp';"> 
+                                        <i class="ace-icon fa fa-plus"></i>
+                                        Anotacao de Expediente
+                                    </button>
+                                </div> 
+
+                                <div class="btn-group-lg infobox">
+                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'AnotacaoCroquiLista.jsp';"> 
+                                        <i class="ace-icon fa fa-plus"></i>
+                                        Pesquisa Expediente
+                                    </button>
+                                </div> 
+
+                                <div class="btn-group-lg infobox">
+                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'AnotacaoCroquiRelatorioLista.jsp';"> 
+                                        <i class="ace-icon fa fa-plus"></i>
+                                        Pesquisa Relatório
+                                    </button>
+                                </div> 
                             </c:if>
-                            <div class="btn-group-lg infobox">
-                                <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'AnotacaoCroquiTesteC.jsp';"> 
-                                    <i class="ace-icon fa fa-plus"></i>
-                                    Cadastro de Croqui
-                                </button>
-                            </div> 
-                            <div class="btn-group-lg infobox">
-                                <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'AnotacaoCroquiTesteLista.jsp';"> 
-                                    <i class="ace-icon fa fa-plus"></i>
-                                    Pesquisa TESTE
-                                </button>
-                            </div> 
                         </div>
+
                         <jsp:include page = "include/footer.jsp" />
+
                     </div>
                 </div>
             </div>

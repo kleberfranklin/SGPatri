@@ -134,7 +134,7 @@
                     <b class="arrow"></b>
                     
                     <!--  PAGINAS DO CAP JA ESTAO QUASE PRONTA APENAS ATIVAR O MENU PARA VÊ-LAS -->
-                    <ul class="submenu disabled-li-menu">
+                    <ul class="submenu">
                         <li class="">
                             <a href="Cap.jsp" title="Cadastro de Área Publica">CAP</a>
                             <b class="arrow"></b>
