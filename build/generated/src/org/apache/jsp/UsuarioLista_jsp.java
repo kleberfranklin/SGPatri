@@ -83,31 +83,31 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("<!DOCTYPE html>\n");
-      out.write("<html>\n");
-      out.write("    \n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<!DOCTYPE html>\r\n");
+      out.write("<html>\r\n");
+      out.write("    \r\n");
       out.write("    ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "include/head.jsp", out, false);
-      out.write("\n");
-      out.write("    <body class=\"no-skin\">\n");
+      out.write("\r\n");
+      out.write("    <body class=\"no-skin\">\r\n");
       out.write("    ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "include/top.jsp", out, false);
-      out.write("\n");
-      out.write("    <div class=\"main-container ace-save-state\" id=\"main-container\">\n");
+      out.write("\r\n");
+      out.write("    <div class=\"main-container ace-save-state\" id=\"main-container\">\r\n");
       out.write("    ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "include/nav.jsp", out, false);
-      out.write("\n");
-      out.write("\n");
-      out.write("<!--Verificação de acesso  -->\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<!--Verificação de acesso  -->\r\n");
       out.write("    ");
       if (_jspx_meth_c_set_0(_jspx_page_context))
         return;
-      out.write("\n");
+      out.write("\r\n");
       out.write("    ");
       out.write("\r\n");
       out.write("\r\n");
@@ -117,81 +117,81 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("\r\n");
       if (_jspx_meth_c_choose_0(_jspx_page_context))
         return;
-      out.write("\n");
-      out.write("\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("    ");
       if (_jspx_meth_c_set_3(_jspx_page_context))
         return;
-      out.write("\n");
+      out.write("\r\n");
       out.write("    ");
       if (_jspx_meth_c_set_4(_jspx_page_context))
         return;
-      out.write("\n");
+      out.write("\r\n");
       out.write("    ");
       if (_jspx_meth_c_set_5(_jspx_page_context))
         return;
-      out.write("\n");
+      out.write("\r\n");
       out.write("    ");
       if (_jspx_meth_c_set_6(_jspx_page_context))
         return;
-      out.write("\n");
+      out.write("\r\n");
       out.write("    ");
       if (_jspx_meth_c_set_7(_jspx_page_context))
         return;
-      out.write("\n");
-      out.write("        \n");
-      out.write("    \n");
-      out.write("    \n");
-      out.write("    <div class=\"breadcrumbs ace-save-state\" id=\"breadcrumbs\">\n");
-      out.write("        <ul class=\"breadcrumb\">\n");
-      out.write("             <li><i class=\"ace-icon fa fa-users\"></i> Usuários</li>\n");
-      out.write("        </ul>\n");
-      out.write("    </div>  \n");
-      out.write("        \n");
-      out.write("        \n");
-      out.write("    <div class=\"page-content\">\n");
-      out.write("        <div class=\"row\">\n");
-      out.write("            <div class=\"col-sm-12 col-md-12\">\n");
-      out.write("                \n");
-      out.write("                <table id=\"simple-table\" class=\"table  table-bordered table-hover\">\n");
-      out.write("                    <thead>\n");
-      out.write("                        <tr>\n");
-      out.write("                            <th class=\"detail-col hidden-480\">Detalhes</th>\n");
-      out.write("                            <th class=\"hidden-480\">Login</th>\n");
-      out.write("                            <th>Nome</th>\n");
-      out.write("                            <th>Divisão</th>\n");
-      out.write("                            <th>Núcleo</th>\n");
-      out.write("                            <th class=\"hidden-480\">Perfil  </th>\n");
-      out.write("                            <th class=\"hidden-480\">Status  </th>\n");
-      out.write("                            <th class=\"col-md-3\">\n");
-      out.write("                                <form class=\"form-search\" action=\"ControllerServlet?acao=UsuarioListaPaginada\" method=\"POST\">\n");
-      out.write("                                    <div class=\"input-group\">\n");
-      out.write("                                        <input type=\"text\" name=\"q\" class=\"form-control search-query\" placeholder=\"Nome \">\n");
-      out.write("                                        <span class=\"input-group-btn\">\n");
-      out.write("                                            <button type=\"submit\" class=\"btn btn-inverse btn-white\">\n");
-      out.write("                                                <span class=\"ace-icon fa fa-search icon-on-right bigger-110\"></span>\n");
-      out.write("                                                Pesquisa\n");
-      out.write("                                            </button>\n");
-      out.write("                                        </span>\n");
-      out.write("                                    </div>\n");
-      out.write("                                </form>\n");
-      out.write("                            </th>\n");
-      out.write("                        </tr>\n");
-      out.write("                    </thead>\n");
+      out.write("\r\n");
+      out.write("        \r\n");
+      out.write("    \r\n");
+      out.write("    \r\n");
+      out.write("    <div class=\"breadcrumbs ace-save-state\" id=\"breadcrumbs\">\r\n");
+      out.write("        <ul class=\"breadcrumb\">\r\n");
+      out.write("             <li><i class=\"ace-icon fa fa-users\"></i> Usuários</li>\r\n");
+      out.write("        </ul>\r\n");
+      out.write("    </div>  \r\n");
+      out.write("        \r\n");
+      out.write("        \r\n");
+      out.write("    <div class=\"page-content\">\r\n");
+      out.write("        <div class=\"row\">\r\n");
+      out.write("            <div class=\"col-sm-12 col-md-12\">\r\n");
+      out.write("                \r\n");
+      out.write("                <table id=\"simple-table\" class=\"table  table-bordered table-hover\">\r\n");
+      out.write("                    <thead>\r\n");
+      out.write("                        <tr>\r\n");
+      out.write("                            <th class=\"detail-col hidden-480\">Detalhes</th>\r\n");
+      out.write("                            <th class=\"hidden-480\">Login</th>\r\n");
+      out.write("                            <th>Nome</th>\r\n");
+      out.write("                            <th>Divisão</th>\r\n");
+      out.write("                            <th>Núcleo</th>\r\n");
+      out.write("                            <th class=\"hidden-480\">Perfil  </th>\r\n");
+      out.write("                            <th class=\"hidden-480\">Status  </th>\r\n");
+      out.write("                            <th class=\"col-md-3\">\r\n");
+      out.write("                                <form class=\"form-search\" action=\"ControllerServlet?acao=UsuarioListaPaginada\" method=\"POST\">\r\n");
+      out.write("                                    <div class=\"input-group\">\r\n");
+      out.write("                                        <input type=\"text\" name=\"q\" class=\"form-control search-query\" placeholder=\"Nome \">\r\n");
+      out.write("                                        <span class=\"input-group-btn\">\r\n");
+      out.write("                                            <button type=\"submit\" class=\"btn btn-inverse btn-white\">\r\n");
+      out.write("                                                <span class=\"ace-icon fa fa-search icon-on-right bigger-110\"></span>\r\n");
+      out.write("                                                Pesquisa\r\n");
+      out.write("                                            </button>\r\n");
+      out.write("                                        </span>\r\n");
+      out.write("                                    </div>\r\n");
+      out.write("                                </form>\r\n");
+      out.write("                            </th>\r\n");
+      out.write("                        </tr>\r\n");
+      out.write("                    </thead>\r\n");
       out.write("                      ");
       if (_jspx_meth_c_forEach_0(_jspx_page_context))
         return;
-      out.write("\n");
-      out.write("\n");
-      out.write("                </table>\n");
-      out.write("            \n");
-      out.write("        <!--  Botão-->\n");
-      out.write("        \n");
-      out.write("            <button class=\"btn btn-yellow\" type=\"reset\" onclick=\" location.href='PainelAdm.jsp';\">\n");
-      out.write("                <i class=\"ace-icon fa fa-undo bigger-110\"></i>\n");
-      out.write("                Voltar\n");
-      out.write("            </button>            \n");
-      out.write("\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("                </table>\r\n");
+      out.write("            \r\n");
+      out.write("        <!--  Botão-->\r\n");
+      out.write("        \r\n");
+      out.write("            <button class=\"btn btn-yellow\" type=\"reset\" onclick=\" location.href='PainelAdm.jsp';\">\r\n");
+      out.write("                <i class=\"ace-icon fa fa-undo bigger-110\"></i>\r\n");
+      out.write("                Voltar\r\n");
+      out.write("            </button>            \r\n");
+      out.write("\r\n");
       out.write("            <button class=\"btn btn-success\" type=\"button\" onclick=\" location.href='ControllerServlet?acao=UsuarioDetalhe&pg=");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pg}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("&pi=");
@@ -202,42 +202,42 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${q}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("&sgDivisao=");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sgDivisao}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("&execucao=insert';\">\n");
-      out.write("                <i class=\"ace-icon fa fa-user-plus bigger-110\"></i>\n");
-      out.write("                Usuário\n");
-      out.write("            </button>\n");
-      out.write("        <hr> <!--linha de separação -->\n");
-      out.write("        <!--Paginação -->\n");
-      out.write("            <div class=\"col-xs-6\">\n");
-      out.write("                <div class=\"dataTables_info\" id=\"dynamic-table_info\" role=\"status\" aria-live=\"polite\">\n");
+      out.write("&execucao=insert';\">\r\n");
+      out.write("                <i class=\"ace-icon fa fa-user-plus bigger-110\"></i>\r\n");
+      out.write("                Usuário\r\n");
+      out.write("            </button>\r\n");
+      out.write("        <hr> <!--linha de separação -->\r\n");
+      out.write("        <!--Paginação -->\r\n");
+      out.write("            <div class=\"col-xs-6\">\r\n");
+      out.write("                <div class=\"dataTables_info\" id=\"dynamic-table_info\" role=\"status\" aria-live=\"polite\">\r\n");
       out.write("                    <label class=\"lead\">  <strong>");
       if (_jspx_meth_c_out_0(_jspx_page_context))
         return;
-      out.write(" </strong> usuário(s) \n");
+      out.write(" </strong> usuário(s) \r\n");
       out.write("                    ");
       if (_jspx_meth_c_if_0(_jspx_page_context))
         return;
-      out.write("\n");
-      out.write("                    </label>    \n");
-      out.write("               </div>\n");
-      out.write("            </div>\n");
-      out.write("                <div class=\"col-xs-6\">\n");
-      out.write("                    <div class=\"dataTables_paginate paging_simple_numbers\" id=\"dynamic-table_paginate\">\n");
-      out.write("                        <ul class=\"pagination\">\n");
+      out.write("\r\n");
+      out.write("                    </label>    \r\n");
+      out.write("               </div>\r\n");
+      out.write("            </div>\r\n");
+      out.write("                <div class=\"col-xs-6\">\r\n");
+      out.write("                    <div class=\"dataTables_paginate paging_simple_numbers\" id=\"dynamic-table_paginate\">\r\n");
+      out.write("                        <ul class=\"pagination\">\r\n");
       out.write("                        ");
       if (_jspx_meth_c_forEach_1(_jspx_page_context))
         return;
-      out.write("\n");
-      out.write("                        </ul>\n");
-      out.write("                    </div>\n");
-      out.write("                </div>\n");
-      out.write("     \n");
+      out.write("\r\n");
+      out.write("                        </ul>\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                </div>\r\n");
+      out.write("     \r\n");
       out.write("    ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "include/footer.jsp", out, false);
-      out.write("\n");
-      out.write("   <!-- /.main-container --> \n");
-      out.write("    </body>\n");
-      out.write("</html>\n");
+      out.write("\r\n");
+      out.write("   <!-- /.main-container --> \r\n");
+      out.write("    </body>\r\n");
+      out.write("</html>\r\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;
@@ -613,11 +613,11 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
       int _jspx_eval_c_forEach_0 = _jspx_th_c_forEach_0.doStartTag();
       if (_jspx_eval_c_forEach_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
-          out.write("\n");
-          out.write("                    <tbody>\n");
-          out.write("                        <tr>\n");
-          out.write("                            <td class=\"center hidden-480\">\n");
-          out.write("                            <div class=\"action-buttons \">\n");
+          out.write("\r\n");
+          out.write("                    <tbody>\r\n");
+          out.write("                        <tr>\r\n");
+          out.write("                            <td class=\"center hidden-480\">\r\n");
+          out.write("                            <div class=\"action-buttons \">\r\n");
           out.write("                                <a href=\"ControllerServlet?acao=UsuarioDetalhe&pkUsuario=");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${uslist.pkUsuario}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("&pg=");
@@ -630,43 +630,43 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${q}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("&sgDivisao=");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sgDivisao}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("\"><i class=\"ace-icon fa fa-search-plus\"></i></a>\n");
-          out.write("                            </div>\n");
-          out.write("                            </td>\n");
+          out.write("\"><i class=\"ace-icon fa fa-search-plus\"></i></a>\r\n");
+          out.write("                            </div>\r\n");
+          out.write("                            </td>\r\n");
           out.write("                            <td class=\"hidden-480\">");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${uslist.nmLogin}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("</td>\n");
+          out.write("</td>\r\n");
           out.write("                            <td title=\" ");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${uslist.nmNome}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("\">\n");
+          out.write("\">\r\n");
           out.write("                                ");
           if (_jspx_meth_c_choose_1((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
             return true;
-          out.write("\n");
-          out.write("                            </td>\n");
+          out.write("\r\n");
+          out.write("                            </td>\r\n");
           out.write("                            <td title=\"");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${uslist.nmDivisao}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write('"');
           out.write('>');
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${uslist.sgDivisao}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("</td>\n");
+          out.write("</td>\r\n");
           out.write("                            <td title=\"");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${uslist.nmSetor}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write('"');
           out.write('>');
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${uslist.sgSetor}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("</td>\n");
+          out.write("</td>\r\n");
           out.write("                            <td class=\"hidden-480\" title=\"\">");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${uslist.nmPerfil}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("</td>\n");
-          out.write("                            <td class=\"hidden-480\">\n");
+          out.write("</td>\r\n");
+          out.write("                            <td class=\"hidden-480\">\r\n");
           out.write("                                ");
           if (_jspx_meth_c_choose_2((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
             return true;
-          out.write("\n");
-          out.write("                            </td>\n");
-          out.write("                            <td>\n");
-          out.write("                                <div class=\"hidden-sm hidden-xs btn-group\">\n");
+          out.write("\r\n");
+          out.write("                            </td>\r\n");
+          out.write("                            <td>\r\n");
+          out.write("                                <div class=\"hidden-sm hidden-xs btn-group\">\r\n");
           out.write("                                    <button class=\"btn btn-xs btn-info\" type=\"reset\" onclick=\"location.href='ControllerServlet?acao=UsuarioDetalhe&pkUsuario=");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${uslist.pkUsuario}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("&pg=");
@@ -679,25 +679,25 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${q}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("&sgDivisao=");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sgDivisao}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("&alt=alt'\">\n");
-          out.write("                                        <i class=\"ace-icon fa fa-pencil bigger-120\"></i>\n");
-          out.write("                                        <a href=\"#\" class=\"btn-info\">Editar</a>\n");
-          out.write("                                    </button>\n");
-          out.write("\n");
+          out.write("&alt=alt'\">\r\n");
+          out.write("                                        <i class=\"ace-icon fa fa-pencil bigger-120\"></i>\r\n");
+          out.write("                                        <a href=\"#\" class=\"btn-info\">Editar</a>\r\n");
+          out.write("                                    </button>\r\n");
+          out.write("\r\n");
           out.write("                                ");
           if (_jspx_meth_c_choose_3((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
             return true;
-          out.write("\n");
-          out.write("                                </div>\n");
-          out.write("\n");
-          out.write("                                <div class=\"hidden-md hidden-lg\">\n");
-          out.write("                                    <div class=\"inline pos-rel\">\n");
-          out.write("                                        <button class=\"btn btn-minier btn-primary dropdown-toggle\" data-toggle=\"dropdown\" data-position=\"auto\">\n");
-          out.write("                                            <i class=\"ace-icon fa fa-cog icon-only bigger-110\"></i>\n");
-          out.write("                                        </button>\n");
-          out.write("\n");
-          out.write("                                        <ul class=\"dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close\">\n");
-          out.write("                                            <li>\n");
+          out.write("\r\n");
+          out.write("                                </div>\r\n");
+          out.write("\r\n");
+          out.write("                                <div class=\"hidden-md hidden-lg\">\r\n");
+          out.write("                                    <div class=\"inline pos-rel\">\r\n");
+          out.write("                                        <button class=\"btn btn-minier btn-primary dropdown-toggle\" data-toggle=\"dropdown\" data-position=\"auto\">\r\n");
+          out.write("                                            <i class=\"ace-icon fa fa-cog icon-only bigger-110\"></i>\r\n");
+          out.write("                                        </button>\r\n");
+          out.write("\r\n");
+          out.write("                                        <ul class=\"dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close\">\r\n");
+          out.write("                                            <li>\r\n");
           out.write("                                                <a href=\"ControllerServlet?acao=UsuarioDetalhe&pkUsuario=");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${uslist.pkUsuario}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("&pg=");
@@ -710,18 +710,18 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${q}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("&sgDivisao=");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sgDivisao}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("&alt=alt\" class=\"tooltip-success\" data-rel=\"tooltip\" title=\"\" data-original-title=\"Edit\">\n");
-          out.write("                                                    <span class=\"green\">\n");
-          out.write("                                                        <i class=\"ace-icon fa fa-pencil-square-o bigger-120\"></i>\n");
-          out.write("                                                    </span>\n");
-          out.write("                                                </a>\n");
-          out.write("                                            </li>\n");
-          out.write("                                        </ul>\n");
-          out.write("                                    </div>\n");
-          out.write("                                </div>\n");
-          out.write("                            </td>\n");
-          out.write("                        </tr>\n");
-          out.write("                    </tbody>\n");
+          out.write("&alt=alt\" class=\"tooltip-success\" data-rel=\"tooltip\" title=\"\" data-original-title=\"Edit\">\r\n");
+          out.write("                                                    <span class=\"green\">\r\n");
+          out.write("                                                        <i class=\"ace-icon fa fa-pencil-square-o bigger-120\"></i>\r\n");
+          out.write("                                                    </span>\r\n");
+          out.write("                                                </a>\r\n");
+          out.write("                                            </li>\r\n");
+          out.write("                                        </ul>\r\n");
+          out.write("                                    </div>\r\n");
+          out.write("                                </div>\r\n");
+          out.write("                            </td>\r\n");
+          out.write("                        </tr>\r\n");
+          out.write("                    </tbody>\r\n");
           out.write("                    ");
           int evalDoAfterBody = _jspx_th_c_forEach_0.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
@@ -753,15 +753,15 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
     int _jspx_eval_c_choose_1 = _jspx_th_c_choose_1.doStartTag();
     if (_jspx_eval_c_choose_1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
-        out.write("\n");
+        out.write("\r\n");
         out.write("                                    ");
         if (_jspx_meth_c_when_3((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_1, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
           return true;
-        out.write("\n");
+        out.write("\r\n");
         out.write("                                    ");
         if (_jspx_meth_c_otherwise_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_1, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
           return true;
-        out.write("\n");
+        out.write("\r\n");
         out.write("                                ");
         int evalDoAfterBody = _jspx_th_c_choose_1.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
@@ -788,10 +788,10 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
     int _jspx_eval_c_when_3 = _jspx_th_c_when_3.doStartTag();
     if (_jspx_eval_c_when_3 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
-        out.write("\n");
+        out.write("\r\n");
         out.write("                                        ");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${uslist.nmNome.substring(0,30)}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-        out.write("...\n");
+        out.write("...\r\n");
         out.write("                                    ");
         int evalDoAfterBody = _jspx_th_c_when_3.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
@@ -817,10 +817,10 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
     int _jspx_eval_c_otherwise_0 = _jspx_th_c_otherwise_0.doStartTag();
     if (_jspx_eval_c_otherwise_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
-        out.write("\n");
+        out.write("\r\n");
         out.write("                                        ");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${uslist.nmNome}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-        out.write("\n");
+        out.write("\r\n");
         out.write("                                    ");
         int evalDoAfterBody = _jspx_th_c_otherwise_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
@@ -846,15 +846,15 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
     int _jspx_eval_c_choose_2 = _jspx_th_c_choose_2.doStartTag();
     if (_jspx_eval_c_choose_2 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
-        out.write("\n");
+        out.write("\r\n");
         out.write("                                    ");
         if (_jspx_meth_c_when_4((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_2, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
           return true;
-        out.write("\n");
+        out.write("\r\n");
         out.write("                                    ");
         if (_jspx_meth_c_otherwise_1((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_2, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
           return true;
-        out.write("\n");
+        out.write("\r\n");
         out.write("                                ");
         int evalDoAfterBody = _jspx_th_c_choose_2.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
@@ -881,8 +881,8 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
     int _jspx_eval_c_when_4 = _jspx_th_c_when_4.doStartTag();
     if (_jspx_eval_c_when_4 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
-        out.write("\n");
-        out.write("                                        <span class=\"label label-sm label-success\">Ativo</span>\n");
+        out.write("\r\n");
+        out.write("                                        <span class=\"label label-sm label-success\">Ativo</span>\r\n");
         out.write("                                    ");
         int evalDoAfterBody = _jspx_th_c_when_4.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
@@ -908,8 +908,8 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
     int _jspx_eval_c_otherwise_1 = _jspx_th_c_otherwise_1.doStartTag();
     if (_jspx_eval_c_otherwise_1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
-        out.write("\n");
-        out.write("                                        <span class=\"label label-sm label-danger\">Desativado</span>\n");
+        out.write("\r\n");
+        out.write("                                        <span class=\"label label-sm label-danger\">Desativado</span>\r\n");
         out.write("                                    ");
         int evalDoAfterBody = _jspx_th_c_otherwise_1.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
@@ -935,15 +935,15 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
     int _jspx_eval_c_choose_3 = _jspx_th_c_choose_3.doStartTag();
     if (_jspx_eval_c_choose_3 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
-        out.write("\n");
+        out.write("\r\n");
         out.write("                                    ");
         if (_jspx_meth_c_when_5((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_3, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
           return true;
-        out.write("\n");
+        out.write("\r\n");
         out.write("                                    ");
         if (_jspx_meth_c_otherwise_2((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_3, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
           return true;
-        out.write("\n");
+        out.write("\r\n");
         out.write("                                ");
         int evalDoAfterBody = _jspx_th_c_choose_3.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
@@ -970,8 +970,8 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
     int _jspx_eval_c_when_5 = _jspx_th_c_when_5.doStartTag();
     if (_jspx_eval_c_when_5 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
-        out.write("\n");
-        out.write("                                        <label class=\"pull-left inline\">\n");
+        out.write("\r\n");
+        out.write("                                        <label class=\"pull-left inline\">\r\n");
         out.write("                                          <input id=\"id-button-borders\" type=\"checkbox\" class=\"ace ace-switch ace-switch-5\" id=\"\" name=\"\" value=\"1\" onclick=\"location.href='ControllerServlet?acao=UsuarioAltStatus&pkUs=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${uslist.pkUsuario}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("&status=1&pg=");
@@ -984,10 +984,10 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${q}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("&sgDivisao=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sgDivisao}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-        out.write("';\" >\n");
-        out.write("                                          <span class=\"lbl middle\"></span>\n");
-        out.write("                                        </label> \n");
-        out.write("                                        \n");
+        out.write("';\" >\r\n");
+        out.write("                                          <span class=\"lbl middle\"></span>\r\n");
+        out.write("                                        </label> \r\n");
+        out.write("                                        \r\n");
         out.write("                                    ");
         int evalDoAfterBody = _jspx_th_c_when_5.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
@@ -1013,8 +1013,8 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
     int _jspx_eval_c_otherwise_2 = _jspx_th_c_otherwise_2.doStartTag();
     if (_jspx_eval_c_otherwise_2 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
-        out.write("\n");
-        out.write("                                        <label class=\"pull-left inline\">\n");
+        out.write("\r\n");
+        out.write("                                        <label class=\"pull-left inline\">\r\n");
         out.write("                                            <input id=\"id-button-borders\" checked=\"checked\"  type=\"checkbox\" class=\"ace ace-switch ace-switch-5\" id=\"\" name=\"\" value=\"0\" onclick=\"location.href='ControllerServlet?acao=UsuarioAltStatus&pkUs=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${uslist.pkUsuario}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("&status=0&pg=");
@@ -1027,9 +1027,9 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${q}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("&sgDivisao=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sgDivisao}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-        out.write("';\" >\n");
-        out.write("                                            <span class=\"lbl middle\"><a href=\"Index.jsp\"></a></span>\n");
-        out.write("                                        </label> \n");
+        out.write("';\" >\r\n");
+        out.write("                                            <span class=\"lbl middle\"><a href=\"Index.jsp\"></a></span>\r\n");
+        out.write("                                        </label> \r\n");
         out.write("                                    ");
         int evalDoAfterBody = _jspx_th_c_otherwise_2.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
@@ -1074,11 +1074,11 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
     int _jspx_eval_c_if_0 = _jspx_th_c_if_0.doStartTag();
     if (_jspx_eval_c_if_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
-        out.write("\n");
+        out.write("\r\n");
         out.write("                        encontrato(s) como o nome: <strong>");
         if (_jspx_meth_c_out_1((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_if_0, _jspx_page_context))
           return true;
-        out.write("</strong>\n");
+        out.write("</strong>\r\n");
         out.write("                    ");
         int evalDoAfterBody = _jspx_th_c_if_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
@@ -1127,19 +1127,19 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
       int _jspx_eval_c_forEach_1 = _jspx_th_c_forEach_1.doStartTag();
       if (_jspx_eval_c_forEach_1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
-          out.write("\n");
+          out.write("\r\n");
           out.write("                            ");
           if (_jspx_meth_c_if_1((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_1, _jspx_page_context, _jspx_push_body_count_c_forEach_1))
             return true;
-          out.write("    \n");
+          out.write("    \r\n");
           out.write("                            ");
           if (_jspx_meth_c_if_2((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_1, _jspx_page_context, _jspx_push_body_count_c_forEach_1))
             return true;
-          out.write("\n");
+          out.write("\r\n");
           out.write("                            ");
           if (_jspx_meth_c_if_3((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_1, _jspx_page_context, _jspx_push_body_count_c_forEach_1))
             return true;
-          out.write("    \n");
+          out.write("    \r\n");
           out.write("                        ");
           int evalDoAfterBody = _jspx_th_c_forEach_1.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
@@ -1172,8 +1172,8 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
     int _jspx_eval_c_if_1 = _jspx_th_c_if_1.doStartTag();
     if (_jspx_eval_c_if_1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
-        out.write("\n");
-        out.write("                                <li>\n");
+        out.write("\r\n");
+        out.write("                                <li>\r\n");
         out.write("                                    <a href=\"ControllerServlet?acao=UsuarioListaPaginada&pg=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${i}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("&pi=");
@@ -1184,9 +1184,9 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${q}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("&sgDivisao=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sgDivisao}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-        out.write("\">\n");
-        out.write("                                        <i class=\"ace-icon fa fa-angle-double-left\"></i></a>\n");
-        out.write("                                </li>\n");
+        out.write("\">\r\n");
+        out.write("                                        <i class=\"ace-icon fa fa-angle-double-left\"></i></a>\r\n");
+        out.write("                                </li>\r\n");
         out.write("                            ");
         int evalDoAfterBody = _jspx_th_c_if_1.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
@@ -1213,11 +1213,11 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
     int _jspx_eval_c_if_2 = _jspx_th_c_if_2.doStartTag();
     if (_jspx_eval_c_if_2 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
-        out.write("\n");
+        out.write("\r\n");
         out.write("                                ");
         if (_jspx_meth_c_choose_4((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_if_2, _jspx_page_context, _jspx_push_body_count_c_forEach_1))
           return true;
-        out.write("\n");
+        out.write("\r\n");
         out.write("                            ");
         int evalDoAfterBody = _jspx_th_c_if_2.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
@@ -1243,15 +1243,15 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
     int _jspx_eval_c_choose_4 = _jspx_th_c_choose_4.doStartTag();
     if (_jspx_eval_c_choose_4 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
-        out.write("\n");
+        out.write("\r\n");
         out.write("                                    ");
         if (_jspx_meth_c_when_6((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_4, _jspx_page_context, _jspx_push_body_count_c_forEach_1))
           return true;
-        out.write("\n");
+        out.write("\r\n");
         out.write("                                    ");
         if (_jspx_meth_c_otherwise_3((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_4, _jspx_page_context, _jspx_push_body_count_c_forEach_1))
           return true;
-        out.write("\n");
+        out.write("\r\n");
         out.write("                                ");
         int evalDoAfterBody = _jspx_th_c_choose_4.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
@@ -1278,12 +1278,12 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
     int _jspx_eval_c_when_6 = _jspx_th_c_when_6.doStartTag();
     if (_jspx_eval_c_when_6 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
-        out.write("\n");
-        out.write("                                        <li class=\"active\">\n");
+        out.write("\r\n");
+        out.write("                                        <li class=\"active\">\r\n");
         out.write("                                            <a href=\"#\"> ");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${i}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-        out.write("</a>\n");
-        out.write("                                        </li>\n");
+        out.write("</a>\r\n");
+        out.write("                                        </li>\r\n");
         out.write("                                    ");
         int evalDoAfterBody = _jspx_th_c_when_6.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
@@ -1309,8 +1309,8 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
     int _jspx_eval_c_otherwise_3 = _jspx_th_c_otherwise_3.doStartTag();
     if (_jspx_eval_c_otherwise_3 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
-        out.write("\n");
-        out.write("                                        <li>\n");
+        out.write("\r\n");
+        out.write("                                        <li>\r\n");
         out.write("                                            <a href=\"ControllerServlet?acao=UsuarioListaPaginada&pg=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${i}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("&pi=");
@@ -1324,8 +1324,8 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
         out.write('"');
         out.write('>');
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${i}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-        out.write("</a>\n");
-        out.write("                                        </li>\n");
+        out.write("</a>\r\n");
+        out.write("                                        </li>\r\n");
         out.write("                                    ");
         int evalDoAfterBody = _jspx_th_c_otherwise_3.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
@@ -1352,8 +1352,8 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
     int _jspx_eval_c_if_3 = _jspx_th_c_if_3.doStartTag();
     if (_jspx_eval_c_if_3 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
-        out.write("\n");
-        out.write("                                <li>\n");
+        out.write("\r\n");
+        out.write("                                <li>\r\n");
         out.write("                                    <a href=\"ControllerServlet?acao=UsuarioListaPaginada&pg=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${i}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("&pi=");
@@ -1364,9 +1364,9 @@ public final class UsuarioLista_jsp extends org.apache.jasper.runtime.HttpJspBas
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${q}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("&sgDivisao=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sgDivisao}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-        out.write("\">\n");
-        out.write("                                        <i class=\"ace-icon fa fa-angle-double-right\"></i></a>\n");
-        out.write("                                </li>\n");
+        out.write("\">\r\n");
+        out.write("                                        <i class=\"ace-icon fa fa-angle-double-right\"></i></a>\r\n");
+        out.write("                                </li>\r\n");
         out.write("                            ");
         int evalDoAfterBody = _jspx_th_c_if_3.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)

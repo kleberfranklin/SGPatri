@@ -20,7 +20,7 @@ public class Upload {
     
     public String upload(String pasta, String nomeDoArquivo,
             InputStream arquivoCarregado) throws FileNotFoundException {
-    
+
         String caminhoArquivo = pasta + File.separator + nomeDoArquivo;
         File novoArquivo = new File(caminhoArquivo);
         FileOutputStream saida = new FileOutputStream(novoArquivo);
@@ -47,9 +47,7 @@ public class Upload {
 
    public boolean deltar(String pasta) throws FileNotFoundException {
         boolean deletar;
-        
         File file = new File(pasta);
-        
         if(file.exists()){
             file.deleteOnExit();
             deletar = file.delete();

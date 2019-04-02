@@ -56,7 +56,7 @@
                         <li>
                             <a href="ControllerServlet?acao=UsuarioLogoff">
                                 <i class="ace-icon fa fa-power-off"></i>
-                                Logof
+                                Logoff
                             </a>
                         </li>
                     </ul>

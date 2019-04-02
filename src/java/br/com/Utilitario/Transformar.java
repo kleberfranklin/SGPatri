@@ -61,12 +61,16 @@ public class Transformar {
         return str;
     }
     
+
     public static String getSubstituiEspacoHifen(String str){
+
             str = str.replaceAll("\\s+","-");
         return str;
     }
     
+
     public static String getRetiraEspacosDuplicados(String str) {
+
             String patternStr = "\\s+";
             String replaceStr = " ";
             Pattern pattern = Pattern.compile(patternStr);
@@ -79,7 +83,6 @@ public class Transformar {
         if (filename.contains("."))
 //            return filename.substring(filename.lastIndexOf(".") + 1);
             return filename.substring(filename.lastIndexOf("."));
-            
         else
             return "";
     }

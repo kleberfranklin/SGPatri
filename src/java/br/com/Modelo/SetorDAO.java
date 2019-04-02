@@ -12,13 +12,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  *
  * @author d732229
  */
 public class SetorDAO {
-    
+
 //Atrituto 
     private final Connection connection;
 
@@ -26,7 +25,6 @@ public class SetorDAO {
     public SetorDAO() {
         this.connection = new FabricaConexao().getConnetion();
     }
-
 
 //METODO utilizado para inserir uma nova Setor no BANCO
     public void cSetor(Setor st) throws SQLException{
@@ -76,7 +74,7 @@ public class SetorDAO {
                 connection.close();
             }
     }
-    
+
 //METODO utilizado para retornar as informação de um Setor/Núcleo
     public Setor detalheSetor(int pkSetor) throws SQLException{
         PreparedStatement stmt = null;
@@ -111,9 +109,7 @@ public class SetorDAO {
                 connection.close();
             }
     }
-    
-    
-    
+
 //METODO lista os setor de um Divisão, utilizado no o select da pagina cadastro e alteração de ususário
     public List<Setor> selecSetor(int pkDivisao) throws SQLException {
         PreparedStatement stmt = null;
@@ -142,7 +138,7 @@ public class SetorDAO {
                 connection.close();
         }
     }     
-
+       
 
 //METODO lista os setor de pesquisa e paginado
     public List<Setor> listSetor(int qtLinha, int offset, String q) throws SQLException{
@@ -183,8 +179,7 @@ public class SetorDAO {
                 connection.close();
             }
     }
-    
-    
+
 //Metodo de quantidade de linhas
     public int qdSetor (String q) throws SQLException{
         PreparedStatement stmt = null;
@@ -210,25 +205,5 @@ public class SetorDAO {
             connection.close();
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
-
-
-    
-    
 }

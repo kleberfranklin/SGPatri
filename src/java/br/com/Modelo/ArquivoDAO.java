@@ -147,7 +147,6 @@ public class ArquivoDAO {
     }
     
 
-    
 //METODO utilizado para deletar arquivo do banco
     public void deleteArquvio (int pkArquivo) throws SQLException{
         PreparedStatement stmt = null;

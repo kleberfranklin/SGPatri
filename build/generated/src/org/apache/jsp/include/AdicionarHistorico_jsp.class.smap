@@ -1,0 +1,12 @@
+SMAP
+AdicionarHistorico_jsp.java
+JSP
+*S JSP
+*F
++ 0 AdicionarHistorico.jsp
+include/AdicionarHistorico.jsp
+*L
+5,16:44
+21:60,23
+22,9:83
+*E

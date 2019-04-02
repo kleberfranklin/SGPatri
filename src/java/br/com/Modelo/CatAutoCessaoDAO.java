@@ -48,6 +48,7 @@ public class CatAutoCessaoDAO {
                 rs.close();
                 stmt.close();
                 connection.close();
+    
             }
     }    
 

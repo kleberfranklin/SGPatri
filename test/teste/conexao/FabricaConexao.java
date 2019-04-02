@@ -31,8 +31,6 @@ public class FabricaConexao {
 //////-----------CONEXÃO SGDB PostgresSQL - CAP        
         String banco = "geoDGPI";
         String url = "jdbc:postgresql://10.69.40.70:5433/"+banco;
-
-
         Properties props = new Properties();
        
         public Connection getConnetion(){
@@ -41,6 +39,7 @@ public class FabricaConexao {
         props.setProperty("user","devhomolog");
         props.setProperty("password","Prodam@2018!");
 //        props.setProperty("ssl","false");
+
         
         try{
           Class.forName(drive);

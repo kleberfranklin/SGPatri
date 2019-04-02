@@ -166,10 +166,10 @@
                             </label>
                             <label class="inline col-md-3 col-xs-12">
                                 <span class="lbl">
-                                    <strong>Categoria</strong>
+                                    <strong>Categoria:</strong>
                                 </span>
                             </label>
-                            <label class="inline col-md-2 col-xs-12">
+                            <label class="inline col-md-3 col-xs-12">
                                 <c:choose>
                                     <c:when test="${execucao == 'edit'}">
                                         <select class="col-md-12 col-xs-12" name="pkCatAutoCessao" required="required">
@@ -466,7 +466,7 @@
                         <div class="form-group">
                             <label class="inline col-md-2 col-xs-12" >
                                 <span class="lbl">
-                                    <strong>Detalhamento da Finalidade</strong>
+                                    <strong>Detalhamento da Finalidade:</strong>
                                 </span>
                             </label>
                             <label class="inline col-md-8 col-xs-12">
@@ -583,7 +583,7 @@
                             <label class="inline col-md-1 col-xs-12" >
                                 <span class="lbl"><strong>Lote:</strong></span>
                             </label>
-                            <label class="inline col-md-2 col-xs-12">
+                            <label class="inline col-md-3 col-xs-12">
                                 <c:choose>
                                     <c:when test="${execucao == 'edit'}">
                                         <input type="text" id="form-field-1" class="col-xs-12 col-md-12"  name="nrlote" value="${auto.nrLote}" placeholder="nº do lote" required="required">
@@ -1622,7 +1622,7 @@
                      ">        
                     <h5 class="header smaller lbl "><strong>Dispositivo Legal</strong></h5>
                     <c:if test="${(sessionSgDivisao == 'DDPI' && sessionSgSetor == 'SCL') && (execucao=='insert' || execucao=='edit')}">
-                        <form action="ControllerServlet?acao=AutoCessaoValidacaoDispLegalUC" method="POST" >
+                        <form action="ControllerServlet?acao=AutoCessaoValidacaoDispLegalUC" method="POST" >  
                             <input type="hidden" name="pkAutoStage" value="${auto.pkAutoStage}" />
                             <input type="hidden" name="nrVerDisplegal" value="1" />
                             <input type="hidden" name="execucao" value="${execucao}" />
@@ -1674,6 +1674,7 @@
                             </div>
                         </form>
                     </c:if>
+                    
                     <!--Lista dos Dispositivo no banco-->
                     <c:forEach var="di" items="${Disp.listDispositivo(auto.pkAutoStage)}">
                         <c:set var="TpDisp" value="${TpDis.detalheTpDisp(di.fkTipoDisplegal)}" />

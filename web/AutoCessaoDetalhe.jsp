@@ -30,6 +30,7 @@
 <!--Verificação de acesso  -->
     <c:set var="acessoPerfil" value="${sessionPerfil}" />
     <jsp:directive.include file="include/ControleAcesso.jsp" />
+
     <c:set var="qAC" value="${param.qAC}" />
     <c:set var="qProcesso" value="${param.qProcesso}" />
     <c:set var="qVigor" value="${param.qVigor}" />

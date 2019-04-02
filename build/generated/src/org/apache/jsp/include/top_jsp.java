@@ -128,7 +128,7 @@ public final class top_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <li>\r\n");
       out.write("                            <a href=\"ControllerServlet?acao=UsuarioLogoff\">\r\n");
       out.write("                                <i class=\"ace-icon fa fa-power-off\"></i>\r\n");
-      out.write("                                Logof\r\n");
+      out.write("                                Logoff\r\n");
       out.write("                            </a>\r\n");
       out.write("                        </li>\r\n");
       out.write("                    </ul>\r\n");

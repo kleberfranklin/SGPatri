@@ -107,7 +107,7 @@ public class SetorLista implements Logica{
 
 //Populando o objeto lista             
         List<Setor> listSetor = new SetorDAO().listSetor(qtdLinha, offset, q);
-        req.setAttribute("listSeor", listSetor);
+        req.setAttribute("listSetor", listSetor);
         
     return "SetorLista.jsp?pg="+pg+"&pi="+pi+"&pf="+pf+"&qtdPg="+qtdPg+"&totalRes="+qtdRegistro+"&q="+q;
     }
