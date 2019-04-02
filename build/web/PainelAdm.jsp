@@ -31,8 +31,8 @@
 
                     <div class="col-xs-10" >
                         <h3 class="header smaller lighter blue"><strong>Controle de Usuários</strong></h3>
-                        <div class="infobox-chart col-xs-12" style=" padding-top:30px">
-                            <div class="btn-group-lg col-xs-2">
+                        <div class="col-sm-12 infobox-chart" style=" padding-top:30px">
+                            <div class="infobox btn-group-lg">
                                 <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=UsuarioListaPaginada';">
                                     <i class="ace-icon fa fa-user"></i>
                                     Usuário
@@ -40,27 +40,27 @@
                             </div>
                             <c:if test="${sessionPerfil == 'Administrador'}">        
 
-                                <div class="btn-group-lg col-xs-2">
+                                <div class="infobox btn-group-lg ">
                                     <button class="btn btn-primary btn-white btn-block" onclick="location.href = 'ControllerServlet?acao=DivisaoLista';">
                                         <i class="ace-icon fa fa-folder"></i>
                                         Divisão
                                     </button>
                                 </div>
-                                <div class="btn-group-lg col-xs-2">
+                                <div class="infobox btn-group-lg">
                                     <button class="btn btn-primary btn-white btn-block" onclick="location.href = 'ControllerServlet?acao=SetorLista';">
                                         <i class="ace-icon fa fa-folder"></i>
                                         Núcleo
                                     </button>
                                 </div>
 
-                                <div class="btn-group-lg disabled-li-menu col-xs-2">
+                                <div class="infobox btn-group-lg disabled-li-menu">
                                     <button class="btn btn-primary btn-white btn-block" onclick="location.href = 'ControllerServlet?acao=CargoLista';">
                                         <i class="ace-icon fa fa-folder"></i>
                                         Cargo
                                     </button>
                                 </div>
 
-                                <div class="btn-group-lg col-xs-2">
+                                <div class="btn-group-lg infobox">
                                     <button class="btn btn-primary btn-white btn-block" onclick="location.href = 'ControllerServlet?acao=PerfilLista';">
                                         <i class="ace-icon fa fa-folder"></i>
                                         Perfil no Sistema
@@ -75,68 +75,66 @@
                         <div class="col-xs-10" > 
                             <h3 class="header smaller lighter blue"><strong>DDPI / SCL - Núcleo de Controle de Lavratura de Cessão</strong></h3>
                             <div class=" infobox-chart col-xs-10" style=" padding-top:30px">
-                                <div class="btn-group-lg col-xs-3" title="Realizar alterações no campo Tipo de Auto de Cessão dos formulários de cadastro de Auto de Cessão">
+                                <div class="btn-group-lg infobox" title="Realizar alterações no campo Tipo de Auto de Cessão dos formulários de cadastro de Auto de Cessão">
                                     <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=TipoAutoCessaoLista';">
                                         Tipo de Auto de Cessão
                                     </button>
                                 </div>
 
-                                <div class="btn-group-lg col-xs-3" title="">
+                                <div class="btn-group-lg infobox" title="">
                                     <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=CatAutoCessaoLista';">
                                         Categoria Auto de Cessão
                                     </button>
                                 </div>
 
-                                <div class="btn-group-lg col-xs-3" title="">
+                                <div class="btn-group-lg infobox" title="">
                                     <button class="btn btn-primary btn-white btn-block" onclick="location.href = 'ControllerServlet?acao=CatFinalidadeLista';">
                                         Categoria Finalidade
                                     </button>
                                 </div>
-                                <div class="btn-group-lg col-xs-3">
+                                <div class="btn-group-lg infobox">
                                     <button class="btn btn-primary btn-white btn-block" onclick="location.href = 'ControllerServlet?acao=CatSubFinalidadeLista';">
                                         SubCategoria Finalidade
                                     </button>
                                 </div>
                             </div>
 
-                            <br/> 
 
                             <div class=" infobox-chart col-xs-10" style=" padding-top:30px">
-                                <div class="btn-group-lg col-xs-3">
+                                <div class="btn-group-lg infobox">
                                     <button class="btn btn-primary btn-white btn-block" onclick="location.href = 'ControllerServlet?acao=CatContrapartidaLista';">
                                         Categoria contrapartida
                                     </button>
                                 </div>
 
-                                <div class="btn-group-lg col-xs-3">
+                                <div class="btn-group-lg infobox">
                                     <button class="btn btn-primary btn-white btn-block" onclick="location.href = 'ControllerServlet?acao=TipoDispLegalLista';">
                                         Tipo de Dispositivo Legal
                                     </button>
                                 </div>
 
-                                <div class="btn-group-lg disabled-li-menu col-xs-3">
+                                <div class="btn-group-lg disabled-li-menu infobox">
                                     <button class="btn btn-primary btn-white btn-block" onclick="location.href = 'ControllerServlet?acao=';">
                                         Nível Administração
                                     </button>
                                 </div> 
 
-                                <div class="btn-group-lg disabled-li-menu col-xs-3">
+                                <div class="btn-group-lg disabled-li-menu infobox">
                                     <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=';">
                                         Categoria da Entidade
                                     </button>
                                 </div>
                             </div>
 
-                            <br/>
 
                             <div class=" infobox-chart col-xs-10" style=" padding-top:30px">
-                                <div class="btn-group-lg disabled-li-menu col-xs-3">
+                                <div class="btn-group-lg disabled-li-menu infobox">
                                     <button class="btn btn-primary btn-white btn-block" onclick="location.href = 'ControllerServlet?acao=';">
                                         Cessionário
                                     </button>
                                 </div>
 
-                                <div class="btn-group-lg disabled-li-menu col-xs-3" >
+                                <div class="btn-group-lg disabled-li-menu infobox" >
                                     <button class="btn btn-primary btn-white btn-block" onclick="location.href = 'ControllerServlet?acao=';">
                                         Cedente
                                     </button>
@@ -144,6 +142,33 @@
                             </div>
                         </div>
                     </c:if>  
+
+                    <c:if test="${ ('DIPI' == sessionSgDivisao && sessionSgSetor == 'SIC')  || sessionPerfil == 'Administrador'}">    
+
+                        <div class="col-xs-10" >
+                            <h3 class="header smaller lighter blue"><strong>DIPI/SIC - Divisao de Informação de Patrimonio Imobiliário</strong></h3>
+                            <div class="col-sm-12 infobox-chart" style=" padding-top:30px">
+                                <div class="infobox btn-group-lg ">
+                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=TipoAssuntoLista';">
+                                        <i class="ace-icon fa fa-user"></i>
+                                        Tipo de Assunto
+                                    </button>
+                                </div>
+                                <div class="infobox btn-group-lg">
+                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=TipoExpedienteLista';">
+                                        <i class="ace-icon fa fa-user"></i>
+                                        Tipo de Expediente
+                                    </button>
+                                </div>
+                                <div class="infobox btn-group-lg ">
+                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=TipoDespachoLista';">
+                                        <i class="ace-icon fa fa-user"></i>
+                                        Tipo de Despacho
+                                    </button>
+                                </div>
+                            </div>
+                        </div> 
+                    </c:if>
 
                     <jsp:include page = "include/footer.jsp" />
 

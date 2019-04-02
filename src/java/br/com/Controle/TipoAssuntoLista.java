@@ -5,9 +5,9 @@
  */
 package br.com.Controle;
 
-import br.com.Modelo.CadastroSgdDAO;
-import br.com.Modelo.CadastroSGD;
 import br.com.Modelo.Logica;
+import br.com.Modelo.TipoAssunto;
+import br.com.Modelo.TipoAssuntoDAO;
 import br.com.Utilitario.Transformar;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -17,13 +17,13 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author x369482
  */
-public class PesquisaSgdListaPagFiltro implements Logica {
+public class TipoAssuntoLista implements Logica {
 
     @Override
     public String executa(HttpServletRequest req,
             HttpServletResponse res) throws Exception {
 
-        CadastroSgdDAO cadSgdDAO = new CadastroSgdDAO();
+        TipoAssuntoDAO tpAsDAO = new TipoAssuntoDAO();
 
         /**
          * Atributos: pg = número da página atual pi = número da página inicial
@@ -32,72 +32,47 @@ public class PesquisaSgdListaPagFiltro implements Logica {
          * quantidade de linhas por página maxPg = quantidade de paginação a ser
          * exibida (1, 2 , 3 ...) sobraMaxPg = auxiliar para o calculdo da
          * quantidade de pagina
-         *
+*
          */
-        int pg, pi, pf, qtdRegistro, qtdPg, sobraMaxPg = 0, offset;
-        int qtdLinha = 6;
+        int pg, pi, pf, qtdRegistro, qtdPg, offset;
+        String q, pgS, piS, pfS;
+        int qtdLinha = 8;
         int maxPg = 10;
+        int sobraMaxPg = 0;
 
-        String pgS, piS, pfS, ter;
-        String cdProcesso, nmInteressado, nmAssunto, cdCroqui;
-
-//Carregando atributos com a informações do formlário.           
+//Carregando atributos com a informações do formlário.         
         pgS = req.getParameter("pg");
         piS = req.getParameter("pi");
         pfS = req.getParameter("pf");
+        q = req.getParameter("q");
 
-        cdProcesso = req.getParameter("cdProcesso");
-        nmInteressado = req.getParameter("nmInteressado");
-        nmAssunto = req.getParameter("nmAssunto");
-        cdCroqui = req.getParameter("cdCroqui");
-        ter = req.getParameter("ter");
-
-//Validação dos atributos carregdos com as informações do formulário.         
-        if (cdProcesso == null) {
-            cdProcesso = "";
+        //Validação dos atributos carregdos com as informações do formulário.            
+        if (q == null) {
+            q = "";
+        } else if (!"".equals(q)) {
+            q = Transformar.priMaiuscula(q);
         }
-
-        if (null == nmInteressado || nmInteressado.equals("")) {
-            nmInteressado = "";
-        } else {
-            nmInteressado = Transformar.removeAccents(Transformar.utf8(nmInteressado)).toUpperCase().trim();
-        }
-
-        if (null == nmAssunto || nmAssunto.equals("")) {
-            nmAssunto = "";
-        } else {
-            nmAssunto = Transformar.removeAccents(Transformar.utf8(nmAssunto)).toUpperCase().trim();
-        }
-
-        if (null == cdCroqui || cdCroqui.equals("")) {
-            cdCroqui = "";
-        } else {
-            cdCroqui = Transformar.removeAccents(cdCroqui).toUpperCase().trim();
-        }
-
         if (pgS == null) {
             pg = 0;
         } else {
             pg = Integer.parseInt(pgS);
         }
-
         if (piS == null) {
             pi = 0;
         } else {
             pi = Integer.parseInt(piS);
         }
-
         if (pfS == null) {
             pf = 0;
         } else {
             pf = Integer.parseInt(pfS);
         }
 
-//Carregando a quantidade de registro para calculdo da quantidade de paginas     
-        qtdRegistro = cadSgdDAO.qtdSgdPesquisa(cdProcesso, nmInteressado, nmAssunto, cdCroqui);
+//Carregando a quantidade de registro para calculdo da quantidade de paginas        
+        qtdRegistro = tpAsDAO.qdTipoAssunto(q);
         qtdPg = qtdRegistro / qtdLinha;
 
-////Logica da paginação         
+//Logica da paginação            
         if ((qtdRegistro % qtdLinha) != 0) {
             qtdPg = qtdPg + 1;
         }
@@ -111,7 +86,6 @@ public class PesquisaSgdListaPagFiltro implements Logica {
                 sobraMaxPg = maxPg;
             }
         }
-
         if (pg == 0) {
             pg = 1;
         }
@@ -129,19 +103,11 @@ public class PesquisaSgdListaPagFiltro implements Logica {
         offset = ((pg * qtdLinha) - qtdLinha);
 
         //Populando o objeto lista 
-        List<CadastroSGD> listSgd = new CadastroSgdDAO().listPagFiltroPesquisaSGD(cdProcesso, nmInteressado, nmAssunto, cdCroqui, qtdLinha, offset);
+        List<TipoAssunto> listTpAs = new TipoAssuntoDAO().listTipoAssunto(qtdLinha, offset, q);
+        req.setAttribute("listTpAs", listTpAs);
 
-        return "CadastroSgdLista.jsp?"
-                + "pg=" + pg
-                + "&pi=" + pi
-                + "&pf=" + pf
-                + "&qtdPg=" + qtdPg
-                + "&totalRes=" + qtdRegistro
-                + "&cdProcesso=" + cdProcesso
-                + "&nmInteressado=" + nmInteressado
-                + "&nmAssunto=" + nmAssunto
-                + "&cdCroqui=" + cdCroqui
-                + "&ter" + ter;
+        return "TipoAssuntoLista.jsp?pg=" + pg + "&pi=" + pi + "&pf=" + pf + "&qtdPg=" + qtdPg + "&totalRes=" + qtdRegistro + "&q=" + q;
 
     }
+
 }

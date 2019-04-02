@@ -37,7 +37,7 @@
                         </div>
 
                         <div class="form-group" style=" padding-top:30px">
-                            <div class="btn-group-lg col-xs-2">
+                            <div class="btn-group-lg infobox">
                                 <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=AutoCessaoListaPagFiltro&ter=${ter}';">
                                     <!--<button class="btn btn-primary btn-white btn-block" onclick="#"> -->
                                     <i class="glyphicon glyphicon-search"></i>
@@ -45,11 +45,10 @@
                                 </button>
                             </div>
 
-                            <div class="space-4"></div>
-                            <br/><br/>
+                            <br/>
 
                             <c:if test="${sessionSgDivisao == 'DDPI' && sessionSgSetor == 'SCL'}">
-                                <div class="btn-group-lg col-xs-2">
+                                <div class="btn-group-lg infobox">
                                     <!--<button class="btn btn-primary btn-white btn-block" onclick="#">-->
                                     <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'AutoCessaoCRU.jsp?execucao=insert&novo=1';">
                                         <i class="ace-icon fa fa-plus"></i>

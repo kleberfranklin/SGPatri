@@ -20,7 +20,7 @@ public class AnotacaoCroqui {
             nrInformacao,  nrEndereco, nmComplementoEndereco, nmLogin, dthrAtualizacao;
     private Date dtPublicacao, dtData;
     
-//Construtor    
+
     public AnotacaoCroqui() {
     }
 
@@ -284,6 +284,7 @@ public class AnotacaoCroqui {
         this.nmComplementoEndereco = nmComplementoEndereco;
     }
 
+
     public String getDthrAtualizacao() {
         return dthrAtualizacao;
     }
@@ -294,7 +295,7 @@ public class AnotacaoCroqui {
 
     public int getNrVerExpediente() {
         return nrVerExpediente;
-    }
+    }    
 
     public void setNrVerExpediente(int nrVerExpediente) {
         this.nrVerExpediente = nrVerExpediente;

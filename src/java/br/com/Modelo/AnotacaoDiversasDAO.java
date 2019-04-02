@@ -20,14 +20,11 @@ import java.util.List;
 public class AnotacaoDiversasDAO {
 
     private final Connection connection;
-    
-
-//Construtor
     public AnotacaoDiversasDAO() {
         this.connection = new FabricaConexao().getConnetion();
     }
 
-    //Metodo de quantidade de linhas
+//Metodo de quantidade de linhas
     public int qtdAntoDiversa(String qSetor, String qQuarda, String qLote, String qArea, String qNome, String qInteressado, 
             String qEndereco, String qAssunto, Date dtIni, Date dtFim) {
         String sql = ("SELECT COUNT(*) as total FROM tbl_anotacao_expediente "
@@ -54,6 +51,7 @@ public class AnotacaoDiversasDAO {
                 stmt.setString(8, '%' + qAssunto + '%');
                 stmt.setDate(9, dtIni);
                 stmt.setDate(10, dtFim);
+
                 ResultSet rs = stmt.executeQuery();
                 if (rs.next()) {
                     total = rs.getInt("total");
@@ -66,7 +64,7 @@ public class AnotacaoDiversasDAO {
         }
     }
 
-    //METODO lista os atributos do cadastro de croqui das pesquisas e paginado
+//METODO lista os atributos do cadastro de croqui das pesquisas e paginado
     public List<AnotacaoDiversas> listAnotaDiversa(String qSetor, String qQuarda, String qLote, String qArea, String qNome, String qInteressado, 
             String qEndereco, String qAssunto,
             Date dtIni, Date dtFim, int qtLinha, int offset) {
@@ -119,12 +117,14 @@ public class AnotacaoDiversasDAO {
                 listAnotacaoDiversas.add(anotDiversas);
             }
             return listAnotacaoDiversas;
+
+            
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    //METODO uilizado para listar o nome do da tabela 
+//METODO uilizado para listar o nome do da tabela 
     public List<AnotacaoDiversas> listNome() {
         String sql = ("SELECT COUNT(*)qtd, nm_autor FROM tbl_anotacao_expediente "
                 + "WHERE nm_tipo_expediente = 'AD' "
@@ -137,6 +137,7 @@ public class AnotacaoDiversasDAO {
             while (rs.next()) {
                 AnotacaoDiversas note = new AnotacaoDiversas();
                     note.setNmAutor(rs.getString("nm_autor"));
+
                 lisNome.add(note);
             }
             return lisNome;
@@ -293,22 +294,18 @@ public class AnotacaoDiversasDAO {
     }
     
     
-    public void upAnotacaoDiversasVerificadoArquivo (int pkAnotacaoExpediente){
-        String sql = "UPDATE tbl_anotacao_expediente "
-                    + "SET nr_verificado_arquivo = 1 "
-                    + "WHERE id_anotacao_expediente = ? ";
-        try{
-            PreparedStatement stmt = connection.prepareStatement(sql);
-                stmt.setInt(1, pkAnotacaoExpediente);
-            stmt.execute();
-            stmt.close();
-        }catch (SQLException e){
-            throw new RuntimeException(e);
-        }    
-    
-    }
-    
-    
+//    public void upAnotacaoDiversasVerificadoArquivo (int pkAnotacaoExpediente){
+//        String sql = "UPDATE tbl_anotacao_expediente "
+//                    + "SET nr_verificado_arquivo = 1 "
+//                    + "WHERE id_anotacao_expediente = ? ";
+//        try{
+//            PreparedStatement stmt = connection.prepareStatement(sql);
+//                stmt.setInt(1, pkAnotacaoExpediente);
+//
+//            throw new RuntimeException(e);
+//        }
+//    }
+
     
 
 }

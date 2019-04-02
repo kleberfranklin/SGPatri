@@ -1,5 +1,5 @@
 <%-- 
-    Document   : CadastroCroqui
+    Document   : AnotacaoCroquiCRU
     Created on : 20/12/2018, 12:26:59
     Author     : x369482
 --%>
@@ -282,6 +282,7 @@
                                                     <span class="lbl"><strong>Assunto:</strong></span>
                                                 </div>
 
+<<<<<<< HEAD
                                                 <label class="col-sm-8 col-xs-12">
                                                     <c:choose>
                                                         <c:when test="${execucao == 'edit'}">
@@ -296,6 +297,22 @@
                                                     </c:choose>
                                                 </label>
                                             </div>
+=======
+                                                <div class="space-1"></div>
+                                                <c:choose>
+                                                    <c:when test="${execucao == 'edit'}">
+                                                        <div class="form-group">
+                                                            <div class="inline col-sm-2 col-xs-12">
+                                                                <span class="lbl"><strong>Local:</strong></span>
+                                                            </div>
+                                                            <label class="col-sm-8 col-xs-12" >
+                                                                <input type="text" id="form-field-1" class="col-sm-12 col-xs-12" name="nmEndereco" 
+                                                                       value="${anotCroqui.nmReferenciaEndereco}"  placeholder="Descrição do local" required="required">
+                                                            </label>
+                                                        </div>
+                                                    </c:when>
+                                                    <c:when test="${execucao == 'insert'}">
+>>>>>>> 9bd05a6e23c77d2a18f5d4f2644a76b9aedbe7cc
 
                                             <div class="space-1"></div>
 
@@ -345,6 +362,7 @@
                                                     </div>
                                                     <div class="space-1"></div>
 
+<<<<<<< HEAD
                                                     <div class="form-group">
                                                         <label class="inline col-md-2 col-xs-12" >  
                                                             <span class="lbl"><strong>Referência:</strong></span>
@@ -374,6 +392,22 @@
                                                         </label>
                                                     </div>
                                                     <div class="space-1"></div>
+=======
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <div class="form-group">
+                                                            <div class="inline col-sm-2 col-xs-12">
+                                                                <span class="lbl"><strong>Local:</strong></span>
+                                                            </div>
+                                                            <label class="col-sm-8 col-xs-12" >
+                                                                <span class="lbl">${anotCroqui.nmReferenciaEndereco}</span>
+                                                            </label>
+                                                        </div>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                        </div>
+                                        <div class="space-1"></div>
+>>>>>>> 9bd05a6e23c77d2a18f5d4f2644a76b9aedbe7cc
 
                                                     <div class="form-group">
                                                         <label class="inline col-md-2 col-xs-12" >
@@ -638,6 +672,25 @@
                                                     </c:choose>
                                                 </label>
                                             </div>
+<<<<<<< HEAD
+=======
+                                            <label class="inline col-sm-9 col-xs-12" >
+                                                <c:choose>
+                                                    <c:when test="${execucao == 'edit'}">
+                                                        <textarea class="form-control" id="form-field-8" name="dsObservacao" placeholder="Observação" 
+                                                                  style="margin: 0px 102.656px 0px 0px; width: 700px; height: 90px;">${anotCroqui.dsObservacao}</textarea>
+                                                    </c:when>
+                                                    <c:when test="${execucao == 'insert'}">
+                                                        <textarea class="form-control col-xs-12" id="form-field-8" name="dsObservacao" placeholder="Observação" 
+                                                                  style="margin: 0px 102.656px 0px 0px; width: 700px; height: 90px;"></textarea>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <span class="lbl">${anotCroqui.dsObservacao}</span>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </label>
+                                        </div>
+>>>>>>> 9bd05a6e23c77d2a18f5d4f2644a76b9aedbe7cc
 
                                             <div class="space-1"></div>
 
@@ -733,11 +786,17 @@
                                 <!-- Botões-->
                                             <div class="form-actions center ">
                                                 <c:choose>
+<<<<<<< HEAD
                                                     <c:when test="${execucao == 'insert' }">
                                                         <button class="btn btn-yellow" type="reset" onclick=" location.href = 'AnotacaoCroqui.jsp';">
                                                             <i class="ace-icon fa fa-undo bigger-110"></i>
                                                             Voltar
                                                         </button>
+=======
+                                                    <c:when test="${execucao == 'edit'}">
+                                                        <input type="text" id="form-field-1" class="col-sm-8 col-xs-12"  name="nmInteressado" 
+                                                               value="${anotCroqui.nmAutor}" placeholder="Nome " required="required" >
+>>>>>>> 9bd05a6e23c77d2a18f5d4f2644a76b9aedbe7cc
                                                     </c:when>
                                                     <c:when test="${pq == '' || pg == null }">
                                                         <button class="btn btn-yellow" type="reset" onclick=" location.href = 'ControllerServlet?acao=AnotacaoCroquiLista';">
@@ -746,10 +805,14 @@
                                                         </button>
                                                     </c:when>
                                                     <c:otherwise>
+<<<<<<< HEAD
                                                         <button class="btn btn-yellow" type="reset" onclick=" location.href = 'ControllerServlet?acao=AnotacaoCroquiLista&pg=${pg}&pi=${pi}&pf=${pf}&qCroqui=${qCroqui}&qArea=${qArea}&qNome=${qNome}&qEndereco=${qEndereco}&qAssunto=${qAssunto}&dtIni=${dtIni}&dtFim=${dtFim}';">
                                                             <i class="ace-icon fa fa-undo bigger-110"></i>
                                                             Voltar
                                                         </button>
+=======
+                                                        <span class="lbl">${anotCroqui.nmAutor}</span> 
+>>>>>>> 9bd05a6e23c77d2a18f5d4f2644a76b9aedbe7cc
                                                     </c:otherwise>
                                                 </c:choose>    
 
@@ -767,6 +830,7 @@
                                             </div>
                                         </form>
                                     </div>
+<<<<<<< HEAD
                                 
                                 <!--Inicio da tab-pane Documento Anexo -->        
                                     <div id="doc-anexo" class="tab-pane <c:if test="${execucao=='insert'}" >disabled-li-menu</c:if> ">
@@ -821,18 +885,18 @@
                                             </form>
                                         </div>
                                     </div>
+=======
+>>>>>>> 9bd05a6e23c77d2a18f5d4f2644a76b9aedbe7cc
                                 </div>
                             </div>
                         </div>    
+                        <jsp:include page = "include/footer.jsp" />
+                        <jsp:include page = "javaScritp/carregado.html" />
                     </div>    
-
-                    <jsp:include page = "include/footer.jsp" />
-                    <jsp:include page = "javaScritp/carregado.html" />
-
                 </div>
-
-
-                </body>
-                </html>
+            </div>
+        </div>
+    </body>
+</html>
 
 

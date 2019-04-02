@@ -27,6 +27,12 @@
             <b class="arrow"></b>
             <ul class="submenu">
                 <li class="">
+                    <a href="MinisterioPublico.jsp" title="Ministerio Publico">
+                        <i class="menu-icon fa fa-caret-right"></i> Ministerio Publico
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                <li class="">
                     <a href="#" title="Gestão de Pessoas">
                         <i class="menu-icon fa fa-caret-right"></i> Gestão de Pessoas
                     </a>
@@ -126,15 +132,14 @@
                         <b class="arrow fa fa-angle-down"></b>
                     </a>
                     <b class="arrow"></b>
-                    <ul class="submenu disabled-li-menu">
+                    
+                    <!--  PAGINAS DO CAP JA ESTAO QUASE PRONTA APENAS ATIVAR O MENU PARA VÊ-LAS -->
+                    <ul class="submenu">
                         <li class="">
-                            <a href="CapUsuario.jsp" title="Gerenciamento do Usuário do CAP/QGIS">Usuários CAP/QGIS</a>
+                            <a href="Cap.jsp" title="Cadastro de Área Publica">CAP</a>
                             <b class="arrow"></b>
                         </li>
-                        <li class="">
-                            <a href="CapRestauracao.jsp" title="Restauração de CAP alterado/inserido/deletado">Restaurar CAP/QGIS</a>
-                            <b class="arrow"></b>
-                        </li>
+
                     </ul>    
                 </li>
                 <li class="">

@@ -65,6 +65,7 @@ public class AnotacaoCroquiDAO {
     //METODO lista os atributos do cadastro de croqui das pesquisas e paginado
     public List<AnotacaoCroqui> listAnotaCroqui(String qCroqui, String qArea, String qNome, String qInteressado, String qEndereco, String qAssunto,
             Date dtIni, Date dtFim, int qtLinha, int offset) {
+
             String sql = ("SELECT Id_anotacao_expediente, cd_croqui, cd_area, nm_autor, nm_interessado, "
                 + "nm_referencia_endereco, ds_assunto, dt_data, cd_processo, cd_tid "
                 + "FROM tbl_anotacao_expediente "
@@ -172,6 +173,7 @@ public class AnotacaoCroquiDAO {
                 anotCroqui.setNmComplementoEndereco(rs.getString("nm_complemento_endereco"));
                 anotCroqui.setNrVerExpediente(rs.getInt("nr_verificado_expediente"));
                 anotCroqui.setNrVerArquivo(rs.getInt("nr_verificado_arquivo"));
+
                 return anotCroqui;
             }
             stmt.execute();
@@ -223,6 +225,7 @@ public class AnotacaoCroquiDAO {
                 if(rs.next()){
                     pkCroqui = rs.getInt("id_anotacao_expediente");
                 }
+
             stmt.close();
             return pkCroqui;
                   

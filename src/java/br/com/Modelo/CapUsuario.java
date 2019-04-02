@@ -12,19 +12,19 @@ package br.com.Modelo;
 public class CapUsuario {
 
 //Atributos
-    private int pkUsuario, pkDivisao, pkSetor, pkCargo, nrAtivo, pkPerfil;
+    private int pkUsuarioCap, pkDivisao, pkSetor, pkCargo, nrAtivo, pkPerfil;
     private String nmLogin, nmNome, sgDivisao, nmDivisao, sgSetor, nmSetor, nmRf, nmEmail, nmFoto, nmCargo, nmPerfil, nmLoginAtualizacao, nmNomeAtualizacao, dthrAtualizacao;
 
 //Construtor
     public CapUsuario() {
     }
 
-    public CapUsuario(int pkUsuario) {
-        this.pkUsuario = pkUsuario;
+    public CapUsuario(int pkUsuarioCap) {
+        this.pkUsuarioCap = pkUsuarioCap;
     }
 
-    public CapUsuario(int pkCapUsuario, int nrAtivo, String nmLoginAtualizacao) {
-        this.pkUsuario = pkUsuario;
+    public CapUsuario(int pkUsuarioCap, int nrAtivo, String nmLoginAtualizacao) {
+        this.pkUsuarioCap = pkUsuarioCap;
         this.nrAtivo = nrAtivo;
         this.nmLoginAtualizacao = nmLoginAtualizacao;
     }
@@ -43,19 +43,19 @@ public class CapUsuario {
         this.nmLoginAtualizacao = nmLoginAtualizacao;
     }
 
-    public CapUsuario(int pkUsuario, int pkDivisao, int pkSetor, int pkCargo, int nrAtivo, int pkPerfil, String nmLogin, String nmNome, String nmRf, String nmEmail, String nmLoginAtualizacao) {
+    public CapUsuario(int pkUsuarioCap, int pkDivisao, int pkSetor, int pkCargo, int nrAtivo, int pkPerfil, String nmLogin, String nmNome, String nmRf, String nmEmail, String nmLoginAtualizacao) {
         this(pkDivisao, pkSetor, nrAtivo, pkPerfil, pkCargo, nmLogin, nmNome, nmRf, nmEmail, nmLoginAtualizacao);
-        this.pkUsuario = pkUsuario;
+        this.pkUsuarioCap = pkUsuarioCap;
 
     }
 
 //Getters e Setters
-    public int getPkUsuario() {
-        return pkUsuario;
+    public int getPkUsuarioCap() {
+        return pkUsuarioCap;
     }
 
-    public void setPkUsuario(int pkUsuario) {
-        this.pkUsuario = pkUsuario;
+    public void setPkUsuarioCap(int pkUsuarioCap) {
+        this.pkUsuarioCap = pkUsuarioCap;
     }
 
     public int getPkDivisao() {

@@ -1,8 +1,9 @@
 <%-- 
-    Document   : PesquisaSic
-    Created on : 23/01/2019, 15:17:29
+    Document   : AnotacaoCroquiLista
+    Created on : 11/03/2019, 11:59:54
     Author     : x369482
 --%>
+
 
 <%@page contentType="text/html charset=UTF-8;" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -18,9 +19,12 @@
 <!--Verificação de acesso  -->
             <c:set var="acessoPerfil" value="${sessionPerfil}" />
             <jsp:directive.include file="include/ControleAcesso.jsp" />
+<<<<<<< HEAD
             
 <!-- Beans -->               
             <jsp:useBean id="expe" class= "br.com.Modelo.AnotacaoCroquiDAO"/>
+=======
+>>>>>>> 9bd05a6e23c77d2a18f5d4f2644a76b9aedbe7cc
 
 <!--Pegando os paremetros -->
             <c:set var="pg" value="${param.pg}" />
@@ -40,7 +44,7 @@
 
             <div class="breadcrumbs ace-save-state" id="breadcrumbs">
                 <ul class="breadcrumb">
-                    <li><i class="ace-icon fa fa-list"></i> Anotação Croqui</li>
+                    <li><i class="ace-icon fa fa-list"></i> Pesquisa de Relatórios</li>
                 </ul>
             </div>
 
@@ -50,19 +54,20 @@
 
 
                         <div class="form-actions col-sm-12 col-xs-12">
-                            <h4 class="widget-title "><strong>Croqui Filtros</strong></h4>
+                            <h4 class="widget-title "><strong>Filtros</strong></h4>
                             <form class="form-search" action="ControllerServlet?acao=AnotacaoCroquiLista" method="POST">
 
-                                <label class="col-sm-2 col-xs-1 "> Croqui:</label>
-                                <div class="input-group col-sm-2 col-xs-12">
-                                    <input type="text" name="qCroqui" placeholder="${qCroqui}" class="col-sm-7 col-xs-12" />
+                                <label class="col-sm-2 col-xs-12 "> Croqui:</label>
+                                <div class="input-group col-sm-4 col-xs-12">
+                                    <input type="text" name="qCroqui" placeholder="${qCroqui}" class="col-sm-3 col-xs-12" />
                                 </div>
 
-                                <label class="col-sm-1 col-xs-1 "> Área:</label>
+                                <label class="col-sm-1 col-xs-12 "> Área:</label>
                                 <div class="input-group col-sm-2 col-xs-12">
                                     <input type="text" name="qArea" placeholder="${qArea}" class="col-sm-7 col-xs-12" />
                                 </div>
 
+<<<<<<< HEAD
                                 <label class="col-sm-1 col-xs-12"> Autor:</label>
                                 <div class="input-group col-sm-4 col-xs-12">
                                     <select name="qNome" placeholder="" class="col-sm-5 col-xs-12" >
@@ -76,38 +81,28 @@
                                 </div>
 
 
+=======
+>>>>>>> 9bd05a6e23c77d2a18f5d4f2644a76b9aedbe7cc
                                 <br /> <br />
-                                <label class="col-sm-2 col-xs-1 "> Endereço:</label>
+
+                                <label class="col-sm-2 col-xs-12 "> Endereço:</label>
                                 <div class="input-group col-sm-4 col-xs-12">
                                     <input type="text" name="qEndereco" placeholder="${qEndereco}" class="col-sm-12 col-xs-12" />
                                 </div>
 
-                                <label class="col-sm-1 col-xs-12" >Assunto:</label>
-                                <div class="input-group col-sm-3 col-xs-12">
+                                <br /> <br />
+
+                                <label class="col-sm-2 col-xs-12" >Assunto:</label>
+                                <div class="input-group col-sm-4 col-xs-12">
                                     <input type="text" name="qAssunto" placeholder="${qAssunto}" class="col-sm-12 col-xs-12 " />
                                 </div>
                                 <br /> <br />
 
-                                <label class="col-sm-2 col-xs-1 "> Interessado:</label>
-                                <div class="input-group col-sm-4 col-xs-12">
-                                    <input type="text" name="qInteressado" placeholder="${qInteressado}" class="col-sm-10 col-xs-12" />
+                                <label class="col-sm-2 col-xs-12 "> Interessado:</label>
+                                <div class="input-group col-sm-6 col-xs-12">
+                                    <input type="text" name="qInteressado" placeholder="${qInteressado}" class="col-sm-8 col-xs-12" />
                                 </div>
 
-                                <br/><br/>
-                                <label class="col-sm-2 col-xs-12 ">Período:</label>
-                                <div class="input-group col-sm-1 col-xs-12">
-                                    <input class="form-control" name="dtIni" placeholder="${dtIni}" type="date" data-date-format="dd/mm/yyyy" >
-                                    <span class="input-group-addon">
-                                        <i class="fa fa-calendar bigger-110"></i>
-                                    </span>
-                                </div>
-                                <div class="col-sm-1"></div>
-                                <div class="input-group col-sm-2 col-xs-12">
-                                    <input class="form-control" name="dtFim" placeholder="${dtFim}" type="date" data-date-format="dd/mm/yyyy" >
-                                    <span class="input-group-addon">
-                                        <i class="fa fa-calendar bigger-110"></i>
-                                    </span>
-                                </div>
 
                                 <!--Botoes-->
                                 <div class="input-group-btn col-sm-4 col-sm-offset-1 col-xs-12">
@@ -126,18 +121,22 @@
                             <thead>
                                 <tr>
                                     <th class="center detail-col">Detalhes</th>
-                                    <th class="hidden-480">Data</th>
                                     <th>Croqui</th>
                                     <th>Área </th>
                                     <th>Endereço </th>
                                     <th>Processo</th>
                                     <th class="hidden-480">Assunto </th>
                                     <th class="hidden-480">Interessado </th>
+<<<<<<< HEAD
                                     <th colspan="2" class="hidden-480">Autor </th>
+=======
+                                    <th>Relatório</th>
+>>>>>>> 9bd05a6e23c77d2a18f5d4f2644a76b9aedbe7cc
                                 </tr>
                             </thead>
 
                             <c:forEach var="lcroqui" items="${listCroqui}">
+<<<<<<< HEAD
                                 <tbody>
                                     <tr>
                                         <td>
@@ -198,33 +197,26 @@
                                                 <c:when test="${lcroqui.cdProcesso.length() > 10 }">
                                                     ${lcroqui.cdProcesso.substring(0,10)}...
                                                 </c:when>
+=======
+                            </c:forEach>
 
-                                                <c:otherwise>
-                                                    ${lcroqui.cdProcesso}
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </td>
-                                        <td class="hidden-480" title="${lcroqui.dsAssunto}">
-                                            <c:choose >
-                                                <c:when test="${lcroqui.dsAssunto.length() > 20 }">
-                                                    ${lcroqui.dsAssunto.substring(0,20)}...
-                                                </c:when>
-                                                <c:otherwise>
-                                                    ${lcroqui.dsAssunto}
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </td>
-                                        <td class="hidden-480" title="${lcroqui.nmInteressado}">
-                                            <c:choose>
-                                                <c:when test="${lcroqui.nmInteressado.length() > 20}">
-                                                    ${lcroqui.nmInteressado.substring(0,20)}...
-                                                </c:when>
-                                                <c:otherwise>
-                                                    ${lcroqui.nmInteressado}
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </td>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class=" center action-buttons">
+                                            <!-- pagina apenas com os historicos-->  
+                                            <a href="AnotacaoCroquiDetalhes.jsp"><i class="ace-icon fa fa-search-plus"></i></a>
+                                        </div>
+                                    </td>
+>>>>>>> 9bd05a6e23c77d2a18f5d4f2644a76b9aedbe7cc
 
+                                    <td title="${lcroqui.cdCroqui}">
+                                        <c:choose >
+                                            <c:when test="${lcroqui.cdCroqui.length() > 8 }">
+                                                ${lcroqui.cdCroqui.substring(0,7)}...
+                                            </c:when>
+
+<<<<<<< HEAD
                                         <td class="hidden-480" title="${lcroqui.nmAutor}">
                                             <c:choose >
                                                 <c:when test="${lcroqui.nmAutor.length() > 10 }">
@@ -249,6 +241,160 @@
                                     </tr>
                                 </tbody>
                             </c:forEach>
+=======
+                                            <c:otherwise>
+                                                ${lcroqui.cdCroqui} 100265
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                    <td title="${lcroqui.cdArea}">
+                                        <c:choose >
+                                            <c:when test="${lcroqui.cdArea.length() > 10 }">
+                                                ${lcroqui.cdArea.substring(0,10)}...
+                                            </c:when>
+                                            <c:otherwise>
+                                                ${lcroqui.cdArea} 8M
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                    <td title="${lcroqui.nmReferenciaEndereco}">
+                                        <c:choose >
+                                            <c:when test="${lcroqui.nmReferenciaEndereco.length() > 30 }">
+                                                ${lcroqui.nmReferenciaEndereco.substring(0,30)}...
+                                            </c:when>
+                                            <c:otherwise>
+                                                ${lcroqui.nmReferenciaEndereco} R. Faustino Paganini nº 647 
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                    <td>
+                                        <c:choose >
+                                            <c:when test="${lcroqui.cdProcesso.length() > 10 }">
+                                                ${lcroqui.cdProcesso.substring(0,10)}...
+                                            </c:when>
+
+                                            <c:otherwise>
+                                                ${lcroqui.cdProcesso} Ofício 49 GV nº 311/2017
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                    <td class="hidden-480" title="${lcroqui.dsAssunto}">
+                                        <c:choose >
+                                            <c:when test="${lcroqui.dsAssunto.length() > 20 }">
+                                                ${lcroqui.dsAssunto.substring(0,20)}...
+                                            </c:when>
+                                            <c:otherwise>
+                                                ${lcroqui.dsAssunto} Solicita incoorporação de praça à escola
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                    <td class="hidden-480" title="${lcroqui.nmInteressado}">
+                                        <c:choose>
+                                            <c:when test="${lcroqui.nmInteressado.length() > 20}">
+                                                ${lcroqui.nmInteressado.substring(0,20)}...
+                                            </c:when>
+                                            <c:otherwise>
+                                                ${lcroqui.nmInteressado} C.M.S.P. - Vereador Toninho Vespoli
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+
+                                    <td>
+                                        <div class="hidden-sm hidden-xs btn-group">
+                                            <!-- pagina com a parte de inserir um historico para o croqui/area selecionado-->
+                                            <label class="col-sm-2 col-xs-12" >
+                                                <input id="id-button-borders"  type="checkbox" id="relatorio" name="relatorio" value="enviar" class="ace ace-switch ace-switch-5" >
+                                                <span class="lbl middle"></span>
+                                            </label>                                                                                                                               
+                                        </div>
+                                    </td>  
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class=" center action-buttons">
+                                            <!-- pagina apenas com os historicos-->  
+                                            <a href="AnotacaoCroquiDetalhes.jsp"><i class="ace-icon fa fa-search-plus"></i></a>
+                                        </div>
+                                    </td>
+
+                                    <td title="${lcroqui.cdCroqui}">
+                                        <c:choose >
+                                            <c:when test="${lcroqui.cdCroqui.length() > 8 }">
+                                                ${lcroqui.cdCroqui.substring(0,7)}...
+                                            </c:when>
+
+                                            <c:otherwise>
+                                                ${lcroqui.cdCroqui} 100265
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                    <td title="${lcroqui.cdArea}">
+                                        <c:choose >
+                                            <c:when test="${lcroqui.cdArea.length() > 10 }">
+                                                ${lcroqui.cdArea.substring(0,10)}...
+                                            </c:when>
+                                            <c:otherwise>
+                                                ${lcroqui.cdArea} 8M
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                    <td title="${lcroqui.nmReferenciaEndereco}">
+                                        <c:choose >
+                                            <c:when test="${lcroqui.nmReferenciaEndereco.length() > 30 }">
+                                                ${lcroqui.nmReferenciaEndereco.substring(0,30)}...
+                                            </c:when>
+                                            <c:otherwise>
+                                                ${lcroqui.nmReferenciaEndereco} R. Faustino Paganini nº 647 
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                    <td>
+                                        <c:choose >
+                                            <c:when test="${lcroqui.cdProcesso.length() > 10 }">
+                                                ${lcroqui.cdProcesso.substring(0,10)}...
+                                            </c:when>
+
+                                            <c:otherwise>
+                                                ${lcroqui.cdProcesso} Ofício 49 GV nº 311/2017
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                    <td class="hidden-480" title="${lcroqui.dsAssunto}">
+                                        <c:choose >
+                                            <c:when test="${lcroqui.dsAssunto.length() > 20 }">
+                                                ${lcroqui.dsAssunto.substring(0,20)}...
+                                            </c:when>
+                                            <c:otherwise>
+                                                ${lcroqui.dsAssunto} Solicita incoorporação de praça à escola
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                    <td class="hidden-480" title="${lcroqui.nmInteressado}">
+                                        <c:choose>
+                                            <c:when test="${lcroqui.nmInteressado.length() > 20}">
+                                                ${lcroqui.nmInteressado.substring(0,20)}...
+                                            </c:when>
+                                            <c:otherwise>
+                                                ${lcroqui.nmInteressado} C.M.S.P. - Vereador Toninho Vespoli
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+
+                                    <td>
+                                        <div class="hidden-sm hidden-xs btn-group">
+                                            <!-- pagina com a parte de inserir um historico para o croqui/area selecionado-->
+                                            <label class="col-sm-2 col-xs-12" >
+                                                <input id="id-button-borders"  type="checkbox" id="relatorio" name="relatorio" value="enviar" class="ace ace-switch ace-switch-5">
+                                                <span class="lbl middle"></span>
+                                            </label>                                                                                                                               
+                                        </div>
+                                    </td>  
+
+                                </tr>
+                            </tbody>
+
+>>>>>>> 9bd05a6e23c77d2a18f5d4f2644a76b9aedbe7cc
 
 
                         </table>
