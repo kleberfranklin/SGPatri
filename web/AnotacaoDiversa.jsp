@@ -46,7 +46,7 @@
 
                             <br/>
 
-                            <c:if test="${sessionSgDivisao == 'DIPI' && sessionSgSetor == 'SIC'}"> 
+                            <c:if test="${sessionSgDivisao == 'DIPI' && sessionSgSetor == 'SIC' || sessionPerfil == 'Administrador'}"> 
                             </c:if>
                             <div class="btn-group-lg infobox">
                                 <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'AnotacaoDiversaCRU.jsp?execucao=insert&novo=1';">

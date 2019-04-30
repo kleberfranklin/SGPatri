@@ -26,14 +26,18 @@ public class TipoAssuntoDAO {
     }
 
 //Metodo de quantidade de linhas
-    public int qdTipoAssunto(String q) {
+    public int qdTipoAssunto(String q) throws SQLException {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
         String sql = ("SELECT COUNT(*) as total FROM tbl_assunto_expediente "
                 + "WHERE (sg_assunto ILIKE ? or nm_assunto ILIKE ? ) ");
+
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt = connection.prepareStatement(sql);
             stmt.setString(1, '%' + q + '%');
             stmt.setString(2, '%' + q + '%');
-            ResultSet rs = stmt.executeQuery();
+            rs = stmt.executeQuery();
             int total = 0;
             if (rs.next()) {
                 total = rs.getInt("total");
@@ -43,24 +47,32 @@ public class TipoAssuntoDAO {
             return total;
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            rs.close();
+            stmt.close();
+            connection.close();
         }
     }
 
 //METODO lista os Assuntos das pesquisas e paginada
-    public List<TipoAssunto> listTipoAssunto(int qtLinha, int offset, String q) {
+    public List<TipoAssunto> listTipoAssunto(int qtLinha, int offset, String q) throws SQLException {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
         String sql = ("SELECT * FROM tbl_assunto_expediente "
                 + "WHERE (sg_assunto ILIKE ? or nm_assunto ILIKE ? ) "
                 + "ORDER BY nm_assunto "
                 + "LIMIT ? OFFSET ? ");
+
         try {
             List<TipoAssunto> lisTpAs = new ArrayList<TipoAssunto>();
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt = connection.prepareStatement(sql);
             stmt.setString(1, '%' + q + '%');
             stmt.setString(2, '%' + q + '%');
             stmt.setInt(3, qtLinha);
             stmt.setInt(4, offset);
 
-            ResultSet rs = stmt.executeQuery();
+            rs = stmt.executeQuery();
             while (rs.next()) {
                 TipoAssunto tpAs = new TipoAssunto();
                 tpAs.setPkTipoAssunto(rs.getInt("id_assunto_expediente"));
@@ -74,17 +86,26 @@ public class TipoAssuntoDAO {
             return lisTpAs;
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            rs.close();
+            stmt.close();
+            connection.close();
         }
 
     }
 
 //METODO utilizado para retornar as informação de um Assunto
-    public TipoAssunto detalheTipoAssunto(int pkTipoAssunto) {
-        String sql = "SELECT * FROM tbl_assunto_expediente WHERE id_assunto_expediente = ?";
+    public TipoAssunto detalheTipoAssunto(int pkTipoAssunto) throws SQLException {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT * FROM tbl_assunto_expediente "
+                + "WHERE id_assunto_expediente = ?";
+
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt = connection.prepareStatement(sql);
             stmt.setInt(1, pkTipoAssunto);
-            ResultSet rs = stmt.executeQuery();
+            rs = stmt.executeQuery();
 
             TipoAssunto tpAs = new TipoAssunto();
             if (rs.next()) {
@@ -98,15 +119,23 @@ public class TipoAssuntoDAO {
             return tpAs;
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            rs.close();
+            stmt.close();
+            connection.close();
         }
     }
 //METODO utilizado para inserir um novo Assunto no BANCO
 
-    public void insTipoAssunto(TipoAssunto tpAs) {
+    public void insTipoAssunto(TipoAssunto tpAs) throws SQLException {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
         String sql = "INSERT INTO tbl_assunto_expediente ( sg_assunto, nm_assunto, nm_login, dthr_atualizacao ) "
                 + "VALUES (?,?,?,? )";
+
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt = connection.prepareStatement(sql);
             stmt.setString(1, tpAs.getSgTipoAssunto());
             stmt.setString(2, tpAs.getNmTipoAssunto());
             stmt.setString(3, tpAs.getNmLogin());
@@ -115,15 +144,23 @@ public class TipoAssuntoDAO {
             stmt.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            rs.close();
+            stmt.close();
+            connection.close();
         }
     }
 
 //MEDOTO utilizado para realizar a alteração das informações de um Assunto
-    public void upTipoAssunto(TipoAssunto tpAs) {
+    public void upTipoAssunto(TipoAssunto tpAs) throws SQLException {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
         String sql = "UPDATE tbl_assunto_expediente SET sg_assunto=?, nm_assunto=?, nm_login=?, dthr_atualizacao=? "
                 + "WHERE id_assunto_expediente = ?";
+
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt = connection.prepareStatement(sql);
             stmt.setString(1, tpAs.getSgTipoAssunto());
             stmt.setString(2, tpAs.getNmTipoAssunto());
             stmt.setString(3, tpAs.getNmLogin());
@@ -133,17 +170,24 @@ public class TipoAssuntoDAO {
             stmt.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            rs.close();
+            stmt.close();
+            connection.close();
         }
     }
 
 //METODO lista os Assuntos para o campo select
-    public List<TipoAssunto> listSelectTipoAssunto() {
+    public List<TipoAssunto> listSelectTipoAssunto() throws SQLException {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
         String sql = "SELECT * FROM tbl_assunto_expediente ORDER BY nm_assunto";
 
         try {
             List<TipoAssunto> lisTpAs = new ArrayList<TipoAssunto>();
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
+            stmt = connection.prepareStatement(sql);
+            rs = stmt.executeQuery();
 
             while (rs.next()) {
                 TipoAssunto tpAs = new TipoAssunto();
@@ -160,6 +204,10 @@ public class TipoAssuntoDAO {
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            rs.close();
+            stmt.close();
+            connection.close();
         }
     }
 

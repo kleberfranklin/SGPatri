@@ -63,8 +63,8 @@ public final class nav_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            </a>\r\n");
       out.write("            <b class=\"arrow\"></b>\r\n");
       out.write("        </li>\r\n");
-      out.write("        \r\n");
-      out.write("<!-- Menu Gabinete-->\r\n");
+      out.write("\r\n");
+      out.write("        <!-- Menu Gabinete-->\r\n");
       out.write("        <li class=\"\">\r\n");
       out.write("            <a href=\"#\" class=\"dropdown-toggle\" title=\"Gabinete da Coordenadoria\">\r\n");
       out.write("                <i class=\"menu-icon fa fa-folder\"></i>\r\n");
@@ -99,12 +99,12 @@ public final class nav_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                </li>\r\n");
       out.write("            </ul>\r\n");
       out.write("        </li>\r\n");
-      out.write("       \r\n");
-      out.write("<!-- Menu DDPI -->\r\n");
+      out.write("\r\n");
+      out.write("        <!-- Menu DDPI -->\r\n");
       out.write("        <li class=\"\">\r\n");
       out.write("            <a href=\"#\" class=\"dropdown-toggle\" title=\"Divisão de Destinação\">\r\n");
       out.write("                <i class=\"menu-icon fa fa-folder\"></i>\r\n");
-      out.write("                    <span class=\"menu-text\">Destinação</span>\r\n");
+      out.write("                <span class=\"menu-text\">Destinação</span>\r\n");
       out.write("                <b class=\"arrow fa fa-angle-down\"></b>\r\n");
       out.write("            </a>\r\n");
       out.write("            <b class=\"arrow\"></b>\r\n");
@@ -141,7 +141,7 @@ public final class nav_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <b class=\"arrow fa fa-angle-down\"></b>\r\n");
       out.write("                    </a>\r\n");
       out.write("                    <b class=\"arrow\"></b>\r\n");
-      out.write("                    <ul class=\"submenu disabled-li-menu\">\r\n");
+      out.write("                    <ul class=\"submenu\">\r\n");
       out.write("                        <li class=\"\">\r\n");
       out.write("                            <a href=\"AutoCessao.jsp\" title=\"Auto de Cessão\">Autos de Cessão</a>\r\n");
       out.write("                            <b class=\"arrow\"></b>\r\n");
@@ -155,8 +155,7 @@ public final class nav_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            </ul>\r\n");
       out.write("        </li>\r\n");
       out.write("\r\n");
-      out.write("        \r\n");
-      out.write("<!-- Menu DIPI -->\r\n");
+      out.write("        <!-- Menu DIPI -->\r\n");
       out.write("        <li class=\"\">\r\n");
       out.write("            <a href=\"#\" class=\"dropdown-toggle\" title=\"Divisão de Informação\">\r\n");
       out.write("                <i class=\"menu-icon fa fa-folder\"></i>\r\n");
@@ -171,8 +170,8 @@ public final class nav_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <b class=\"arrow fa fa-angle-down\"></b>\r\n");
       out.write("                    </a>\r\n");
       out.write("                    <b class=\"arrow\"></b>\r\n");
-      out.write("                    \r\n");
-      out.write("<!--  PAGINAS DO CAP JA ESTAO QUASE PRONTA APENAS ATIVAR O MENU PARA VÊ-LAS -->\r\n");
+      out.write("\r\n");
+      out.write("                    <!--  PAGINAS DO CAP JA ESTAO QUASE PRONTA APENAS ATIVAR O MENU PARA VÊ-LAS -->\r\n");
       out.write("                    <ul class=\"submenu\">\r\n");
       out.write("                        <li class=\"\">\r\n");
       out.write("                            <a href=\"Cap.jsp\" title=\"Cadastro de Área Publica\">CAP</a>\r\n");
@@ -214,8 +213,7 @@ public final class nav_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            </ul>\r\n");
       out.write("        </li>\r\n");
       out.write("\r\n");
-      out.write("        \r\n");
-      out.write("<!-- Menu DEAPI -->\r\n");
+      out.write("        <!-- Menu DEAPI -->\r\n");
       out.write("        <li class=\"\">\r\n");
       out.write("            <a href=\"#\" class=\"dropdown-toggle\" title=\"Divisão de Engenharia\">\r\n");
       out.write("                <i class=\"menu-icon fa fa-folder\"></i>\r\n");
@@ -265,9 +263,9 @@ public final class nav_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                </li>\r\n");
       out.write("            </ul>\r\n");
       out.write("        </li>\r\n");
-      out.write("<!-- Menu DAPI -->\r\n");
       out.write("\r\n");
-      out.write("        <li class=\"\">\r\n");
+      out.write("        <!-- Menu DAPI -->\r\n");
+      out.write("        <li class=\"\">         \r\n");
       out.write("            <a href=\"#\" class=\"dropdown-toggle\" title=\"Divisão de Avaliação\">\r\n");
       out.write("                <i class=\"menu-icon fa fa-folder\"></i>\r\n");
       out.write("                <span class=\"menu-text\">Avaliação</span>\r\n");
@@ -303,7 +301,8 @@ public final class nav_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                </li>\r\n");
       out.write("            </ul>\r\n");
       out.write("        </li>\r\n");
-      out.write("<!-- Menu INDICADORES -->\r\n");
+      out.write("\r\n");
+      out.write("        <!-- Menu INDICADORES -->\r\n");
       out.write("        <li class=\"\">\r\n");
       out.write("            <a class=\"disabled-li-menu\" href=\"#\" title=\"\">\r\n");
       out.write("                <i class=\"menu-icon fa fa-bar-chart-o\"></i>\r\n");
@@ -312,9 +311,8 @@ public final class nav_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <b class=\"arrow\"></b>\r\n");
       out.write("        </li>\r\n");
       out.write("\r\n");
-      out.write("        \r\n");
-      out.write("<!-- Menu DECRETOS -->\r\n");
       out.write("\r\n");
+      out.write("        <!-- Menu DECRETOS -->\r\n");
       out.write("        <li class=\"\">\r\n");
       out.write("            <a class=\"disabled-li-menu\" href=\"#\" title=\"\">\r\n");
       out.write("                <i class=\"menu-icon fa fa-balance-scale\"></i>\r\n");
@@ -322,8 +320,8 @@ public final class nav_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            </a>\r\n");
       out.write("            <b class=\"arrow\"></b>\r\n");
       out.write("        </li>\r\n");
-      out.write("<!-- Menu PROJETOS -->\r\n");
       out.write("\r\n");
+      out.write("        <!-- Menu PROJETOS -->\r\n");
       out.write("        <li class=\"\">\r\n");
       out.write("            <a class=\"disabled-li-menu\" href=\"#\" title=\"\">\r\n");
       out.write("                <i class=\"menu-icon fa fa-laptop\"></i>\r\n");
@@ -331,7 +329,8 @@ public final class nav_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            </a>\r\n");
       out.write("            <b class=\"arrow\"></b>\r\n");
       out.write("        </li>\r\n");
-      out.write("<!--Menu Tarefas-->\r\n");
+      out.write("\r\n");
+      out.write("        <!--Menu Tarefas-->\r\n");
       out.write("        <li class=\"\">\r\n");
       out.write("            <a class=\"disabled-li-menu\" href=\"#\" title=\"\">\r\n");
       out.write("                <i class=\"menu-icon fa fa-tags\"></i>\r\n");
@@ -344,7 +343,8 @@ public final class nav_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            </a>\r\n");
       out.write("            <b class=\"arrow\"></b>\r\n");
       out.write("        </li>\r\n");
-      out.write("<!-- Menu Calendario-->\r\n");
+      out.write("\r\n");
+      out.write("        <!-- Menu Calendario-->\r\n");
       out.write("        <li class=\"\">\r\n");
       out.write("            <a class=\"disabled-li-menu\" href=\"#\" title=\"\">\r\n");
       out.write("                <i class=\"menu-icon fa fa-calendar\"></i>\r\n");
@@ -352,8 +352,8 @@ public final class nav_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            </a>\r\n");
       out.write("            <b class=\"arrow\"></b>\r\n");
       out.write("        </li>\r\n");
-      out.write("<!-- Wikipedia CGPatri-->\r\n");
-      out.write("=\r\n");
+      out.write("\r\n");
+      out.write("        <!-- Wikipedia CGPatri-->\r\n");
       out.write("        <li class=\"\">\r\n");
       out.write("            <a class=\"disabled-li-menu\" href=\"#\" title=\"\">\r\n");
       out.write("                <i class=\"menu-icon fa fa-book\"></i>\r\n");
@@ -362,15 +362,15 @@ public final class nav_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <b class=\"arrow\"></b>\r\n");
       out.write("        </li>\r\n");
       out.write("\r\n");
-      out.write("<!-- Vesrsão do Aplicação-->        \r\n");
+      out.write("        <!-- Vesrsão do Aplicação-->        \r\n");
       out.write("        <li class=\"\">\r\n");
       out.write("            <a class=\"\" href=\"#\" title=\"\">\r\n");
       out.write("                <i class=\"menu-icon fa fa-info-circle\"></i>\r\n");
-      out.write("                <span class=\"menu-text\"> Versão 1.1.1</span>\r\n");
+      out.write("                <span class=\"menu-text\"> Versão 1.3</span>\r\n");
       out.write("            </a>\r\n");
-      out.write("           <b class=\"arrow\"></b>\r\n");
+      out.write("            <b class=\"arrow\"></b>\r\n");
       out.write("        </li>\r\n");
-      out.write("  \r\n");
+      out.write("\r\n");
       out.write("    </ul><!-- /.nav-list -->\r\n");
       out.write("</div>\r\n");
       out.write("\r\n");
@@ -398,7 +398,7 @@ public final class nav_jsp extends org.apache.jasper.runtime.HttpJspBase
     org.apache.taglibs.standard.tag.rt.core.IfTag _jspx_th_c_if_0 = (org.apache.taglibs.standard.tag.rt.core.IfTag) _jspx_tagPool_c_if_test.get(org.apache.taglibs.standard.tag.rt.core.IfTag.class);
     _jspx_th_c_if_0.setPageContext(_jspx_page_context);
     _jspx_th_c_if_0.setParent(null);
-    _jspx_th_c_if_0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionSgDivisao == 'DDPI' && sessionSgSetor == 'SCL'}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
+    _jspx_th_c_if_0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionSgDivisao == 'DDPI' && sessionSgSetor == 'SCL' || sessionPerfil == 'Administrador'}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
     int _jspx_eval_c_if_0 = _jspx_th_c_if_0.doStartTag();
     if (_jspx_eval_c_if_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {

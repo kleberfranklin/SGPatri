@@ -16,17 +16,15 @@
         <div class="main-container ace-save-state" id="main-container">
             <jsp:include page = "include/nav.jsp" />
 
-<!--Verificação de acesso  -->
+            <!--Verificação de acesso  -->
             <c:set var="acessoPerfil" value="${sessionPerfil}" />
             <jsp:directive.include file="include/ControleAcesso.jsp" />
-<<<<<<< HEAD
-            
-<!-- Beans -->               
-            <jsp:useBean id="expe" class= "br.com.Modelo.AnotacaoCroquiDAO"/>
-=======
->>>>>>> 9bd05a6e23c77d2a18f5d4f2644a76b9aedbe7cc
 
-<!--Pegando os paremetros -->
+            <!-- Beans -->               
+            <jsp:useBean id="expe" class= "br.com.Modelo.AnotacaoCroquiDAO"/>
+
+
+            <!--Pegando os paremetros -->
             <c:set var="pg" value="${param.pg}" />
             <c:set var="pf" value="${param.pf}" />
             <c:set var="pi" value="${param.pi}" />
@@ -40,7 +38,7 @@
             <c:set var="qAssunto" value="${param.qAssunto}" />
             <c:set var="dtIni" value="${param.dtIni}" />
             <c:set var="dtFim" value="${param.dtFim}" />
-            
+
 
             <div class="breadcrumbs ace-save-state" id="breadcrumbs">
                 <ul class="breadcrumb">
@@ -67,22 +65,6 @@
                                     <input type="text" name="qArea" placeholder="${qArea}" class="col-sm-7 col-xs-12" />
                                 </div>
 
-<<<<<<< HEAD
-                                <label class="col-sm-1 col-xs-12"> Autor:</label>
-                                <div class="input-group col-sm-4 col-xs-12">
-                                    <select name="qNome" placeholder="" class="col-sm-5 col-xs-12" >
-                                        <option></option>
-                                        <c:forEach var="lis" items="${expe.listNome()}">
-                                            <c:if test="${lis.nmAutor != ''}">
-                                                <option>${lis.nmAutor}</option>
-                                            </c:if>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-
-
-=======
->>>>>>> 9bd05a6e23c77d2a18f5d4f2644a76b9aedbe7cc
                                 <br /> <br />
 
                                 <label class="col-sm-2 col-xs-12 "> Endereço:</label>
@@ -300,7 +282,7 @@
 
                                 </tr>
                             </tbody>
-                       </table>
+                        </table>
 
                         <hr> <!--linha de separação -->
                         <!--Paginação -->

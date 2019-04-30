@@ -25,7 +25,6 @@
             <jsp:directive.include file="include/ControleAcesso.jsp" />
 
             <!-- Beans -->        
-            <jsp:useBean id="subPref" class= "br.com.Modelo.SubPrefeituraDAO" />
 
             <!--Pegando os paremetros -->
             <c:set var="pg" value="${param.pg}" />
@@ -65,7 +64,7 @@
                                         </li> 
                                     </ul>
 
-                                    <form action="ControllerServlet?acao=AnotacaoCroquiLista" method="POST">
+                                    <form action="ControllerServlet?acao=AnotacaoCroquiC" method="POST">
 
                                         <div class="tab-content profile-edit-tab-content" >
                                             <!--Inicio da tab-pane Cadastro Croqui-->
@@ -80,19 +79,20 @@
                                                     </label>
                                                     <label class="inline col-md-4 col-xs-12">
                                                         <input type="text" class="col-xs-8 col-xs-12" name="nrprocesso" id="nrprocesso" value="${anotCroqui.cdExpediente}" 
-                                                               placeholder="Nº do Expediente" onKeyPress="return somenteNum(event);" required="required">
+                                                               placeholder="Nº do Expediente" required="required">
                                                     </label>
 
                                                     <label class="inline col-md-2 col-xs-12">
                                                         <span class="lbl"><strong>Tipo de Expediente:</strong></span>
                                                     </label>
-                                                    <label class="inline col-md-2 col-xs-12">
-                                                        <select class="col-md-12 col-xs-12" name="pkTipoExpediente" required="required" onclick="maskProcesso();">
+                                                    <label class="input-group col-sm-4 col-xs-12">
+                                                        <select name="" placeholder="" class="col-sm-5 col-xs-12" >
                                                             <option></option>
-                                                            <option>SEI</option>
-                                                            <option>TID</option>
-                                                            <option>CID</option>
-                                                            <option>PA</option>
+                                                            <c:forEach var="lis" items="${listaTpExp}">
+                                                                <c:if test="${lis.sgTipoExpediente != ''}">
+                                                                    <option>${lis.sgTipoExpediente}</option>
+                                                                </c:if>
+                                                            </c:forEach>
                                                         </select>
                                                     </label>
                                                 </div>
@@ -103,7 +103,6 @@
                                                         Pesquisa
                                                     </button>
                                                 </span>
-
                                             </div>
                                         </div>
                                     </form>
@@ -111,7 +110,6 @@
                                     <br/>
 
                                     <!-- testar se o obj da pesquisa esta empty-->
-
                                     <form action="ControllerServlet?acao=AnotacaoCroquiUC" method="POST" >
 
                                         <div class="tab-content profile-edit-tab-content" >

@@ -38,7 +38,7 @@
                             </h1>
                         </div>
                         <div class="form-group" style=" padding-top:30px">
-                            <c:if test="${sessionSgDivisao == 'DIPI' && sessionSgSetor == 'SIC'}"> </c:if>
+                            <c:if test="${sessionSgDivisao == 'DIPI' && sessionSgSetor == 'SIC' || sessionPerfil == 'Administrador'}"> </c:if>
 
                                 <div class="btn-group-lg infobox ">
                                     <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'MinisterioPublicoLista.jsp';">
@@ -55,13 +55,13 @@
                                         Novo
                                     </button>
                                 </div>    
-                                                        
+
                             </div> 
                         </div>
                     </div>
                 </div>
             </div>
-            <jsp:include page = "include/footer.jsp" />
-        </div><!-- /.main-container --> 
-    </body>
+        <jsp:include page = "include/footer.jsp" />
+    </div><!-- /.main-container --> 
+</body>
 </html>
