@@ -27,8 +27,8 @@ public class TipoAssuntoDAO {
 
 //Metodo de quantidade de linhas
     public int qdTipoAssunto(String q) {
-        String sql = ("SELECT COUNT(*) as total FROM tbl_tipo_assunto "
-                + "WHERE (sg_tipo_assunto ILIKE ? or nm_tipo_assunto ILIKE ? ) ");
+        String sql = ("SELECT COUNT(*) as total FROM tbl_assunto_expediente "
+                + "WHERE (sg_assunto ILIKE ? or nm_assunto ILIKE ? ) ");
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, '%' + q + '%');
@@ -48,9 +48,9 @@ public class TipoAssuntoDAO {
 
 //METODO lista os Assuntos das pesquisas e paginada
     public List<TipoAssunto> listTipoAssunto(int qtLinha, int offset, String q) {
-        String sql = ("SELECT * FROM tbl_tipo_assunto "
-                + "WHERE (sg_tipo_assunto ILIKE ? or nm_tipo_assunto ILIKE ? ) "
-                + "ORDER BY nm_tipo_assunto "
+        String sql = ("SELECT * FROM tbl_assunto_expediente "
+                + "WHERE (sg_assunto ILIKE ? or nm_assunto ILIKE ? ) "
+                + "ORDER BY nm_assunto "
                 + "LIMIT ? OFFSET ? ");
         try {
             List<TipoAssunto> lisTpAs = new ArrayList<TipoAssunto>();
@@ -63,9 +63,9 @@ public class TipoAssuntoDAO {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 TipoAssunto tpAs = new TipoAssunto();
-                tpAs.setPkTipoAssunto(rs.getInt("id_tipo_assunto"));
-                tpAs.setSgTipoAssunto(rs.getString("sg_tipo_assunto"));
-                tpAs.setNmTipoAssunto(rs.getString("nm_tipo_assunto"));
+                tpAs.setPkTipoAssunto(rs.getInt("id_assunto_expediente"));
+                tpAs.setSgTipoAssunto(rs.getString("sg_assunto"));
+                tpAs.setNmTipoAssunto(rs.getString("nm_assunto"));
                 tpAs.setNmLogin(rs.getString("nm_login"));
                 tpAs.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
                 lisTpAs.add(tpAs);
@@ -80,7 +80,7 @@ public class TipoAssuntoDAO {
 
 //METODO utilizado para retornar as informação de um Assunto
     public TipoAssunto detalheTipoAssunto(int pkTipoAssunto) {
-        String sql = "SELECT * FROM tbl_tipo_assunto WHERE id_tipo_assunto = ?";
+        String sql = "SELECT * FROM tbl_assunto_expediente WHERE id_assunto_expediente = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, pkTipoAssunto);
@@ -88,9 +88,9 @@ public class TipoAssuntoDAO {
 
             TipoAssunto tpAs = new TipoAssunto();
             if (rs.next()) {
-                tpAs.setPkTipoAssunto(rs.getInt("id_tipo_assunto"));
-                tpAs.setSgTipoAssunto(rs.getString("sg_tipo_assunto"));
-                tpAs.setNmTipoAssunto(rs.getString("nm_tipo_assunto"));
+                tpAs.setPkTipoAssunto(rs.getInt("id_assunto_expediente"));
+                tpAs.setSgTipoAssunto(rs.getString("sg_assunto"));
+                tpAs.setNmTipoAssunto(rs.getString("nm_assunto"));
                 tpAs.setNmLogin(rs.getString("nm_login"));
                 tpAs.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
             }
@@ -103,7 +103,7 @@ public class TipoAssuntoDAO {
 //METODO utilizado para inserir um novo Assunto no BANCO
 
     public void insTipoAssunto(TipoAssunto tpAs) {
-        String sql = "INSERT INTO tbl_tipo_assunto ( sg_tipo_assunto, nm_tipo_assunto, nm_login, dthr_atualizacao ) "
+        String sql = "INSERT INTO tbl_assunto_expediente ( sg_assunto, nm_assunto, nm_login, dthr_atualizacao ) "
                 + "VALUES (?,?,?,? )";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -120,8 +120,8 @@ public class TipoAssuntoDAO {
 
 //MEDOTO utilizado para realizar a alteração das informações de um Assunto
     public void upTipoAssunto(TipoAssunto tpAs) {
-        String sql = "UPDATE tbl_tipo_assunto SET sg_tipo_assunto=?, nm_tipo_assunto=?, nm_login=?, dthr_atualizacao=? "
-                + "WHERE id_tipo_assunto = ?";
+        String sql = "UPDATE tbl_assunto_expediente SET sg_assunto=?, nm_assunto=?, nm_login=?, dthr_atualizacao=? "
+                + "WHERE id_assunto_expediente = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, tpAs.getSgTipoAssunto());
@@ -138,7 +138,7 @@ public class TipoAssuntoDAO {
 
 //METODO lista os Assuntos para o campo select
     public List<TipoAssunto> listSelectTipoAssunto() {
-        String sql = "SELECT * FROM tbl_tipo_assunto ORDER BY nm_tipo_assunto";
+        String sql = "SELECT * FROM tbl_assunto_expediente ORDER BY nm_assunto";
 
         try {
             List<TipoAssunto> lisTpAs = new ArrayList<TipoAssunto>();
@@ -147,9 +147,9 @@ public class TipoAssuntoDAO {
 
             while (rs.next()) {
                 TipoAssunto tpAs = new TipoAssunto();
-                tpAs.setPkTipoAssunto(rs.getInt("id_tipo_assunto"));
-                tpAs.setSgTipoAssunto(rs.getString("sg_tipo_assunto"));
-                tpAs.setNmTipoAssunto(rs.getString("nm_tipo_assunto"));
+                tpAs.setPkTipoAssunto(rs.getInt("id_assunto_expediente"));
+                tpAs.setSgTipoAssunto(rs.getString("sg_assunto"));
+                tpAs.setNmTipoAssunto(rs.getString("nm_assunto"));
                 tpAs.setNmLogin(rs.getString("nm_login"));
                 tpAs.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
                 lisTpAs.add(tpAs);

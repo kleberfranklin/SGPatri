@@ -5,7 +5,7 @@
  */
 package br.com.Modelo;
 
-import java.util.Date;
+import java.util.Set;
 
 /**
  *
@@ -14,92 +14,21 @@ import java.util.Date;
 public class AnotacaoCroqui {
 
 //Atributos
-    private int pkAnotacaoExpediente, fkLogradouro, nrVerExpediente, nrVerArquivo;
-    private String nmTipoExpediente, cdCroqui, cdArea, cdExpediente, nmInteressado, dsAssunto, dsDespacho, dsObservacao, nmAutor,  
-            cdProcesso, cdTid, dtAnotacao, nrInformacaoDgpi, nmReferenciaEndereco, nmTipoProcesso, nrAnotacao, 
-            nrInformacao,  nrEndereco, nmComplementoEndereco, nmLogin, dthrAtualizacao;
-    private Date dtPublicacao, dtData;
-    
+    private int pkAnotacaoExpediente, nrAnotacao, nrInformacao, fkUsuario, fkCatFormularios, nrCodigo;
 
+    private String cdCroqui, cdArea, cdExpediente, sgTipoExpediente, nrInformacaoDgpi, nmInteressado, dsAssunto, dsDespacho, dsObservacao, nmAutor, cdSetor, cdQuadra,
+            cdLote, dtPublicacao, nmReferenciaEndereco, dtData, dthrAtualizacao, nmLogin, dtAnotacao, nmPublicadoPor, dsInfoGeral, cdTid, cdProcesso;
+
+//Construtor    
     public AnotacaoCroqui() {
     }
 
-    public AnotacaoCroqui(int fkLogradouro, String nmTipoExpediente, String cdCroqui, String cdArea, String cdExpediente, 
-            String nmInteressado, String dsAssunto, String dsDespacho, String dsObservacao, String nmAutor, String cdProcesso, 
-            String cdTid, String dtAnotacao, String nrInformacaoDgpi, Date dtPublicacao, String nmReferenciaEndereco, 
-            Date dtData, String nmTipoProcesso, String nrAnotacao, String nrInformacao, String nrEndereco, 
-            String nmComplementoEndereco, String nmLogin, int verCroqui) {
-        this.fkLogradouro = fkLogradouro;
-        this.nmTipoExpediente = nmTipoExpediente;
-        this.cdCroqui = cdCroqui;
-        this.cdArea = cdArea;
-        this.cdExpediente = cdExpediente;
-        this.nmInteressado = nmInteressado;
-        this.dsAssunto = dsAssunto;
-        this.dsDespacho = dsDespacho;
-        this.dsObservacao = dsObservacao;
-        this.nmAutor = nmAutor;
-        this.cdProcesso = cdProcesso;
-        this.cdTid = cdTid;
-        this.dtAnotacao = dtAnotacao;
-        this.nrInformacaoDgpi = nrInformacaoDgpi;
-        this.dtPublicacao = dtPublicacao;
-        this.nmReferenciaEndereco = nmReferenciaEndereco;
-        this.dtData = dtData;
-        this.nmTipoProcesso = nmTipoProcesso;
-        this.nrAnotacao = nrAnotacao;
-        this.nrInformacao = nrInformacao;
-        this.nrEndereco = nrEndereco;
-        this.nmComplementoEndereco = nmComplementoEndereco;
-        this.nmLogin = nmLogin;
-        this.nrVerExpediente = verCroqui;
+    public AnotacaoCroqui(int pkCadastroSic, int fkUsuario, int fkEnderecos, String nrInformacaoDgpi, String cdProcesso, String cdTid,
+            String cdCroqui, String cdArea, String cdExpediente, String nmInteressado, String dsAssunto, String dsObservacao, String nmLogin) {
+
     }
 
-    public AnotacaoCroqui(int pkAnotacaoExpediente, int fkLogradouro, String nmTipoExpediente, String cdCroqui, String cdArea, String cdExpediente,
-            String nmInteressado, String dsAssunto, String dsDespacho, String dsObservacao, String nmAutor, String cdProcesso, 
-            String cdTid, String dtAnotacao, String nrInformacaoDgpi, Date dtPublicacao, String nmReferenciaEndereco, 
-            Date dtData, String nmTipoProcesso, String nrAnotacao, String nrInformacao, String nrEndereco, String nmComplementoEndereco, 
-            String nmLogin, int verCroqui) {
-        this.pkAnotacaoExpediente = pkAnotacaoExpediente;
-        this.fkLogradouro = fkLogradouro;
-        this.nmTipoExpediente = nmTipoExpediente;
-        this.cdCroqui = cdCroqui;
-        this.cdArea = cdArea;
-        this.cdExpediente = cdExpediente;
-        this.nmInteressado = nmInteressado;
-        this.dsAssunto = dsAssunto;
-        this.dsDespacho = dsDespacho;
-        this.dsObservacao = dsObservacao;
-        this.nmAutor = nmAutor;
-        this.cdProcesso = cdProcesso;
-        this.cdTid = cdTid;
-        this.dtAnotacao = dtAnotacao;
-        this.nrInformacaoDgpi = nrInformacaoDgpi;
-        this.dtPublicacao = dtPublicacao;
-        this.nmReferenciaEndereco = nmReferenciaEndereco;
-        this.dtData = dtData;
-        this.nmTipoProcesso = nmTipoProcesso;
-        this.nrAnotacao = nrAnotacao;
-        this.nrInformacao = nrInformacao;
-        this.nrEndereco = nrEndereco;
-        this.nmComplementoEndereco = nmComplementoEndereco;
-        this.nmLogin = nmLogin;
-        this.nrVerExpediente = verCroqui;
-    }
-    
-    
-    
- 
-//Getter's & Setter's     
-
-    public String getNmTipoExpediente() {
-        return nmTipoExpediente;
-    }
-
-    public void setNmTipoExpediente(String nmTipoExpediente) {
-        this.nmTipoExpediente = nmTipoExpediente;
-    }
-
+    //Getter's & Setter's
     public int getPkAnotacaoExpediente() {
         return pkAnotacaoExpediente;
     }
@@ -108,12 +37,60 @@ public class AnotacaoCroqui {
         this.pkAnotacaoExpediente = pkAnotacaoExpediente;
     }
 
-    public int getFkLogradouro() {
-        return fkLogradouro;
+    public String getCdProcesso() {
+        return cdProcesso;
     }
 
-    public void setFkLogradouro(int fkLogradouro) {
-        this.fkLogradouro = fkLogradouro;
+    public void setCdProcesso(String cdProcesso) {
+        this.cdProcesso = cdProcesso;
+    }
+
+    public String getCdTid() {
+        return cdTid;
+    }
+
+    public void setCdTid(String cdTid) {
+        this.cdTid = cdTid;
+    }
+
+    public int getNrAnotacao() {
+        return nrAnotacao;
+    }
+
+    public void setNrAnotacao(int nrAnotacao) {
+        this.nrAnotacao = nrAnotacao;
+    }
+
+    public int getNrInformacao() {
+        return nrInformacao;
+    }
+
+    public void setNrInformacao(int nrInformacao) {
+        this.nrInformacao = nrInformacao;
+    }
+
+    public int getFkUsuario() {
+        return fkUsuario;
+    }
+
+    public void setFkUsuario(int pkUsuario) {
+        this.fkUsuario = pkUsuario;
+    }
+
+    public int getFkCatFormularios() {
+        return fkCatFormularios;
+    }
+
+    public void setFkCatFormularios(int pkCatFormularios) {
+        this.fkCatFormularios = pkCatFormularios;
+    }
+
+    public int getNrCodigo() {
+        return nrCodigo;
+    }
+
+    public void setNrCodigo(int nrCodigo) {
+        this.nrCodigo = nrCodigo;
     }
 
     public String getCdCroqui() {
@@ -138,6 +115,14 @@ public class AnotacaoCroqui {
 
     public void setCdExpediente(String cdExpediente) {
         this.cdExpediente = cdExpediente;
+    }
+
+    public String getNrInformacaoDgpi() {
+        return nrInformacaoDgpi;
+    }
+
+    public void setNrInformacaoDgpi(String nrInformacaoDgpi) {
+        this.nrInformacaoDgpi = nrInformacaoDgpi;
     }
 
     public String getNmInteressado() {
@@ -180,28 +165,60 @@ public class AnotacaoCroqui {
         this.nmAutor = nmAutor;
     }
 
+    public String getCdSetor() {
+        return cdSetor;
+    }
+
+    public void setCdSetor(String cdSetor) {
+        this.cdSetor = cdSetor;
+    }
+
+    public String getCdQuadra() {
+        return cdQuadra;
+    }
+
+    public void setCdQuadra(String cdQuadra) {
+        this.cdQuadra = cdQuadra;
+    }
+
+    public String getCdLote() {
+        return cdLote;
+    }
+
+    public void setCdLote(String cdLote) {
+        this.cdLote = cdLote;
+    }
+
+    public String getDtPublicacao() {
+        return dtPublicacao;
+    }
+
+    public void setDtPublicacao(String dtPublicacao) {
+        this.dtPublicacao = dtPublicacao;
+    }
+
+    public String getDtData() {
+        return dtData;
+    }
+
+    public void setDtData(String dtData) {
+        this.dtData = dtData;
+    }
+
+    public String getDthrAtualizacao() {
+        return dthrAtualizacao;
+    }
+
+    public void setDthrAtualizacao(String dthrAtualizacao) {
+        this.dthrAtualizacao = dthrAtualizacao;
+    }
+
     public String getNmLogin() {
         return nmLogin;
     }
 
     public void setNmLogin(String nmLogin) {
         this.nmLogin = nmLogin;
-    }
-
-    public String getCdProcesso() {
-        return cdProcesso;
-    }
-
-    public void setCdProcesso(String cdProcesso) {
-        this.cdProcesso = cdProcesso;
-    }
-
-    public String getCdTid() {
-        return cdTid;
-    }
-
-    public void setCdTid(String cdTid) {
-        this.cdTid = cdTid;
     }
 
     public String getDtAnotacao() {
@@ -212,20 +229,20 @@ public class AnotacaoCroqui {
         this.dtAnotacao = dtAnotacao;
     }
 
-    public String getNrInformacaoDgpi() {
-        return nrInformacaoDgpi;
+    public String getNmPublicadoPor() {
+        return nmPublicadoPor;
     }
 
-    public void setNrInformacaoDgpi(String nrInformacaoDgpi) {
-        this.nrInformacaoDgpi = nrInformacaoDgpi;
+    public void setNmPublicadoPor(String nmPublicadoPor) {
+        this.nmPublicadoPor = nmPublicadoPor;
     }
 
-    public Date getDtPublicacao() {
-        return dtPublicacao;
+    public String getDsInfoGeral() {
+        return dsInfoGeral;
     }
 
-    public void setDtPublicacao(Date dtPublicacao) {
-        this.dtPublicacao = dtPublicacao;
+    public void setDsInfoGeral(String dsInfoGeral) {
+        this.dsInfoGeral = dsInfoGeral;
     }
 
     public String getNmReferenciaEndereco() {
@@ -236,82 +253,11 @@ public class AnotacaoCroqui {
         this.nmReferenciaEndereco = nmReferenciaEndereco;
     }
 
-    public Date getDtData() {
-        return dtData;
+    public void setSgTipoExpediente(String sgTipoExpediente) {
+        this.sgTipoExpediente = sgTipoExpediente;
     }
 
-    public void setDtData(Date dtData) {
-        this.dtData = dtData;
+    public String getSgTipoExpediente() {
+        return sgTipoExpediente;
     }
-
-    public String getNmTipoProcesso() {
-        return nmTipoProcesso;
-    }
-
-    public void setNmTipoProcesso(String nmTipoProcesso) {
-        this.nmTipoProcesso = nmTipoProcesso;
-    }
-
-    public String getNrAnotacao() {
-        return nrAnotacao;
-    }
-
-    public void setNrAnotacao(String nrAnotacao) {
-        this.nrAnotacao = nrAnotacao;
-    }
-
-    public String getNrInformacao() {
-        return nrInformacao;
-    }
-
-    public void setNrInformacao(String nrInformacao) {
-        this.nrInformacao = nrInformacao;
-    }
-
-    public String getNrEndereco() {
-        return nrEndereco;
-    }
-
-    public void setNrEndereco(String nrEndereco) {
-        this.nrEndereco = nrEndereco;
-    }
-
-    public String getNmComplementoEndereco() {
-        return nmComplementoEndereco;
-    }
-
-    public void setNmComplementoEndereco(String nmComplementoEndereco) {
-        this.nmComplementoEndereco = nmComplementoEndereco;
-    }
-
-
-    public String getDthrAtualizacao() {
-        return dthrAtualizacao;
-    }
-
-    public void setDthrAtualizacao(String dthrAtualizacao) {
-        this.dthrAtualizacao = dthrAtualizacao;
-    }
-
-    public int getNrVerExpediente() {
-        return nrVerExpediente;
-    }    
-
-    public void setNrVerExpediente(int nrVerExpediente) {
-        this.nrVerExpediente = nrVerExpediente;
-    }
-
-    public int getNrVerArquivo() {
-        return nrVerArquivo;
-    }
-
-    public void setNrVerArquivo(int nrVerArquivo) {
-        this.nrVerArquivo = nrVerArquivo;
-    }
-    
-    
-    
-    
-    
-
 }

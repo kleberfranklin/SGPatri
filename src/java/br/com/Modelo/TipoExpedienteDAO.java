@@ -112,13 +112,24 @@ public class TipoExpedienteDAO {
             stmt.setString(3, tpEx.getNmLogin());
             stmt.setTimestamp(4, java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
             stmt.execute();
-            stmt.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-//MEDOTO utilizado para realizar a alteração das informações de um Expediente
+    //metodo para verificar se é unico
+//    public String UniqueSgExpediente(TipoExpediente tpEx) {
+//        String sql = "SELECT DISTINCT sg_tipo_expediente FROM tbl_tipo_expediente "
+//                + "WHERE sg_tipo_expediente = ? ";
+//
+//        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+//            stmt.setString(1, tpEx.getSgTipoExpediente());
+//            stmt.execute();
+//        } catch (SQLException e) {
+//                        throw new RuntimeException(e);
+//        }
+//    }
+    //MEDOTO utilizado para realizar a alteração das informações de um Expediente
     public void upTipoExpediente(TipoExpediente tpEx) {
         String sql = "UPDATE tbl_tipo_expediente SET sg_tipo_expediente=?, nm_tipo_expediente=?, nm_login=?, dthr_atualizacao=? "
                 + "WHERE id_tipo_expediente = ?";
