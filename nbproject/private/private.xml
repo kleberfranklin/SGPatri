@@ -1,34 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
-        <file>
-            <url>web/AutoCessaoInserir.jsp</url>
-            <bookmark id="1">
-                <name/>
-                <line>50</line>
-                <key/>
-            </bookmark>
-        </file>
-    </editor-bookmarks>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-        <group/>
-=======
-        <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/d732229/Documents/PROJETOS/SGPatri/src/java/br/com/Modelo/AnotacaoCroquiDAO.java</file>
-            <file>file:/C:/Users/d732229/Documents/PROJETOS/SGPatri/web/AnotacaoDocumental.jsp</file>
-            <file>file:/C:/Users/d732229/Documents/PROJETOS/SGPatri/src/java/br/com/Modelo/UsuarioDAO.java</file>
-=======
-            <file>file:/C:/Users/x369482/Documents/GitHub/SGPatri/web/TipoDespachoCRU.jsp</file>
-            <file>file:/C:/Users/x369482/Documents/GitHub/SGPatri/web/AnotacaoCroquiRelatorioLista.jsp</file>
-            <file>file:/C:/Users/x369482/Documents/GitHub/SGPatri/web/include/nav.jsp</file>
-            <file>file:/C:/Users/x369482/Documents/GitHub/SGPatri/web/AnotacaoCroquiLista_old.jsp</file>
-            <file>file:/C:/Users/x369482/Documents/GitHub/SGPatri/web/AnotacaoCroquiC.jsp</file>
-            <file>file:/C:/Users/x369482/Documents/GitHub/SGPatri/web/PainelAdm.jsp</file>
-            <file>file:/C:/Users/x369482/Documents/GitHub/SGPatri/web/AnotacaoCroqui.jsp</file>
->>>>>>> 9bd05a6e23c77d2a18f5d4f2644a76b9aedbe7cc
-        </group>
->>>>>>> modulo2
-    </open-files>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
 </project-private>
