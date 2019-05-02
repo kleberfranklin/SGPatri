@@ -418,7 +418,7 @@ public final class AnotacaoCroqui_jsp extends org.apache.jasper.runtime.HttpJspB
     if (_jspx_eval_c_if_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write(" \r\n");
-        out.write("                                <div class=\"btn-group-lg infobox \">\r\n");
+        out.write("                            <!--    <div class=\"btn-group-lg infobox \">\r\n");
         out.write("                                    <button class=\"btn btn-primary btn-white btn-block\" onclick=\" location.href = 'ControllerServlet?acao=AnotacaoCroquiLista';\">\r\n");
         out.write("                                        <i class=\"glyphicon glyphicon-search\"></i>\r\n");
         out.write("                                        Pesquisa\r\n");
@@ -429,7 +429,7 @@ public final class AnotacaoCroqui_jsp extends org.apache.jasper.runtime.HttpJspB
         out.write("                                        <i class=\"ace-icon fa fa-plus\"></i>\r\n");
         out.write("                                        Novo\r\n");
         out.write("                                    </button>\r\n");
-        out.write("                                </div>     \r\n");
+        out.write("                                </div>   -->  \r\n");
         out.write("                                <div class=\"btn-group-lg infobox\">\r\n");
         out.write("                                    <button class=\"btn btn-primary btn-white btn-block\" onclick=\" location.href = 'AnotacaoCroquiC.jsp';\"> \r\n");
         out.write("                                        <i class=\"ace-icon fa fa-plus\"></i>\r\n");

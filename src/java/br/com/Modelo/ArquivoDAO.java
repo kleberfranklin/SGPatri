@@ -56,7 +56,7 @@ public class ArquivoDAO {
         }finally{
             rs.close();
             stmt.close();
-            connection.close();
+//            connection.close();
         }
     }    
 

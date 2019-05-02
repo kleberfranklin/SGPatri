@@ -141,7 +141,7 @@ public final class nav_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <b class=\"arrow fa fa-angle-down\"></b>\r\n");
       out.write("                    </a>\r\n");
       out.write("                    <b class=\"arrow\"></b>\r\n");
-      out.write("                    <ul class=\"submenu disabled-li-menu\">\r\n");
+      out.write("                    <ul class=\"submenu\">\r\n");
       out.write("                        <li class=\"\">\r\n");
       out.write("                            <a href=\"AutoCessao.jsp\" title=\"Auto de Cessão\">Autos de Cessão</a>\r\n");
       out.write("                            <b class=\"arrow\"></b>\r\n");

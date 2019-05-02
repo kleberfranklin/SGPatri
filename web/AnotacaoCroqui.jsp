@@ -38,7 +38,7 @@
                         </div>
                         <div class="form-group" style=" padding-top:30px">
                             <c:if test="${(sessionSgDivisao == 'DIPI' && sessionSgSetor == 'SIC')  || sessionPerfil == 'Administrador'}"> 
-                                <div class="btn-group-lg infobox ">
+                            <!--    <div class="btn-group-lg infobox ">
                                     <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=AnotacaoCroquiLista';">
                                         <i class="glyphicon glyphicon-search"></i>
                                         Pesquisa
@@ -49,7 +49,7 @@
                                         <i class="ace-icon fa fa-plus"></i>
                                         Novo
                                     </button>
-                                </div>     
+                                </div>   -->  
                                 <div class="btn-group-lg infobox">
                                     <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'AnotacaoCroquiC.jsp';"> 
                                         <i class="ace-icon fa fa-plus"></i>
