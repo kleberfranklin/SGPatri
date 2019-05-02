@@ -14,8 +14,8 @@
             </a>
             <b class="arrow"></b>
         </li>
-        
-<!-- Menu Gabinete-->
+
+        <!-- Menu Gabinete-->
         <li class="">
             <a href="#" class="dropdown-toggle" title="Gabinete da Coordenadoria">
                 <i class="menu-icon fa fa-folder"></i>
@@ -50,12 +50,12 @@
                 </li>
             </ul>
         </li>
-       
-<!-- Menu DDPI -->
+
+        <!-- Menu DDPI -->
         <li class="">
             <a href="#" class="dropdown-toggle" title="Divisão de Destinação">
                 <i class="menu-icon fa fa-folder"></i>
-                    <span class="menu-text">Destinação</span>
+                <span class="menu-text">Destinação</span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
             <b class="arrow"></b>
@@ -97,7 +97,7 @@
                             <a href="AutoCessao.jsp" title="Auto de Cessão">Autos de Cessão</a>
                             <b class="arrow"></b>
                         </li>
-                        <c:if test="${sessionSgDivisao == 'DDPI' && sessionSgSetor == 'SCL'}">
+                        <c:if test="${sessionSgDivisao == 'DDPI' && sessionSgSetor == 'SCL' || sessionPerfil == 'Administrador'}">
                             <li class="">
                                 <a href="ControllerServlet?acao=AutoCessaoValidacaoLista" title="Auto de Cessão Validação">Validação Auto Cessão</a>
                                 <b class="arrow"></b>
@@ -108,8 +108,7 @@
             </ul>
         </li>
 
-        
-<!-- Menu DIPI -->
+        <!-- Menu DIPI -->
         <li class="">
             <a href="#" class="dropdown-toggle" title="Divisão de Informação">
                 <i class="menu-icon fa fa-folder"></i>
@@ -124,8 +123,8 @@
                         <b class="arrow fa fa-angle-down"></b>
                     </a>
                     <b class="arrow"></b>
-                    
-<!--  PAGINAS DO CAP JA ESTAO QUASE PRONTA APENAS ATIVAR O MENU PARA VÊ-LAS -->
+
+                    <!--  PAGINAS DO CAP JA ESTAO QUASE PRONTA APENAS ATIVAR O MENU PARA VÊ-LAS -->
                     <ul class="submenu">
                         <li class="">
                             <a href="Cap.jsp" title="Cadastro de Área Publica">CAP</a>
@@ -167,8 +166,7 @@
             </ul>
         </li>
 
-        
-<!-- Menu DEAPI -->
+        <!-- Menu DEAPI -->
         <li class="">
             <a href="#" class="dropdown-toggle" title="Divisão de Engenharia">
                 <i class="menu-icon fa fa-folder"></i>
@@ -218,9 +216,9 @@
                 </li>
             </ul>
         </li>
-<!-- Menu DAPI -->
 
-        <li class="">
+        <!-- Menu DAPI -->
+        <li class="">         
             <a href="#" class="dropdown-toggle" title="Divisão de Avaliação">
                 <i class="menu-icon fa fa-folder"></i>
                 <span class="menu-text">Avaliação</span>
@@ -256,7 +254,8 @@
                 </li>
             </ul>
         </li>
-<!-- Menu INDICADORES -->
+
+        <!-- Menu INDICADORES -->
         <li class="">
             <a class="disabled-li-menu" href="#" title="">
                 <i class="menu-icon fa fa-bar-chart-o"></i>
@@ -265,9 +264,8 @@
             <b class="arrow"></b>
         </li>
 
-        
-<!-- Menu DECRETOS -->
 
+        <!-- Menu DECRETOS -->
         <li class="">
             <a class="disabled-li-menu" href="#" title="">
                 <i class="menu-icon fa fa-balance-scale"></i>
@@ -275,8 +273,8 @@
             </a>
             <b class="arrow"></b>
         </li>
-<!-- Menu PROJETOS -->
 
+        <!-- Menu PROJETOS -->
         <li class="">
             <a class="disabled-li-menu" href="#" title="">
                 <i class="menu-icon fa fa-laptop"></i>
@@ -284,7 +282,8 @@
             </a>
             <b class="arrow"></b>
         </li>
-<!--Menu Tarefas-->
+
+        <!--Menu Tarefas-->
         <li class="">
             <a class="disabled-li-menu" href="#" title="">
                 <i class="menu-icon fa fa-tags"></i>
@@ -297,7 +296,8 @@
             </a>
             <b class="arrow"></b>
         </li>
-<!-- Menu Calendario-->
+
+        <!-- Menu Calendario-->
         <li class="">
             <a class="disabled-li-menu" href="#" title="">
                 <i class="menu-icon fa fa-calendar"></i>
@@ -305,8 +305,8 @@
             </a>
             <b class="arrow"></b>
         </li>
-<!-- Wikipedia CGPatri-->
-=
+
+        <!-- Wikipedia CGPatri-->
         <li class="">
             <a class="disabled-li-menu" href="#" title="">
                 <i class="menu-icon fa fa-book"></i>
@@ -315,15 +315,15 @@
             <b class="arrow"></b>
         </li>
 
-<!-- Vesrsão do Aplicação-->        
+        <!-- Vesrsão do Aplicação-->        
         <li class="">
             <a class="" href="#" title="">
                 <i class="menu-icon fa fa-info-circle"></i>
-                <span class="menu-text"> Versão 1.1.1</span>
+                <span class="menu-text"> Versão 1.3</span>
             </a>
-           <b class="arrow"></b>
+            <b class="arrow"></b>
         </li>
-  
+
     </ul><!-- /.nav-list -->
 </div>
 

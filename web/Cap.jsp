@@ -40,7 +40,7 @@
                             </h1>
                         </div>
 
-                        <c:if test="${sessionSgDivisao == 'DIPI' && sessionSgSetor == 'SCA'}">        </c:if>                     
+                        <c:if test="${sessionSgDivisao == 'DIPI' && sessionSgSetor == 'SCA' || sessionPerfil == 'Administrador'}">        </c:if>                     
 
                             <div class="form-group" style=" padding-top:30px">
                                 <div class="btn-group-lg infobox">
@@ -64,11 +64,11 @@
                                     </button>
                                 </div>     
                             </div>
-                        
 
+
+                        </div>
                     </div>
                 </div>
-            </div>
             <jsp:include page = "include/footer.jsp" />
         </div><!-- /.main-container --> 
     </body>

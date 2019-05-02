@@ -43,7 +43,7 @@
                                     Pesquisa
                                 </button>
                             </div>
-                            <c:if test="${sessionSgDivisao == 'DIPI' && sessionSgSetor == 'SCA'}"> 
+                            <c:if test="${sessionSgDivisao == 'DIPI' && sessionSgSetor == 'SCA' || sessionPerfil == 'Administrador'}"> 
 
                                 <div class="btn-group-lg col-xs-2">
                                     <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'AnotacaoRestauracaoCRU.jsp?execucao=insert&novo=1';">

@@ -28,7 +28,7 @@ public class CapUsuarioDAO {
 
 //MEDOTO de inserir um novo usuário do CAP
     public void cUsuarioCap(CapUsuario capUs) {
-        String sql = "INSERT INTO tbl_usuario_cap (fk_divisao, fk_setor, nr_ativo, fk_perfil, fk_cargo, nm_login, nm_nome, nm_rf, nm_email, nm_loginAtualizacao, dthr_atualizacao) "
+        String sql = "INSERT INTO tbl_usuario (fk_divisao, fk_setor, nr_ativo, fk_perfil, fk_cargo, nm_login, nm_nome, nm_rf, nm_email, nm_loginAtualizacao, dthr_atualizacao) "
                 + "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -52,9 +52,9 @@ public class CapUsuarioDAO {
 
 //METODO alterar informação do usuario do CAP
     public void altUsuarioCap(CapUsuario capUs) {
-        String sql = "UPDATE tbl_usuario_cap SET fk_divisao=?, fk_setor=?, nr_ativo=?, fk_perfil=?, fk_cargo=?, "
+        String sql = "UPDATE tbl_usuario SET fk_divisao=?, fk_setor=?, nr_ativo=?, fk_perfil=?, fk_cargo=?, "
                 + "nm_login=?, nm_nome=?, nm_rf=?, nm_email=?, nm_loginAtualizacao=?, dthr_atualizacao=?"
-                + " WHERE id_usuario_cap = ?";
+                + " WHERE id_usuario = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, capUs.getPkDivisao());
@@ -79,7 +79,7 @@ public class CapUsuarioDAO {
 
 //METODO lista todos os usuário do CAP
     public List<CapUsuario> listCapUsuario() {
-        String sql = "SELECT * FROM vw_usuariocompleto_cap";
+        String sql = "SELECT * FROM vw_usuariocompleto";
         try {
             List<CapUsuario> capUslista = new ArrayList<CapUsuario>();
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -87,7 +87,7 @@ public class CapUsuarioDAO {
 
             while (rs.next()) {
                 CapUsuario capUs = new CapUsuario();
-                capUs.setPkUsuarioCap(rs.getInt("id_usuario_cap"));
+                capUs.setPkUsuarioCap(rs.getInt("id_usuario"));
                 capUs.setPkDivisao(rs.getInt("id_divisao"));
                 capUs.setPkSetor(rs.getInt("id_setor"));
                 capUs.setNrAtivo(rs.getInt("nr_ativo"));
@@ -115,7 +115,7 @@ public class CapUsuarioDAO {
 
 //METODO quantidade de usuários cadastrados 
     public int qtdUsuarioCap() {
-        String sql = ("SELECT COUNT(*) as total FROM tbl_usuario_cap ");
+        String sql = ("SELECT COUNT(*) as total FROM tbl_usuario ");
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
@@ -134,7 +134,7 @@ public class CapUsuarioDAO {
 
 //METODO quantidade de usuários encontratos um pesquisa por nome
     public int qtdUsuarioQ(String q, String sgDivisao) {
-        String sql = ("SELECT COUNT(*) as total FROM vw_usuariocompleto_cap "
+        String sql = ("SELECT COUNT(*) as total FROM vw_usuariocompleto "
                 + "WHERE nm_nome ILIKE ? and sg_divisao ILIKE ? ");
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -158,7 +158,7 @@ public class CapUsuarioDAO {
 
 //METODO quantidade de usuario cadastrado em um pesquisa por nome e paginada
     public List<CapUsuario> listPaginaCapUsuario(int qtdLinha, int iniPosicao, String q, String sgDivisao) {
-        String sql = ("SELECT * FROM vw_usuariocompleto_cap "
+        String sql = ("SELECT * FROM vw_usuariocompleto "
                 + "WHERE nm_nome ILIKE ? and sg_divisao ILIKE ? "
                 + "ORDER BY nm_nome "
                 + "LIMIT ? OFFSET ?");
@@ -175,7 +175,7 @@ public class CapUsuarioDAO {
 
             while (rs.next()) {
                 CapUsuario capUs = new CapUsuario();
-                capUs.setPkUsuarioCap(rs.getInt("id_usuario_cap"));
+                capUs.setPkUsuarioCap(rs.getInt("id_usuario"));
                 capUs.setPkDivisao(rs.getInt("id_divisao"));
                 capUs.setPkSetor(rs.getInt("id_setor"));
                 capUs.setNrAtivo(rs.getInt("nr_ativo"));
@@ -204,8 +204,8 @@ public class CapUsuarioDAO {
 
 //METODO ativa de desativa o acesso de um usuário na pagina paginada de lista de usuário
     public void atuStatus(CapUsuario capUs) {
-        String sql = ("UPDATE tbl_usuario_cap SET nr_ativo=?, nm_loginAtualizacao=?, dthr_atualizacao=?"
-                + "WHERE id_usuario_cap=? ");
+        String sql = ("UPDATE tbl_usuario SET nr_ativo=?, nm_loginAtualizacao=?, dthr_atualizacao=?"
+                + "WHERE id_usuario=? ");
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, capUs.getNrAtivo());
@@ -223,7 +223,7 @@ public class CapUsuarioDAO {
 
 //METODO verificar o acesso do usuario atraves do login
     public CapUsuario verificarLoginCap(String login) {
-        String sql = ("SELECT * FROM vw_usuariocompleto_cap WHERE nm_login = ?");
+        String sql = ("SELECT * FROM vw_usuariocompleto WHERE nm_login = ?");
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, login);
@@ -231,7 +231,7 @@ public class CapUsuarioDAO {
 
             CapUsuario capUs = new CapUsuario();
             if (rs.next()) {
-                capUs.setPkUsuarioCap(rs.getInt("id_usuario_cap"));
+                capUs.setPkUsuarioCap(rs.getInt("id_usuario"));
                 capUs.setPkDivisao(rs.getInt("id_divisao"));
                 capUs.setPkSetor(rs.getInt("id_setor"));
                 capUs.setNrAtivo(rs.getInt("nr_ativo"));
@@ -259,7 +259,7 @@ public class CapUsuarioDAO {
 
     //METODO retorna o nome e sigla da Divisão do usuário
     public CapUsuario nomeUsuarioCap(String NmLogin) {
-        String sql = ("SELECT * FROM vw_usuariocompleto_cap WHERE nm_login = ?");
+        String sql = ("SELECT * FROM vw_usuariocompleto WHERE nm_login = ?");
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, NmLogin);
@@ -280,7 +280,7 @@ public class CapUsuarioDAO {
 
 //METODO retorna as informações de um usuário para pagina UsuarioDetalhe
     public CapUsuario detalheUsuarioCap(int pkUsusarioCap) {
-        String sql = ("SELECT * FROM vw_usuariocompleto_cap WHERE id_usuario_cap = ?");
+        String sql = ("SELECT * FROM vw_usuariocompleto WHERE id_usuario = ?");
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, pkUsusarioCap);
@@ -288,7 +288,7 @@ public class CapUsuarioDAO {
 
             CapUsuario capUs = new CapUsuario();
             if (rs.next()) {
-                capUs.setPkUsuarioCap(rs.getInt("id_usuario_cap"));
+                capUs.setPkUsuarioCap(rs.getInt("id_usuario"));
                 capUs.setPkDivisao(rs.getInt("id_divisao"));
                 capUs.setPkSetor(rs.getInt("id_setor"));
                 capUs.setNrAtivo(rs.getInt("nr_ativo"));

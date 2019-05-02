@@ -12,251 +12,255 @@ package br.com.Modelo;
 public class AnotacaoCroquiTeste {
 
 //Atributos
-    private int pkAnotacaoExpediente, nrAnotacao, nrInformacao, fkUsuario, fkCatFormularios, nrCodigo, fkTipoExpediente;
+    private int pkAnotacaoExpediente, fkUsuario, fkAssuntoExpediente, fkTipoDespachoExpediente, fkTipoExpediente;
 
-    private String cdCroqui, cdArea, cdExpediente, nrInformacaoDgpi, nmInteressado, dsAssunto, dsDespacho, dsObservacao, nmAutor, cdSetor, cdQuadra,
-            cdLote, dtPublicacao, nmReferenciaEndereco, dtData, dthrAtualizacao, nmLogin, dtAnotacao, nmPublicadoPor, dsInfoGeral, cdTid, cdProcesso;
+    private String cdExpediente, cdCroqui, cdArea, nmInteressado, dsLocal, dtPublicacao, dtTramitacao, dsObservacao, nmAutor,
+            dtData, dthrAtualizacao, nmLogin;
 
-//Construtor    
+    public AnotacaoCroquiTeste(int pkAnotacaoExpediente, String cdExpediente, String cdCroqui, String cdArea, String cdExpediente0, String nmInteressado, String dsObservacao, String nmLogin) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public AnotacaoCroquiTeste() {
     }
 
-    public AnotacaoCroquiTeste(int pkCadastroSic, int fkUsuario, int fkEnderecos, String nrInformacaoDgpi, String cdProcesso, String cdTid,
-            String cdCroqui, String cdArea, String cdExpediente, String nmInteressado, String dsAssunto, String dsObservacao, String nmLogin) {
-
-    }
-
-    //Getter's & Setter's
+//Construtor   
+//Getter's & Setter's
+    /**
+     * @return the pkAnotacaoExpediente
+     */
     public int getPkAnotacaoExpediente() {
         return pkAnotacaoExpediente;
     }
 
+    /**
+     * @param pkAnotacaoExpediente the pkAnotacaoExpediente to set
+     */
     public void setPkAnotacaoExpediente(int pkAnotacaoExpediente) {
         this.pkAnotacaoExpediente = pkAnotacaoExpediente;
     }
 
-    public String getCdProcesso() {
-        return cdProcesso;
-    }
-
-    public void setCdProcesso(String cdProcesso) {
-        this.cdProcesso = cdProcesso;
-    }
-
-    public String getCdTid() {
-        return cdTid;
-    }
-
-    public void setCdTid(String cdTid) {
-        this.cdTid = cdTid;
-    }
-
-    public int getNrAnotacao() {
-        return nrAnotacao;
-    }
-
-    public void setNrAnotacao(int nrAnotacao) {
-        this.nrAnotacao = nrAnotacao;
-    }
-
-    public int getNrInformacao() {
-        return nrInformacao;
-    }
-
-    public void setNrInformacao(int nrInformacao) {
-        this.nrInformacao = nrInformacao;
-    }
-
+    /**
+     * @return the fkUsuario
+     */
     public int getFkUsuario() {
         return fkUsuario;
     }
 
-    public void setFkUsuario(int pkUsuario) {
-        this.fkUsuario = pkUsuario;
+    /**
+     * @param fkUsuario the fkUsuario to set
+     */
+    public void setFkUsuario(int fkUsuario) {
+        this.fkUsuario = fkUsuario;
     }
 
+    /**
+     * @return the fkAssuntoExpediente
+     */
+    public int getFkAssuntoExpediente() {
+        return fkAssuntoExpediente;
+    }
+
+    /**
+     * @param fkAssuntoExpediente the fkAssuntoExpediente to set
+     */
+    public void setFkAssuntoExpediente(int fkAssuntoExpediente) {
+        this.fkAssuntoExpediente = fkAssuntoExpediente;
+    }
+
+    /**
+     * @return the fkTipoDespachoExpediente
+     */
+    public int getFkTipoDespachoExpediente() {
+        return fkTipoDespachoExpediente;
+    }
+
+    /**
+     * @param fkTipoDespachoExpediente the fkTipoDespachoExpediente to set
+     */
+    public void setFkTipoDespachoExpediente(int fkTipoDespachoExpediente) {
+        this.fkTipoDespachoExpediente = fkTipoDespachoExpediente;
+    }
+
+    /**
+     * @return the fkTipoExpediente
+     */
     public int getFkTipoExpediente() {
         return fkTipoExpediente;
     }
 
-    public void setFkTipoExpediente(int pkTipoExpediente) {
-        this.fkTipoExpediente = pkTipoExpediente;
+    /**
+     * @param fkTipoExpediente the fkTipoExpediente to set
+     */
+    public void setFkTipoExpediente(int fkTipoExpediente) {
+        this.fkTipoExpediente = fkTipoExpediente;
     }
 
-    public int getFkCatFormularios() {
-        return fkCatFormularios;
-    }
-
-    public void setFkCatFormularios(int pkCatFormularios) {
-        this.fkCatFormularios = pkCatFormularios;
-    }
-
-    public int getNrCodigo() {
-        return nrCodigo;
-    }
-
-    public void setNrCodigo(int nrCodigo) {
-        this.nrCodigo = nrCodigo;
-    }
-
-    public String getCdCroqui() {
-        return cdCroqui;
-    }
-
-    public void setCdCroqui(String cdCroqui) {
-        this.cdCroqui = cdCroqui;
-    }
-
-    public String getCdArea() {
-        return cdArea;
-    }
-
-    public void setCdArea(String cdArea) {
-        this.cdArea = cdArea;
-    }
-
+    /**
+     * @return the cdExpediente
+     */
     public String getCdExpediente() {
         return cdExpediente;
     }
 
+    /**
+     * @param cdExpediente the cdExpediente to set
+     */
     public void setCdExpediente(String cdExpediente) {
         this.cdExpediente = cdExpediente;
     }
 
-    public String getNrInformacaoDgpi() {
-        return nrInformacaoDgpi;
+    /**
+     * @return the cdCroqui
+     */
+    public String getCdCroqui() {
+        return cdCroqui;
     }
 
-    public void setNrInformacaoDgpi(String nrInformacaoDgpi) {
-        this.nrInformacaoDgpi = nrInformacaoDgpi;
+    /**
+     * @param cdCroqui the cdCroqui to set
+     */
+    public void setCdCroqui(String cdCroqui) {
+        this.cdCroqui = cdCroqui;
     }
 
+    /**
+     * @return the cdArea
+     */
+    public String getCdArea() {
+        return cdArea;
+    }
+
+    /**
+     * @param cdArea the cdArea to set
+     */
+    public void setCdArea(String cdArea) {
+        this.cdArea = cdArea;
+    }
+
+    /**
+     * @return the nmInteressado
+     */
     public String getNmInteressado() {
         return nmInteressado;
     }
 
+    /**
+     * @param nmInteressado the nmInteressado to set
+     */
     public void setNmInteressado(String nmInteressado) {
         this.nmInteressado = nmInteressado;
     }
 
-    public String getDsAssunto() {
-        return dsAssunto;
+    /**
+     * @return the dsLocal
+     */
+    public String getDsLocal() {
+        return dsLocal;
     }
 
-    public void setDsAssunto(String dsAssunto) {
-        this.dsAssunto = dsAssunto;
+    /**
+     * @param dsLocal the dsLocal to set
+     */
+    public void setDsLocal(String dsLocal) {
+        this.dsLocal = dsLocal;
     }
 
-    public String getDsDespacho() {
-        return dsDespacho;
-    }
-
-    public void setDsDespacho(String dsDespacho) {
-        this.dsDespacho = dsDespacho;
-    }
-
-    public String getDsObservacao() {
-        return dsObservacao;
-    }
-
-    public void setDsObservacao(String dsObservacao) {
-        this.dsObservacao = dsObservacao;
-    }
-
-    public String getNmAutor() {
-        return nmAutor;
-    }
-
-    public void setNmAutor(String nmAutor) {
-        this.nmAutor = nmAutor;
-    }
-
-    public String getCdSetor() {
-        return cdSetor;
-    }
-
-    public void setCdSetor(String cdSetor) {
-        this.cdSetor = cdSetor;
-    }
-
-    public String getCdQuadra() {
-        return cdQuadra;
-    }
-
-    public void setCdQuadra(String cdQuadra) {
-        this.cdQuadra = cdQuadra;
-    }
-
-    public String getCdLote() {
-        return cdLote;
-    }
-
-    public void setCdLote(String cdLote) {
-        this.cdLote = cdLote;
-    }
-
+    /**
+     * @return the dtPublicacao
+     */
     public String getDtPublicacao() {
         return dtPublicacao;
     }
 
+    /**
+     * @param dtPublicacao the dtPublicacao to set
+     */
     public void setDtPublicacao(String dtPublicacao) {
         this.dtPublicacao = dtPublicacao;
     }
 
+    /**
+     * @return the dtTramitacao
+     */
+    public String getDtTramitacao() {
+        return dtTramitacao;
+    }
+
+    /**
+     * @param dtTramitacao the dtTramitacao to set
+     */
+    public void setDtTramitacao(String dtTramitacao) {
+        this.dtTramitacao = dtTramitacao;
+    }
+
+    /**
+     * @return the dsObservacao
+     */
+    public String getDsObservacao() {
+        return dsObservacao;
+    }
+
+    /**
+     * @param dsObservacao the dsObservacao to set
+     */
+    public void setDsObservacao(String dsObservacao) {
+        this.dsObservacao = dsObservacao;
+    }
+
+    /**
+     * @return the nmAutor
+     */
+    public String getNmAutor() {
+        return nmAutor;
+    }
+
+    /**
+     * @param nmAutor the nmAutor to set
+     */
+    public void setNmAutor(String nmAutor) {
+        this.nmAutor = nmAutor;
+    }
+
+    /**
+     * @return the dtData
+     */
     public String getDtData() {
         return dtData;
     }
 
+    /**
+     * @param dtData the dtData to set
+     */
     public void setDtData(String dtData) {
         this.dtData = dtData;
     }
 
+    /**
+     * @return the dthrAtualizacao
+     */
     public String getDthrAtualizacao() {
         return dthrAtualizacao;
     }
 
+    /**
+     * @param dthrAtualizacao the dthrAtualizacao to set
+     */
     public void setDthrAtualizacao(String dthrAtualizacao) {
         this.dthrAtualizacao = dthrAtualizacao;
     }
 
+    /**
+     * @return the nmLogin
+     */
     public String getNmLogin() {
         return nmLogin;
     }
 
+    /**
+     * @param nmLogin the nmLogin to set
+     */
     public void setNmLogin(String nmLogin) {
         this.nmLogin = nmLogin;
     }
-
-    public String getDtAnotacao() {
-        return dtAnotacao;
-    }
-
-    public void setDtAnotacao(String dtAnotacao) {
-        this.dtAnotacao = dtAnotacao;
-    }
-
-    public String getNmPublicadoPor() {
-        return nmPublicadoPor;
-    }
-
-    public void setNmPublicadoPor(String nmPublicadoPor) {
-        this.nmPublicadoPor = nmPublicadoPor;
-    }
-
-    public String getDsInfoGeral() {
-        return dsInfoGeral;
-    }
-
-    public void setDsInfoGeral(String dsInfoGeral) {
-        this.dsInfoGeral = dsInfoGeral;
-    }
-
-    public String getNmReferenciaEndereco() {
-        return nmReferenciaEndereco;
-    }
-
-    public void setNmReferenciaEndereco(String nmReferenciaEndereco) {
-        this.nmReferenciaEndereco = nmReferenciaEndereco;
-    }
-
 }

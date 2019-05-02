@@ -26,14 +26,18 @@ public class TipoDespachoDAO {
     }
 
 //Metodo de quantidade de linhas
-    public int qdTipoDespacho(String q) {
-        String sql = ("SELECT COUNT(*) as total FROM tbl_tipo_despacho "
+    public int qdTipoDespacho(String q) throws SQLException {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        String sql = ("SELECT COUNT(*) as total FROM tbl_tipo_despacho_expediente "
                 + "WHERE (sg_tipo_despacho ILIKE ? or nm_tipo_despacho ILIKE ? ) ");
+
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt = connection.prepareStatement(sql);
             stmt.setString(1, '%' + q + '%');
             stmt.setString(2, '%' + q + '%');
-            ResultSet rs = stmt.executeQuery();
+            rs = stmt.executeQuery();
             int total = 0;
             if (rs.next()) {
                 total = rs.getInt("total");
@@ -43,24 +47,32 @@ public class TipoDespachoDAO {
             return total;
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            rs.close();
+            stmt.close();
+            connection.close();
         }
     }
 
 //METODO lista os Despachos das pesquisas e paginada
-    public List<TipoDespacho> listTipoDespacho(int qtLinha, int offset, String q) {
-        String sql = ("SELECT * FROM tbl_tipo_despacho "
+    public List<TipoDespacho> listTipoDespacho(int qtLinha, int offset, String q) throws SQLException {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        String sql = ("SELECT * FROM tbl_tipo_despacho_expediente "
                 + "WHERE (sg_tipo_despacho ILIKE ? or nm_tipo_despacho ILIKE ? ) "
                 + "ORDER BY nm_tipo_despacho "
                 + "LIMIT ? OFFSET ? ");
+
         try {
             List<TipoDespacho> lisTpEx = new ArrayList<TipoDespacho>();
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt = connection.prepareStatement(sql);
             stmt.setString(1, '%' + q + '%');
             stmt.setString(2, '%' + q + '%');
             stmt.setInt(3, qtLinha);
             stmt.setInt(4, offset);
 
-            ResultSet rs = stmt.executeQuery();
+            rs = stmt.executeQuery();
             while (rs.next()) {
                 TipoDespacho tpEx = new TipoDespacho();
                 tpEx.setPkTipoDespacho(rs.getInt("id_tipo_despacho"));
@@ -74,17 +86,26 @@ public class TipoDespachoDAO {
             return lisTpEx;
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            rs.close();
+            stmt.close();
+            connection.close();
         }
 
     }
 
 //METODO utilizado para retornar as informação de um Despacho
-    public TipoDespacho detalheTipoDespacho(int pkTipoDespacho) {
-        String sql = "SELECT * FROM tbl_tipo_despacho WHERE id_tipo_despacho = ?";
+    public TipoDespacho detalheTipoDespacho(int pkTipoDespacho) throws SQLException {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT * FROM tbl_tipo_despacho_expediente "
+                + "WHERE id_tipo_despacho = ?";
+
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt = connection.prepareStatement(sql);
             stmt.setInt(1, pkTipoDespacho);
-            ResultSet rs = stmt.executeQuery();
+            rs = stmt.executeQuery();
 
             TipoDespacho tpEx = new TipoDespacho();
             if (rs.next()) {
@@ -98,15 +119,23 @@ public class TipoDespachoDAO {
             return tpEx;
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            rs.close();
+            stmt.close();
+            connection.close();
         }
     }
 //METODO utilizado para inserir um novo Despacho no BANCO
 
-    public void insTipoDespacho(TipoDespacho tpEx) {
-        String sql = "INSERT INTO tbl_tipo_despacho (sg_tipo_despacho, nm_tipo_despacho, nm_login, dthr_atualizacao ) "
+    public void insTipoDespacho(TipoDespacho tpEx) throws SQLException {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        String sql = "INSERT INTO tbl_tipo_despacho_expediente (sg_tipo_despacho, nm_tipo_despacho, nm_login, dthr_atualizacao ) "
                 + "VALUES (?,?,?,? )";
+
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt = connection.prepareStatement(sql);
             stmt.setString(1, tpEx.getSgTipoDespacho());
             stmt.setString(2, tpEx.getNmTipoDespacho());
             stmt.setString(3, tpEx.getNmLogin());
@@ -115,15 +144,23 @@ public class TipoDespachoDAO {
             stmt.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            rs.close();
+            stmt.close();
+            connection.close();
         }
     }
 
 //MEDOTO utilizado para realizar a alteração das informações de um Despacho
-    public void upTipoDespacho(TipoDespacho tpEx) {
-        String sql = "UPDATE tbl_tipo_despacho SET sg_tipo_despacho=?, nm_tipo_despacho=?, nm_login=?, dthr_atualizacao=? "
+    public void upTipoDespacho(TipoDespacho tpEx) throws SQLException {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        String sql = "UPDATE tbl_tipo_despacho_expediente SET sg_tipo_despacho=?, nm_tipo_despacho=?, nm_login=?, dthr_atualizacao=? "
                 + "WHERE id_tipo_despacho = ?";
+
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt = connection.prepareStatement(sql);
             stmt.setString(1, tpEx.getSgTipoDespacho());
             stmt.setString(2, tpEx.getNmTipoDespacho());
             stmt.setString(3, tpEx.getNmLogin());
@@ -133,17 +170,24 @@ public class TipoDespachoDAO {
             stmt.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            rs.close();
+            stmt.close();
+            connection.close();
         }
     }
 
 //METODO lista os Despachos para o campo select
-    public List<TipoDespacho> listSelectTipoDespacho() {
-        String sql = "SELECT * FROM tbl_tipo_despacho ORDER BY nm_tipo_despacho";
+    public List<TipoDespacho> listSelectTipoDespacho() throws SQLException {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT * FROM tbl_tipo_despacho_expediente ORDER BY nm_tipo_despacho";
 
         try {
             List<TipoDespacho> lisTpEx = new ArrayList<TipoDespacho>();
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
+            stmt = connection.prepareStatement(sql);
+            rs = stmt.executeQuery();
 
             while (rs.next()) {
                 TipoDespacho tpEx = new TipoDespacho();
@@ -160,6 +204,10 @@ public class TipoDespachoDAO {
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            rs.close();
+            stmt.close();
+            connection.close();
         }
     }
 

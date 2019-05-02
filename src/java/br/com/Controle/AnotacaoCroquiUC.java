@@ -5,15 +5,19 @@
  */
 package br.com.Controle;
 
-import br.com.Modelo.AnotacaoCroqui;
-import br.com.Modelo.AnotacaoCroquiDAO;
 import br.com.Modelo.Logica;
 import br.com.Utilitario.Transformar;
-import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import br.com.Modelo.AnotacaoCroqui;
+import br.com.Modelo.AnotacaoCroquiDAO;
 
 /**
  *
@@ -24,86 +28,50 @@ public class AnotacaoCroquiUC implements Logica {
     @Override
     public String executa(HttpServletRequest req,
             HttpServletResponse res) throws Exception {
-// Objetos
-    AnotacaoCroqui anotaCroqui = new AnotacaoCroqui();
-    AnotacaoCroquiDAO anotaCroquiDAO = new AnotacaoCroquiDAO();
-    HttpSession session = req.getSession();
-        
+
+        AnotacaoCroqui anotCroqui = new AnotacaoCroqui();
+        AnotacaoCroquiDAO anotCroquiDAO = new AnotacaoCroquiDAO();
+        HttpSession session = req.getSession();
+        Calendar calendario = new GregorianCalendar();
+        DateFormat textToDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
 
 // Atributo
-    int  pkAnotacaoExpediente=0, pkLogradouro, verExpediente;
-    String  nmTipoExpediente, cdCroqui, cdArea, nrInformacaoDgpi, nrProcesso, tpProcesso, cdTid, cdExpediente, nmInteressado, 
-            dsAssunto, nrNumeroEnd, nmComplementoEnd, nmReferenciaEnd, nrAnotacao, nrInformacao, dsDespacho, dtAnotacao, 
-            dsObservacao, loginSessio, nmAutor, execucao, strPublicacao, strData;
-    Date dtPublicacao, dtData;
+        int pkCadastroSic, fkUsuario, fkEnderecos;
+        String cdProcesso, cdCroqui, cdTid, cdArea, cdExpediente, nmInteressado, dsAssunto,
+                dsObservacao, nmLogin, execucao, nrInformacaoDgpi;
 
-//Carregando os atributos com as informações do formulário  
-    pkLogradouro = Integer.parseInt(req.getParameter("pkLogradouro")); 
-    nmTipoExpediente = Transformar.getRemoveAccents(req.getParameter("nmTipoExpediente")).toUpperCase().trim();
-    cdCroqui =  Transformar.getRemoveAccents(req.getParameter("cdCroqui")).toUpperCase().trim(); 
-    cdArea =  Transformar.getRemoveAccents(req.getParameter("cdArea")).toUpperCase().trim(); 
-    nrInformacaoDgpi =  Transformar.getRemoveAccents(req.getParameter("nrInformacaoDgpi")).toUpperCase().trim();
-    nrProcesso =  req.getParameter("nrprocesso");
-    tpProcesso =  req.getParameter("tpProcesso"); 
-    cdTid =  req.getParameter("cdTid"); 
-    cdExpediente =  Transformar.getRemoveAccents(req.getParameter("cdExpediente")).toUpperCase().trim();
-    nmInteressado =  Transformar.getRemoveAccents(req.getParameter("nmInteressado")).toUpperCase().trim();
-    dsAssunto =  Transformar.getRemoveAccents(req.getParameter("dsAssunto")).toUpperCase().trim();
-    nrNumeroEnd =  req.getParameter("nrNumeroEnd");
-    nmComplementoEnd =  req.getParameter("nmComplementoEnd").toUpperCase().trim();
-    nmReferenciaEnd =  req.getParameter("nmReferenciaEnd").toUpperCase().trim();
-    nrAnotacao =  req.getParameter("nrAnotacao");
-    nrInformacao =  req.getParameter("nrInformacao");
-    dsDespacho =  req.getParameter("dsDespacho").toUpperCase().trim();
-    strPublicacao =  req.getParameter("dtPublicacao");
-    dtAnotacao =  req.getParameter("dtAnotacao");
-    dsObservacao =  Transformar.getRemoveAccents(req.getParameter("dsObservacao")).toUpperCase().trim();
-    strData =  req.getParameter("dtData");
-    execucao  =  req.getParameter("execucao");
-    loginSessio = (String) session.getAttribute("sessionLogin");
-    nmAutor =  (String) session.getAttribute("sessionNome");
-    nmAutor = nmAutor.toUpperCase().trim();
-    verExpediente = Integer.parseInt(req.getParameter("verExpediente"));
-    
-    
-    
-                
+//Carregando os atributos com as informações do formulário     
+        pkCadastroSic = Integer.parseInt(req.getParameter("pkCadastroSic"));
+        nrInformacaoDgpi = req.getParameter("nrInformacaoDgpi").trim();
+        cdProcesso = req.getParameter("cdProcesso").trim();
+        cdTid = req.getParameter("cdTid").trim();
+        cdCroqui = req.getParameter("cdCroqui").trim();
+        cdArea = req.getParameter("cdArea").trim();
+        cdExpediente = req.getParameter("cdExpediente").trim();
+        nmInteressado = req.getParameter("nmInteressado").trim();
+        dsAssunto = req.getParameter("dsAssunto").trim();
+        dsObservacao = req.getParameter("dsObservacao").trim();
+        nmLogin = req.getParameter("nmLogin").trim();
+        execucao = req.getParameter("execucao");
+
+        fkEnderecos = Integer.parseInt(req.getParameter("fkEnderecos"));
+        fkUsuario = Integer.parseInt(req.getParameter("fkUsuario"));
+
 //Tratando para executar o inserir ou alterar, populando o objeto e gravando no banco   
-        if ("".equals(strPublicacao)){
-            dtPublicacao = null;
-        }else{
-            dtPublicacao = java.sql.Date.valueOf(strPublicacao);
-        }
-            
-        if ("".equals(strData)){
-            dtData = null;
-        }else{
-            dtData = java.sql.Date.valueOf(strData);
-        }
-
-
-//        
         if ("edit".equals(execucao)) {
-                pkAnotacaoExpediente = Integer.parseInt(req.getParameter("pkAnotacaoExpediente"));
-                anotaCroqui = new AnotacaoCroqui(pkAnotacaoExpediente, pkLogradouro, nmTipoExpediente, cdCroqui, cdArea, cdExpediente, 
-                        nmInteressado, dsAssunto, dsDespacho, dsObservacao, nmAutor, nrProcesso, cdTid, dtAnotacao, nrInformacaoDgpi, 
-                        dtPublicacao, nmReferenciaEnd, dtData, tpProcesso, nrAnotacao, nrInformacao, nrNumeroEnd, nmComplementoEnd, 
-                        loginSessio,verExpediente);
-                anotaCroquiDAO.upAnotacaoCroqui(anotaCroqui);
-                req.setAttribute("msg", "alterou");
-                
-        
+            pkCadastroSic = Integer.parseInt(req.getParameter("pkCadastroSic"));
+            anotCroqui = new AnotacaoCroqui(pkCadastroSic, fkUsuario, fkEnderecos, nrInformacaoDgpi, cdProcesso, cdTid, cdCroqui, cdArea, cdExpediente, nmInteressado, dsAssunto, dsObservacao, nmLogin);
+            anotCroquiDAO.upAnotacaoCroqui(anotCroqui);
+            req.setAttribute("msg", "alterou");
+
         } else if ("insert".equals(execucao)) {
-                anotaCroqui = new AnotacaoCroqui(pkLogradouro, nmTipoExpediente, cdCroqui, cdArea, cdExpediente, 
-                        nmInteressado, dsAssunto, dsDespacho, dsObservacao, nmAutor, nrProcesso, cdTid, dtAnotacao, nrInformacaoDgpi, 
-                        dtPublicacao, nmReferenciaEnd, dtData, tpProcesso, nrAnotacao, nrInformacao, nrNumeroEnd, nmComplementoEnd, 
-                        loginSessio, verExpediente);
-               pkAnotacaoExpediente = anotaCroquiDAO.cAnotacaoCroqui(anotaCroqui);
+            pkCadastroSic = Integer.parseInt(req.getParameter("pkCadastroSic"));
+            anotCroqui = new AnotacaoCroqui(pkCadastroSic, fkUsuario, fkEnderecos, nrInformacaoDgpi, cdProcesso, cdTid, cdCroqui, cdArea, cdExpediente, nmInteressado, dsAssunto, dsObservacao, nmLogin);
+            anotCroquiDAO.insAnotacaoCroqui(anotCroqui);
             req.setAttribute("msg", "gravou");
         }
 
-        return "ControllerServlet?acao=AnotacaoCroquiDetalhe&pkAnotacaoExpediente="+pkAnotacaoExpediente+"&execucao=view";
-
+        return "ControllerServlet?acao=AnotacaoCroquiDetalhe&pkCadastroSic" + pkCadastroSic + "&execucao=";
     }
 
 }

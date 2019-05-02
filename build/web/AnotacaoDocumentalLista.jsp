@@ -182,7 +182,7 @@
                                                         <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
                                                     </button>
 
-                                                    <c:if test="${sessionSgDivisao == 'DIPI'}" >
+                                                    <c:if test="${sessionSgDivisao == 'DIPI' || sessionPerfil == 'Administrador'}" >
                                                         <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
 
                                                             <li>

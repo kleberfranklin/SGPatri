@@ -103,7 +103,7 @@ public final class AnotacaoCroquiLista_jsp extends org.apache.jasper.runtime.Htt
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "include/nav.jsp", out, false);
       out.write("\r\n");
       out.write("\r\n");
-      out.write("<!--Verificação de acesso  -->\r\n");
+      out.write("            <!--Verificação de acesso  -->\r\n");
       out.write("            ");
       if (_jspx_meth_c_set_0(_jspx_page_context))
         return;
@@ -119,7 +119,8 @@ public final class AnotacaoCroquiLista_jsp extends org.apache.jasper.runtime.Htt
         return;
       out.write("\r\n");
       out.write("\r\n");
-      out.write("<!--Pegando os paremetros -->\r\n");
+      out.write("\r\n");
+      out.write("            <!--Pegando os paremetros -->\r\n");
       out.write("            ");
       if (_jspx_meth_c_set_3(_jspx_page_context))
         return;
@@ -172,7 +173,7 @@ public final class AnotacaoCroquiLista_jsp extends org.apache.jasper.runtime.Htt
       if (_jspx_meth_c_set_15(_jspx_page_context))
         return;
       out.write("\r\n");
-      out.write("            \r\n");
+      out.write("\r\n");
       out.write("\r\n");
       out.write("            <div class=\"breadcrumbs ace-save-state\" id=\"breadcrumbs\">\r\n");
       out.write("                <ul class=\"breadcrumb\">\r\n");
@@ -202,6 +203,7 @@ public final class AnotacaoCroquiLista_jsp extends org.apache.jasper.runtime.Htt
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${qArea}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\" class=\"col-sm-7 col-xs-12\" />\r\n");
       out.write("                                </div>\r\n");
+      out.write("\r\n");
       out.write("                                <br /> <br />\r\n");
       out.write("\r\n");
       out.write("                                <label class=\"col-sm-2 col-xs-12 \"> Endereço:</label>\r\n");
@@ -395,7 +397,7 @@ public final class AnotacaoCroquiLista_jsp extends org.apache.jasper.runtime.Htt
       out.write("\r\n");
       out.write("                                </tr>\r\n");
       out.write("                            </tbody>\r\n");
-      out.write("                       </table>\r\n");
+      out.write("                        </table>\r\n");
       out.write("\r\n");
       out.write("                        <hr> <!--linha de separação -->\r\n");
       out.write("                        <!--Paginação -->\r\n");
