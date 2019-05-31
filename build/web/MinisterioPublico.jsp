@@ -21,27 +21,23 @@
             <c:set var="acessoPerfil" value="${sessionPerfil}" />
             <jsp:directive.include file="include/ControleAcesso.jsp" />
 
-
-            <!--Parametro para diferenciar entre os Auto Cessão e Auto Cessão Terceiros -->    
             <div class="breadcrumbs ace-save-state" id="breadcrumbs">
                 <ul class="breadcrumb">
-                    <li><i class="ace-icon fa fa-list"></i> Ministerio Publico</li>
+                    <li><i class="ace-icon fa fa-list"></i> Ministério Público</li>
                 </ul><!-- /.breadcrumb -->
             </div>    
             <div class="page-content">
                 <div class="row">
                     <div class="col-sm-12" >
-
                         <div class="page-header">
                             <h1>
-                                Ministerio Publico
+                                Ministério Público
                             </h1>
                         </div>
                         <div class="form-group" style=" padding-top:30px">
                             <c:if test="${sessionSgDivisao == 'DIPI' && sessionSgSetor == 'SIC' || sessionPerfil == 'Administrador'}"> </c:if>
-
                                 <div class="btn-group-lg infobox ">
-                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'MinisterioPublicoLista.jsp';">
+                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=MinisterioPublicoLista';">
                                         <i class="glyphicon glyphicon-search"></i>
                                         Pesquisa
                                     </button>
@@ -50,18 +46,16 @@
                                 <br/>
 
                                 <div class="btn-group-lg infobox ">
-                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'MinisterioPublicoCRU.jsp';">
+                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'MinisterioPublicoCRU.jsp?execucao=insert'">
                                         <i class="ace-icon fa fa-plus"></i>
                                         Novo
                                     </button>
                                 </div>    
-
                             </div> 
                         </div>
                     </div>
                 </div>
-            </div>
-        <jsp:include page = "include/footer.jsp" />
-    </div><!-- /.main-container --> 
-</body>
+            <jsp:include page = "include/footer.jsp" />
+        </div><!-- /.main-container --> 
+    </body>
 </html>

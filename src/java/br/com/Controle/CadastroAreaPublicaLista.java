@@ -5,9 +5,9 @@
  */
 package br.com.Controle;
 
+import br.com.Modelo.CadastroAreaPublica;
+import br.com.Modelo.CadastroAreaPublicaDAO;
 import br.com.Modelo.Logica;
-import br.com.Modelo.TipoDespacho;
-import br.com.Modelo.TipoDespachoDAO;
 import br.com.Utilitario.Transformar;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -17,13 +17,13 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author x369482
  */
-public class TipoDespachoLista implements Logica {
+public class CadastroAreaPublicaLista implements Logica {
 
     @Override
     public String executa(HttpServletRequest req,
             HttpServletResponse res) throws Exception {
 
-        TipoDespachoDAO tpDesDAO = new TipoDespachoDAO();
+        CadastroAreaPublicaDAO capDAO = new CadastroAreaPublicaDAO();
 
         /**
          * Atributos: pg = número da página atual pi = número da página inicial
@@ -39,6 +39,10 @@ public class TipoDespachoLista implements Logica {
         int qtdLinha = 8;
         int maxPg = 10;
         int sobraMaxPg = 0;
+//        Date dtIni = null, dtFim = null;
+//        String dtIniS, dtFimS;
+        String qOrigem, qStCap, qCap;
+        int cdCap = 0;
 
 //Carregando atributos com a informações do formlário.         
         pgS = req.getParameter("pg");
@@ -46,30 +50,55 @@ public class TipoDespachoLista implements Logica {
         pfS = req.getParameter("pf");
         q = req.getParameter("q");
 
+        qOrigem = req.getParameter("nmOrigem");
+        qCap = req.getParameter("cdCap");
+        qStCap = req.getParameter("stCap");
+
         //Validação dos atributos carregdos com as informações do formulário.            
         if (q == null) {
             q = "";
         } else if (!"".equals(q)) {
             q = Transformar.getPriMaiuscula(q);
         }
+
         if (pgS == null) {
             pg = 0;
         } else {
             pg = Integer.parseInt(pgS);
         }
+
         if (piS == null) {
             pi = 0;
         } else {
             pi = Integer.parseInt(piS);
         }
+
         if (pfS == null) {
             pf = 0;
         } else {
             pf = Integer.parseInt(pfS);
         }
 
+        if (null == qOrigem || qOrigem.equals("")) {
+            qOrigem = "";
+        } else {
+            qOrigem = Transformar.getRemoveAccents(Transformar.getUFT8(qOrigem)).trim();
+        }
+
+        if (null == qStCap || qStCap.equals("")) {
+            qStCap = "";
+        } else {
+            qStCap = Transformar.getRemoveAccents(Transformar.getUFT8(qStCap)).trim();
+        }
+
+        if (null == qCap || qCap.equals("")) {
+            cdCap = 0;
+        } else {
+            qCap = Transformar.getRemoveAccents(Transformar.getUFT8(qCap)).trim();
+        }
+
 //Carregando a quantidade de registro para calculdo da quantidade de paginas        
-        qtdRegistro = tpDesDAO.qdTipoDespacho(q);
+        qtdRegistro = capDAO.qtdCadastroAreaPublica(qCap);
         qtdPg = qtdRegistro / qtdLinha;
 
 //Logica da paginação            
@@ -103,11 +132,18 @@ public class TipoDespachoLista implements Logica {
         offset = ((pg * qtdLinha) - qtdLinha);
 
         //Populando o objeto lista 
-        List<TipoDespacho> listTpDes = new TipoDespachoDAO().listTipoDespacho(qtdLinha, offset, q);
-        req.setAttribute("listTpDes", listTpDes);
-
-        return "TipoDespachoLista.jsp?pg=" + pg + "&pi=" + pi + "&pf=" + pf + "&qtdPg=" + qtdPg + "&totalRes=" + qtdRegistro + "&q=" + q;
+        List<CadastroAreaPublica> listCap = new CadastroAreaPublicaDAO().listCadastroAreaPublica(qCap, qOrigem, qStCap, qtdLinha, offset, q);
+        req.setAttribute("listCap", listCap);
+        return "CadastroAreaPublicaLista.jsp?"
+                + "pg=" + pg
+                + "&pi=" + pi
+                + "&pf=" + pf
+                + "&qtdPg=" + qtdPg
+                + "&totalRes=" + qtdRegistro
+                + "&cdCap=" + qCap
+                + "&nmOrigem=" + qOrigem
+                + "&stCap=" + qStCap
+                + "&q=" + q;
 
     }
-
 }

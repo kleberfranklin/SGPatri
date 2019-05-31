@@ -32,15 +32,6 @@
             <c:set var="pi" value="${param.pi}" />
             <c:set var="execucao" value="${param.execucao}" />
 
-            <c:set var="qCroqui" value="${param.qCroqui}" />
-            <c:set var="qArea" value="${param.qArea}" />
-            <c:set var="qNome" value="${param.qNome}" />
-            <c:set var="qEndereco" value="${param.qEndereco}" />
-            <c:set var="qAssunto" value="${param.qAssunto}" />
-            <c:set var="dtIni" value="${param.dtIni}" />
-            <c:set var="dtFim" value="${param.dtFim}" />
-
-
             <div class="breadcrumbs ace-save-state" id="breadcrumbs">
                 <ul class="breadcrumb">
                     <li><i class="ace-icon fa fa-list"></i> Anotação Croqui</li>
@@ -146,21 +137,23 @@
                                                     <label class="inline col-md-2 col-xs-12">
                                                         <c:choose>
                                                             <c:when test="${execucao == 'edit'}">
-                                                                <select class="col-md-12 col-xs-12" name="pkTipoExpediente" required="required">
-                                                                    <option>${anotCroqui.TpExpediente}</option>
-                                                                    <option>SEI</option>
-                                                                    <option>TID</option>
-                                                                    <option>CID</option>
-                                                                    <option>PA</option>
+                                                                <select name="" placeholder="" class="col-sm-5 col-xs-12" >
+                                                                    <option></option>
+                                                                    <c:forEach var="lis" items="${listaTpExp}">
+                                                                        <c:if test="${lis.sgTipoExpediente != ''}">
+                                                                            <option>${lis.sgTipoExpediente}</option>
+                                                                        </c:if>
+                                                                    </c:forEach>
                                                                 </select>
                                                             </c:when>
                                                             <c:when test="${execucao == 'insert'}">
-                                                                <select class="col-md-12 col-xs-12" name="pkTipoExpediente" required="required">
+                                                                <select name="" placeholder="" class="col-sm-5 col-xs-12" >
                                                                     <option></option>
-                                                                    <option>SEI</option>
-                                                                    <option>TID</option>
-                                                                    <option>CID</option>
-                                                                    <option>PA</option>
+                                                                    <c:forEach var="lis" items="${listaTpExp}">
+                                                                        <c:if test="${lis.sgTipoExpediente != ''}">
+                                                                            <option>${lis.sgTipoExpediente}</option>
+                                                                        </c:if>
+                                                                    </c:forEach>
                                                                 </select>
                                                             </c:when>
                                                             <c:otherwise>

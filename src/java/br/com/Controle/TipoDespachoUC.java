@@ -17,14 +17,14 @@ import javax.servlet.http.HttpSession;
  *
  * @author x369482
  */
-public class TipoDespachoCU implements Logica {
+public class TipoDespachoUC implements Logica {
 
     @Override
     public String executa(HttpServletRequest req,
             HttpServletResponse res) throws Exception {
 
-        TipoDespacho tpEx = new TipoDespacho();
-        TipoDespachoDAO tpExDAO = new TipoDespachoDAO();
+        TipoDespacho tpDes = new TipoDespacho();
+        TipoDespachoDAO tpDesDAO = new TipoDespachoDAO();
         HttpSession session = req.getSession();
 
 //Atributo       
@@ -40,13 +40,13 @@ public class TipoDespachoCU implements Logica {
 //Tratando para executar o inserir ou alterar, populando o objeto e gravando no banco   
         if ("edit".equals(execucao)) {
             pkTipoDespacho = Integer.parseInt(req.getParameter("pkTipoDespacho"));
-            tpEx = new TipoDespacho(pkTipoDespacho, sigla, tipoDespacho, loginSession);
-            tpExDAO.upTipoDespacho(tpEx);
+            tpDes = new TipoDespacho(pkTipoDespacho, sigla, tipoDespacho, loginSession);
+            tpDesDAO.upTipoDespacho(tpDes);
             req.setAttribute("msg", "alterou");
 
         } else if ("insert".equals(execucao)) {
-            tpEx = new TipoDespacho(sigla, tipoDespacho, loginSession);
-            tpExDAO.insTipoDespacho(tpEx);
+            tpDes = new TipoDespacho(sigla, tipoDespacho, loginSession);
+            tpDesDAO.insTipoDespacho(tpDes);
             req.setAttribute("msg", "gravou");
         }
 

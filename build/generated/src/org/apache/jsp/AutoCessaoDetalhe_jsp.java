@@ -98,6 +98,8 @@ public final class AutoCessaoDetalhe_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html>\r\n");
+      out.write("    <link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.5.0/dist/leaflet.css\" integrity=\"sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==\" crossorigin=\"\"/>\r\n");
+      out.write("    <script src=\"https://unpkg.com/leaflet@1.5.0/dist/leaflet.js\" integrity=\"sha512-3Wcxp7F9bV2pl+MBgrL6Pz7AJASLpemmQPIiPA0lDs3ImF0z4JuuMIBPeirLbgIuhfH2gJyGWZjvm6M+Zr7L6Q==\" crossorigin=\"\"></script>\r\n");
       out.write("\r\n");
       out.write("    ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "include/head.jsp", out, false);
@@ -128,7 +130,6 @@ public final class AutoCessaoDetalhe_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("\r\n");
       out.write("            ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "javaScritp/alertEffect.html", out, false);
-      out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -227,6 +228,12 @@ public final class AutoCessaoDetalhe_jsp extends org.apache.jasper.runtime.HttpJ
       if (_jspx_meth_c_choose_3(_jspx_page_context))
         return;
       out.write("\r\n");
+      out.write("                                            </a>\r\n");
+      out.write("                                        </li>\r\n");
+      out.write("                                        <li class=\"\">\r\n");
+      out.write("                                            <a data-toggle=\"tab\" href=\"#poligono\" aria-expanded=\"true\">\r\n");
+      out.write("                                                Polígono \r\n");
+      out.write("                                                <span class=\"badge badge-transparent\" title=\"ok\"><i class=\"ace-icon fa fa-check-square-o green bigger-130\"></i></span>\r\n");
       out.write("                                            </a>\r\n");
       out.write("                                        </li>\r\n");
       out.write("                                        ");
@@ -744,6 +751,8 @@ public final class AutoCessaoDetalhe_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                                            </div>\r\n");
       out.write("                                        </div>\r\n");
       out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("                                        <!-- Inicio do formulario Validação -->                             \r\n");
       out.write("                                        <div id=\"validacao\" class=\"tab-pane \r\n");
       out.write("                                             ");
@@ -763,7 +772,12 @@ public final class AutoCessaoDetalhe_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                                        </div>\r\n");
       out.write("\r\n");
       out.write("\r\n");
+      out.write("                                        <!--Inicico da tab-pane Poígio -->\r\n");
+      out.write("                                        <div id=\"poligono\" class=\"tab-pane\">\r\n");
+      out.write("                                            <h5 class=\"header smaller lbl\"><strong>Poligono</strong></h5>\r\n");
+      out.write("                                            <div id=\"mapid\" style=\"width: 800px; height: 600px; position: relative; \"></div>\r\n");
       out.write("\r\n");
+      out.write("                                        </div>\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("                                    </div>\r\n");
@@ -771,6 +785,8 @@ public final class AutoCessaoDetalhe_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                            </div>    \r\n");
       out.write("                        </div>        \r\n");
       out.write("\r\n");
+      out.write("                        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "include/leaflet.jsp", out, false);
       out.write("\r\n");
       out.write("                        ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "include/footer.jsp", out, false);

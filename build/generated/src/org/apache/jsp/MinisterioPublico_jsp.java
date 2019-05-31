@@ -108,20 +108,17 @@ public final class MinisterioPublico_jsp extends org.apache.jasper.runtime.HttpJ
         return;
       out.write("\r\n");
       out.write("\r\n");
-      out.write("\r\n");
-      out.write("            <!--Parametro para diferenciar entre os Auto Cessão e Auto Cessão Terceiros -->    \r\n");
       out.write("            <div class=\"breadcrumbs ace-save-state\" id=\"breadcrumbs\">\r\n");
       out.write("                <ul class=\"breadcrumb\">\r\n");
-      out.write("                    <li><i class=\"ace-icon fa fa-list\"></i> Ministerio Publico</li>\r\n");
+      out.write("                    <li><i class=\"ace-icon fa fa-list\"></i> Ministério Público</li>\r\n");
       out.write("                </ul><!-- /.breadcrumb -->\r\n");
       out.write("            </div>    \r\n");
       out.write("            <div class=\"page-content\">\r\n");
       out.write("                <div class=\"row\">\r\n");
       out.write("                    <div class=\"col-sm-12\" >\r\n");
-      out.write("\r\n");
       out.write("                        <div class=\"page-header\">\r\n");
       out.write("                            <h1>\r\n");
-      out.write("                                Ministerio Publico\r\n");
+      out.write("                                Ministério Público\r\n");
       out.write("                            </h1>\r\n");
       out.write("                        </div>\r\n");
       out.write("                        <div class=\"form-group\" style=\" padding-top:30px\">\r\n");
@@ -129,9 +126,8 @@ public final class MinisterioPublico_jsp extends org.apache.jasper.runtime.HttpJ
       if (_jspx_meth_c_if_0(_jspx_page_context))
         return;
       out.write("\r\n");
-      out.write("\r\n");
       out.write("                                <div class=\"btn-group-lg infobox \">\r\n");
-      out.write("                                    <button class=\"btn btn-primary btn-white btn-block\" onclick=\" location.href = 'MinisterioPublicoLista.jsp';\">\r\n");
+      out.write("                                    <button class=\"btn btn-primary btn-white btn-block\" onclick=\" location.href = 'ControllerServlet?acao=MinisterioPublicoLista';\">\r\n");
       out.write("                                        <i class=\"glyphicon glyphicon-search\"></i>\r\n");
       out.write("                                        Pesquisa\r\n");
       out.write("                                    </button>\r\n");
@@ -140,22 +136,20 @@ public final class MinisterioPublico_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                                <br/>\r\n");
       out.write("\r\n");
       out.write("                                <div class=\"btn-group-lg infobox \">\r\n");
-      out.write("                                    <button class=\"btn btn-primary btn-white btn-block\" onclick=\" location.href = 'MinisterioPublicoCRU.jsp';\">\r\n");
+      out.write("                                    <button class=\"btn btn-primary btn-white btn-block\" onclick=\" location.href = 'MinisterioPublicoCRU.jsp?execucao=insert'\">\r\n");
       out.write("                                        <i class=\"ace-icon fa fa-plus\"></i>\r\n");
       out.write("                                        Novo\r\n");
       out.write("                                    </button>\r\n");
       out.write("                                </div>    \r\n");
-      out.write("\r\n");
       out.write("                            </div> \r\n");
       out.write("                        </div>\r\n");
       out.write("                    </div>\r\n");
       out.write("                </div>\r\n");
-      out.write("            </div>\r\n");
-      out.write("        ");
+      out.write("            ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "include/footer.jsp", out, false);
       out.write("\r\n");
-      out.write("    </div><!-- /.main-container --> \r\n");
-      out.write("</body>\r\n");
+      out.write("        </div><!-- /.main-container --> \r\n");
+      out.write("    </body>\r\n");
       out.write("</html>");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){

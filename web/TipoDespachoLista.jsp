@@ -54,14 +54,14 @@
                                     </th>
                                 </tr>
                             </thead>
-                            <c:forEach var="tpEx" items="${listTpEx}">
+                            <c:forEach var="tpDes" items="${listTpDes}">
                                 <tbody>
                                     <tr>
-                                        <td class="hidden-480">${tpEx.sgTipoDespacho}</td>
-                                        <td title=" ${tpEx.nmTipoDespacho}">${tpEx.nmTipoDespacho}</td>
+                                        <td class="hidden-480">${tpDes.sgTipoDespacho}</td>
+                                        <td title=" ${tpDes.nmTipoDespacho}">${tpDes.nmTipoDespacho}</td>
                                         <td>
                                             <div class="hidden-sm hidden-xs btn-group">
-                                                <button class="btn btn-xs btn-info" onclick="location.href = 'ControllerServlet?acao=TipoDespachoDetalhe&pkTipoDespacho=${tpEx.pkTipoDespacho}&pg=${pg}&pi=${pi}&pf=${pf}&q=${q}&execucao=edit'">
+                                                <button class="btn btn-xs btn-info" onclick="location.href = 'ControllerServlet?acao=TipoDespachoDetalhe&pkTipoDespacho=${tpDes.pkTipoDespacho}&pg=${pg}&pi=${pi}&pf=${pf}&q=${q}&execucao=edit'">
                                                     <i class="ace-icon fa fa-pencil bigger-120"></i>
                                                     <a href="#" class="btn-info">Editar</a>
                                                 </button>
@@ -73,7 +73,7 @@
                                                     </button>
                                                     <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
                                                         <li>
-                                                            <a href="ControllerServlet?acao=TipoDespachoDetalhe&pkTipoDespacho=${tpEx.pkTipoDespacho}&pg=${pg}&pi=${pi}&pf=${pf}&q=${q}&execucao=edit" class="tooltip-success" data-rel="tooltip" title="" data-original-title="Edit">
+                                                            <a href="ControllerServlet?acao=TipoDespachoDetalhe&pkTipoDespacho=${tpDes.pkTipoDespacho}&pg=${pg}&pi=${pi}&pf=${pf}&q=${q}&execucao=edit" class="tooltip-success" data-rel="tooltip" title="" data-original-title="Edit">
                                                                 <span class="green">
                                                                     <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
                                                                 </span>

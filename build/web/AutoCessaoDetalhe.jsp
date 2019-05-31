@@ -11,6 +11,8 @@
 
 <!DOCTYPE html>
 <html>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.5.0/dist/leaflet.js" integrity="sha512-3Wcxp7F9bV2pl+MBgrL6Pz7AJASLpemmQPIiPA0lDs3ImF0z4JuuMIBPeirLbgIuhfH2gJyGWZjvm6M+Zr7L6Q==" crossorigin=""></script>
 
     <jsp:include page = "include/head.jsp" />
 
@@ -24,7 +26,6 @@
             <jsp:include page = "javaScritp/maskProcesso.html" />
             <jsp:include page = "javaScritp/somenteNum.html" />
             <jsp:include page = "javaScritp/alertEffect.html" />
-
 
 
             <!--Verificação de acesso  -->
@@ -107,6 +108,12 @@
                                                         <span class="badge badge-transparent" title="ok"><i class="ace-icon fa fa-check-square-o green bigger-130"></i></span>
                                                         </c:otherwise>    
                                                     </c:choose>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a data-toggle="tab" href="#poligono" aria-expanded="true">
+                                                Polígono 
+                                                <span class="badge badge-transparent" title="ok"><i class="ace-icon fa fa-check-square-o green bigger-130"></i></span>
                                             </a>
                                         </li>
                                         <c:if test="${auto.pkAutoCessao <= 4675 && execucao!='insert'}" >
@@ -1770,6 +1777,8 @@
                                             </div>
                                         </div>
 
+
+
                                         <!-- Inicio do formulario Validação -->                             
                                         <div id="validacao" class="tab-pane 
                                              <c:choose>
@@ -1943,7 +1952,12 @@
                                         </div>
 
 
+                                        <!--Inicico da tab-pane Poígio -->
+                                        <div id="poligono" class="tab-pane">
+                                            <h5 class="header smaller lbl"><strong>Poligono</strong></h5>
+                                            <div id="mapid" style="width: 800px; height: 600px; position: relative; "></div>
 
+                                        </div>
 
 
                                     </div>
@@ -1951,7 +1965,7 @@
                             </div>    
                         </div>        
 
-
+                        <jsp:include page="include/leaflet.jsp" />
                         <jsp:include page = "include/footer.jsp" />
                         <jsp:include page = "javaScritp/carregado.html" />
 

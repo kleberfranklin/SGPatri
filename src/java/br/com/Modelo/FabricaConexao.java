@@ -32,7 +32,8 @@ public class FabricaConexao {
 //        private final String banco = "SG_Patri_Test"; 
 //        private final String url = "jdbc:postgresql://10.69.41.91:5433/"+banco; 
         private final String banco = "sgpatrigeo"; 
-        private final String url = "jdbc:postgresql://10.69.42.50:5432/"+banco; 
+//        private final String url = "jdbc:postgresql://10.69.42.50:5432/"+banco; 
+        private final String url = "jdbc:postgresql://10.69.40.178:5432/"+banco; 
 //        private final String url = "jdbc:postgresql://SMDUGBC361:5433/"+banco;
 //        private final String url = "jdbc:postgresql://10.69.42.92:5433/"+banco;
         Properties props = new Properties();

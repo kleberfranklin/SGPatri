@@ -30,10 +30,10 @@ public class TipoDespachoDetalhe implements Logica {
         execucao = req.getParameter("execucao");
 
 //Consulta no banco e populando o objeto   
-        TipoDespachoDAO tpExDAO = new TipoDespachoDAO();
-        TipoDespacho tpEx = tpExDAO.detalheTipoDespacho(pkTipoDespacho);
+        TipoDespachoDAO tpDesDAO = new TipoDespachoDAO();
+        TipoDespacho tpDes = tpDesDAO.detalheTipoDespacho(pkTipoDespacho);
 
-        req.setAttribute("tpEx", tpEx);
+        req.setAttribute("tpDes", tpDes);
         req.setAttribute("execucao", execucao);
 
         return "TipoDespachoCRU.jsp";

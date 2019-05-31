@@ -1,5 +1,5 @@
 <%-- 
-    Document   : TipoDespachoCU
+    Document   : TipoDespachoCRU
     Created on : 01/04/2019, 11:36:10
     Author     : x369482
 --%>
@@ -61,9 +61,9 @@
 
                                 <div class="widget-body">
                                     <div class="widget-main no-padding">
-                                        <form action="ControllerServlet?acao=TipoDespachoCU" method="POST">
+                                        <form action="ControllerServlet?acao=TipoDespachoUC" method="POST">
                                             <input type="hidden" name="execucao" value="${execucao}" />
-                                            <input type="hidden" name="pkTipoDespacho" value="${tpEx.pkTipoDespacho}" />
+                                            <input type="hidden" name="pkTipoDespacho" value="${tpDes.pkTipoDespacho}" />
                                             <fieldset>
                                                 <div class="form-group">
                                                     <label class="col-sm-3 col-xs-12 control-label no-padding-right" for="form-field-1"> Sigla </label>
@@ -74,11 +74,11 @@
                                                                 &nbsp;<span id="alertSigla"></span>
                                                             </c:when>
                                                             <c:when test="${execucao=='edit'}">
-                                                                <input type="text" name="sigla" value="${tpEx.sgTipoDespacho}" id="sigla" onblur="alertSigla(this)" onfocus="alertSiglaClear()" class="col-sm-4 col-sm-12" required="required" maxlength="9">
+                                                                <input type="text" name="sigla" value="${tpDes.sgTipoDespacho}" id="sigla" onblur="alertSigla(this)" onfocus="alertSiglaClear()" class="col-sm-4 col-sm-12" required="required" maxlength="9">
                                                                 &nbsp;<span id="alertSigla"></span>
                                                             </c:when>
                                                             <c:otherwise>
-                                                                <label class="lead"><c:out value="${tpEx.sgTipoDespacho}" /></label>
+                                                                <label class="lead"><c:out value="${tpDes.sgTipoDespacho}" /></label>
                                                             </c:otherwise>
                                                         </c:choose>
                                                     </div>
@@ -91,10 +91,10 @@
                                                                 <input type="text" id="form-field-1" name="TipoDespacho" placeholder="Nome completo do Despacho" class="col-xs-12 col-sm-12" required="required">
                                                             </c:when>
                                                             <c:when test="${execucao=='edit'}">
-                                                                <input type="text" id="form-field-1" name="TipoDespacho" value="${tpEx.nmTipoDespacho}" class="col-xs-12 col-sm-12" required="required">
+                                                                <input type="text" id="form-field-1" name="TipoDespacho" value="${tpDes.nmTipoDespacho}" class="col-xs-12 col-sm-12" required="required">
                                                             </c:when>
                                                             <c:otherwise>
-                                                                <label class="lead"><c:out value="${tpEx.nmTipoDespacho}" /></label >
+                                                                <label class="lead"><c:out value="${tpDes.nmTipoDespacho}" /></label >
                                                             </c:otherwise>
                                                         </c:choose>
                                                     </div>

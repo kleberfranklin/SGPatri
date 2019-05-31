@@ -137,7 +137,7 @@ public final class nav_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                </li>\r\n");
       out.write("                <li class=\"\">\r\n");
       out.write("                    <a href=\"#\" class=\"dropdown-toggle\" title=\"Núcleo de Controle de Lavratura de Cessão\">\r\n");
-      out.write("                        <i class=\"menu-icon fa fa-caret-right\"></i> SCL\r\n");
+      out.write("                        <i class=\"menu-icon fa fa-caret-right \"></i> SCL\r\n");
       out.write("                        <b class=\"arrow fa fa-angle-down\"></b>\r\n");
       out.write("                    </a>\r\n");
       out.write("                    <b class=\"arrow\"></b>\r\n");
@@ -174,7 +174,7 @@ public final class nav_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    <!--  PAGINAS DO CAP JA ESTAO QUASE PRONTA APENAS ATIVAR O MENU PARA VÊ-LAS -->\r\n");
       out.write("                    <ul class=\"submenu\">\r\n");
       out.write("                        <li class=\"\">\r\n");
-      out.write("                            <a href=\"Cap.jsp\" title=\"Cadastro de Área Publica\">CAP</a>\r\n");
+      out.write("                            <a href=\"CadastroAreaPublica.jsp\" title=\"Cadastro de Área Publica\">CAP</a>\r\n");
       out.write("                            <b class=\"arrow\"></b>\r\n");
       out.write("                        </li>\r\n");
       out.write("                    </ul>    \r\n");
@@ -199,7 +199,7 @@ public final class nav_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <b class=\"arrow fa fa-angle-down\"></b>\r\n");
       out.write("                    </a>\r\n");
       out.write("                    <b class=\"arrow\"></b>\r\n");
-      out.write("                    <ul class=\"submenu \">\r\n");
+      out.write("                    <ul class=\"submenu\">\r\n");
       out.write("                        <li class=\"\">\r\n");
       out.write("                            <a href=\"AnotacaoCroqui.jsp\" title=\"Anotação e Informação Cadastral de Croqui\">Anotação Croqui </a>\r\n");
       out.write("                            <b class=\"arrow\"></b>\r\n");
@@ -366,7 +366,7 @@ public final class nav_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <li class=\"\">\r\n");
       out.write("            <a class=\"\" href=\"#\" title=\"\">\r\n");
       out.write("                <i class=\"menu-icon fa fa-info-circle\"></i>\r\n");
-      out.write("                <span class=\"menu-text\"> Versão 1.3</span>\r\n");
+      out.write("                <span class=\"menu-text\"> Versão 1.4</span>\r\n");
       out.write("            </a>\r\n");
       out.write("            <b class=\"arrow\"></b>\r\n");
       out.write("        </li>\r\n");
