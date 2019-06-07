@@ -35,8 +35,8 @@ public class TipoAssuntoDAO {
 
         try {
             stmt = connection.prepareStatement(sql);
-            stmt.setString(1, '%' + q + '%');
-            stmt.setString(2, '%' + q + '%');
+                stmt.setString(1, '%' + q + '%');
+                stmt.setString(2, '%' + q + '%');   
             rs = stmt.executeQuery();
             int total = 0;
             if (rs.next()) {
@@ -89,7 +89,7 @@ public class TipoAssuntoDAO {
         } finally {
             rs.close();
             stmt.close();
-            connection.close();
+//            connection.close();
         }
 
     }
@@ -129,25 +129,22 @@ public class TipoAssuntoDAO {
 
     public void insTipoAssunto(TipoAssunto tpAs) throws SQLException {
         PreparedStatement stmt = null;
-        ResultSet rs = null;
 
         String sql = "INSERT INTO tbl_assunto_expediente ( sg_assunto, nm_assunto, nm_login, dthr_atualizacao ) "
                 + "VALUES (?,?,?,? )";
-
         try {
             stmt = connection.prepareStatement(sql);
-            stmt.setString(1, tpAs.getSgTipoAssunto());
-            stmt.setString(2, tpAs.getNmTipoAssunto());
-            stmt.setString(3, tpAs.getNmLogin());
-            stmt.setTimestamp(4, java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
+                stmt.setString(1, tpAs.getSgTipoAssunto());
+                stmt.setString(2, tpAs.getNmTipoAssunto());
+                stmt.setString(3, tpAs.getNmLogin());
+                stmt.setTimestamp(4, java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
             stmt.execute();
-            stmt.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            rs.close();
-            stmt.close();
-            connection.close();
+//            rs.close();
+//            stmt.close();
+//            connection.close();
         }
     }
 
@@ -171,9 +168,9 @@ public class TipoAssuntoDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            rs.close();
-            stmt.close();
-            connection.close();
+//            rs.close();
+//            stmt.close();
+//            connection.close();
         }
     }
 
@@ -205,10 +202,34 @@ public class TipoAssuntoDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            rs.close();
-            stmt.close();
-            connection.close();
+//            rs.close();
+//            stmt.close();
+//            connection.close();
         }
+    }
+
+    public int pesquisaPorNome(String qAssunto) {
+         PreparedStatement stmt = null;
+        ResultSet rs = null;
+        int pkAssunto = 0;
+            String sql = ("SELECT id_assunto_expediente "
+                        + "FROM tbl_assunto_expediente "
+                        + "WHERE nm_assunto = ? ");
+            try{
+                stmt = connection.prepareStatement(sql);
+                    stmt.setString(1, qAssunto);  
+                rs = stmt.executeQuery();
+                    if (rs.next()){
+                        pkAssunto = rs.getInt("id_assunto_expediente");
+                    }
+                return pkAssunto;
+            }catch(SQLException e){
+                throw new RuntimeException (e);
+            }finally{
+//                rs.close();
+//                stmt.close();
+//                connection.close();
+            }
     }
 
 }

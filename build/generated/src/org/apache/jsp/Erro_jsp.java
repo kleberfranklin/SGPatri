@@ -168,7 +168,7 @@ public final class Erro_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <div class=\"text-capitalize\">\r\n");
       out.write("                ");
 
-                          exception.printStackTrace(new java.io.PrintWriter(out));
+                    exception.printStackTrace(new java.io.PrintWriter(out));
                 
       out.write("\r\n");
       out.write("            </div>\r\n");

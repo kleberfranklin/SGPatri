@@ -8,8 +8,13 @@ package br.com.Controle;
 import br.com.Modelo.AnotacaoCroqui;
 import br.com.Modelo.AnotacaoCroquiDAO;
 import br.com.Modelo.Logica;
+import br.com.Modelo.TipoAssunto;
+import br.com.Modelo.TipoAssuntoDAO;
+import br.com.Modelo.TipoDespacho;
+import br.com.Modelo.TipoDespachoDAO;
+import br.com.Modelo.TipoExpediente;
+import br.com.Modelo.TipoExpedienteDAO;
 import br.com.Utilitario.Transformar;
-import java.sql.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +29,15 @@ public class AnotacaoCroquiLista implements Logica {
     public String executa(HttpServletRequest req,
             HttpServletResponse res) throws Exception {
 
-        AnotacaoCroquiDAO croquiDAO = new AnotacaoCroquiDAO();
+        AnotacaoCroquiDAO anotCroquiDAO = new AnotacaoCroquiDAO();
+        
+        TipoExpedienteDAO tpExpDAO = new TipoExpedienteDAO();
+        TipoAssuntoDAO tpAssuntoDAO = new TipoAssuntoDAO();
+        TipoDespachoDAO tpDespaDAO = new TipoDespachoDAO();
+        
+        List<TipoExpediente> listaTpExp = tpExpDAO.listSelectTipoExpediente();
+        List<TipoAssunto> listTpAssunto = tpAssuntoDAO.listSelectTipoAssunto();
+        List<TipoDespacho> listTpDespacho = tpDespaDAO.listSelectTipoDespacho(); 
 
         /**
          * Atributos: pg = número da página atual pi = número da página inicial
@@ -37,12 +50,12 @@ public class AnotacaoCroquiLista implements Logica {
          */
         int pg, pi, pf, qtdRegistro, qtdPg, offset;
         String pgS, piS, pfS;
-        int qtdLinha = 6;
+        int qtdLinha = 5;
         int maxPg = 10;
         int sobraMaxPg = 0;
 
-        Date dtIni = null, dtFim = null;
-        String dtIniS, dtFimS, qCroqui, qArea, qNome, qInteressado, qEndereco, qAssunto;
+
+        String qCroqui, qArea, sgTpExpediente, cdExpediente, qAssunto, qInteressado, qLocal;
 
 //Carregando atributos com a informações do formlário.         
         pgS = req.getParameter("pg");
@@ -51,59 +64,43 @@ public class AnotacaoCroquiLista implements Logica {
 
         qCroqui = req.getParameter("qCroqui");
         qArea = req.getParameter("qArea");
-        qNome = req.getParameter("qNome");
-        qInteressado = req.getParameter("qInteressado");
-        qEndereco = req.getParameter("qEndereco");
+        sgTpExpediente = req.getParameter("sgTpExpediente");
+        cdExpediente = req.getParameter("cdExpediente");
         qAssunto = req.getParameter("qAssunto");
-        dtIniS = req.getParameter("dtIni");
-        dtFimS = req.getParameter("dtFim");
+        qInteressado = req.getParameter("qInteressado");
+        qLocal = req.getParameter("qLocal");
+        
+        
 
         //Validação dos atributos carregdos com as informações do formulário.    
         if (qCroqui == null) {
             qCroqui = "";
-        } else if (!"".equals(qCroqui)) {
-            qCroqui = qCroqui.toUpperCase();
-        }
-
+        } 
         if (qArea == null) {
             qArea = "";
-        } else if (!"".equals(qArea)) {
-            qArea = Transformar.getRemoveAccents(qArea).toUpperCase();
-        }
+        } 
 
-        if (qNome == null) {
-            qNome = "";
-        } else if (!"".equals(qNome)) {
-            qNome = Transformar.getRemoveAccents(qNome).toUpperCase();
+        if (sgTpExpediente == null) {
+            sgTpExpediente = "";
         }
-
-        if (qInteressado == null) {
-            qInteressado = "";
-        } else if (!"".equals(qInteressado)) {
-            qInteressado = Transformar.getRemoveAccents(qInteressado).toUpperCase();
+        
+        if (cdExpediente == null) {
+            cdExpediente = "";
+        } else if (!"".equals(cdExpediente)) {
+            cdExpediente = Transformar.getRemoveAccents(cdExpediente.toUpperCase());
         }
 
         if (qAssunto == null) {
             qAssunto = "";
-        } else if (!"".equals(qAssunto)) {
-            qAssunto = Transformar.getRemoveAccents(qAssunto).toUpperCase();
-        }
+        } 
 
-        if (qEndereco == null) {
-            qEndereco = "";
-        } else if (!"".equals(qEndereco)) {
-            qEndereco = Transformar.getRemoveAccents(qEndereco).toUpperCase();
-        }
-
-        if (dtIniS == null || "".equals(dtIniS)) {
-            dtIni = Date.valueOf("1500-01-01");
-        } else {
-            dtIni = Date.valueOf(dtIniS);
-        }
-        if (dtFimS == null || "".equals(dtFimS)) {
-            dtFim = Date.valueOf("3000-12-31");
-        } else {
-            dtFim = Date.valueOf(dtFimS);
+        if (qInteressado == null) {
+            qInteressado = "";
+        } 
+        if (qLocal == null) {
+            qLocal = "";
+        } else if(!"".equals(qLocal)){
+             qLocal = qLocal.toUpperCase();
         }
 
         if (pgS == null) {
@@ -123,7 +120,7 @@ public class AnotacaoCroquiLista implements Logica {
         }
 
 //Carregando a quantidade de registro para calculdo da quantidade de paginas        
-        qtdRegistro = croquiDAO.qtdAntoCroqui(qCroqui, qArea, qNome, qInteressado, qEndereco, qAssunto, dtIni, dtFim);
+        qtdRegistro = anotCroquiDAO.qtdAnotCroquiLista(qCroqui, qArea, sgTpExpediente, cdExpediente, qAssunto, qInteressado, qLocal);
         qtdPg = qtdRegistro / qtdLinha;
 
 //Logica da paginação            
@@ -157,23 +154,22 @@ public class AnotacaoCroquiLista implements Logica {
         offset = ((pg * qtdLinha) - qtdLinha);
 
         // Populando o objeto lista 
-        List<AnotacaoCroqui> listCroqui = new AnotacaoCroquiDAO().listAnotaCroqui(qCroqui, qArea, qNome, qInteressado, qEndereco, qAssunto, dtIni, dtFim, qtdLinha, offset);
-        req.setAttribute("listCroqui", listCroqui);
+        List<AnotacaoCroqui> listAntCroqui = new AnotacaoCroquiDAO().lisAnotCroquiLista(qCroqui, qArea, sgTpExpediente, cdExpediente, qAssunto, qInteressado, qLocal, qtdLinha, offset);
+        req.setAttribute("listaTpExp", listaTpExp);
+        req.setAttribute("listTpAssunto", listTpAssunto);
+        req.setAttribute("listAntCroqui", listAntCroqui);
+        req.setAttribute("qCroqui", qCroqui);
+        req.setAttribute("qArea", qArea);
+        req.setAttribute("sgTpExpediente", sgTpExpediente);
+        req.setAttribute("cdExpediente", cdExpediente);
+        req.setAttribute("qAssunto", qAssunto);
+        req.setAttribute("qInteressado", qInteressado);
+        req.setAttribute("qLocal", qLocal);
 
-        return "AnotacaoCroquiLista.jsp?pg=" + pg
-                + "&pi=" + pi
-                + "&pf=" + pf
-                + "&qtdPg=" + qtdPg
-                + "&totalRes=" + qtdRegistro
-                + "&qCroqui=" + qCroqui
-                + "&qArea=" + qArea
-                + "&qNome=" + qNome
-                + "&qInteressado=" + qInteressado
-                + "&qEndereco=" + qEndereco
-                + "&qAssunto=" + qAssunto
-                + "&dtIni=" + dtIni
-                + "&dtFim=" + dtFim;
+//        req.setAttribute("totalRes", qtdRegistro);
 
+        return "AnotacaoCroquiLista.jsp?pg="+pg+"&pi="+pi+"&pf="+pf+"&qtdPg="+qtdPg+"&totalRes="+qtdRegistro;
+               
     }
 
 }

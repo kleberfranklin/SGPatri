@@ -24,20 +24,22 @@ public class FabricaConexao {
 
         String drive = "org.postgresql.Driver";
 ///////-----------CONEXÃAO SGDB PostgresSQL - HOMOLOGA/TEST
-//        String banco = "SG_Patri_Homolog";
-        String banco = "sgpatrigeo";
-        String url = "jdbc:postgresql://10.69.42.50:5432/"+banco;
+////        String banco = "SG_Patri_Homolog";
+//        String banco = "sgpatrigeo";
+//        String url = "jdbc:postgresql://10.69.42.50:5432/"+banco;
 
 //////-----------CONEXÃO SGDB PostgresSQL - CAP        
-//        String banco = "geoDGPI";
-//        String url = "jdbc:postgresql://10.69.40.70:5433/"+banco;
+        String banco = "geoDGPI";
+        String url = "jdbc:postgresql://10.69.40.70:5433/"+banco;
         Properties props = new Properties();
        
         public Connection getConnetion(){
-        props.setProperty("currentSchema","sch_cgpatri");
-//        props.setProperty("currentSchema","sch_cap");
-        props.setProperty("user","devgeo");
-        props.setProperty("password","devgeo2019");
+//        props.setProperty("currentSchema","sch_cgpatri");
+        props.setProperty("currentSchema","sch_cap");
+//        props.setProperty("user","devgeo");
+//        props.setProperty("password","devgeo2019");
+        props.setProperty("user","falmeida");
+        props.setProperty("password","Prodam1997");
 //        props.setProperty("ssl","false");
 
         

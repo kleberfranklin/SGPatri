@@ -75,18 +75,18 @@ public final class adicionarCampo_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("\t\r\n");
       out.write("\tvar x = 0; //initlal text box count\r\n");
       out.write("\t$(add_button).click(function(e){ //on add input button click\r\n");
-      out.write("\t\te.preventDefault();\r\n");
-      out.write("\t\tif(x < max_fields){ //max input box allowed\r\n");
-      out.write("\t\t\tx++; //text box increment\r\n");
-      out.write("                        $(wrapper).append('<div class=\"space-1\"></div><div class=\"form-group input_fields_wrap\"><label class=\"inline col-md-2 col-xs-12\" ><span class=\"lbl\"><strong>Tipo de Dispositivo:</strong></span></label><label class=\"inline col-md-3 col-xs-12\"><select class=\"col-md-12 col-xs-12\" name=\"tpDispositivo\" required=\"required\"><option></option>");
+      out.write("            e.preventDefault();\r\n");
+      out.write("            if(x < max_fields){ //max input box allowed\r\n");
+      out.write("                x++; //text box increment\r\n");
+      out.write("                    $(wrapper).append('<div class=\"space-1\"></div><div class=\"form-group input_fields_wrap\"><label class=\"inline col-md-2 col-xs-12\" ><span class=\"lbl\"><strong>Tipo de Dispositivo:</strong></span></label><label class=\"inline col-md-3 col-xs-12\"><select class=\"col-md-12 col-xs-12\" name=\"tpDispositivo\" required=\"required\"><option></option>");
       if (_jspx_meth_c_forEach_0(_jspx_page_context))
         return;
       out.write("</select></label><label class=\"inline col-md-1 col-xs-12\" ><span class=\"lbl\"><strong>N&#250;mero:</strong></span></label><label class=\"inline col-md-2 col-xs-12\"><input type=\"text\" class=\"col-xs-12 col-md-12\" placeholder=\"numero\" name=\"numDispositivo\" ></label><label class=\"inline col-md-1 col-xs-12\" ><span class=\"lbl\"><strong>Data:</strong></span></label><label class=\"inline col-md-2 col-xs-12\"><div class=\"input-group\"><input type=\"date\" class=\"col-xs-10 col-md-10\" name=\"dtDispositivo\"  placeholder=\"dd/mm/aaaa\"></div></label><a href=\"#\" class=\"red remove_field\" title=\"remover campos\"><span class=\"label label-danger arrowed-right\"><i class=\" glyphicon glyphicon-minus-sign\"></i></a></div>'); //add input box\r\n");
-      out.write("\t\t}\r\n");
+      out.write("            }\r\n");
       out.write("\t});\r\n");
       out.write("\t\r\n");
       out.write("\t$(wrapper).on(\"click\",\".remove_field\", function(e){ //user click on remove text\r\n");
-      out.write("\t\te.preventDefault(); $(this).parent('div').remove();\r\n");
+      out.write("            e.preventDefault(); $(this).parent('div').remove();\r\n");
       out.write("\t})\r\n");
       out.write("});\r\n");
       out.write("</script>\r\n");

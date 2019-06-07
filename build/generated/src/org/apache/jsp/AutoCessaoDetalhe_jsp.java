@@ -98,11 +98,10 @@ public final class AutoCessaoDetalhe_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html>\r\n");
-      out.write("\r\n");
       out.write("    ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "include/head.jsp", out, false);
       out.write("\r\n");
-      out.write("\r\n");
+      out.write("    \r\n");
       out.write("    <body class=\"no-skin\">\r\n");
       out.write("        ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "include/top.jsp", out, false);
@@ -129,8 +128,7 @@ public final class AutoCessaoDetalhe_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("            ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "javaScritp/alertEffect.html", out, false);
       out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
+      out.write("            \r\n");
       out.write("\r\n");
       out.write("            <!--Verificação de acesso  -->\r\n");
       out.write("            ");
@@ -180,7 +178,15 @@ public final class AutoCessaoDetalhe_jsp extends org.apache.jasper.runtime.HttpJ
       if (_jspx_meth_c_set_10(_jspx_page_context))
         return;
       out.write("\r\n");
-      out.write("\r\n");
+      out.write("            \r\n");
+      out.write("            <link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.5.1/dist/leaflet.css\"\r\n");
+      out.write("              integrity=\"sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==\"\r\n");
+      out.write("              crossorigin=\"\"/>\r\n");
+      out.write("            \r\n");
+      out.write("            <script src=\"https://unpkg.com/leaflet@1.5.1/dist/leaflet.js\"\r\n");
+      out.write("              integrity=\"sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==\"\r\n");
+      out.write("              crossorigin=\"\"></script>\r\n");
+      out.write("              \r\n");
       out.write("            <div class=\"breadcrumbs ace-save-state\" id=\"breadcrumbs\">\r\n");
       out.write("                <ul class=\"breadcrumb\">\r\n");
       out.write("                    <li><i class=\"ace-icon fa fa-list\"></i> Auto de Cessão </li>\r\n");
@@ -227,6 +233,12 @@ public final class AutoCessaoDetalhe_jsp extends org.apache.jasper.runtime.HttpJ
       if (_jspx_meth_c_choose_3(_jspx_page_context))
         return;
       out.write("\r\n");
+      out.write("                                            </a>\r\n");
+      out.write("                                        </li>\r\n");
+      out.write("                                        <li class=\"\">\r\n");
+      out.write("                                            <a data-toggle=\"tab\" href=\"#poligono\" aria-expanded=\"true\">\r\n");
+      out.write("                                                Polígono \r\n");
+      out.write("                                                <span class=\"badge badge-transparent\" title=\"ok\"><i class=\"ace-icon fa fa-check-square-o green bigger-130\"></i></span>\r\n");
       out.write("                                            </a>\r\n");
       out.write("                                        </li>\r\n");
       out.write("                                        ");
@@ -744,6 +756,14 @@ public final class AutoCessaoDetalhe_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                                            </div>\r\n");
       out.write("                                        </div>\r\n");
       out.write("\r\n");
+      out.write("                                        <!--Inicico da tab-pane Poígio -->\r\n");
+      out.write("                                        <div id=\"poligono\" class=\"tab-pane \" >\r\n");
+      out.write("                                            <h5 class=\"header smaller lbl\"><strong>POLÍGONO</strong></h5>\r\n");
+      out.write("                                            <label >\r\n");
+      out.write("                                                \r\n");
+      out.write("                                            </labe>\r\n");
+      out.write("                                        </div>\r\n");
+      out.write("\r\n");
       out.write("                                        <!-- Inicio do formulario Validação -->                             \r\n");
       out.write("                                        <div id=\"validacao\" class=\"tab-pane \r\n");
       out.write("                                             ");
@@ -771,7 +791,7 @@ public final class AutoCessaoDetalhe_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                            </div>    \r\n");
       out.write("                        </div>        \r\n");
       out.write("\r\n");
-      out.write("\r\n");
+      out.write("                        \r\n");
       out.write("                        ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "include/footer.jsp", out, false);
       out.write("\r\n");
@@ -8766,12 +8786,12 @@ public final class AutoCessaoDetalhe_jsp extends org.apache.jasper.runtime.HttpJ
           out.write(".png\" title=\"");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${ar.nmNomeclatura}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("\" width=\"100%\" height=\"100%\"/></a>\r\n");
-          out.write("                                                                </div>\r\n");
+          out.write("                                                                    </div>\r\n");
           out.write("                                                                ");
           if (_jspx_meth_c_if_22((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_16, _jspx_page_context, _jspx_push_body_count_c_forEach_16))
             return true;
           out.write("\r\n");
-          out.write("                                                            </div>\r\n");
+          out.write("                                                                </div>\r\n");
           out.write("                                                        </form>\r\n");
           out.write("                                                    ");
           int evalDoAfterBody = _jspx_th_c_forEach_16.doAfterBody();

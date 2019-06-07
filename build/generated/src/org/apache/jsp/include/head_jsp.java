@@ -44,6 +44,7 @@ public final class head_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("\r\n");
       out.write("<head>\r\n");
+      out.write("   \r\n");
       out.write("    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\" />\r\n");
       out.write("    <meta charset=\"utf-8\" />\r\n");
       out.write("    <meta http-equiv=\"Content-Language\" content=\"pt-br\">\r\n");
@@ -109,7 +110,7 @@ public final class head_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <script src=\"assets/js/respond.min.js\"></script>\r\n");
       out.write("    <![endif]-->\r\n");
       out.write("    <link type=\"text/css\" rel=\"stylesheet\" charset=\"UTF-8\" href=\"https://translate.googleapis.com/translate_static/css/translateelement.css\">\r\n");
-      out.write("    \r\n");
+      out.write("   \r\n");
       out.write("    \r\n");
       out.write("</head>\r\n");
     } catch (Throwable t) {

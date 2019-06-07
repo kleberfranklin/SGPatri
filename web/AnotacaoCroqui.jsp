@@ -38,40 +38,23 @@
                         </div>
                         <div class="form-group" style=" padding-top:30px">
                             <c:if test="${(sessionSgDivisao == 'DIPI' && sessionSgSetor == 'SIC')  || sessionPerfil == 'Administrador'}"> 
-
-
-                                <div class="btn-group-lg infobox ">
-                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=AnotacaoCroquiLista';">
-                                        <i class="glyphicon glyphicon-search"></i>
-                                        Pesquisa
-                                    </button>
-                                </div>
-
-                                <br/>
-
-                                <div class="btn-group-lg infobox ">
-                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'AnotacaoCroquiCRU.jsp?pkAnotacaoExpediente=1867&execucao=insert';">
+                              <div class="btn-group-lg infobox">
+                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=AnotacaoCroquiPesquisa&primeiro=true';"> 
                                         <i class="ace-icon fa fa-plus"></i>
-                                        Novo
-                                    </button>
-                                </div>    
-                                <div class="btn-group-lg infobox">
-                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=AnotacaoCroquiC';"> 
-                                        <i class="ace-icon fa fa-plus"></i>
-                                        Anotacao de Expediente
+                                        Anotacao Croqui
                                     </button>
                                 </div> 
 
                                 <div class="btn-group-lg infobox">
-                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'AnotacaoCroquiLista.jsp';"> 
-                                        <i class="ace-icon fa fa-plus"></i>
+                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=AnotacaoCroquiLista';"> 
+                                        <i class="ace-icon fa fa-search"></i>
                                         Pesquisa Expediente
                                     </button>
                                 </div> 
 
-                                <div class="btn-group-lg infobox">
+                                <div class="btn-group-lg infobox disabled-li-menu">
                                     <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'AnotacaoCroquiRelatorioLista.jsp';"> 
-                                        <i class="ace-icon fa fa-plus"></i>
+                                        <i class="ace-icon fa fa-list"></i>
                                         Pesquisa Relatório
                                     </button>
                                 </div> 

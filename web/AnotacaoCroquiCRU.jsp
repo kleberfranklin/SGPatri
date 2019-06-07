@@ -18,34 +18,14 @@
             <!--Verificação de acesso  -->
             <c:set var="acessoPerfil" value="${sessionPerfil}" />
             <jsp:directive.include file="include/ControleAcesso.jsp" />
-
-
-            <!-- Beans -->        
-            <jsp:useBean id="subPref" class= "br.com.Modelo.SubPrefeituraDAO" />
-            <jsp:useBean id="Arquivo" class= "br.com.Modelo.ArquivoDAO" />
-
-            <!--Include ação ajax e javaScritp -->        
-            <jsp:include page = "javaScritp/maskProcesso.html" />
+            
+        <!--Include ação ajax e javaScritp -->        
+            <jsp:include page = "include/maskProcessoSelect.jsp" />
             <jsp:include page = "javaScritp/somenteNum.html" />
-            <jsp:include page = "javaScritp/ajaxEndereco.html" />
+            <jsp:include page = "include/adicionarCampoArea.jsp" />
+            <jsp:include page = "javaScritp/alertEffect.html" />
 
-
-            <!--Pegando os paremetros -->
-            <c:set var="pg" value="${param.pg}" />
-            <c:set var="pf" value="${param.pf}" />
-            <c:set var="pi" value="${param.pi}" />
-            <c:set var="execucao" value="${param.execucao}" />
-            <c:set var="qCroqui" value="${param.qCroqui}" />
-            <c:set var="qArea" value="${param.qArea}" />
-            <c:set var="qNome" value="${param.qNome}" />
-            <c:set var="qEndereco" value="${param.qEndereco}" />
-            <c:set var="qAssunto" value="${param.qAssunto}" />
-            <c:set var="dtIni" value="${param.dtIni}" />
-            <c:set var="dtFim" value="${param.dtFim}" />
-            <c:set var="msg" value="${param.msg}" />
-
-
-
+            
             <div class="breadcrumbs ace-save-state" id="breadcrumbs">
                 <ul class="breadcrumb">
                     <li><i class="ace-icon fa fa-list"></i> Anotação Croqui</li>
@@ -56,760 +36,1200 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="col-sm-offset-1 col-sm-10">
-                            <h2>Anotação Croqui : <c:out value="${msg}"/></h2>
+                            
+                            <c:if test="${msg=='true'}">
+                                <div class="alert alert-${typeAlert}">
+                                    <button type="button" class="close" data-dismiss="alert">
+                                        <i class="ace-icon fa fa-times"></i>
+                                    </button>
+                                    <strong>
+                                        <i class="ace-icon fa fa-times"></i>
+                                        ${msgAlert}
+                                    </strong>
+                                    ${txtAlert}
+                                    <br>
+                                </div>
+                            </c:if> 
+                            
+                            <h2>Anotação Croqui</h2>
                             <div class="space-14"></div>
                             <div class="form-horizontal">
                                 <div class="tabbable">
                                     <ul class="nav nav-tabs padding-0">
-                                        <li class="in active">
+                                        <li class="${tabCroquiActive}">
                                             <a data-toggle="tab" href="#cad-croqui" aria-expanded="true">
-                                                Anotação Croqui
+                                                Anotação Croqui 
                                                 <c:choose>
-                                                    <c:when test="${anotCroqui.nrVerExpediente == '0'}">
+                                                    <c:when test="${anotCroqui.pkAnotacaoExpediente == ''}">
                                                         <span class="badge badge-transparent" title="Pendente Validação"><i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i></span>
-                                                        </c:when>
-                                                        <c:otherwise>
+                                                    </c:when>
+                                                    <c:otherwise>
                                                         <span class="badge badge-transparent" title="Validado"><i class="ace-icon fa fa-check-square-o green bigger-130"></i></span>
-                                                        </c:otherwise>    
-                                                    </c:choose>
+                                                    </c:otherwise>    
+                                                </c:choose>
                                             </a>
                                         </li>
-                                        <li class="">
+                                        <li class="${tabAnexoActive}">
                                             <a data-toggle="tab" href="#doc-anexo" aria-expanded="true">
                                                 Documentos Anexo
                                                 <c:choose>
-                                                    <c:when test="${anotCroqui.nrVerArquivo == '0'}">
+                                                    <c:when test="${empty listAnexo}">
                                                         <span class="badge badge-transparent" title="Pendente Validação"><i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i></span>
-                                                        </c:when>
-                                                        <c:otherwise>
+                                                    </c:when>
+                                                    <c:otherwise>
                                                         <span class="badge badge-transparent" title="Validado"><i class="ace-icon fa fa-check-square-o green bigger-130"></i></span>
-                                                        </c:otherwise>    
-                                                    </c:choose>
+                                                    </c:otherwise>    
+                                                </c:choose>
                                             </a>
                                         </li>
                                     </ul>
                                     <div class="tab-content profile-edit-tab-content" >
-
-                                        <!--Inicio da tab-pane Cadastro Croqui-->
-                                        <div id="cad-croqui" class="tab-pane in active">
+                                
+                                <!--Inicio da tab-pane Cadastro Croqui-->
+                                        <div id="cad-croqui" class="tab-pane ${tabCroquiActive}"  >
                                             <form action="ControllerServlet?acao=AnotacaoCroquiUC" method="POST" >
                                                 <input type="hidden" name="pkAnotacaoExpediente" value="${anotCroqui.pkAnotacaoExpediente}" />
-                                                <input type="hidden" name="nmTipoExpediente" value="croqui" />
                                                 <input type="hidden" name="execucao" value="${execucao}" />
-                                                <input type="hidden" name="verExpediente" value="1" />
-                                                <h4 class="header smaller lbl "><strong>Cadastro Croqui</strong></h4>
 
-                                                <div class="form-group">
-                                                    <div class="inline col-sm-2 col-xs-12"
-                                                         <span class="lbl"><strong>Coqui:</strong></span>
-                                                    </div>
+                                                <div class="space-14"></div>
 
-                                                    <label class="col-sm-3 col-xs-12">
-                                                        <c:choose>
-                                                            <c:when test="${execucao == 'edit'}">
-                                                                <input type="text" class="col-sm-6 col-xs-12" name="cdCroqui" value="${anotCroqui.cdCroqui}" placeholder="Código Croqui" required="required">
-                                                            </c:when>
-                                                            <c:when test="${execucao == 'insert'}">
-                                                                <input type="text" class="col-sm-6 col-xs-12" name="cdCroqui" placeholder="Código Croqui" required="required" >
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <span class="lbl">${anotCroqui.cdCroqui}</span> 
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                    </label>
-                                                    <label class="col-sm-1 col-xs-12">
-                                                        <span class = "lbl"><strong>Área:</strong></span>
-                                                    </label>
-                                                    <label class="col-sm-3 col-xs-12">
-                                                        <c:choose>
-                                                            <c:when test="${execucao == 'edit'}">
-                                                                <input type="text" class="col-sm-7 col-xs-12" name="cdArea" value="${anotCroqui.cdArea}" placeholder="Código da Área" maxlength="4" required="required">
-                                                            </c:when>
-                                                            <c:when test="${execucao == 'insert'}">
-                                                                <input type="text" class="col-sm-7 col-xs-12" name="cdArea" placeholder="Código da Área" required="required" maxlength="4" required="required" >
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <span class="lbl">${anotCroqui.cdArea}</span> 
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                    </label>                                                   
-                                                </div>
-
-                                                <div class="space-1"></div>
-
-                                                <div class="form-group">
-                                                    <div class="inline col-sm-2 col-xs-12">
-                                                        <span class="lbl"><strong>Nº Informação DGPI: </strong></span>
-                                                    </div>
-                                                    <label class="col-sm-6 col-xs-12">
-                                                        <c:choose>
-                                                            <c:when test="${execucao == 'edit'}">
-                                                                <input type="text" class="col-sm-8 col-xs-12" name="nrInformacaoDgpi" value="${anotCroqui.nrInformacaoDgpi}" placeholder="Nº Informação DGPI" required="required"  >
-                                                            </c:when>
-                                                            <c:when test="${execucao == 'insert'}">
-                                                                <input type="text" class="col-sm-8 col-xs-12"  name="nrInformacaoDgpi"  placeholder="Nº Informação DGPI" required="required"  >
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <span class="lbl">${anotCroqui.nrInformacaoDgpi}</span> 
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                    </label>
-                                                </div>
                                                 <div class="form-group">
                                                     <label class="inline col-md-2 col-xs-12">
-                                                        <span class="lbl"><strong>Nº Processo:</strong></span>
+                                                        <span class="lbl"><strong>Tipo de Expediente:</strong></span>
                                                     </label>
-
-                                                    <c:choose>
-                                                        <c:when test="${execucao == 'edit'}">
-                                                            <label class="inline col-md-3 col-xs-12">
-                                                                <input type="text"  class="col-xs-12 col-md-12" name="nrprocesso" id="nrprocesso" value="${anotCroqui.cdProcesso}" placeholder="nº do processo"  required="required"    >
-                                                            </label>
-                                                            <label class="col-xs-12 col-md-1">
-                                                                <input name="tpProcesso" id="sei" value="SEI" type="radio" class="ace" onclick="maskProcesso();" <c:if test="${anotCroqui.nmTipoProcesso == 'SEI'}">checked="checked" </c:if> required="required">
-                                                                    <span class="lbl"><strong> SEI</strong></span>
-                                                                </label>
-                                                                <label class="col-xs-12 col-md-1">
-                                                                    <input name="tpProcesso" id="pa" value="PA" type="radio" class="ace" onclick="maskProcesso();" <c:if test="${anotCroqui.nmTipoProcesso == 'PA'}">checked="checked" </c:if> >
-                                                                    <span class="lbl"><strong> P.A.</strong></span>
-                                                                </label>
-                                                                <label class="col-xs-12 col-md-1">
-                                                                    <input name="tpProcesso" id="cid" value="CID" type="radio" class="ace" onclick="maskProcesso();" <c:if test="${anotCroqui.nmTipoProcesso == 'CID'}">checked="checked"</c:if> >
-                                                                    <span class="lbl"><strong> CID</strong></span>
-                                                                </label>
-                                                                <label class="col-xs-12 col-md-3">
-                                                                    <span id="msgProcesso"></span>
-                                                                </label> 
-                                                        </c:when>
-                                                        <c:when test="${execucao == 'insert'}">
-                                                            <label class="inline col-md-3 col-xs-12">
-                                                                <input type="text"  class="col-xs-12 col-md-12" name="nrprocesso" id="nrprocesso"  placeholder="nº do processo" required="required"  onKeyPress="return somenteNum(event);"  >
-                                                            </label>
-                                                            <label class="col-xs-12 col-md-1">
-                                                                <input name="tpProcesso" id="sei" value="SEI" type="radio" class="ace" onclick="maskProcesso();" required="required">
-                                                                <span class="lbl"><strong> SEI</strong></span>
-                                                            </label>
-                                                            <label class="col-xs-12 col-md-1">
-                                                                <input name="tpProcesso" id="pa" value="PA" type="radio" class="ace" onclick="maskProcesso();">
-                                                                <span class="lbl"><strong> P.A.</strong></span>
-                                                            </label>
-                                                            <label class="col-xs-12 col-md-1">
-                                                                <input name="tpProcesso" id="cid" value="CID" type="radio" class="ace" onclick="maskProcesso();">
-                                                                <span class="lbl"><strong> CID</strong></span>
-                                                            </label>
-                                                            <label class="col-xs-12 col-md-3">
-                                                                <span id="msgProcesso"></span>
-                                                            </label>    
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            <label class="inline col-md-10 col-xs-12">
-                                                                <span class="lbl">${anotCroqui.nmTipoProcesso}: ${anotCroqui.cdProcesso}</span>
-                                                            </label>
-                                                        </c:otherwise>
-                                                    </c:choose>
-
-
-                                                </div>
-
-                                                <div class="space-1"></div>
-                                                <div class="form-group">
-                                                    <div class="inline col-sm-2 col-xs-12">
-                                                        <span class="lbl"><strong>Nº Tid: </strong></span>
-                                                    </div>
-                                                    <label class="col-sm-6 col-xs-12">
+                                                    <label class="inline col-md-2 col-xs-12">
                                                         <c:choose>
-                                                            <c:when test="${execucao == 'edit'}">
-                                                                <input type="text" class="col-sm-5 col-xs-12" name="cdTid" value="${anotCroqui.cdTid}" placeholder="Nº do Tid" required="required" onKeyPress="return somenteNum(event);"  >
+                                                            <c:when test="${execucao == 'edit' || execucao == 'duplicate'}">
+                                                                <select name="sgTpExpediente" id="sgTpExpediente" placeholder="" class="col-md-10 col-xs-12" 
+                                                                        onchange="limpaCampoNrProcesso(this)" required="required">
+                                                                    <option>${anotCroqui.tpExpediente.sgTipoExpediente}</option>
+                                                                    <option></option>
+                                                                    <c:forEach var="lis" items="${listaTpExp}">
+                                                                        <c:if test="${lis.sgTipoExpediente != ''}">
+                                                                            <option>${lis.sgTipoExpediente}</option>
+                                                                        </c:if>
+                                                                    </c:forEach>
+                                                                </select>
+
+
                                                             </c:when>
                                                             <c:when test="${execucao == 'insert'}">
-                                                                <input type="text" class="col-sm-5 col-xs-12"  name="cdTid"  placeholder="Nº do Tid" required="required"  onKeyPress="return somenteNum(event);" >
+                                                                <input type="text" class="col-xs-8 col-xs-12" name="sgTpExpediente" id="sgTpExpediente"  
+                                                                       value="${sgTpExpediente}"  required="required" readonly="readoly">
                                                             </c:when>
                                                             <c:otherwise>
-                                                                <span class="lbl">${anotCroqui.cdTid}</span> 
+                                                                ${anotCroqui.tpExpediente.sgTipoExpediente}
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </label>
+
+                                                    <label class="inline col-md-2 col-xs-12">
+                                                        <span class="lbl"><strong>Nº Expediente:</strong></span>
+                                                    </label>
+                                                    <label class="inline col-md-6 col-xs-12">
+                                                        <c:choose>
+                                                            <c:when test="${execucao == 'edit' || execucao == 'duplicate'}">
+                                                                <input type="text" class="col-md-5 col-xs-12" name="cdExpediente" id="nrprocesso" 
+                                                                    value="${anotCroqui.cdExpediente}" required="required" onblur="maskProcessoSelect(this);" >
+                                                                &nbsp;<span id="msgProcesso"></span>
+                                                            </c:when>
+                                                            <c:when test="${execucao == 'insert'}">
+                                                                <input type="text" class="col-md-5 col-xs-12" name="cdExpediente" id="nrprocesso"  
+                                                                     value="${cdExpediente}"  placeholder="Nº do Expediente"  required="required" readonly="readonly">
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <span class="lbl">${anotCroqui.cdExpediente}</span>
                                                             </c:otherwise>
                                                         </c:choose>
                                                     </label>
                                                 </div>
+                                                <div class="tab-content" >
+                                                    <div class="form-group">
+                                                        <label class="inline col-md-2 col-xs-12">
+                                                               <span class="lbl"><strong>Croqui:</strong></span>
+                                                        </label>
+                                                        <label class="col-md-3 col-xs-12">
+                                                            <c:choose>
+                                                                <c:when test="${execucao == 'edit' || execucao == 'duplicate'}">
+                                                                    <input type="text" class="col-md-6 col-xs-12" name="cdCroqui"  onKeyPress="return somenteNum(event);" 
+                                                                           value="${anotCroqui.cdCroqui}" placeholder="Código Croqui" maxlength="6" required="required" autofocus>
+                                                                </c:when>
+                                                                <c:when test="${execucao == 'insert'}">
+                                                                    <input type="text" class="col-md-6 col-xs-12" name="cdCroqui"  onKeyPress="return somenteNum(event);" 
+                                                                           placeholder="Código Croqui" maxlength="6" required="required" autofocus>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <span class="lbl">${anotCroqui.cdCroqui}</span>
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                        </label>
 
-                                                <div class="space-1"></div>
-
-                                                <div class="form-group">
-                                                    <div class="inline col-sm-2 col-xs-12">
-                                                        <span class="lbl"><strong>Nº de Expediente:</strong></span>
+                                                        <label class="col-md-2 col-xs-12">
+                                                            <span class = "lbl"><strong>Área:</strong></span>
+                                                        </label>
+                                                        <label class="col-md-5 col-xs-12">
+                                                            <c:choose>
+                                                                <c:when test="${execucao == 'edit' || execucao == 'duplicate'}">
+                                                                    <input type="text" class="col-md-4 col-xs-12" name="cdArea"  onKeyPress="return somenteNum(event);" 
+                                                                           value="${anotCroqui.cdArea}" maxlength="4" placeholder="Código Área" required="required" >
+                                                                </c:when>
+                                                                <c:when test="${execucao == 'insert'}">
+                                                                    <input type="text" class="col-md-4 col-xs-12" name="cdArea"  onKeyPress="return somenteNum(event);" 
+                                                                        maxlength="4" placeholder="Código Área inserir" required="required">
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <span class="lbl">${anotCroqui.cdArea}</span> 
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                        </label>
                                                     </div>
 
-                                                    <label class="inline col-sm-6 col-xs-12" >
-                                                        <c:choose>
-                                                            <c:when test="${execucao == 'edit'}">
-                                                                <input type="text" class="col-sm-8 col-xs-12"  name="cdExpediente" value="${anotCroqui.cdExpediente}" placeholder="Nº Expediente" required="required" >
-                                                            </c:when>
-                                                            <c:when test="${execucao == 'insert'}">
-                                                                <input type="text" class="col-sm-8 col-xs-12"  name="cdExpediente" placeholder="Nº Expediente" required="required" >
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <span class="lbl">${anotCroqui.cdExpediente}</span> 
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                    </label>
+                                                    <div class="space-1"></div>
+
+                                                    <div class="form-group">
+                                                        <label class="inline col-md-2 col-xs-12" >
+                                                            <span class="lbl"><strong>Tipo endereço:</strong></span>
+                                                        </label>
+                                                        <label class="inline col-md-3 col-xs-12">
+                                                            <c:choose>
+                                                                <c:when test="${execucao == 'edit' || execucao == 'duplicate'}">
+                                                                    <select class="col-md-12 col-xs-12" name="tipoEndereco" title="Rua / Avenida / Praça / etc" required="required">
+                                                                        <option>${anotCroqui.endereco.tipo}</option>
+                                                                        <option></option>
+                                                                        <option>ACESSO</option>
+                                                                        <option>ALAMEDA</option>
+                                                                        <option>AV. PROJETADA</option>
+                                                                        <option>AVENIDA</option>
+                                                                        <option>BALAO RETORNO</option>
+                                                                        <option>BECO</option>
+                                                                        <option>CAMINHO</option>
+                                                                        <option>CAMINHO PART</option>
+                                                                        <option>CAMINHO PEDEST</option>
+                                                                        <option>COMPLEXO VIARIO</option>
+                                                                        <option>DESVIO</option>
+                                                                        <option>DIV</option>
+                                                                        <option>ENT</option>
+                                                                        <option>ES. PROJETADA</option>
+                                                                        <option>ESC</option>
+                                                                        <option>ESPACO LIVRE</option>
+                                                                        <option>ESPLANADA</option>
+                                                                        <option>EST. DE RODAGEM</option>
+                                                                        <option>ESTACIONAMENTO</option>
+                                                                        <option>ESTR. DE FERRO</option>
+                                                                        <option>ESTRADA</option>
+                                                                        <option>ESTRADA PART</option>
+                                                                        <option>GALERIA</option>
+                                                                        <option>JARDIM</option>
+                                                                        <option>LADEIRA</option>
+                                                                        <option>LARGO</option>
+                                                                        <option>PARQUE</option>
+                                                                        <option>PASSAGEM</option>
+                                                                        <option>PASSAGEM PART</option>
+                                                                        <option>PASSARELA</option>
+                                                                        <option>PATIO</option>
+                                                                        <option>PONTE</option>
+                                                                        <option>PONTILHAO</option>
+                                                                        <option>PQE</option>
+                                                                        <option>PQL</option>
+                                                                        <option>PQM</option>
+                                                                        <option>PRACA</option>
+                                                                        <option>PRACA MANOBRA</option>
+                                                                        <option>PRACA PROJETADA</option>
+                                                                        <option>PRACA RETORNO</option>
+                                                                        <option>PRO</option>
+                                                                        <option>PS PROJETADA</option>
+                                                                        <option>PS. DE PEDESTRE</option>
+                                                                        <option>PS. SUBTERRANEA</option>
+                                                                        <option>RODOVIA</option>
+                                                                        <option>RUA</option>
+                                                                        <option>RUA PART</option>
+                                                                        <option>RUA PROJETADA</option>
+                                                                        <option>SERVIDAO</option>
+                                                                        <option>TRAVESSA</option>
+                                                                        <option>TRAVESSA PART</option>
+                                                                        <option>TUNEL</option>
+                                                                        <option>TV PROJETADA</option>
+                                                                        <option>VEREDA</option>
+                                                                        <option>VIA</option>
+                                                                        <option>VIA CIRC PEDEST</option>
+                                                                        <option>VIA DE PEDESTRE</option>
+                                                                        <option>VIA ELEVADA</option>
+                                                                        <option>VIADUTO</option>
+                                                                        <option>VIELA</option>
+                                                                        <option>VIELA PART</option>
+                                                                        <option>VIELA PROJETADA</option>
+                                                                        <option>VIELA SANITARIA</option>
+                                                                        <option>VILA</option>
+                                                                        <option>VLP</option>
+                                                                    </select>
+                                                                </c:when>
+                                                                <c:when test="${execucao == 'insert'}">
+                                                                    <select class="col-md-12 col-xs-12" name="tipoEndereco" title="Rua / Avenida / Praça / etc" required="required">
+                                                                        <option></option>
+                                                                        <option>ACESSO</option>
+                                                                        <option>ALAMEDA</option>
+                                                                        <option>AV. PROJETADA</option>
+                                                                        <option>AVENIDA</option>
+                                                                        <option>BALAO RETORNO</option>
+                                                                        <option>BECO</option>
+                                                                        <option>CAMINHO</option>
+                                                                        <option>CAMINHO PART</option>
+                                                                        <option>CAMINHO PEDEST</option>
+                                                                        <option>COMPLEXO VIARIO</option>
+                                                                        <option>DESVIO</option>
+                                                                        <option>DIV</option>
+                                                                        <option>ENT</option>
+                                                                        <option>ES. PROJETADA</option>
+                                                                        <option>ESC</option>
+                                                                        <option>ESPACO LIVRE</option>
+                                                                        <option>ESPLANADA</option>
+                                                                        <option>EST. DE RODAGEM</option>
+                                                                        <option>ESTACIONAMENTO</option>
+                                                                        <option>ESTR. DE FERRO</option>
+                                                                        <option>ESTRADA</option>
+                                                                        <option>ESTRADA PART</option>
+                                                                        <option>GALERIA</option>
+                                                                        <option>JARDIM</option>
+                                                                        <option>LADEIRA</option>
+                                                                        <option>LARGO</option>
+                                                                        <option>PARQUE</option>
+                                                                        <option>PASSAGEM</option>
+                                                                        <option>PASSAGEM PART</option>
+                                                                        <option>PASSARELA</option>
+                                                                        <option>PATIO</option>
+                                                                        <option>PONTE</option>
+                                                                        <option>PONTILHAO</option>
+                                                                        <option>PQE</option>
+                                                                        <option>PQL</option>
+                                                                        <option>PQM</option>
+                                                                        <option>PRACA</option>
+                                                                        <option>PRACA MANOBRA</option>
+                                                                        <option>PRACA PROJETADA</option>
+                                                                        <option>PRACA RETORNO</option>
+                                                                        <option>PRO</option>
+                                                                        <option>PS PROJETADA</option>
+                                                                        <option>PS. DE PEDESTRE</option>
+                                                                        <option>PS. SUBTERRANEA</option>
+                                                                        <option>RODOVIA</option>
+                                                                        <option>RUA</option>
+                                                                        <option>RUA PART</option>
+                                                                        <option>RUA PROJETADA</option>
+                                                                        <option>SERVIDAO</option>
+                                                                        <option>TRAVESSA</option>
+                                                                        <option>TRAVESSA PART</option>
+                                                                        <option>TUNEL</option>
+                                                                        <option>TV PROJETADA</option>
+                                                                        <option>VEREDA</option>
+                                                                        <option>VIA</option>
+                                                                        <option>VIA CIRC PEDEST</option>
+                                                                        <option>VIA DE PEDESTRE</option>
+                                                                        <option>VIA ELEVADA</option>
+                                                                        <option>VIADUTO</option>
+                                                                        <option>VIELA</option>
+                                                                        <option>VIELA PART</option>
+                                                                        <option>VIELA PROJETADA</option>
+                                                                        <option>VIELA SANITARIA</option>
+                                                                        <option>VILA</option>
+                                                                        <option>VLP</option>
+                                                                    </select>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <span class="lbl">${anotCroqui.endereco.tipo} </span> 
+                                                                </c:otherwise>
+                                                            </c:choose>
+
+                                                        </label>
+                                                        <label class="inline col-md-2 col-xs-12" >
+                                                            <span class="lbl"><strong>Título do endereço:</strong></span>
+                                                        </label>
+                                                        <label class="inline col-md-3 col-xs-12" >
+                                                            <c:choose>
+                                                                <c:when test="${execucao == 'edit' || execucao == 'duplicate'}">
+                                                                    <select class="col-md-12 col-xs-12" name="tituloEndereco" title="Capitão / Doutor / Dom / etc">
+                                                                        <option>${anotCroqui.endereco.titulo}</option>
+                                                                        <option></option>
+                                                                        <option>ABADE</option>
+                                                                        <option>ACADEMICO</option>
+                                                                        <option>ADVOGADO</option>
+                                                                        <option>AGENTE</option>
+                                                                        <option>AGRIC</option>
+                                                                        <option>AGRIMENSOR</option>
+                                                                        <option>AJUDANTE</option>
+                                                                        <option>ALFERES</option>
+                                                                        <option>ALMIRANTE</option>
+                                                                        <option>APOSTOLO</option>
+                                                                        <option>ARCEBISPO</option>
+                                                                        <option>ARCIP</option>
+                                                                        <option>ARCJO</option>
+                                                                        <option>ARQUITETA</option>
+                                                                        <option>ARQUITETO</option>
+                                                                        <option>ARQUITETO PROFESSOR</option>
+                                                                        <option>ASPIRANTE</option>
+                                                                        <option>AVENIDA</option>
+                                                                        <option>AVIADOR</option>
+                                                                        <option>AVIADORA</option>
+                                                                        <option>BACHAREL</option>
+                                                                        <option>BANDEIRANTE</option>
+                                                                        <option>BANQUEIRO</option>
+                                                                        <option>BARAO</option>
+                                                                        <option>BARONESA</option>
+                                                                        <option>BEATO PADRE</option>
+                                                                        <option>BEM AVENTURADO</option>
+                                                                        <option>BENEMERITO</option>
+                                                                        <option>BISPO</option>
+                                                                        <option>BRIGADEIRO</option>
+                                                                        <option>CABO</option>
+                                                                        <option>CABO PM</option>
+                                                                        <option>CADETE</option>
+                                                                        <option>CAMPEADOR</option>
+                                                                        <option>CAPITAO</option>
+                                                                        <option>CAPITAO ALMIRANTE</option>
+                                                                        <option>CAPITAO DE FRAGATA</option>
+                                                                        <option>CAPITAO DE MAR E GUERRA</option>
+                                                                        <option>CAPITAO GENERAL</option>
+                                                                        <option>CAPITAO MOR</option>
+                                                                        <option>CAPITAO PM</option>
+                                                                        <option>CAPITAO TENENTE</option>
+                                                                        <option>CAR</option>
+                                                                        <option>CARDEAL</option>
+                                                                        <option>CATEQUISTA</option>
+                                                                        <option>CAVALEIRO</option>
+                                                                        <option>CAVALHEIRO</option>
+                                                                        <option>CINEASTA</option>
+                                                                        <option>COMANDANTE</option>
+                                                                        <option>COMEDIANTE</option>
+                                                                        <option>COMENDADOR</option>
+                                                                        <option>COMISSARIA</option>
+                                                                        <option>COMISSARIO</option>
+                                                                        <option>COMPOSITOR</option>
+                                                                        <option>CONDE</option>
+                                                                        <option>CONDESSA</option>
+                                                                        <option>CONEGO</option>
+                                                                        <option>CONFRADE</option>
+                                                                        <option>CONSELHEIRO</option>
+                                                                        <option>CONSUL</option>
+                                                                        <option>CORONEL</option>
+                                                                        <option>CORONEL PM</option>
+                                                                        <option>CORREGEDOR</option>>
+                                                                        <option>DEPUTADA</option>
+                                                                        <option>DELEGADO</option>
+                                                                        <option>DENTISTA</option
+                                                                        <option>DEPUTADO</option>
+                                                                        <option>DEPUTADO DOUTOR</option>
+                                                                        <option>DESEMBARGADOR</option>
+                                                                        <option>DIACO</option>
+                                                                        <option>DOM</option>
+                                                                        <option>DONA</option>
+                                                                        <option>DOUTOR</option>
+                                                                        <option>DOUTORA</option>
+                                                                        <option>DUQUE</option>
+                                                                        <option>DUQUESA</option>
+                                                                        <option>EDITOR</option>
+                                                                        <option>EDUCADOR</option>
+                                                                        <option>EDUCADORA</option>
+                                                                        <option>EMBAIXADOR</option>
+                                                                        <option>EMBAIXADORA</option>
+                                                                        <option>EMP</option>
+                                                                        <option>ENGENHEIRA</option>
+                                                                        <option>ENGENHEIRO</option>
+                                                                        <option>ESCOTEIRO</option>
+                                                                        <option>ESCRAVO</option>
+                                                                        <option>ESCRITOR</option>
+                                                                        <option>EXPEDICIONARIO</option>
+                                                                        <option>FISICO</option>
+                                                                        <option>FREI</option>
+                                                                        <option>GENERAL</option>
+                                                                        <option>GOVERNADOR</option>
+                                                                        <option>GRUMETE</option>
+                                                                        <option>GUARDA CIVIL METROPOLITANO</option>
+                                                                        <option>IMACULADA</option>
+                                                                        <option>IMPERADOR</option>
+                                                                        <option>IMPERATRIZ</option>
+                                                                        <option>INFANTE</option>
+                                                                        <option>INSPETOR</option>
+                                                                        <option>IRMA</option>
+                                                                        <option>IRMAO</option>
+                                                                        <option>IRMAOS</option>
+                                                                        <option>IRMAS</option>
+                                                                        <option>JORNALISTA</option>
+                                                                        <option>LIBERTADOR</option>
+                                                                        <option>LIDCO</option>
+                                                                        <option>LIVREIRO</option>
+                                                                        <option>LORDE</option>
+                                                                        <option>MADAME</option>
+                                                                        <option>MADRE</option>
+                                                                        <option>MAESTRO</option>
+                                                                        <option>MAJOR</option>
+                                                                        <option>MAJOR AVIADOR</option>
+                                                                        <option>MAJOR BRIGADEIRO</option>
+                                                                        <option>MAQUINISTA</option>
+                                                                        <option>MARECHAL</option>
+                                                                        <option>MARECHAL DO AR</option>
+                                                                        <option>MARQUES</option>
+                                                                        <option>MARQUESA</option>
+                                                                        <option>MERE</option>
+                                                                        <option>MESTRAS</option>
+                                                                        <option>MESTRE</option>
+                                                                        <option>MESTRES</option>
+                                                                        <option>MILITANTE</option>
+                                                                        <option>MINISTRO</option>
+                                                                        <option>MISSIONARIA</option>
+                                                                        <option>MISSIONARIO</option>
+                                                                        <option>MONGE</option>
+                                                                        <option>MONSENHOR</option>
+                                                                        <option>MUNIC</option>
+                                                                        <option>MUSICO</option>
+                                                                        <option>NOSSA SENHORA</option>
+                                                                        <option>NOSSO SENHOR</option>
+                                                                        <option>OUVIDOR</option>
+                                                                        <option>PADRE</option>
+                                                                        <option>PADRES</option>
+                                                                        <option>PAI</option>
+                                                                        <option>PAPA</option>
+                                                                        <option>PASTOR</option>
+                                                                        <option>PATRIARCA</option>
+                                                                        <option>POETA</option>
+                                                                        <option>POETISA</option>
+                                                                        <option>PREFEITO</option>
+                                                                        <option>PRESIDENTE</option>
+                                                                        <option>PRESIDENTE DA ACAD.BRAS.LETRAS</option>
+                                                                        <option>PREVR</option>
+                                                                        <option>PRIMEIRO SARGENTO</option>
+                                                                        <option>PRIMEIRO SARGENTO PM</option>
+                                                                        <option>PRIMEIRO TENENTE</option>
+                                                                        <option>PRIMEIRO TENENTE PM</option>
+                                                                        <option>PRINCESA</option>
+                                                                        <option>PRINCIPE</option>
+                                                                        <option>PROCURADOR</option>
+                                                                        <option>PROFESSOR</option>
+                                                                        <option>PROFESSOR DOUTOR</option>
+                                                                        <option>PROFESSOR ENGENHEIRO</option>
+                                                                        <option>PROFESSORA</option>
+                                                                        <option>PROFETA</option>
+                                                                        <option>PROMOTOR</option>
+                                                                        <option>PROVEDOR</option>
+                                                                        <option>PROVEDOR MOR</option>
+                                                                        <option>RABINO</option>
+                                                                        <option>RADIALISTA</option>
+                                                                        <option>RAINHA</option>
+                                                                        <option>REGENTE</option>
+                                                                        <option>REI</option>
+                                                                        <option>REVERENDO</option>
+                                                                        <option>RUA</option>
+                                                                        <option>SACERDOTE</option>
+                                                                        <option>SANTA</option>
+                                                                        <option>SANTO</option>
+                                                                        <option>SAO</option>
+                                                                        <option>SARGENTO</option>
+                                                                        <option>SARGENTO MOR</option>
+                                                                        <option>SARGENTO PM</option>
+                                                                        <option>SEGUNDO SARGENTO</option>
+                                                                        <option>SEGUNDO SARGENTO PM</option>
+                                                                        <option>SEGUNDO TENENTE</option>
+                                                                        <option>SENADOR</option>
+                                                                        <option>SENHOR</option>
+                                                                        <option>SENHORA</option>
+                                                                        <option>SERTANISTA</option>
+                                                                        <option>SINHA</option>
+                                                                        <option>SIR</option>
+                                                                        <option>SOCIOLOGO</option>
+                                                                        <option>SOLDADO</option>
+                                                                        <option>SOLDADO PM</option>
+                                                                        <option>SOROR</option>
+                                                                        <option>SUB TENENTE</option>
+                                                                        <option>TENENTE</option>
+                                                                        <option>TENENTE AVIADOR</option>
+                                                                        <option>TENENTE BRIGADEIRO</option>
+                                                                        <option>TENENTE CORONEL</option>
+                                                                        <option>TENENTE CORONEL PM</option>
+                                                                        <option>TEOLOGO</option>
+                                                                        <option>TERCEIRO SARGENTO</option>
+                                                                        <option>TERCEIRO SARGENTO PM</option>
+                                                                        <option>TIA</option>
+                                                                        <option>VEREADOR</option>
+                                                                        <option>VICE ALMIRANTE</option>
+                                                                        <option>VICE REI</option>
+                                                                        <option>VIGARIO</option>
+                                                                        <option>VISCONDE</option>
+                                                                        <option>VISCONDESSA</option>
+                                                                        <option>VOLUNTARIO</option>
+                                                                    </select>
+                                                                </c:when>
+                                                                <c:when test="${execucao == 'insert'}">
+                                                                    <select class="col-md-12 col-xs-12" name="tituloEndereco" title="Capitão / Doutor / Dom / etc">
+                                                                        <option></option>
+                                                                        <option>ABADE</option>
+                                                                        <option>ACADEMICO</option>
+                                                                        <option>ADVOGADO</option>
+                                                                        <option>AGENTE</option>
+                                                                        <option>AGRIC</option>
+                                                                        <option>AGRIMENSOR</option>
+                                                                        <option>AJUDANTE</option>
+                                                                        <option>ALFERES</option>
+                                                                        <option>ALMIRANTE</option>
+                                                                        <option>APOSTOLO</option>
+                                                                        <option>ARCEBISPO</option>
+                                                                        <option>ARCIP</option>
+                                                                        <option>ARCJO</option>
+                                                                        <option>ARQUITETA</option>
+                                                                        <option>ARQUITETO</option>
+                                                                        <option>ARQUITETO PROFESSOR</option>
+                                                                        <option>ASPIRANTE</option>
+                                                                        <option>AVENIDA</option>
+                                                                        <option>AVIADOR</option>
+                                                                        <option>AVIADORA</option>
+                                                                        <option>BACHAREL</option>
+                                                                        <option>BANDEIRANTE</option>
+                                                                        <option>BANQUEIRO</option>
+                                                                        <option>BARAO</option>
+                                                                        <option>BARONESA</option>
+                                                                        <option>BEATO PADRE</option>
+                                                                        <option>BEM AVENTURADO</option>
+                                                                        <option>BENEMERITO</option>
+                                                                        <option>BISPO</option>
+                                                                        <option>BRIGADEIRO</option>
+                                                                        <option>CABO</option>
+                                                                        <option>CABO PM</option>
+                                                                        <option>CADETE</option>
+                                                                        <option>CAMPEADOR</option>
+                                                                        <option>CAPITAO</option>
+                                                                        <option>CAPITAO ALMIRANTE</option>
+                                                                        <option>CAPITAO DE FRAGATA</option>
+                                                                        <option>CAPITAO DE MAR E GUERRA</option>
+                                                                        <option>CAPITAO GENERAL</option>
+                                                                        <option>CAPITAO MOR</option>
+                                                                        <option>CAPITAO PM</option>
+                                                                        <option>CAPITAO TENENTE</option>
+                                                                        <option>CAR</option>
+                                                                        <option>CARDEAL</option>
+                                                                        <option>CATEQUISTA</option>
+                                                                        <option>CAVALEIRO</option>
+                                                                        <option>CAVALHEIRO</option>
+                                                                        <option>CINEASTA</option>
+                                                                        <option>COMANDANTE</option>
+                                                                        <option>COMEDIANTE</option>
+                                                                        <option>COMENDADOR</option>
+                                                                        <option>COMISSARIA</option>
+                                                                        <option>COMISSARIO</option>
+                                                                        <option>COMPOSITOR</option>
+                                                                        <option>CONDE</option>
+                                                                        <option>CONDESSA</option>
+                                                                        <option>CONEGO</option>
+                                                                        <option>CONFRADE</option>
+                                                                        <option>CONSELHEIRO</option>
+                                                                        <option>CONSUL</option>
+                                                                        <option>CORONEL</option>
+                                                                        <option>CORONEL PM</option>
+                                                                        <option>CORREGEDOR</option>>
+                                                                        <option>DEPUTADA</option>
+                                                                        <option>DELEGADO</option>
+                                                                        <option>DENTISTA</option
+                                                                        <option>DEPUTADO</option>
+                                                                        <option>DEPUTADO DOUTOR</option>
+                                                                        <option>DESEMBARGADOR</option>
+                                                                        <option>DIACO</option>
+                                                                        <option>DOM</option>
+                                                                        <option>DONA</option>
+                                                                        <option>DOUTOR</option>
+                                                                        <option>DOUTORA</option>
+                                                                        <option>DUQUE</option>
+                                                                        <option>DUQUESA</option>
+                                                                        <option>EDITOR</option>
+                                                                        <option>EDUCADOR</option>
+                                                                        <option>EDUCADORA</option>
+                                                                        <option>EMBAIXADOR</option>
+                                                                        <option>EMBAIXADORA</option>
+                                                                        <option>EMP</option>
+                                                                        <option>ENGENHEIRA</option>
+                                                                        <option>ENGENHEIRO</option>
+                                                                        <option>ESCOTEIRO</option>
+                                                                        <option>ESCRAVO</option>
+                                                                        <option>ESCRITOR</option>
+                                                                        <option>EXPEDICIONARIO</option>
+                                                                        <option>FISICO</option>
+                                                                        <option>FREI</option>
+                                                                        <option>GENERAL</option>
+                                                                        <option>GOVERNADOR</option>
+                                                                        <option>GRUMETE</option>
+                                                                        <option>GUARDA CIVIL METROPOLITANO</option>
+                                                                        <option>IMACULADA</option>
+                                                                        <option>IMPERADOR</option>
+                                                                        <option>IMPERATRIZ</option>
+                                                                        <option>INFANTE</option>
+                                                                        <option>INSPETOR</option>
+                                                                        <option>IRMA</option>
+                                                                        <option>IRMAO</option>
+                                                                        <option>IRMAOS</option>
+                                                                        <option>IRMAS</option>
+                                                                        <option>JORNALISTA</option>
+                                                                        <option>LIBERTADOR</option>
+                                                                        <option>LIDCO</option>
+                                                                        <option>LIVREIRO</option>
+                                                                        <option>LORDE</option>
+                                                                        <option>MADAME</option>
+                                                                        <option>MADRE</option>
+                                                                        <option>MAESTRO</option>
+                                                                        <option>MAJOR</option>
+                                                                        <option>MAJOR AVIADOR</option>
+                                                                        <option>MAJOR BRIGADEIRO</option>
+                                                                        <option>MAQUINISTA</option>
+                                                                        <option>MARECHAL</option>
+                                                                        <option>MARECHAL DO AR</option>
+                                                                        <option>MARQUES</option>
+                                                                        <option>MARQUESA</option>
+                                                                        <option>MERE</option>
+                                                                        <option>MESTRAS</option>
+                                                                        <option>MESTRE</option>
+                                                                        <option>MESTRES</option>
+                                                                        <option>MILITANTE</option>
+                                                                        <option>MINISTRO</option>
+                                                                        <option>MISSIONARIA</option>
+                                                                        <option>MISSIONARIO</option>
+                                                                        <option>MONGE</option>
+                                                                        <option>MONSENHOR</option>
+                                                                        <option>MUNIC</option>
+                                                                        <option>MUSICO</option>
+                                                                        <option>NOSSA SENHORA</option>
+                                                                        <option>NOSSO SENHOR</option>
+                                                                        <option>OUVIDOR</option>
+                                                                        <option>PADRE</option>
+                                                                        <option>PADRES</option>
+                                                                        <option>PAI</option>
+                                                                        <option>PAPA</option>
+                                                                        <option>PASTOR</option>
+                                                                        <option>PATRIARCA</option>
+                                                                        <option>POETA</option>
+                                                                        <option>POETISA</option>
+                                                                        <option>PREFEITO</option>
+                                                                        <option>PRESIDENTE</option>
+                                                                        <option>PRESIDENTE DA ACAD.BRAS.LETRAS</option>
+                                                                        <option>PREVR</option>
+                                                                        <option>PRIMEIRO SARGENTO</option>
+                                                                        <option>PRIMEIRO SARGENTO PM</option>
+                                                                        <option>PRIMEIRO TENENTE</option>
+                                                                        <option>PRIMEIRO TENENTE PM</option>
+                                                                        <option>PRINCESA</option>
+                                                                        <option>PRINCIPE</option>
+                                                                        <option>PROCURADOR</option>
+                                                                        <option>PROFESSOR</option>
+                                                                        <option>PROFESSOR DOUTOR</option>
+                                                                        <option>PROFESSOR ENGENHEIRO</option>
+                                                                        <option>PROFESSORA</option>
+                                                                        <option>PROFETA</option>
+                                                                        <option>PROMOTOR</option>
+                                                                        <option>PROVEDOR</option>
+                                                                        <option>PROVEDOR MOR</option>
+                                                                        <option>RABINO</option>
+                                                                        <option>RADIALISTA</option>
+                                                                        <option>RAINHA</option>
+                                                                        <option>REGENTE</option>
+                                                                        <option>REI</option>
+                                                                        <option>REVERENDO</option>
+                                                                        <option>RUA</option>
+                                                                        <option>SACERDOTE</option>
+                                                                        <option>SANTA</option>
+                                                                        <option>SANTO</option>
+                                                                        <option>SAO</option>
+                                                                        <option>SARGENTO</option>
+                                                                        <option>SARGENTO MOR</option>
+                                                                        <option>SARGENTO PM</option>
+                                                                        <option>SEGUNDO SARGENTO</option>
+                                                                        <option>SEGUNDO SARGENTO PM</option>
+                                                                        <option>SEGUNDO TENENTE</option>
+                                                                        <option>SENADOR</option>
+                                                                        <option>SENHOR</option>
+                                                                        <option>SENHORA</option>
+                                                                        <option>SERTANISTA</option>
+                                                                        <option>SINHA</option>
+                                                                        <option>SIR</option>
+                                                                        <option>SOCIOLOGO</option>
+                                                                        <option>SOLDADO</option>
+                                                                        <option>SOLDADO PM</option>
+                                                                        <option>SOROR</option>
+                                                                        <option>SUB TENENTE</option>
+                                                                        <option>TENENTE</option>
+                                                                        <option>TENENTE AVIADOR</option>
+                                                                        <option>TENENTE BRIGADEIRO</option>
+                                                                        <option>TENENTE CORONEL</option>
+                                                                        <option>TENENTE CORONEL PM</option>
+                                                                        <option>TEOLOGO</option>
+                                                                        <option>TERCEIRO SARGENTO</option>
+                                                                        <option>TERCEIRO SARGENTO PM</option>
+                                                                        <option>TIA</option>
+                                                                        <option>VEREADOR</option>
+                                                                        <option>VICE ALMIRANTE</option>
+                                                                        <option>VICE REI</option>
+                                                                        <option>VIGARIO</option>
+                                                                        <option>VISCONDE</option>
+                                                                        <option>VISCONDESSA</option>
+                                                                        <option>VOLUNTARIO</option>
+                                                                    </select>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <span class="lbl">${anotCroqui.endereco.titulo}</span> 
+                                                                </c:otherwise>
+                                                            </c:choose>
+
+
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="space-1"></div>
+
+                                                    <div class="form-group">
+                                                        <label class="inline col-md-2 col-xs-12" >
+                                                            <span class="lbl"><strong>Endereço:</strong></span>
+                                                        </label>
+                                                        <label class="inline col-md-6 col-xs-12" >
+                                                            <c:choose>
+                                                                <c:when test="${execucao == 'edit' || execucao == 'duplicate'}">
+                                                                    <input type="text" id="form-field-1" class="col-xs-12 col-md-12" name="nmendereco" 
+                                                                           value="${anotCroqui.endereco.endereco}"  placeholder="nome do endereço" required="required">
+                                                                </c:when>
+                                                                <c:when test="${execucao == 'insert'}">
+                                                                    <input type="text" id="form-field-1" class="col-xs-12 col-md-12" name="nmendereco" placeholder="nome do endereço" required="required">
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <span class="lbl">${anotCroqui.endereco.endereco}</span> 
+                                                                </c:otherwise>
+                                                            </c:choose>
+
+                                                        </label>
+                                                        <label class="inline col-md-1 col-xs-12" >
+                                                            <span class="lbl"><strong>número:</strong></span>
+                                                        </label>
+                                                        <label class="inline col-md-2 col-xs-12" >
+                                                            <c:choose>
+                                                                <c:when test="${execucao == 'edit' || execucao == 'duplicate'}">
+                                                                    <input type="text" id="form-field-1" class="col-xs-12 col-md-12" name="nrnumeroend" 
+                                                                           value="${anotCroqui.endereco.numero}" placeholder="nº">
+                                                                </c:when>
+                                                                <c:when test="${execucao == 'insert'}">
+                                                                    <input type="text" id="form-field-1" class="col-xs-12 col-md-12" name="nrnumeroend" placeholder="nº">
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <span class="lbl">${anotCroqui.endereco.numero}</span> 
+                                                                </c:otherwise>
+                                                            </c:choose>
+
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="space-1"></div>
+
+                                                    <div class="form-group">
+                                                        <label class="inline col-md-2 col-xs-12" >
+                                                            <span class="lbl"><strong>Complemento:</strong></span>
+                                                        </label>
+                                                        <label class="inline col-md-3 col-xs-12" >
+                                                            <c:choose>
+                                                                <c:when test="${execucao == 'edit' || execucao == 'duplicate'}">
+                                                                    <input type="text" id="form-field-1" class="col-xs-12 col-md-12" name="nmcomplementoend" 
+                                                                           value="${anotCroqui.endereco.complemento}" placeholder="complemento do endereço" >
+                                                                </c:when>
+                                                                <c:when test="${execucao == 'insert'}">
+                                                                    <input type="text" id="form-field-1" class="col-xs-12 col-md-12" name="nmcomplementoend" placeholder="complemento do endereço" >
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <span class="lbl">${anotCroqui.endereco.complemento}</span> 
+                                                                </c:otherwise>
+                                                            </c:choose>
+
+                                                        </label>
+
+                                                    </div>
+
+                                                     <div class="space-1"></div>
+
+                                                    <div class="form-group">
+                                                        <label class="inline col-md-2 col-xs-12" >  
+                                                            <span class="lbl"><strong>Referência:</strong></span>
+                                                        </label>
+                                                        <label class="inline col-md-8 col-xs-12" >
+                                                            <c:choose>
+                                                                <c:when test="${execucao == 'edit' || execucao == 'duplicate'}">
+                                                                    <input type="text" id="form-field-1" class="col-xs-12 col-md-12" name="nmreferenciaend" 
+                                                                           value="${anotCroqui.endereco.referencia}" placeholder="referencia do endereço" >
+                                                                </c:when>
+                                                                <c:when test="${execucao == 'insert'}">
+                                                                    <input type="text" id="form-field-1" class="col-xs-12 col-md-12" name="nmreferenciaend" placeholder="referencia do endereço" >
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <span class="lbl">${anotCroqui.endereco.referencia}</span> 
+                                                                </c:otherwise>
+                                                            </c:choose>
+
+                                                        </label>
+                                                    </div>
                                                 </div>
+                                            <!--Abaixo div onde add o novo campo área -->
+                                                <br /><div class="input_fields_wrap col-md-12 col-xs-12"></div>
 
-                                                <div class="space-1"></div>
+                                                <c:if test="${execucao == 'insert' || execucao == 'duplicate'}">
+                                                    <a href="#" class="add_field_button" title="Adicionar ">
+                                                        <span class="label label-xlg label-success">
+                                                            <i class=" glyphicon glyphicon-plus"></i>
+                                                            Croqui e Área
+                                                        </span>
+                                                    </a>
+                                                </c:if>
 
+                                                <div class="space-10"></div>
                                                 <div class="form-group">
-                                                    <div class="inline col-sm-2 col-xs-12">
+                                                    <label class="inline col-sm-2 col-xs-12">
                                                         <span class="lbl"><strong>Interessado:</strong></span>
-                                                    </div>
-
+                                                    </label>
                                                     <label class="col-sm-8 col-xs-12">
                                                         <c:choose>
-                                                            <c:when test="${execucao == 'edit'}">
-                                                                <input type="text" class="col-sm-10 col-xs-12"  name="nmInteressado" value="${anotCroqui.nmInteressado}" placeholder="Nome do Interessado" required="required" >
+                                                            <c:when test="${execucao == 'edit' || execucao == 'duplicate'}">
+                                                                <input type="text" id="form-field-1" class="col-sm-11 col-xs-12"  name="nmInteressado" 
+                                                                       value="${anotCroqui.nmInteressado}" placeholder="Nome do Interessado" required="required">
                                                             </c:when>
                                                             <c:when test="${execucao == 'insert'}">
-                                                                <input type="text" class="col-sm-10 col-xs-12"  name="nmInteressado" placeholder="Nome do Interessado" required="required" >
+                                                                <input type="text" id="form-field-1" class="col-sm-11 col-xs-12"  name="nmInteressado" 
+                                                                       placeholder="Nome do Interessado" required="required">
                                                             </c:when>
                                                             <c:otherwise>
-                                                                <span class="lbl">${anotCroqui.nmInteressado}</span> 
+                                                                <span class="lbl">${anotCroqui.nmInteressado}</span>
                                                             </c:otherwise>
                                                         </c:choose>
                                                     </label>
                                                 </div>
 
-                                                <div class="space-1"></div>
-
                                                 <div class="form-group">
-                                                    <div class="inline col-sm-2 col-xs-12">
+                                                    <label class="inline col-md-2 col-xs-12">
                                                         <span class="lbl"><strong>Assunto:</strong></span>
-                                                    </div>
-
-                                                   
-                                                <div class="space-1"></div>
-                                                <c:choose>
-                                                    <c:when test="${execucao == 'edit'}">
-                                                        <div class="form-group">
-                                                            <div class="inline col-sm-2 col-xs-12">
-                                                                <span class="lbl"><strong>Local:</strong></span>
-                                                            </div>
-                                                            <label class="col-sm-8 col-xs-12" >
-                                                                <input type="text" id="form-field-1" class="col-sm-12 col-xs-12" name="nmEndereco" 
-                                                                       value="${anotCroqui.nmReferenciaEndereco}"  placeholder="Descrição do local" required="required">
-                                                            </label>
-                                                        </div>
-                                                    </c:when>
-                                                    <c:when test="${execucao == 'insert'}">
-
-                                                        <div class="space-1"></div>
-
+                                                    </label>
+                                                    <label class="col-md-5 col-xs-12">
                                                         <c:choose>
-                                                            <c:when test="${execucao == 'edit'}">
-                                                                <div class="form-group">
-                                                                    <label class="inline col-md-2 col-xs-12" >
-                                                                        <span class="lbl"><strong>CEP</strong></span>
-                                                                    </label>
-                                                                    <label class="inline col-md-10 col-xs-12" >
-                                                                        <input type="hidden" name="pkLogradouro" id="pkLogradouro" value="${lograPadrao.pkLogradouroPadrao}" required="required">
-                                                                        <input type="text" class="col-xs-12 col-md-2" name="nrcep" id="nrcep" value="${lograPadrao.nrCep}"  placeholder="nº do CEP" required="required">
-                                                                    </label>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="inline col-md-2 col-xs-12" >
-                                                                        <span class="lbl"><strong>Endereço:</strong></span>
-                                                                    </label>
-                                                                    <label class="inline col-md-10 col-xs-12" >
-                                                                        <input type="text" class="col-xs-12 col-md-8" name="nmendereco" id="nmendereco" value="${lograPadrao.nmLogradouroCompleto}" onkeyup="pesquisaNomeLogradouro(this.value)" onblur="validarEndereco();" onclick="clickEndereco();" placeholder="nome do endereço" required="required" >
-                                                                        <div id="listaEndereco" style="padding-top:35px"></div>
-                                                                    </label>
-                                                                </div>
-                                                                <div class="space-1"></div>
+                                                            <c:when test="${execucao == 'edit' || execucao == 'duplicate'}">
+                                                                <select name="assunto" id="assunto" placeholder="" class="col-md-12 col-xs-12" required="required">
+                                                                    <option value="${anotCroqui.tpAssunto.pkTipoAssunto}">${anotCroqui.tpAssunto.nmTipoAssunto}</option>
+                                                                    <option></option>
+                                                                    <c:forEach var="lis" items="${listTpAssunto}">
+                                                                        <c:if test="${lis.nmTipoAssunto != ''}">
+                                                                            <option value="${lis.pkTipoAssunto}" title="${lis.nmTipoAssunto}">${lis.nmTipoAssunto}</option>
+                                                                        </c:if>
+                                                                    </c:forEach>
+                                                                </select>
 
-                                                                <div class="form-group">
-                                                                    <label class="inline col-md-2 col-xs-12" >
-                                                                        <span class="lbl"><strong>número:</strong></span>
-                                                                    </label>
-                                                                    <label class="inline col-md-2 col-xs-12" >
-                                                                        <input type="text" class="col-xs-12 col-md-12" name="nrNumeroEnd" id="nrnumeroend" value="${anotCroqui.nrEndereco}" placeholder="nº" required="required">
-                                                                    </label>
-                                                                    <label class="inline col-md-2 col-xs-12" >
-                                                                        <span class="lbl"><strong>Complemento:</strong></span>
-                                                                    </label>
-                                                                    <label class="inline col-md-3 col-xs-12" >
-                                                                        <input type="text" class="col-xs-12 col-md-12" name="nmComplementoEnd" id="nmcomplementoend" value="${anotCroqui.nmComplementoEndereco}" placeholder="complemento do endereço" >
-                                                                    </label>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="inline col-md-2 col-xs-12" >
-                                                                        <span class="lbl"><strong>Bairro:</strong></span>
-                                                                    </label>
-                                                                    <label class="inline col-md-10 col-xs-12" >
-                                                                        <input type="text" class="col-xs-12 col-md-5" name="nmbairro" id="nmbairro" value="${lograPadrao.nmBairro}" placeholder="nome do bairro" required="required">
-                                                                    </label>
-                                                                </div>
-                                                                <div class="space-1"></div>
-
-                                                                
+                                                            </c:when>
+                                                            <c:when test="${execucao == 'insert'}">
+                                                                <select name="assunto" id="assunto" placeholder="" class="col-md-12 col-xs-12" required="required">
+                                                                    <option></option>
+                                                                    <c:forEach var="lis" items="${listTpAssunto}">
+                                                                        <c:if test="${lis.nmTipoAssunto != ''}">
+                                                                            <option value="${lis.pkTipoAssunto}" title="${lis.nmTipoAssunto}">${lis.nmTipoAssunto}</option>
+                                                                        </c:if>
+                                                                    </c:forEach>
+                                                                </select>
                                                             </c:when>
                                                             <c:otherwise>
-                                                                <div class="form-group">
-                                                                    <div class="inline col-sm-2 col-xs-12">
-                                                                        <span class="lbl"><strong>Local:</strong></span>
-                                                                    </div>
-                                                                    <label class="col-sm-8 col-xs-12" >
-                                                                        <span class="lbl">${anotCroqui.nmReferenciaEndereco}</span>
-                                                                    </label>
-                                                                </div>
+                                                                <span class="lbl">${anotCroqui.tpAssunto.nmTipoAssunto}</span>
                                                             </c:otherwise>
-                                                        </c:choose>
+                                                        </c:choose>         
+                                                    </label>
                                                 </div>
+
                                                 <div class="space-1"></div>
 
                                                 <div class="form-group">
-                                                    <label class="inline col-md-2 col-xs-12" >
-                                                        <span class="lbl"><strong>número:</strong></span>
-                                                    </label>
-                                                    <label class="inline col-md-2 col-xs-12" >
-                                                        <input type="text" class="col-xs-12 col-md-12" name="nrNumeroEnd" id="nrnumeroend" placeholder="nº" required="required">
-                                                    </label>
-                                                    <label class="inline col-md-2 col-xs-12" >
-                                                        <span class="lbl"><strong>Complemento:</strong></span>
+                                                    <label class="inline col-md-2 col-xs-12">
+                                                        <span class="lbl"><strong>Despacho:</strong></span>
                                                     </label>
                                                     <label class="inline col-md-3 col-xs-12" >
-                                                        <input type="text" class="col-xs-12 col-md-12" name="nmComplementoEnd" id="nmcomplementoend" placeholder="complemento do endereço" >
+                                                        <c:choose>
+                                                            <c:when test="${execucao == 'edit' || execucao == 'duplicate'}">
+                                                                <select name="despacho" id="assunto" placeholder="" class="col-md-12 col-xs-12">
+                                                                    <option value="${anotCroqui.tpDespacho.pkTipoDespacho}">${anotCroqui.tpDespacho.nmTipoDespacho}</option>
+                                                                    <option></option>
+                                                                    <c:forEach var="lis" items="${listTpDespacho}">
+                                                                        <c:if test="${lis.nmTipoDespacho != ''}">
+                                                                            <option value="${lis.pkTipoDespacho}" title="${lis.nmTipoDespacho}">${lis.nmTipoDespacho}</option>
+                                                                        </c:if>
+                                                                    </c:forEach>
+                                                                </select>
+                                                            </c:when>
+                                                            <c:when test="${execucao == 'insert'}">
+                                                                <select name="despacho" id="assunto" placeholder="" class="col-md-10 col-xs-12">
+                                                                    <option></option>
+                                                                    <c:forEach var="lis" items="${listTpDespacho}">
+                                                                        <c:if test="${lis.nmTipoDespacho != ''}">
+                                                                            <option value="${lis.pkTipoDespacho}" title="${lis.nmTipoDespacho}">${lis.nmTipoDespacho}</option>
+                                                                        </c:if>
+                                                                    </c:forEach>
+                                                                </select>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <span class="lbl">${anotCroqui.tpDespacho.nmTipoDespacho}</span>
+                                                            </c:otherwise>
+                                                        </c:choose>
                                                     </label>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label class="inline col-md-2 col-xs-12" >
-                                                        <span class="lbl"><strong>Bairro:</strong></span>
-                                                    </label>
-                                                    <label class="inline col-md-10 col-xs-12" >
-                                                        <input type="text" class="col-xs-12 col-md-5" name="nmbairro" id="nmbairro" placeholder="nome do bairro" required="required">
-                                                    </label>
-                                                </div>
+
                                                 <div class="space-1"></div>
 
                                                 <div class="form-group">
-                                                    <label class="inline col-md-2 col-xs-12" >  
-                                                        <span class="lbl"><strong>Referência:</strong></span>
+                                                    <label class="inline col-sm-2 col-xs-12">
+                                                        <span class="lbl"><strong>Publicado no DOM:</strong></span>
                                                     </label>
-                                                    <label class="inline col-md-8 col-xs-12" >
-                                                        <input type="text" class="col-xs-12 col-md-12" name="nmReferenciaEnd" id="nmreferenciaend" placeholder="referencia do endereço" >
-                                                    </label>
-                                                </div>    
-                                            </c:when>
-                                            <c:otherwise>
-                                                <div class="form-group">
-                                                    <label class="inline col-md-2 col-xs-12" >
-                                                        <span class="lbl"><strong>CEP</strong></span>
-                                                    </label>
-                                                    <label class="inline col-md-10 col-xs-12" >
-                                                        <span class="lbl">${lograPadrao.nrCep}</span> 
-                                                    </label>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="inline col-md-2 col-xs-12" >
-                                                        <span class="lbl"><strong>Endereço:</strong></span>
-                                                    </label>
-                                                    <label class="inline col-md-10 col-xs-12" >
-                                                        <span class="lbl">${lograPadrao.nmLogradouroCompleto}</span> 
+                                                    <label class="inline col-sm-4 col-xs-12" >
+                                                        <c:choose>
+                                                            <c:when test="${execucao == 'edit' || execucao == 'duplicate'}">
+                                                                <input type="date" id="form-field-1" class="col-sm-8 col-xs-12"  name="dtPublicacao" 
+                                                                       value="${anotCroqui.dtPublicacao}" title="Selecione a data">
+                                                            </c:when>
+                                                            <c:when test="${execucao == 'insert'}">
+                                                                <input type="date" id="form-field-1" class="col-sm-8 col-xs-12"  name="dtPublicacao" 
+                                                                       title="Selecione a data">
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <span class="lbl"><fmt:formatDate pattern="dd/MM/yyyy" value="${anotCroqui.dtPublicacao}" /></span>
+
+
+                                                            </c:otherwise>
+                                                        </c:choose>
                                                     </label>
                                                 </div>
+
                                                 <div class="space-1"></div>
 
                                                 <div class="form-group">
-                                                    <label class="inline col-md-2 col-xs-12" >
-                                                        <span class="lbl"><strong>número:</strong></span>
+                                                    <label class="inline col-sm-2 col-xs-12">
+                                                        <span class="lbl"><strong>Data de Tramitação:</strong></span>
                                                     </label>
-                                                    <label class="inline col-md-2 col-xs-12" >
-                                                        <span class="lbl">${anotCroqui.nrEndereco}</span> 
+                                                    <label class="inline col-sm-4 col-xs-12" >
+                                                        <c:choose>
+                                                            <c:when test="${execucao == 'edit' || execucao == 'duplicate'}">
+                                                                <input type="date" id="form-field-1" class="col-sm-8 col-xs-12"  name="dtTramitacao" 
+                                                                       value="${anotCroqui.dtTramitacao}" title="Selecione a data">
+                                                            </c:when>
+                                                            <c:when test="${execucao == 'insert'}">
+                                                                <input type="date" id="form-field-1" class="col-sm-8 col-xs-12"  name="dtTramitacao" 
+                                                                       title="Selecione a data">
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <span class="lbl"><fmt:formatDate pattern="dd/MM/yyyy" value="${anotCroqui.dtTramitacao}" /></span>
+                                                            </c:otherwise>
+                                                        </c:choose>
                                                     </label>
+                                                </div>
 
-                                                    <label class="inline col-md-2 col-xs-12" >
-                                                        <span class="lbl"><strong>Complemento:</strong></span>
-                                                    </label>
-                                                    <label class="inline col-md-3 col-xs-12">    
-                                                        <span class="lbl">${anotCroqui.nmComplementoEndereco}</span> 
-                                                    </label>    
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="inline col-md-2 col-xs-12" >
-                                                        <span class="lbl"><strong>Bairro:</strong></span>
-                                                    </label>
-                                                    <label class="inline col-md-10 col-xs-12" >
-                                                        <span class="lbl">${lograPadrao.nmBairro}</span> 
-                                                    </label>    
-                                                </div>
                                                 <div class="space-1"></div>
 
                                                 <div class="form-group">
-                                                    <label class="inline col-md-2 col-xs-12" >  
-                                                        <span class="lbl"><strong>Referência:</strong></span>
+                                                    <label class="inline col-sm-2 col-xs-12">
+                                                        <span class="lbl"><strong>Observação:</strong></span>
                                                     </label>
-                                                    <label class="inline col-md-8 col-xs-12" >
-                                                        <span class="lbl">${anotCroqui.nmReferenciaEndereco}</span> 
+                                                    <label class="inline col-sm-9 col-xs-12" >
+                                                        <c:choose>
+                                                            <c:when test="${execucao == 'edit' || execucao == 'duplicate'}">
+                                                                <textarea class="form-control col-xs-12" id="form-field-8" name="dsObservacao" placeholder="Observação" 
+                                                                          style="margin: 0px 102.656px 0px 0px; width: 700px; height: 90px;">${anotCroqui.dsObservacao}</textarea>
+                                                            </c:when>
+                                                            <c:when test="${execucao == 'insert'}">
+                                                                <textarea class="form-control col-xs-12" id="form-field-8" name="dsObservacao" placeholder="Observação" 
+                                                                          style="margin: 0px 102.656px 0px 0px; width: 700px; height: 90px;"></textarea>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <span class="lbl">${anotCroqui.dsObservacao}</span>
+                                                            </c:otherwise>
+                                                        </c:choose>
                                                     </label>
+                                                </div>
 
-                                                </div> 
-
-                                            </c:otherwise>
-                                        </c:choose>                
-
-
-                                        <div class="space-1"></div>
-
-                                        <div class="form-group">
-                                            <div class="inline col-sm-2 col-xs-12">
-                                                <span class="lbl"><strong>Anotação:</strong></span>
-                                            </div>
-
-                                            <label class="col-sm-2 col-xs-12" >
-                                                <c:choose>
-                                                    <c:when test="${execucao == 'edit'}">
-                                                        <c:choose>
-                                                            <c:when test="${anotCroqui.nrAnotacao == '1'}">
-                                                                <label class="pull-left inline">
-                                                                    <input id="id-button-borders"  type="checkbox" id="" name="nrAnotacao" value="1" class="ace ace-switch ace-switch-5"  >
-                                                                    <span class="lbl middle"></span>
-                                                                </label>
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <label class="pull-left inline">
-                                                                    <input id="id-button-borders"  type="checkbox" id="" name="nrAnotacao" value="1" checked="" class="ace ace-switch ace-switch-5"  >
-                                                                    <span class="lbl middle"></span>
-                                                                </label>
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                    </c:when>
-                                                    <c:when test="${execucao == 'insert'}">
-                                                        <label class="pull-left inline">
-                                                            <input id="id-button-borders"  type="checkbox" id="" name="nrAnotacao" value="1" class="ace ace-switch ace-switch-5"  >
-                                                            <span class="lbl middle"></span>
-                                                        </label>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <c:choose>
-                                                            <c:when test="${anotCroqui.nrAnotacao == 1}">
-                                                                <span class="label label-success arrowed" title="SIM">
-                                                                    <i class="ace-icon fa fa-check bigger-120"></i>
-                                                                    Sim
-                                                                </span>
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <span class="label label-danger arrowed" title="NÃO">
-                                                                    <i class="ace-icon fa fa-ban bigger-120"></i>
-                                                                    Não
-                                                                </span>
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </label>
-
-                                            <label class="col-sm-2 col-xs-12" >  
-                                                <span class="lbl"><strong>Informação:</strong></span>
-                                            </label>                
-
-                                            <label class="col-sm-3 col-xs-12" >                                                  
-                                                <c:choose>
-                                                    <c:when test="${execucao == 'edit'}">
-                                                        <c:choose>
-                                                            <c:when test="${anotCroqui.nrInformacao == '1'}">
-                                                                <label class="pull-left inline">
-                                                                    <input id="id-button-borders"  type="checkbox" id="" name="nrInformacao" value="1" class="ace ace-switch ace-switch-5"  >
-                                                                    <span class="lbl middle"></span>
-                                                                </label>
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <label class="pull-left inline">
-                                                                    <input id="id-button-borders"  type="checkbox" id="" name="nrInformacao" value="1" checked="" class="ace ace-switch ace-switch-5"  >
-                                                                    <span class="lbl middle"></span>
-                                                                </label>
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                    </c:when>
-                                                    <c:when test="${execucao == 'insert'}">
-                                                        <label class="pull-left inline">
-                                                            <input id="id-button-borders"  type="checkbox" id="" name="nrInformacao" value="1" class="ace ace-switch ace-switch-5"  >
-                                                            <span class="lbl middle"></span>
-                                                        </label>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <c:choose>
-                                                            <c:when test="${'1' == anotCroqui.nrInformacao}">
-                                                                <span class="label label-success arrowed" title="SIM">
-                                                                    <i class="ace-icon fa fa-check bigger-120"></i>
-                                                                    Sim
-                                                                </span>
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <span class="label label-danger arrowed" title="NÃO">
-                                                                    <i class="ace-icon fa fa-ban bigger-120"></i>
-                                                                    Não
-                                                                </span>
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </label>
-                                        </div>
-
-                                        <div class="space-1"></div>
-
-                                        <div class="form-group">
-                                            <div class="inline col-sm-2 col-xs-12">
-                                                <span class="lbl"><strong>Despacho:</strong></span>
-                                            </div>
-                                            <label class="inline col-sm-8 col-xs-12" >
-                                                <c:choose>
-                                                    <c:when test="${execucao == 'edit'}">
-                                                        <input type="text" id="form-field-1" class="col-sm-10 col-xs-12"  name="dsDespacho" 
-                                                               value="${anotCroqui.dsDespacho}" placeholder="Escrever o despacho" >
-                                                    </c:when>
-                                                    <c:when test="${execucao == 'insert'}">
-                                                        <input type="text" id="form-field-1" class="col-sm-10 col-xs-12"  name="dsDespacho" 
-                                                               placeholder="Escrever o despacho"  >
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <span class="lbl">${anotCroqui.dsDespacho}</span> 
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </label>
-                                        </div>
-
-                                        <div class="space-1"></div>
-
-                                        <div class="form-group">
-                                            <div class="inline col-sm-2 col-xs-12">
-                                                <span class="lbl"><strong>Publicado no DOM:</strong></span>
-                                            </div>
-                                            <label class="inline col-sm-6 col-xs-12" >
-                                                <c:choose>
-                                                    <c:when test="${execucao == 'edit'}">
-                                                        <c:set var = "dtPubli" value = "${anotCroqui.dtPublicacao}" />
-                                                        <fmt:parseDate value = "${dtPubli}" var = "converteDTPlub" pattern="yyyy-MM-dd" />
-                                                        <fmt:formatDate type= "date" value="${converteDTPlub}" var="dtAtuPubli"/>
-                                                        <input type="date" id="form-field-1" class="col-sm-4 col-xs-12"  name="dtPublicacao" 
-                                                               value="${dtAtuPubli}" placeholder="" >
-                                                    </c:when>
-                                                    <c:when test="${execucao == 'insert'}">
-                                                        <input type="date" id="form-field-1" class="col-sm-4 col-xs-12"  name="dtPublicacao" 
-                                                               placeholder="" >
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <c:set var = "dtPubli" value = "${anotCroqui.dtPublicacao}" />
-                                                        <fmt:parseDate value = "${dtPubli}" var = "converteDTPlub" pattern="yyyy-MM-dd" />
-                                                        <fmt:formatDate type= "date" value="${converteDTPlub}" var="dtAtuPubli"/>
-                                                        <span class="lbl">${dtAtuPubli}</span> 
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </label>
-                                        </div>
-
-                                        <div class="space-1"></div>
-
-                                        <div class="form-group">
-                                            <div class="inline col-sm-2 col-xs-12">
-                                                <span class="lbl"><strong>Data de Tramitação:</strong></span>
-                                            </div>
-                                            <label class="inline col-sm-6 col-xs-12" >
-                                                <c:choose>
-                                                    <c:when test="${execucao == 'edit'}">
-                                                        <input type="date" id="form-field-1" class="col-sm-4 col-xs-12"  name="dtAnotacao" 
-                                                               value="${anotCroqui.dtAnotacao}" placeholder="Escrever o despacho" >
-                                                    </c:when>
-                                                    <c:when test="${execucao == 'insert'}">
-                                                        <input type="date" id="form-field-1" class="col-sm-4 col-xs-12"  name="dtAnotacao" 
-                                                               placeholder="Escrever o despacho" >
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <span class="lbl">${anotCroqui.dtAnotacao}</span> 
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </label>
-                                        </div>
-
-                                        <div class="space-1"></div>
-
-                                        <div class="form-group">
-                                            <div class="inline col-sm-2 col-xs-12">
-                                                <span class="lbl"><strong>Observação:</strong></span>
-                                            </div>
-                                            <label class="inline col-sm-9 col-xs-12" >
-                                                <c:choose>
-                                                    <c:when test="${execucao == 'edit'}">
-                                                        <textarea class="form-control" id="form-field-8" name="dsObservacao" placeholder="Observação" 
-                                                                  style="margin: 0px 102.656px 0px 0px; width: 700px; height: 90px;">${anotCroqui.dsObservacao}</textarea>
-                                                    </c:when>
-                                                    <c:when test="${execucao == 'insert'}">
-                                                        <textarea class="form-control" id="form-field-8" name="dsObservacao" placeholder="Observação" 
-                                                                  style="margin: 0px 102.656px 0px 0px; width: 700px; height: 90px;"></textarea>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <span class="lbl">${anotCroqui.dsObservacao}</span>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </label>
-                                        </div>
-
-
-                                        <div class="form-group">
-                                            <div class="inline col-sm-2 col-xs-12">
-                                                <span class="lbl"><strong>Data:</strong></span>
-                                            </div>
-                                            <label class="inline col-sm-3 col-xs-12" >
-                                                <c:choose>
-                                                    <c:when test="${execucao == 'edit'}">
-                                                        <input type="date" id="form-field-1" class="col-sm-10 col-xs-12"  name="dtData" 
-                                                               <c:set var="hoje" value="<%= new java.util.Date()%>" />
-                                                               <c:set var="dt" value = "${anotCroqui.dtData}" />
-                                                               <fmt:parseDate var="converteDT" value="${dt}" pattern="yyyy-MM-dd" />
-                                                               <c:choose>
-                                                                   <c:when test="${converteDT gt hoje }">
-
-                                                                   </c:when>
-                                                                   <c:otherwise>
-                                                                       value="${anotCroqui.dtData}" 
-                                                                   </c:otherwise>
-                                                               </c:choose>
-                                                               required="required" >
-                                                    </c:when>
-                                                    <c:when test="${execucao == 'insert'}">
-                                                        <c:set var = "now" value = "<%= new java.util.Date()%>" />
-                                                        <fmt:formatDate var="hoje" pattern = "yyyy-MM-dd" value = "${now}" />
-                                                        <input type="date" id="form-field-1" class="col-sm-10 col-xs-12"  name="dtData" value="${hoje}" readonly="readonly">
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <span class="lbl">
-                                                            <c:set var="hoje" value="<%= new java.util.Date()%>" />
-                                                            <c:set var="dt" value = "${anotCroqui.dtData}" />
-                                                            <fmt:parseDate var="converteDT" value="${dt}" pattern="yyyy-MM-dd" />
-                                                            <fmt:formatDate var="dtAtu" value="${converteDT}" type= "date" />
-                                                            <c:choose>
-                                                                <c:when test="${converteDT gt hoje }">
-                                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                </c:when>
-                                                                <c:otherwise>
-                                                                    <c:out value="${dtAtu}"/>   
-                                                                </c:otherwise>
-                                                            </c:choose>
-                                                        </span> 
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </label>
-
-                                            <label class="col-sm-1 col-xs-12" >  
-                                                <span class="lbl"><strong>Nome:</strong></span>
-                                            </label> 
-
-                                            <label class="col-sm-4 col-xs-12">
-                                                <c:choose>
-                                                    <c:when test="${execucao == 'edit'}">
-                                                        <input type="text" id="form-field-1" class="col-sm-8 col-xs-12"  name="nmAutor" 
-                                                               value="${anotCroqui.nmAutor}" placeholder="Nome " required="required" readonly="readonly" >
-                                                    </c:when>
-                                                    <c:when test="${execucao == 'insert'}">
-                                                        <input type="text" id="form-field-1" class="col-sm-8 col-xs-12"  name="nmAutor" value="<c:out value="${sessionNome}" />" 
-                                                               placeholder="Nome " required="required" readonly="readonly" >
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <span class="lbl">${anotCroqui.nmAutor}</span> 
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </label>
-                                        </div>    
-                                        <!-- Botões-->
-                                        <div class="form-actions center ">
-                                            <c:choose>
-                                                <c:when test="${execucao == 'insert' }">
-                                                    <button class="btn btn-yellow" type="reset" onclick=" location.href = 'AnotacaoCroqui.jsp';">
-                                                        <i class="ace-icon fa fa-undo bigger-110"></i>
-                                                        Voltar
-                                                    </button>
-                                                </c:when>
-                                                <c:when test="${pq == '' || pg == null }">
-                                                    <button class="btn btn-yellow" type="reset" onclick=" location.href = 'ControllerServlet?acao=AnotacaoCroquiLista';">
-                                                        <i class="ace-icon fa fa-undo bigger-110"></i>
-                                                        Voltar
-                                                    </button>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <button class="btn btn-yellow" type="reset" onclick=" location.href = 'ControllerServlet?acao=AnotacaoCroquiLista&pg=${pg}&pi=${pi}&pf=${pf}&qCroqui=${qCroqui}&qArea=${qArea}&qNome=${qNome}&qEndereco=${qEndereco}&qAssunto=${qAssunto}&dtIni=${dtIni}&dtFim=${dtFim}';">
-                                                        <i class="ace-icon fa fa-undo bigger-110"></i>
-                                                        Voltar
-                                                    </button>
-                                                </c:otherwise>
-                                            </c:choose>    
-
-                                            <c:if test="${execucao !='view'}" >
-                                                <button class="btn btn-success" type="submit" id="salvar">
-                                                    <i class="ace-icon fa fa-save bigger-110"></i>
-                                                    Salvar
-                                                </button>
-
-                                                <button class="btn" type="reset">
-                                                    <i class="ace-icon fa fa-eraser bigger-110"></i>
-                                                    Limpar
-                                                </button>
-                                            </c:if>
-                                        </div>
-                                        </form>
-
-                                        <!--Inicio da tab-pane Documento Anexo -->        
-                                        <div id="doc-anexo" class="tab-pane <c:if test="${execucao=='insert'}" >disabled-li-menu</c:if> ">
-                                                <div class="form-group">
-
-                                                    <form action="ControllerServlet?acao=ArquivoUpload" enctype="multipart/form-data" method="POST" >
-                                                        <h4 class="header smaller lbl "><strong>Documentos Anexo</strong></h4>   
-                                                        <input type="hidden" name="pkDocumento" value="${anotCroqui.pkAnotacaoExpediente}" />
-                                                    <input type="hidden" name="execucao" value="${execucao}" />
-                                                    <input type="hidden" name="tipoArquivo" value="Croqui" />
-                                                    <input type="hidden" name="Origem" value="AnotacaoExpediente" />
-
-
-                                                    <c:set var="arCroqui"  value="${Arquivo.pkArquivo(anotCroqui.pkAnotacaoExpediente,'AnotacaoExpediente','Croqui')}"  />
-                                                    <input type="hidden" name="pkArquivo" value="<c:out value="${arCroqui.pkArquivo}" />" />   
-
-
-                                                    <label class="inline col-md-2 col-xs-12"><strong>Croqui:</strong></label>
-                                                    <label class="col-md-1 col-xs-12">
-                                                        <c:forEach var="ar" items="${Arquivo.listArquivo(anotCroqui.pkAnotacaoExpediente, 'AnotacaoExpediente')}">
-                                                            <c:if test="${ar.nmTipo == 'Croqui'}">
-                                                                <a href="<c:out value="${pageContext.servletContext.contextPath}" />/Arquivo/Croqui/${ar.nmNomeArquivo}" target="_blank"><img src="img/img-planta.png" title="${ar.nmNome}" width="60%" height="60%"/></a>
-                                                                </c:if>    
-                                                            </c:forEach>
-                                                    </label>
-                                                    <c:if test="${(sessionSgDivisao == 'DIPI' &&sessionSgSetor == 'SIC')}">
-                                                        <label class="inline col-md-3">
-                                                            <input type="text" class="col-xs-12 col-md-12" name="nmNome" placeholder="Nome do Croqui" required="required" >
-                                                        </label>
-
-                                                        <label class="inline col-md-3 col-xs-12">
-                                                            <input type="file"  id="id-input-file-2" name="UploadCroqui" required="required"><span class="ace-file-container" data-title="Choose"><span class="ace-file-name" data-title="No File ..."></span></span>
-                                                        </label>
+                                                <div class="space-1"></div> 
+                                                <c:if test="${execucao!='insert'}">
+                                                    <div class="form-group">
                                                         <label class="inline col-md-2 col-xs-12">
-                                                            <c:set var="idCroqui"  value="${Arquivo.pkArquivo(anotCroqui.pkAnotacaoExpediente,'AnotacaoExpediente', 'Croqui')}"  />  
-                                                            <c:choose>
-                                                                <c:when test="${ idCroqui.pkArquivo != '0'}" >
-                                                                    <button class="btn btn-yellow"  type="submit">
-                                                                        <i class="ace-icon fa fa-save bigger-110"></i>
-                                                                        Substituir
-                                                                    </button>
-                                                                </c:when>
-                                                                <c:otherwise>
-                                                                    <button class="btn btn-success"  type="submit">
-                                                                        <i class="ace-icon fa fa-save bigger-110"></i>
-                                                                        Salvar
-                                                                    </button>
-                                                                </c:otherwise>
-                                                            </c:choose>
-                                                        </label> 
-                                                    </c:if>    
+                                                            <span class="lbl"><strong>Usuário:</strong></span>
+                                                        </label>
+                                                        <label class="inline col-md-4 col-xs-12" >
+                                                            <span class="lbl">${u.nmNome}</span>
+                                                        </label>
+
+                                                        <label class="inline col-md-2 col-xs-12">
+                                                            <span class="lbl"><strong>Atualização:</strong></span>
+                                                        </label>
+                                                        <label class="inline col-md-4 col-xs-12" >
+                                                            <c:set var = "dt" value = "${anotCroqui.dthrAtualizacao}" />
+                                                            <fmt:parseDate var="converteData" value = "${dt}" pattern = "yyyy-MM-dd HH:mm:ss" />
+                                                            <span class="lbl"><fmt:formatDate value="${converteData}" pattern="dd/MM/yyyy - HH:mm:ss" /></span>
+                                                        </label>
+                                                    </div>
+                                                </c:if>    
+                                                <!-- Botões-->
+                                                <div class="form-actions center ">
+                                                    <c:choose>
+                                                        <c:when test="${bntBack=='newSearch' && execucao == 'view'}">
+                                                            <button class="btn btn-yellow" type="reset" onclick=" location.href = 'ControllerServlet?acao=AnotacaoCroquiLista';">
+                                                                <i class="ace-icon fa fa-undo bigger-110"></i>
+                                                                Voltar
+                                                            </button>
+                                                        </c:when>
+                                                        <c:when test="${bntBack=='newSearch' && execucao == 'duplicate'}">
+                                                            <button class="btn btn-yellow" type="reset" onclick=" location.href = 'ControllerServlet?acao=AnotacaoCroquiPesquisa&primeiro=true';">
+                                                                <i class="ace-icon fa fa-undo bigger-110"></i>
+                                                                Voltar
+                                                            </button>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <button class="btn btn-yellow" type="reset" onclick="history.back();">
+                                                                <i class="ace-icon fa fa-undo bigger-110"></i>
+                                                                Voltar
+                                                            </button>
+                                                        </c:otherwise>        
+                                                    </c:choose>
+
+                                                    <c:if test="${execucao != 'view'}" >
+                                                        <button class="btn btn-success" type="submit" id="btnExecutarAcao">
+                                                            <i class="ace-icon fa fa-save bigger-110"></i>
+                                                            Salvar
+                                                        </button>
+
+                                                        <button class="btn" type="reset">
+                                                            <i class="ace-icon fa fa-eraser bigger-110"></i>
+                                                            Limpar
+                                                        </button>
+                                                    </c:if>
+                                                </div>
+                                                </form>
+                                        </div>
+
+                                <!--Inicio da tab-pane Documento Anexo -->        
+                                        <div id="doc-anexo" class="${disabled} tab-pane ${tabAnexoActive} ">
+                                            <form action="ControllerServlet?acao=AnotacaoCroquiUploadArquivo" enctype="multipart/form-data" method="POST" >
+                                                <h4 class="header smaller lbl "><strong>Documentos Anexo</strong></h4>
+                                                <input type="hidden" name="pkAnotCroqui" value="${anotCroqui.pkAnotacaoExpediente}" />
+                                                <c:if test="${execucao!='view' && (sessionSgDivisao == 'DIPI' && sessionSgSetor == 'SIC' || sessionPerfil == 'Administrador')}">
+                                                    
+                                                <div class="form-group">
+                                                    <label class="inline col-md-2 col-xs-12">
+                                                        <strong>Tipo de documento:</strong>
+                                                    </label>
+                                                    <label class="inline col-md-3 col-xs-12">
+                                                        <select name="fktipoArquivo"  placeholder="" class="col-xs-12 col-md-8" 
+                                                             required="required">
+                                                            <option></option>
+                                                            <c:forEach var="anexo" items="${listTpAnexo}">
+                                                                <c:if test="${anexo.nmTipoAnexo != ''}">
+                                                                    <option value="${anexo.pkTipoAnexo}">${anexo.nmTipoAnexo}</option>
+                                                                </c:if>
+                                                            </c:forEach>
+                                                        </select>
+                                                    </label>
+                                                    <label class="inline col-md-4 col-xs-12">
+                                                        <input type="file"  id="id-input-file-2" name="UploadCroqui" required="required"><span class="ace-file-container" data-title="Choose"><span class="ace-file-name" data-title="No File ..."></span></span>
+                                                    </label>
+                                                </div>
+                                               <div class="form-group">
+                                                    <label class="inline col-md-2 col-xs-12">
+                                                        <strong>Descrição:</strong>
+                                                    </label >                                                        
+                                                    <label class="inline col-md-7 col-xs-12">
+                                                        <input type="text" name="nomeDoArquivo" placeholder="Nome do arquivo" class="col-xs-12 col-md-12" required="required" >
+                                                    </label>
+                                                    <label class="inline col-md-2 col-xs-12">
+                                                        <button class="btn btn-success"  type="submit">
+                                                            <i class="ace-icon fa fa-save bigger-110"></i>
+                                                                Anexar
+                                                        </button
+                                                    </label> 
+                                                </div>
+                                                
+                                                <c:if test="${not empty lisAnotCroquiCriado}">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Croqui </th>
+                                                                <th>Área</th>
+                                                                <th>Vincular</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <c:forEach var="a" items="${lisAnotCroquiCriado}">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td title="${a.cdCroqui}">
+                                                                        ${a.cdCroqui}
+                                                                    </td>
+                                                                    <td title="${a.cdArea}">
+                                                                        ${a.cdArea}
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="hidden-sm hidden-xs btn-group">
+                                                                            <label class="col-sm-2 col-xs-12" >
+                                                                                <input id="id-button-borders" type="checkbox" id="relatorio" name="listPkAnotCroqui" 
+                                                                                       value="${a.pkAnotacaoExpediente}" class="ace ace-switch ace-switch-5"/>
+                                                                                <span class="lbl middle"></span>
+                                                                            </label>                                                                                                                               
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </c:forEach>
+                                                    </table>
+                                                </c:if>
+                                            </form>  
+                                            
+                                            <div class="hr hr-18 dotted hr-double"></div>
+                                            </c:if>
+                                            <c:forEach var="anexo" items="${listAnexo}"> 
+                                            <div class="form-group">
+                                                <form action="" method="POST">
+                                                    <div class="inline col-md-12 col-xs-12">
+                                                        <div class="inline col-md-1 col-xs-12">
+                                                            <a href="/SGPatri/Croqui/${anexo.nmAnexo}" target="_blank"><img class="img-thumbnail" src="img/AC.png" title="${anexo.nmAnexo}" width="80%" height="80%"/></a>
+                                                        </div>
+                                                        <div class="inline col-md-3 col-xs-12">
+                                                            <label class="inline col-md-12 col-xs-12">
+                                                                <strong>Tipo:</strong> ${anexo.tpAnexo.nmTipoAnexo}
+                                                            </label>
+                                                        </div>
+                                                            <div class="inline col-md-7 col-xs-12">
+                                                            <label class="inline col-md-12 col-xs-12">
+                                                                <strong>Descrição:</strong> ${anexo.dsAnexo}
+                                                            </label>
+                                                        </div>
+                                                        <c:if test="${execucao!='view' && (sessionSgDivisao == 'DIPI' && sessionSgSetor == 'SIC' || sessionPerfil == 'Administrador')}">
+                                                            <div class="inline col-md-1 col-md-12 disabled-li-menu">
+                                                                <button class="btn btn-danger btn-xs">
+                                                                    <i class="ace-icon fa fa-trash-o bigger-130 icon-only"></i>
+                                                                </button>
+                                                            </div>
+                                                        </c:if> 
+                                                    </div>
                                                 </form>
                                             </div>
-                                        </div>
-
-                                    </div>
+                                            <div class="hr hr-16 hr-dotted"></div>
+                                            </c:forEach>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                        </div>    
                                 </div>
+                                
                             </div>    
                             <jsp:include page = "include/footer.jsp" />
                             <jsp:include page = "javaScritp/carregado.html" />

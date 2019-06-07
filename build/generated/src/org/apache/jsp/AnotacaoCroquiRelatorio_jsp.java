@@ -296,7 +296,7 @@ public final class AnotacaoCroquiRelatorio_jsp extends org.apache.jasper.runtime
       out.write("                                                <br/><br/>\r\n");
       out.write("\r\n");
       out.write("                                                <label>\r\n");
-      out.write("                                                    <a href=\"AnotacaoCroquiDetalhesVTeste.jsp\"><span class=\"glyphicon glyphicon-plus-sign\"></span>Detalhes</a>\r\n");
+      out.write("                                                    <a href=\"#\"><span class=\"glyphicon glyphicon-plus-sign\"></span>Detalhes</a>\r\n");
       out.write("                                                </label>\r\n");
       out.write("\r\n");
       out.write("                                            </div>\r\n");
@@ -348,7 +348,7 @@ public final class AnotacaoCroquiRelatorio_jsp extends org.apache.jasper.runtime
       out.write("                                                    <label class=\"inline col-md-1 col-xs-12\">\r\n");
       out.write("                                                        <span class=\"lbl\">");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${hCroqui.sgExpediente}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("TID</span>\r\n");
+      out.write("TID fdsafas</span>\r\n");
       out.write("                                                    </label>\r\n");
       out.write("                                                </div>\r\n");
       out.write("\r\n");
@@ -361,7 +361,7 @@ public final class AnotacaoCroquiRelatorio_jsp extends org.apache.jasper.runtime
       out.write("                                                <br/><br/>\r\n");
       out.write("\r\n");
       out.write("                                                <label>\r\n");
-      out.write("                                                    <a href=\"AnotacaoCroquiDetalhesVTeste.jsp\"><span class=\"glyphicon glyphicon-plus-sign\"></span>Detalhes</a>\r\n");
+      out.write("                                                    <a href=\"#\"><span class=\"glyphicon glyphicon-plus-sign\"></span>Detalhes</a>\r\n");
       out.write("                                                </label>\r\n");
       out.write("                                            </div>\r\n");
       out.write("\r\n");

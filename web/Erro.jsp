@@ -105,7 +105,7 @@
             <hr>
             <div class="text-capitalize">
                 <jsp:scriptlet>
-                          exception.printStackTrace(new java.io.PrintWriter(out));
+                    exception.printStackTrace(new java.io.PrintWriter(out));
                 </jsp:scriptlet>
             </div>
         </div>

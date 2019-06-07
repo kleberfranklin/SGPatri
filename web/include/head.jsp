@@ -5,6 +5,7 @@
 --%>
 
 <head>
+   
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
     <meta http-equiv="Content-Language" content="pt-br">
@@ -70,6 +71,6 @@
         <script src="assets/js/respond.min.js"></script>
     <![endif]-->
     <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css">
-    
+   
     
 </head>

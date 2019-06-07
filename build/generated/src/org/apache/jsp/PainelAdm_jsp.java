@@ -116,7 +116,7 @@ public final class PainelAdm_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <div class=\"row\">\r\n");
       out.write("\r\n");
       out.write("\r\n");
-      out.write("                    <div class=\"col-xs-10\" >\r\n");
+      out.write("                    <div class=\"col-sm-12 col-xs-12\" >\r\n");
       out.write("                        <h3 class=\"header smaller lighter blue\"><strong>Controle de Usuários</strong></h3>\r\n");
       out.write("                        <div class=\"col-sm-12 infobox-chart\" style=\" padding-top:30px\">\r\n");
       out.write("                            <div class=\"infobox btn-group-lg\">\r\n");
@@ -484,7 +484,7 @@ public final class PainelAdm_jsp extends org.apache.jasper.runtime.HttpJspBase
     if (_jspx_eval_c_if_1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("    \r\n");
-        out.write("                        <div class=\"col-xs-10\" > \r\n");
+        out.write("                        <div class=\"col-sm-12 col-xs-12\" > \r\n");
         out.write("                            <h3 class=\"header smaller lighter blue\"><strong>DDPI / SCL - Núcleo de Controle de Lavratura de Cessão</strong></h3>\r\n");
         out.write("                            <div class=\" infobox-chart col-xs-10\" style=\" padding-top:30px\">\r\n");
         out.write("                                <div class=\"btn-group-lg infobox\" title=\"Realizar alterações no campo Tipo de Auto de Cessão dos formulários de cadastro de Auto de Cessão\">\r\n");
@@ -580,26 +580,27 @@ public final class PainelAdm_jsp extends org.apache.jasper.runtime.HttpJspBase
     if (_jspx_eval_c_if_2 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("    \r\n");
-        out.write("\r\n");
-        out.write("                        <div class=\"col-xs-10\" >\r\n");
+        out.write("                        <div class=\"col-sm-12 col-xs-12\" >\r\n");
         out.write("                            <h3 class=\"header smaller lighter blue\"><strong>DIPI/SIC - Divisao de Informação de Patrimonio Imobiliário</strong></h3>\r\n");
         out.write("                            <div class=\"col-sm-12 infobox-chart\" style=\" padding-top:30px\">\r\n");
         out.write("                                <div class=\"infobox btn-group-lg \">\r\n");
         out.write("                                    <button class=\"btn btn-primary btn-white btn-block\" onclick=\" location.href = 'ControllerServlet?acao=TipoAssuntoLista';\">\r\n");
-        out.write("                                        <i class=\"ace-icon fa fa-user\"></i>\r\n");
         out.write("                                        Tipo de Assunto\r\n");
         out.write("                                    </button>\r\n");
         out.write("                                </div>\r\n");
         out.write("                                <div class=\"infobox btn-group-lg\">\r\n");
         out.write("                                    <button class=\"btn btn-primary btn-white btn-block\" onclick=\" location.href = 'ControllerServlet?acao=TipoExpedienteLista';\">\r\n");
-        out.write("                                        <i class=\"ace-icon fa fa-user\"></i>\r\n");
         out.write("                                        Tipo de Expediente\r\n");
         out.write("                                    </button>\r\n");
         out.write("                                </div>\r\n");
         out.write("                                <div class=\"infobox btn-group-lg \">\r\n");
         out.write("                                    <button class=\"btn btn-primary btn-white btn-block\" onclick=\" location.href = 'ControllerServlet?acao=TipoDespachoLista';\">\r\n");
-        out.write("                                        <i class=\"ace-icon fa fa-user\"></i>\r\n");
         out.write("                                        Tipo de Despacho\r\n");
+        out.write("                                    </button>\r\n");
+        out.write("                                </div>\r\n");
+        out.write("                                <div class=\"infobox btn-group-lg \">\r\n");
+        out.write("                                    <button class=\"btn btn-primary btn-white btn-block\" onclick=\" location.href = 'ControllerServlet?acao=TipoAnexoLista';\">\r\n");
+        out.write("                                        Tipo de Anexo\r\n");
         out.write("                                    </button>\r\n");
         out.write("                                </div>\r\n");
         out.write("                            </div>\r\n");

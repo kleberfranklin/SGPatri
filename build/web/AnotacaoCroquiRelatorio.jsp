@@ -166,7 +166,7 @@
                                                 <br/><br/>
 
                                                 <label>
-                                                    <a href="AnotacaoCroquiDetalhesVTeste.jsp"><span class="glyphicon glyphicon-plus-sign"></span>Detalhes</a>
+                                                    <a href="#"><span class="glyphicon glyphicon-plus-sign"></span>Detalhes</a>
                                                 </label>
 
                                             </div>
@@ -210,7 +210,7 @@
                                                         </span>
                                                     </label>
                                                     <label class="inline col-md-1 col-xs-12">
-                                                        <span class="lbl">${hCroqui.sgExpediente}TID</span>
+                                                        <span class="lbl">${hCroqui.sgExpediente}TID fdsafas</span>
                                                     </label>
                                                 </div>
 
@@ -223,7 +223,7 @@
                                                 <br/><br/>
 
                                                 <label>
-                                                    <a href="AnotacaoCroquiDetalhesVTeste.jsp"><span class="glyphicon glyphicon-plus-sign"></span>Detalhes</a>
+                                                    <a href="#"><span class="glyphicon glyphicon-plus-sign"></span>Detalhes</a>
                                                 </label>
                                             </div>
 

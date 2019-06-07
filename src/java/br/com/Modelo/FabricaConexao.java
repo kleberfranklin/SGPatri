@@ -23,18 +23,19 @@ public class FabricaConexao {
 //        private final String url ="jdbc:mysql://localhost/"+banco;
 //        private final String url ="jdbc:mysql://127.0.0.1:3306/"+banco;
 //        private final String url ="jdbc:mysql://localhost/"+banco+"?useSSL=false";
-
     
 //  -- CONEXÃO POSTGRESQL SERVIDOR HOMOLOGAÇÃO CAP --  
         String drive = "org.postgresql.Driver";
-//        private final String banco = "SG_Patri_PROD";
-//        private final String banco = "SG_Patri_Homolog"; 
-//        private final String banco = "SG_Patri_Test"; 
-//        private final String url = "jdbc:postgresql://10.69.41.91:5433/"+banco; 
         private final String banco = "sgpatrigeo"; 
-        private final String url = "jdbc:postgresql://10.69.42.50:5432/"+banco; 
-//        private final String url = "jdbc:postgresql://SMDUGBC361:5433/"+banco;
-//        private final String url = "jdbc:postgresql://10.69.42.92:5433/"+banco;
+
+//        -- BANCO HOMOLOGAÇÃO 
+        private final String url = "jdbc:postgresql://10.69.40.178:5432/"+banco; 
+//        -- BANCO TESTE/DESENVOLVIMENTO 
+//        private final String url = "jdbc:postgresql://10.69.42.50:5432/"+banco; 
+
+//        -- BANCO OFICIAL DO CAP
+//        private final String banco = "geoDGPI"; 
+//        private final String url = "jdbc:postgresql://10.69.40.70:5433/"+banco;
         Properties props = new Properties();
     
     public Connection getConnetion(){
@@ -48,13 +49,14 @@ public class FabricaConexao {
 
 //          -- CONEXÃO POSTGRESQL SERVIDOR HOMOLOGAÇÃO CAP --       
                 props.setProperty("currentSchema","sch_cgpatri");
+//                props.setProperty("user","sgpatriproducao");
+//                props.setProperty("password","SGP@tri2018!");
+                  
+//                props.setProperty("currentSchema","sch_cap");  
+                props.setProperty("currentSchema","sch_cgpatri");
                 props.setProperty("user","devgeo");
                 props.setProperty("password","devgeo2019");
-
-//                props.setProperty("user","devhomolog");
-//                props.setProperty("password","Prodam@2018!");
-//
-//                props.setProperty("ssl","false");
+                props.setProperty("ssl","false");
                 
                 return DriverManager.getConnection(url, props);
 

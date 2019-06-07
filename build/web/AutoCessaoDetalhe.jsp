@@ -11,9 +11,8 @@
 
 <!DOCTYPE html>
 <html>
-
     <jsp:include page = "include/head.jsp" />
-
+    
     <body class="no-skin">
         <jsp:include page = "include/top.jsp"/>
         <div class="main-container ace-save-state" id="main-container">
@@ -24,8 +23,7 @@
             <jsp:include page = "javaScritp/maskProcesso.html" />
             <jsp:include page = "javaScritp/somenteNum.html" />
             <jsp:include page = "javaScritp/alertEffect.html" />
-
-
+            
 
             <!--Verificação de acesso  -->
             <c:set var="acessoPerfil" value="${sessionPerfil}" />
@@ -39,7 +37,15 @@
             <c:set var="pf" value="${param.pf}" />
             <c:set var="pi" value="${param.pi}" />
             <c:set var="execucao" value="${param.execucao}" />
-
+            
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+              integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+              crossorigin=""/>
+            
+            <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+              integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+              crossorigin=""></script>
+              
             <div class="breadcrumbs ace-save-state" id="breadcrumbs">
                 <ul class="breadcrumb">
                     <li><i class="ace-icon fa fa-list"></i> Auto de Cessão </li>
@@ -107,6 +113,12 @@
                                                         <span class="badge badge-transparent" title="ok"><i class="ace-icon fa fa-check-square-o green bigger-130"></i></span>
                                                         </c:otherwise>    
                                                     </c:choose>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a data-toggle="tab" href="#poligono" aria-expanded="true">
+                                                Polígono 
+                                                <span class="badge badge-transparent" title="ok"><i class="ace-icon fa fa-check-square-o green bigger-130"></i></span>
                                             </a>
                                         </li>
                                         <c:if test="${auto.pkAutoCessao <= 4675 && execucao!='insert'}" >
@@ -1755,7 +1767,7 @@
                                                                 <div class="inline col-md-2 col-xs-12">
                                                                     <div class="inline col-md-8 col-xs-12">
                                                                         <a href="/SGPatri/${ar.nmTipo}/${ar.nmArquivo}" target="_blank"><img class="img-thumbnail" src="img/${ar.nmTipo}.png" title="${ar.nmNomeclatura}" width="100%" height="100%"/></a>
-                                                                </div>
+                                                                    </div>
                                                                 <c:if test="${execucao=='insert' || execucao=='edit' && (sessionSgDivisao == 'DDPI' && sessionSgSetor == 'SCL')}">
                                                                     <div class="inline col-md-1 col-md-12">
                                                                         <button class="btn btn-danger btn-xs">
@@ -1763,11 +1775,19 @@
                                                                         </button>
                                                                     </div>
                                                                 </c:if>
-                                                            </div>
+                                                                </div>
                                                         </form>
                                                     </c:forEach>
                                                 </label>            
                                             </div>
+                                        </div>
+
+                                        <!--Inicico da tab-pane Poígio -->
+                                        <div id="poligono" class="tab-pane " >
+                                            <h5 class="header smaller lbl"><strong>POLÍGONO</strong></h5>
+                                            <label >
+                                                
+                                            </labe>
                                         </div>
 
                                         <!-- Inicio do formulario Validação -->                             
@@ -1951,7 +1971,7 @@
                             </div>    
                         </div>        
 
-
+                        
                         <jsp:include page = "include/footer.jsp" />
                         <jsp:include page = "javaScritp/carregado.html" />
 

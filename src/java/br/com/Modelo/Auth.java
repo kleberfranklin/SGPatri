@@ -14,9 +14,10 @@ import ninja.javahacker.simpleldap.UserNotFoundException;
  *
  * @author d732229
  */
+//fdsafasf
 public class Auth {
     
-    private static final String LDAP_SERVER = "c68v47i";
+    private static final String LDAP_SERVER = "10.10.68.47";
     private static final int LDAP_PORT = 389;
     private static final String ROOT_DN = "usr_sj2408_ldap";
     private static final String ROOT_PW = "Atc37$bdKyj";
