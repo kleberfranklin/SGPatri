@@ -48,6 +48,6 @@ public class CadastroAreaPublicaDetalhe implements Logica {
 
         System.out.println(centralizarMapa);
 
-        return "CadastroAreaPublicaCRU.jsp?execucao";
+        return "CadastroAreaPublicaCRU.jsp?execucao"+execucao;
     }
 }

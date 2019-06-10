@@ -15,7 +15,8 @@ public class MinisterioPublico {
 
     private int pkMinisterioPublico, fkTpExpediente;
     private String nmOrigem, cdOficioEntrada, cdProcesso, cdProcessoIni, nmTipoProcesso, nmInteressado, nmSolicitado, dsAssunto, dsEndereco, nrInfoDgpi,
-            cdOficioResposta, nrProcedimento, dsObservacao, nmLogin, dthrAtualizacao;
+            nmTipoEndereco, nmTituloEndereco, nmEndereco, nrEndereco, nmComplementoEndereco, nmReferencialEndereco, cdOficioResposta, nrProcedimento,
+            dsObservacao, nmLogin, dthrAtualizacao;
     private Date dtResposta, dtEntrada;
 
     public MinisterioPublico(int pkMinisterioPublico, String nmOrigem, Date dtEntrada, String cdOficioEntrada, String cdProcessoIni, String cdProcesso, String nmInteressado, String nmSolicitado, String dsAssunto, String dsEndereco, String nrInfoDgpi, String cdOficioResposta, Date dtResposta, String nrProcedimento, String dsObservacao, String nmLogin, String dthrAtualizacao) {
@@ -299,6 +300,54 @@ public class MinisterioPublico {
 
     public void setDtResposta(Date dtResposta) {
         this.dtResposta = dtResposta;
+    }
+
+    public String getNmTipoEndereco() {
+        return nmTipoEndereco;
+    }
+
+    public void setNmTipoEndereco(String nmTipoEndereco) {
+        this.nmTipoEndereco = nmTipoEndereco;
+    }
+
+    public String getNmTituloEndereco() {
+        return nmTituloEndereco;
+    }
+
+    public void setNmTituloEndereco(String nmTituloEndereco) {
+        this.nmTituloEndereco = nmTituloEndereco;
+    }
+
+    public String getNmEndereco() {
+        return nmEndereco;
+    }
+
+    public void setNmEndereco(String nmEndereco) {
+        this.nmEndereco = nmEndereco;
+    }
+
+    public String getNrEndereco() {
+        return nrEndereco;
+    }
+
+    public void setNrEndereco(String nrEndereco) {
+        this.nrEndereco = nrEndereco;
+    }
+
+    public String getNmComplementoEndereco() {
+        return nmComplementoEndereco;
+    }
+
+    public void setNmComplementoEndereco(String nmComplementoEndereco) {
+        this.nmComplementoEndereco = nmComplementoEndereco;
+    }
+
+    public String getNmReferencialEndereco() {
+        return nmReferencialEndereco;
+    }
+
+    public void setNmReferencialEndereco(String nmReferencialEndereco) {
+        this.nmReferencialEndereco = nmReferencialEndereco;
     }
 
 }

@@ -346,7 +346,7 @@ public final class nav_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("        <!-- Menu Calendario-->\r\n");
       out.write("        <li class=\"\">\r\n");
-      out.write("            <a class=\"disabled-li-menu\" href=\"#\" title=\"\">\r\n");
+      out.write("            <a class=\"\" href=\"CalendarioAgendamento.jsp\" title=\"\">\r\n");
       out.write("                <i class=\"menu-icon fa fa-calendar\"></i>\r\n");
       out.write("                <span class=\"menu-text\"> Calendário </span>\r\n");
       out.write("            </a>\r\n");

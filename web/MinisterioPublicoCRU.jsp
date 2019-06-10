@@ -49,6 +49,12 @@
                                                 Ministerio Publico 
                                             </a>
                                         </li>
+                                        <li class="">
+                                            <a data-toggle="tab" href="#anexar-doc" aria-expanded="true">
+                                                Anexar documento
+
+                                            </a>
+                                        </li>
                                     </ul>
                                     <form action="ControllerServlet?acao=MinisterioPublicoUC" method="POST" >
                                         <div class="tab-content profile-edit-tab-content" >
@@ -58,7 +64,6 @@
                                                 <input type="hidden" name="execucao" value="${execucao}" >
                                                 <input type="hidden" name="nmInteressado" value="Ministério Público">
                                                 <h4 class="header smaller lbl "><strong>Ministerio Publico</strong></h4>
-
                                                 <div class="form-group">
                                                     <label class="inline col-sm-2 col-xs-12">
                                                         <span class="lbl"><strong>Origem:</strong></span>
@@ -77,9 +82,9 @@
                                                             </label>
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <label class="inline col-sm-3 col-xs-12" >
+                                                            <span class="inline col-sm-3 col-xs-12" >
                                                                 ${ministPublico.nmOrigem}
-                                                            </label>
+                                                            </span>
                                                         </c:otherwise>
                                                     </c:choose>
                                                 </div>
@@ -102,9 +107,9 @@
                                                             </label>
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <label class="inline col-sm-3 col-xs-12" >
+                                                            <span class="inline col-sm-3 col-xs-12" >
                                                                 ${ministPublico.cdOficioEntrada}
-                                                            </label>
+                                                            </span>
                                                         </c:otherwise>
                                                     </c:choose>
 
@@ -125,9 +130,9 @@
                                                             </label>
                                                         </c:when>
                                                         <c:otherwise>                                                   
-                                                            <label class="inline col-sm-3 col-xs-12" >
+                                                            <span class="inline col-sm-3 col-xs-12" >
                                                                 ${ministPublico.dtEntrada}
-                                                            </label>
+                                                            </span>
                                                         </c:otherwise>
                                                     </c:choose>
                                                 </div>
@@ -150,9 +155,9 @@
                                                             </label>
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <label class="inline col-sm-3 col-xs-12" >
+                                                            <span class="inline col-sm-3 col-xs-12" >
                                                                 ${ministPublico.nrProcedimento}
-                                                            </label>
+                                                            </span>
                                                         </c:otherwise>
                                                     </c:choose>
                                                 </div>
@@ -175,9 +180,9 @@
                                                             </label>
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <label class="inline col-sm-3 col-xs-12" >
+                                                            <span class="inline col-sm-3 col-xs-12" >
                                                                 ${ministPublico.dsAssunto}
-                                                            </label>
+                                                            </span>
                                                         </c:otherwise>
                                                     </c:choose>
                                                 </div>
@@ -202,9 +207,10 @@
                                                             </c:otherwise>
                                                         </c:choose>
                                                     </label>
+
                                                     <!-- Mascara do tipo do processo -->
                                                     <c:if test="${execucao == 'insert' || execucao == 'edit' }">
-                                                        <label class="inline col-sm-4 col-xs-12">
+                                                        <label class="inline col-sm-3 col-xs-12">
                                                             <div class=" radio col-sm-3 col-xs-12">
                                                                 <label>
                                                                     <input name="tpProcessoIni" id="seiI" value="SEI" type="radio"  class="ace" onclick="maskProcessoIni();" required="required">
@@ -253,9 +259,9 @@
                                                             </c:otherwise>
                                                         </c:choose>
                                                     </label>
-                                                    <!-- Mascara do tipo do processo -->
+                                                    <!-- Mascara do tipo do processo  d642714-->
                                                     <c:if test="${execucao == 'insert' || execucao == 'edit' }">
-                                                        <label class="inline col-sm-4 col-xs-12">
+                                                        <label class="inline col-sm-3 col-xs-12">
                                                             <div class="radio col-sm-3 col-xs-12">
                                                                 <label>
                                                                     <input name="tpProcesso" id="sei" value="SEI" type="radio"  class="ace" onclick="maskProcesso();" required="required">
@@ -303,14 +309,12 @@
                                                             </label>
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <label class="inline col-sm-3 col-xs-12" >
+                                                            <span class="inline col-sm-3 col-xs-12" >
                                                                 ${ministPublico.nmSolicitado}
-                                                            </label>
+                                                            </span>
                                                         </c:otherwise>
                                                     </c:choose>
                                                 </div>
-
-
 
                                                 <div class="form-group">
                                                     <label class="inline col-sm-2 col-xs-12">
@@ -330,9 +334,9 @@
                                                             </label>
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <label class="inline col-sm-3 col-xs-12" >
+                                                            <span class="inline col-sm-3 col-xs-12" >
                                                                 ${ministPublico.dsEndereco}
-                                                            </label>
+                                                            </span>
                                                         </c:otherwise>
                                                     </c:choose>
                                                 </div>
@@ -355,9 +359,9 @@
                                                             </label>
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <label class="inline col-sm-3 col-xs-12" >
+                                                            <span class="inline col-sm-3 col-xs-12" >
                                                                 ${ministPublico.nrInfoDgpi}
-                                                            </label>
+                                                            </span>
                                                         </c:otherwise>
                                                     </c:choose>
 
@@ -381,9 +385,9 @@
                                                             </label>
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <label class="inline col-sm-3 col-xs-12" >
+                                                            <span class="inline col-sm-3 col-xs-12" >
                                                                 ${ministPublico.cdOficioResposta}
-                                                            </label>
+                                                            </span>
                                                         </c:otherwise>
                                                     </c:choose>
 
@@ -404,9 +408,9 @@
                                                             </label>
                                                         </c:when>
                                                         <c:otherwise>                                                   
-                                                            <label class="inline col-sm-3 col-xs-12" >
+                                                            <span class="inline col-sm-3 col-xs-12" >
                                                                 ${ministPublico.dtResposta}
-                                                            </label>
+                                                            </span>
                                                         </c:otherwise>
                                                     </c:choose>
                                                 </div>                                                                                   
@@ -429,14 +433,123 @@
                                                             </label>
                                                         </c:when>
                                                         <c:otherwise> 
-                                                            <label class="inline col-sm-9 col-xs-12" >
+                                                            <span class="inline col-sm-9 col-xs-12" >
                                                                 ${ministPublico.dsObservacao}
-                                                            </label>
+                                                            </span>
                                                         </c:otherwise>
                                                     </c:choose>
                                                 </div>
                                             </div>
+                                            <!--Inicico da tab-pane Anexer Documento -->
+                                            <div id="anexar-doc" class="tab-pane <c:if test="${auto.pkAutoStage ==null}">disabled-li-menu</c:if>">
+                                                    <h5 class="header smaller lbl"><strong>Anexar documento</strong></h5>
+                                                    <div class="form-group">
+                                                        <form action="ControllerServlet?acao=ArquivoUpload" enctype="multipart/form-data" method="POST" >
+                                                            <input type="hidden" name="pkAutoStage" value="${auto.pkAutoStage}" />
+                                                        <input type="hidden" name="tipoArquivo" value="planta" />
+                                                        <input type="hidden" name="Origem" value="AutoCessao" />
+                                                        <input type="hidden" name="nrVerArqPlanta" value="1" />
+                                                        <input type="hidden" name="execucao" value="${execucao}" />
+                                                        <input type="hidden" name="pgValidacao" value="${pgValidacao}" />
+                                                        <c:set var="arPlanta"  value="${Arquivo.pkArquivo(auto.pkAutoStage,'AutoCessao', 'planta')}"  />
+                                                        <input type="hidden" name="pkArquivo" value="<c:out value="${arPlanta.pkArquivo}" />" />   
+                                                        <c:if test="${auto.nrVerArqAc=='1' && execucao=='insert' }">
+                                                            <input type="hidden" name="finalizar" value="1" />
+                                                        </c:if>
 
+
+                                                        <label class="inline col-md-2 col-xs-12"><strong>Arquivo1:</strong></label>
+                                                        <label class="col-md-1 col-xs-12">
+                                                            <c:forEach var="ar" items="${Arquivo.listArquivo(auto.pkAutoStage, 'AutoCessao')}">
+                                                                <c:if test="${ar.nmTipo == 'planta'}">
+                                                                    <a href="<c:out value="${pageContext.servletContext.contextPath}" />/Arquivo/Planta/${ar.nmNomeArquivo}" target="_blank"><img src="img/img-planta.png" title="${ar.nmNome}" width="60%" height="60%"/></a>
+                                                                    </c:if>    
+                                                                </c:forEach>
+                                                        </label>
+                                                        <c:if test="${(sessionSgDivisao == 'DDPI' &&sessionSgSetor == 'SCL') && (execucao=='insert' || execucao=='edit')}">
+                                                            <label class="inline col-md-3">
+                                                                <input type="text" id="form-field-1" class="col-xs-12 col-md-12" name="nmNome" placeholder="Nome da Planta" required="required" >
+                                                            </label>
+
+                                                            <label class="inline col-md-3 col-xs-12">
+                                                                <input type="file" id="id-input-file-2" name="UploadPlanta" required="required"><span class="ace-file-container" data-title="Choose"><span class="ace-file-name" data-title="No File ..."></span></span>
+                                                            </label>
+                                                            <label class="inline col-md-2 col-xs-12">
+                                                                <c:set var="idPlanta"  value="${Arquivo.pkArquivo(auto.pkAutoStage,'AutoCessao', 'planta')}"  />  
+                                                                <c:choose>
+                                                                    <c:when test="${ idPlanta.pkArquivo != '0'}" >
+                                                                        <button class="btn btn-yellow"  type="submit">
+                                                                            <i class="ace-icon fa fa-save bigger-110"></i>
+                                                                            Substituir
+                                                                        </button>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <button class="btn btn-success"  type="submit">
+                                                                            <i class="ace-icon fa fa-save bigger-110"></i>
+                                                                            Salvar
+                                                                        </button>
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                                            </label> 
+                                                        </c:if>    
+                                                    </form>
+                                                </div>
+
+                                                <div class="space-2"></div>
+
+                                                <div class="form-group">    
+                                                    <form action="ControllerServlet?acao=ArquivoUpload" method="POST"  enctype="multipart/form-data">
+                                                        <input type="hidden" name="pkAutoStage" value="${auto.pkAutoStage}" />
+                                                        <input type="hidden" name="tipoArquivo" value="AC" />
+                                                        <input type="hidden" name="Origem" value="AutoCessao" />
+                                                        <input type="hidden" name="nrVerArqAc" value="1" />
+                                                        <input type="hidden" name="execucao" value="${execucao}" />
+                                                        <input type="hidden" name="pgValidacao" value="${pgValidacao}" />
+                                                        <c:set var="arAC"  value="${Arquivo.pkArquivo(auto.pkAutoStage,'AutoCessao', 'AC')}"  />
+                                                        <input type="hidden" name="pkArquivo" value="<c:out value="${arAC.pkArquivo}" />" />
+                                                        <c:if test="${auto.nrVerArqPlanta=='1' && execucao=='insert'}">
+                                                            <input type="hidden" name="finalizar" value="1" />
+                                                        </c:if>
+                                                        <label class="inline col-md-2 col-xs-12"><strong>Arquivo2:</strong></label>
+                                                        <label class="col-md-1 col-xs-12">
+                                                            <c:forEach var="ar" items="${Arquivo.listArquivo(auto.pkAutoStage, 'AutoCessao')}">
+                                                                <c:if test="${ar.nmTipo == 'AC'}">
+                                                                    <a href="<c:out value="${pageContext.servletContext.contextPath}" />/Arquivo/AC/${ar.nmNomeArquivo}" target="_blank"><img src="img/img-arquivo.png" title="${ar.nmNome}" width="50%" height="50%"/></a>
+
+                                                                </c:if>
+                                                            </c:forEach>
+                                                        </label>
+                                                        <c:if test="${(sessionSgDivisao == 'DDPI' && sessionSgSetor == 'SCL') && (execucao=='insert' || execucao=='edit')}">
+                                                            <label class="inline col-md-3">
+                                                                <input type="text" id="form-field-1" class="col-xs-12 col-md-12" name="nmNome" placeholder="Nome do Auto de Cessão" required="required" >
+                                                            </label>
+                                                            <label class="inline col-md-3 col-xs-12">
+                                                                <input type="file" id="id-input-file-2" name="UploadAC" required="required" ><span class="ace-file-container" data-title="Choose"><span class="ace-file-name" data-title="No File ..."></span></span>
+                                                            </label>
+
+                                                            <label class="inline col-md-2 col-xs-12">
+                                                                <c:set var="idAC"  value="${Arquivo.pkArquivo(auto.pkAutoStage,'AutoCessao', 'AC')}"  /> 
+                                                                <c:choose>
+                                                                    <c:when test="${idAC.pkArquivo != '0'}">
+                                                                        <button class="btn btn-yellow"  type="submit">
+                                                                            <i class="ace-icon fa fa-save bigger-110"></i>
+                                                                            Substituir
+                                                                        </button>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <button class="btn btn-success"  type="submit">
+                                                                            <i class="ace-icon fa fa-save bigger-110"></i>
+                                                                            Salvar
+                                                                        </button>
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                                            </label>
+                                                        </c:if>    
+                                                    </form>
+
+                                                </div>
+
+                                            </div>
                                             <!-- Botões-->
                                             <c:choose> 
                                                 <c:when test="${execucao == 'insert'}">

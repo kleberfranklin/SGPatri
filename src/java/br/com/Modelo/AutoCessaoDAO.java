@@ -50,7 +50,7 @@ public class AutoCessaoDAO {
                 + "LIMIT ? OFFSET ?");
         try {
             stmt = connection.prepareStatement(sql);
-            stmt.setString(1, '%' + qTpcessao + '%');
+            stmt.setString(1, qTpcessao +'%' );
             stmt.setString(2, qAC + '%');
             stmt.setString(3, qProcesso + '%');
             stmt.setString(4, '%' + qCessionario + '%');

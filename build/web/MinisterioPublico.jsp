@@ -43,8 +43,6 @@
                                     </button>
                                 </div>
 
-                                <br/>
-
                                 <div class="btn-group-lg infobox ">
                                     <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'MinisterioPublicoCRU.jsp?execucao=insert'">
                                         <i class="ace-icon fa fa-plus"></i>
@@ -55,7 +53,8 @@
                         </div>
                     </div>
                 </div>
-            <jsp:include page = "include/footer.jsp" />
-        </div><!-- /.main-container --> 
+            </div><!-- /.main-container --> 
+
+        <jsp:include page = "include/footer.jsp" />
     </body>
 </html>

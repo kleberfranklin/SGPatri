@@ -299,7 +299,7 @@
 
         <!-- Menu Calendario-->
         <li class="">
-            <a class="disabled-li-menu" href="#" title="">
+            <a class="" href="CalendarioAgendamento.jsp" title="">
                 <i class="menu-icon fa fa-calendar"></i>
                 <span class="menu-text"> Calendário </span>
             </a>

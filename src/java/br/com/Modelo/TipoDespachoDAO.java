@@ -31,7 +31,7 @@ public class TipoDespachoDAO {
         ResultSet rs = null;
 
         String sql = ("SELECT COUNT(*) as total FROM tbl_tipo_despacho_expediente "
-                + "WHERE (sg_tipo_despacho ILIKE ? or nm_tipo_despacho ILIKE ? ) ");
+                + "WHERE (sg_despacho ILIKE ? or nm_despacho ILIKE ? ) ");
 
         try {
             stmt = connection.prepareStatement(sql);
@@ -48,7 +48,7 @@ public class TipoDespachoDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            rs.close();
+//            rs.close();
             stmt.close();
             connection.close();
         }
@@ -60,8 +60,8 @@ public class TipoDespachoDAO {
         ResultSet rs = null;
 
         String sql = ("SELECT * FROM tbl_tipo_despacho_expediente "
-                + "WHERE (sg_tipo_despacho ILIKE ? or nm_tipo_despacho ILIKE ? ) "
-                + "ORDER BY nm_tipo_despacho "
+                + "WHERE (sg_despacho ILIKE ? or nm_despacho ILIKE ? ) "
+                + "ORDER BY nm_despacho "
                 + "LIMIT ? OFFSET ? ");
 
         try {
@@ -76,8 +76,8 @@ public class TipoDespachoDAO {
             while (rs.next()) {
                 TipoDespacho tpDes = new TipoDespacho();
                 tpDes.setPkTipoDespacho(rs.getInt("id_tipo_despacho"));
-                tpDes.setSgTipoDespacho(rs.getString("sg_tipo_despacho"));
-                tpDes.setNmTipoDespacho(rs.getString("nm_tipo_despacho"));
+                tpDes.setSgTipoDespacho(rs.getString("sg_despacho"));
+                tpDes.setNmTipoDespacho(rs.getString("nm_despacho"));
                 tpDes.setNmLogin(rs.getString("nm_login"));
                 tpDes.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
                 lisTpDes.add(tpDes);
@@ -87,7 +87,7 @@ public class TipoDespachoDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            rs.close();
+//            rs.close();
             stmt.close();
             connection.close();
         }
@@ -110,8 +110,8 @@ public class TipoDespachoDAO {
             TipoDespacho tpDes = new TipoDespacho();
             if (rs.next()) {
                 tpDes.setPkTipoDespacho(rs.getInt("id_tipo_despacho"));
-                tpDes.setSgTipoDespacho(rs.getString("sg_tipo_despacho"));
-                tpDes.setNmTipoDespacho(rs.getString("nm_tipo_despacho"));
+                tpDes.setSgTipoDespacho(rs.getString("sg_despacho"));
+                tpDes.setNmTipoDespacho(rs.getString("nm_despacho"));
                 tpDes.setNmLogin(rs.getString("nm_login"));
                 tpDes.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
             }
@@ -120,7 +120,7 @@ public class TipoDespachoDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            rs.close();
+//            rs.close();
             stmt.close();
             connection.close();
         }
@@ -131,7 +131,7 @@ public class TipoDespachoDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        String sql = "INSERT INTO tbl_tipo_despacho_expediente (sg_tipo_despacho, nm_tipo_despacho, nm_login, dthr_atualizacao ) "
+        String sql = "INSERT INTO tbl_tipo_despacho_expediente (sg_despacho, nm_despacho, nm_login, dthr_atualizacao ) "
                 + "VALUES (?,?,?,? )";
 
         try {
@@ -145,7 +145,7 @@ public class TipoDespachoDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            rs.close();
+//            rs.close();
             stmt.close();
             connection.close();
         }
@@ -156,7 +156,7 @@ public class TipoDespachoDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        String sql = "UPDATE tbl_tipo_despacho_expediente SET sg_tipo_despacho=?, nm_tipo_despacho=?, nm_login=?, dthr_atualizacao=? "
+        String sql = "UPDATE tbl_tipo_despacho_expediente SET sg_despacho=?, nm_despacho=?, nm_login=?, dthr_atualizacao=? "
                 + "WHERE id_tipo_despacho = ?";
 
         try {
@@ -171,7 +171,7 @@ public class TipoDespachoDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            rs.close();
+//            rs.close();
             stmt.close();
             connection.close();
         }
@@ -182,7 +182,7 @@ public class TipoDespachoDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        String sql = "SELECT * FROM tbl_tipo_despacho_expediente ORDER BY nm_tipo_despacho";
+        String sql = "SELECT * FROM tbl_tipo_despacho_expediente ORDER BY nm_despacho";
 
         try {
             List<TipoDespacho> lisTpDes = new ArrayList<TipoDespacho>();
@@ -192,8 +192,8 @@ public class TipoDespachoDAO {
             while (rs.next()) {
                 TipoDespacho tpDes = new TipoDespacho();
                 tpDes.setPkTipoDespacho(rs.getInt("id_tipo_despacho"));
-                tpDes.setSgTipoDespacho(rs.getString("sg_tipo_despacho"));
-                tpDes.setNmTipoDespacho(rs.getString("nm_tipo_despacho"));
+                tpDes.setSgTipoDespacho(rs.getString("sg_despacho"));
+                tpDes.setNmTipoDespacho(rs.getString("nm_despacho"));
                 tpDes.setNmLogin(rs.getString("nm_login"));
                 tpDes.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
                 lisTpDes.add(tpDes);
@@ -205,7 +205,7 @@ public class TipoDespachoDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            rs.close();
+//            rs.close();
             stmt.close();
             connection.close();
         }

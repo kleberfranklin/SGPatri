@@ -339,18 +339,18 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("</strong></label>\r\n");
       out.write("                            </div>\r\n");
       out.write("                        </div>\r\n");
-      out.write("                        <div class=\"col-xs-6\">\r\n");
-      out.write("                            <div class=\"dataTables_paginate paging_simple_numbers\" id=\"dynamic-table_paginate\">\r\n");
-      out.write("                                <ul class=\"pagination\">\r\n");
+      out.write("                        \r\n");
+      out.write("                                <div class=\"col-xs-6\">\r\n");
+      out.write("                                    <div class=\"dataTables_paginate paging_simple_numbers\" id=\"dynamic-table_paginate\">\r\n");
+      out.write("                                        <ul class=\"pagination\">\r\n");
       out.write("\r\n");
-      out.write("                                    ");
+      out.write("                                            ");
       if (_jspx_meth_c_forEach_2(_jspx_page_context))
         return;
       out.write("\r\n");
-      out.write("                                </ul>\r\n");
-      out.write("                            </div>\r\n");
-      out.write("                        </div>\r\n");
-      out.write("\r\n");
+      out.write("                                        </ul>\r\n");
+      out.write("                                    </div>\r\n");
+      out.write("                                </div>\r\n");
       out.write("                        <div class=\"col-sm-12 \" >\r\n");
       out.write("                            <button class=\"btn btn-yellow right\" type=\"reset\" onclick=\" location.href = 'AutoCessao.jsp';\">\r\n");
       out.write("                                <i class=\"ace-icon fa fa-undo bigger-110\"></i>\r\n");
@@ -1240,7 +1240,7 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
           out.write("                                        </td>\r\n");
           out.write("                                        <td title=\"");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${autolist.tipoAutoCessao.nmTipoAutoCessao}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("\">\r\n");
+          out.write("\" id=\"tpCessaoTeste\">\r\n");
           out.write("                                            ");
           if (_jspx_meth_c_choose_4((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_1, _jspx_page_context, _jspx_push_body_count_c_forEach_1))
             return true;
@@ -2391,6 +2391,7 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
         out.write("                                                                    <span class=\"green\">\r\n");
         out.write("                                                                        <i class=\"ace-icon fa fa-pencil-square-o bigger-120\"></i>\r\n");
         out.write("                                                                    </span>\r\n");
+        out.write("                                                                    teste\r\n");
         out.write("                                                                </a>\r\n");
         out.write("                                                            </li>\r\n");
         out.write("\r\n");
@@ -2459,23 +2460,23 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
       if (_jspx_eval_c_forEach_2 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
           out.write("\r\n");
-          out.write("                                        ");
+          out.write("                                                ");
           if (_jspx_meth_c_set_17((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_2, _jspx_page_context, _jspx_push_body_count_c_forEach_2))
             return true;
           out.write("\r\n");
-          out.write("                                        ");
+          out.write("                                                ");
           if (_jspx_meth_c_if_2((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_2, _jspx_page_context, _jspx_push_body_count_c_forEach_2))
             return true;
           out.write("    \r\n");
-          out.write("                                        ");
+          out.write("                                                ");
           if (_jspx_meth_c_if_3((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_2, _jspx_page_context, _jspx_push_body_count_c_forEach_2))
             return true;
           out.write("\r\n");
-          out.write("                                        ");
+          out.write("                                                ");
           if (_jspx_meth_c_if_4((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_2, _jspx_page_context, _jspx_push_body_count_c_forEach_2))
             return true;
           out.write("    \r\n");
-          out.write("                                    ");
+          out.write("                                            ");
           int evalDoAfterBody = _jspx_th_c_forEach_2.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
             break;
@@ -2527,8 +2528,8 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
     if (_jspx_eval_c_if_2 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\r\n");
-        out.write("                                            <li>\r\n");
-        out.write("                                                <a href=\"ControllerServlet?acao=AutoCessaoLista&pg=");
+        out.write("                                                    <li>\r\n");
+        out.write("                                                        <a href=\"ControllerServlet?acao=AutoCessaoLista&pg=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${i}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("&pi=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pi}", java.lang.String.class, (PageContext)_jspx_page_context, null));
@@ -2553,9 +2554,9 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
         out.write("&ter=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${ter}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("\">\r\n");
-        out.write("                                                    <i class=\"ace-icon fa fa-angle-double-left\"></i></a>\r\n");
-        out.write("                                            </li>\r\n");
-        out.write("                                        ");
+        out.write("                                                            <i class=\"ace-icon fa fa-angle-double-left\"></i></a>\r\n");
+        out.write("                                                    </li>\r\n");
+        out.write("                                                ");
         int evalDoAfterBody = _jspx_th_c_if_2.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
@@ -2582,11 +2583,11 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
     if (_jspx_eval_c_if_3 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\r\n");
-        out.write("                                            ");
+        out.write("                                                    ");
         if (_jspx_meth_c_choose_12((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_if_3, _jspx_page_context, _jspx_push_body_count_c_forEach_2))
           return true;
         out.write("\r\n");
-        out.write("                                        ");
+        out.write("                                                ");
         int evalDoAfterBody = _jspx_th_c_if_3.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
@@ -2612,15 +2613,15 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
     if (_jspx_eval_c_choose_12 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\r\n");
-        out.write("                                                ");
+        out.write("                                                        ");
         if (_jspx_meth_c_when_16((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_12, _jspx_page_context, _jspx_push_body_count_c_forEach_2))
           return true;
         out.write("\r\n");
-        out.write("                                                ");
+        out.write("                                                        ");
         if (_jspx_meth_c_otherwise_11((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_12, _jspx_page_context, _jspx_push_body_count_c_forEach_2))
           return true;
         out.write("\r\n");
-        out.write("                                            ");
+        out.write("                                                    ");
         int evalDoAfterBody = _jspx_th_c_choose_12.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
@@ -2647,12 +2648,12 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
     if (_jspx_eval_c_when_16 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\r\n");
-        out.write("                                                    <li class=\"active\">\r\n");
-        out.write("                                                        <a href=\"#\"> ");
+        out.write("                                                            <li class=\"active\">\r\n");
+        out.write("                                                                <a href=\"#\"> ");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${i}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("</a>\r\n");
-        out.write("                                                    </li>\r\n");
-        out.write("                                                ");
+        out.write("                                                            </li>\r\n");
+        out.write("                                                        ");
         int evalDoAfterBody = _jspx_th_c_when_16.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
@@ -2678,8 +2679,8 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
     if (_jspx_eval_c_otherwise_11 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\r\n");
-        out.write("                                                    <li>\r\n");
-        out.write("                                                        <a href=\"ControllerServlet?acao=AutoCessaoLista&pg=");
+        out.write("                                                            <li>\r\n");
+        out.write("                                                                <a href=\"ControllerServlet?acao=AutoCessaoLista&pg=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${i}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("&pi=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pi}", java.lang.String.class, (PageContext)_jspx_page_context, null));
@@ -2707,8 +2708,8 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
         out.write('>');
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${i}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("</a>\r\n");
-        out.write("                                                    </li>\r\n");
-        out.write("                                                ");
+        out.write("                                                            </li>\r\n");
+        out.write("                                                        ");
         int evalDoAfterBody = _jspx_th_c_otherwise_11.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
@@ -2735,8 +2736,8 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
     if (_jspx_eval_c_if_4 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\r\n");
-        out.write("                                            <li>\r\n");
-        out.write("                                                <a href=\"ControllerServlet?acao=AutoCessaoLista&pg=");
+        out.write("                                                    <li>\r\n");
+        out.write("                                                        <a href=\"ControllerServlet?acao=AutoCessaoLista&pg=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${i}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("&pi=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pi}", java.lang.String.class, (PageContext)_jspx_page_context, null));
@@ -2761,9 +2762,9 @@ public final class AutoCessaoLista_jsp extends org.apache.jasper.runtime.HttpJsp
         out.write("&ter=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${ter}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("\">\r\n");
-        out.write("                                                    <i class=\"ace-icon fa fa-angle-double-right\"></i></a>\r\n");
-        out.write("                                            </li>\r\n");
-        out.write("                                        ");
+        out.write("                                                            <i class=\"ace-icon fa fa-angle-double-right\"></i></a>\r\n");
+        out.write("                                                    </li>\r\n");
+        out.write("                                                ");
         int evalDoAfterBody = _jspx_th_c_if_4.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;

@@ -24,7 +24,6 @@ public class MinisterioPublicoDetalhe implements Logica {
     public String executa(HttpServletRequest req,
             HttpServletResponse res) throws Exception {
 
-
 //Atributo  
         int pkMinisterioPublico;
         String execucao;
@@ -33,21 +32,12 @@ public class MinisterioPublicoDetalhe implements Logica {
         pkMinisterioPublico = Integer.parseInt(req.getParameter("pkMinisterioPublico"));
         execucao = req.getParameter("execucao");
 
-//pegando a lista dos tipos de expedientes  
-        AnotacaoCroquiTesteDAO anotaCroquiTDAO = new AnotacaoCroquiTesteDAO();
-
-        List<AnotacaoCroqui> listTpExpediente = anotaCroquiTDAO.listTpExpediente();
-//        for (AnotacaoCroqui L : listTpExpediente) {
-//            System.out.println(L.getSgTipoExpediente());
-//        }
-        req.setAttribute("listaTpExp", listTpExpediente);
-
         MinisterioPublicoDAO ministPublicoDAO = new MinisterioPublicoDAO();
         MinisterioPublico ministPublico = ministPublicoDAO.detalheMinisterioPublico(pkMinisterioPublico);
 
         req.setAttribute("ministPublico", ministPublico);
         req.setAttribute("execucao", execucao);
 
-        return "MinisterioPublicoCRU.jsp?execucao";
+        return "MinisterioPublicoCRU.jsp?execucao" + execucao;
     }
 }

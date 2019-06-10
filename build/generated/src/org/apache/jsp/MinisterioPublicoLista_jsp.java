@@ -146,6 +146,39 @@ public final class MinisterioPublicoLista_jsp extends org.apache.jasper.runtime.
         return;
       out.write("\r\n");
       out.write("\r\n");
+      out.write("            ");
+      if (_jspx_meth_c_set_8(_jspx_page_context))
+        return;
+      out.write("\r\n");
+      out.write("            ");
+      if (_jspx_meth_c_set_9(_jspx_page_context))
+        return;
+      out.write("\r\n");
+      out.write("            ");
+      if (_jspx_meth_c_set_10(_jspx_page_context))
+        return;
+      out.write("\r\n");
+      out.write("            ");
+      if (_jspx_meth_c_set_11(_jspx_page_context))
+        return;
+      out.write("\r\n");
+      out.write("            ");
+      if (_jspx_meth_c_set_12(_jspx_page_context))
+        return;
+      out.write("\r\n");
+      out.write("            ");
+      if (_jspx_meth_c_set_13(_jspx_page_context))
+        return;
+      out.write("\r\n");
+      out.write("            ");
+      if (_jspx_meth_c_set_14(_jspx_page_context))
+        return;
+      out.write("\r\n");
+      out.write("            ");
+      if (_jspx_meth_c_set_15(_jspx_page_context))
+        return;
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("            <div class=\"breadcrumbs ace-save-state\" id=\"breadcrumbs\">\r\n");
       out.write("                <ul class=\"breadcrumb\">\r\n");
       out.write("                    <li><i class=\"ace-icon fa fa-list\"></i> Informações </li>\r\n");
@@ -310,13 +343,14 @@ public final class MinisterioPublicoLista_jsp extends org.apache.jasper.runtime.
       out.write("                                Voltar\r\n");
       out.write("                            </button>    \r\n");
       out.write("                        </div>\r\n");
-      out.write("                        ");
-      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "include/footer.jsp", out, false);
-      out.write("\r\n");
       out.write("                    </div>\r\n");
       out.write("                </div>\r\n");
       out.write("            </div>\r\n");
       out.write("        </div><!-- /.main-container --> \r\n");
+      out.write("        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "include/footer.jsp", out, false);
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("    </body>\r\n");
       out.write("</html>\r\n");
     } catch (Throwable t) {
@@ -679,6 +713,158 @@ public final class MinisterioPublicoLista_jsp extends org.apache.jasper.runtime.
     return false;
   }
 
+  private boolean _jspx_meth_c_set_8(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:set
+    org.apache.taglibs.standard.tag.rt.core.SetTag _jspx_th_c_set_8 = (org.apache.taglibs.standard.tag.rt.core.SetTag) _jspx_tagPool_c_set_var_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.SetTag.class);
+    _jspx_th_c_set_8.setPageContext(_jspx_page_context);
+    _jspx_th_c_set_8.setParent(null);
+    _jspx_th_c_set_8.setVar("nmOrigem");
+    _jspx_th_c_set_8.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${param.nmOrigem}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    int _jspx_eval_c_set_8 = _jspx_th_c_set_8.doStartTag();
+    if (_jspx_th_c_set_8.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_8);
+      return true;
+    }
+    _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_8);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_set_9(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:set
+    org.apache.taglibs.standard.tag.rt.core.SetTag _jspx_th_c_set_9 = (org.apache.taglibs.standard.tag.rt.core.SetTag) _jspx_tagPool_c_set_var_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.SetTag.class);
+    _jspx_th_c_set_9.setPageContext(_jspx_page_context);
+    _jspx_th_c_set_9.setParent(null);
+    _jspx_th_c_set_9.setVar("dsEndereco");
+    _jspx_th_c_set_9.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${param.dsEndereco}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    int _jspx_eval_c_set_9 = _jspx_th_c_set_9.doStartTag();
+    if (_jspx_th_c_set_9.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_9);
+      return true;
+    }
+    _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_9);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_set_10(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:set
+    org.apache.taglibs.standard.tag.rt.core.SetTag _jspx_th_c_set_10 = (org.apache.taglibs.standard.tag.rt.core.SetTag) _jspx_tagPool_c_set_var_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.SetTag.class);
+    _jspx_th_c_set_10.setPageContext(_jspx_page_context);
+    _jspx_th_c_set_10.setParent(null);
+    _jspx_th_c_set_10.setVar("dsAssunto");
+    _jspx_th_c_set_10.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${param.dsAssunto}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    int _jspx_eval_c_set_10 = _jspx_th_c_set_10.doStartTag();
+    if (_jspx_th_c_set_10.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_10);
+      return true;
+    }
+    _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_10);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_set_11(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:set
+    org.apache.taglibs.standard.tag.rt.core.SetTag _jspx_th_c_set_11 = (org.apache.taglibs.standard.tag.rt.core.SetTag) _jspx_tagPool_c_set_var_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.SetTag.class);
+    _jspx_th_c_set_11.setPageContext(_jspx_page_context);
+    _jspx_th_c_set_11.setParent(null);
+    _jspx_th_c_set_11.setVar("nmSolicitado");
+    _jspx_th_c_set_11.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${param.nmSolicitado}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    int _jspx_eval_c_set_11 = _jspx_th_c_set_11.doStartTag();
+    if (_jspx_th_c_set_11.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_11);
+      return true;
+    }
+    _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_11);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_set_12(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:set
+    org.apache.taglibs.standard.tag.rt.core.SetTag _jspx_th_c_set_12 = (org.apache.taglibs.standard.tag.rt.core.SetTag) _jspx_tagPool_c_set_var_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.SetTag.class);
+    _jspx_th_c_set_12.setPageContext(_jspx_page_context);
+    _jspx_th_c_set_12.setParent(null);
+    _jspx_th_c_set_12.setVar("nrProcedimento");
+    _jspx_th_c_set_12.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${param.nrProcedimento}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    int _jspx_eval_c_set_12 = _jspx_th_c_set_12.doStartTag();
+    if (_jspx_th_c_set_12.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_12);
+      return true;
+    }
+    _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_12);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_set_13(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:set
+    org.apache.taglibs.standard.tag.rt.core.SetTag _jspx_th_c_set_13 = (org.apache.taglibs.standard.tag.rt.core.SetTag) _jspx_tagPool_c_set_var_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.SetTag.class);
+    _jspx_th_c_set_13.setPageContext(_jspx_page_context);
+    _jspx_th_c_set_13.setParent(null);
+    _jspx_th_c_set_13.setVar("dtIni");
+    _jspx_th_c_set_13.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${param.dtIni}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    int _jspx_eval_c_set_13 = _jspx_th_c_set_13.doStartTag();
+    if (_jspx_th_c_set_13.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_13);
+      return true;
+    }
+    _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_13);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_set_14(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:set
+    org.apache.taglibs.standard.tag.rt.core.SetTag _jspx_th_c_set_14 = (org.apache.taglibs.standard.tag.rt.core.SetTag) _jspx_tagPool_c_set_var_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.SetTag.class);
+    _jspx_th_c_set_14.setPageContext(_jspx_page_context);
+    _jspx_th_c_set_14.setParent(null);
+    _jspx_th_c_set_14.setVar("dtFim");
+    _jspx_th_c_set_14.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${param.dtFim}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    int _jspx_eval_c_set_14 = _jspx_th_c_set_14.doStartTag();
+    if (_jspx_th_c_set_14.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_14);
+      return true;
+    }
+    _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_14);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_set_15(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:set
+    org.apache.taglibs.standard.tag.rt.core.SetTag _jspx_th_c_set_15 = (org.apache.taglibs.standard.tag.rt.core.SetTag) _jspx_tagPool_c_set_var_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.SetTag.class);
+    _jspx_th_c_set_15.setPageContext(_jspx_page_context);
+    _jspx_th_c_set_15.setParent(null);
+    _jspx_th_c_set_15.setVar("cdOficioResposta");
+    _jspx_th_c_set_15.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${param.cdOficioResposta}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    int _jspx_eval_c_set_15 = _jspx_th_c_set_15.doStartTag();
+    if (_jspx_th_c_set_15.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_15);
+      return true;
+    }
+    _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_15);
+    return false;
+  }
+
   private boolean _jspx_meth_c_out_0(PageContext _jspx_page_context)
           throws Throwable {
     PageContext pageContext = _jspx_page_context;
@@ -904,7 +1090,7 @@ public final class MinisterioPublicoLista_jsp extends org.apache.jasper.runtime.
           out.write("\r\n");
           out.write("                                        </td>\r\n");
           out.write("\r\n");
-          out.write("                                        <td title=\"");
+          out.write("                                        <td class=\"hidden-480\" title=\"");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${listMp.nrProcedimento}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("\">\r\n");
           out.write("                                            ");
@@ -1652,12 +1838,18 @@ public final class MinisterioPublicoLista_jsp extends org.apache.jasper.runtime.
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${nmOrigem}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("&dsEndereco=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${dsEndereco}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-        out.write("&cdProcesso=");
-        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${cdProcesso}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("&dsAssunto=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${dsAssunto}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("&nmSolicitado=");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${nmSolicitado}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("&nrProcedimento=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${nrProcedimento}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("&dtIni=");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${dtIni}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("&dtFim=");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${dtFim}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("&cdOficioResposta=");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${cdOficioResposta}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("\">\r\n");
         out.write("                                                    <i class=\"ace-icon fa fa-angle-double-left\"></i></a>\r\n");
         out.write("                                            </li>\r\n");
@@ -1795,12 +1987,18 @@ public final class MinisterioPublicoLista_jsp extends org.apache.jasper.runtime.
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${nmOrigem}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("&dsEndereco=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${dsEndereco}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-        out.write("&cdProcesso=");
-        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${cdProcesso}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("&dsAssunto=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${dsAssunto}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("&nmSolicitado=");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${nmSolicitado}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("&nrProcedimento=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${nrProcedimento}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("&dtIni=");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${dtIni}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("&dtFim=");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${dtFim}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("&cdOficioResposta=");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${cdOficioResposta}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write('"');
         out.write('>');
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${i}", java.lang.String.class, (PageContext)_jspx_page_context, null));
@@ -1844,12 +2042,18 @@ public final class MinisterioPublicoLista_jsp extends org.apache.jasper.runtime.
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${nmOrigem}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("&dsEndereco=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${dsEndereco}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-        out.write("&cdProcesso=");
-        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${cdProcesso}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("&dsAssunto=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${dsAssunto}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("&nmSolicitado=");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${nmSolicitado}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("&nrProcedimento=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${nrProcedimento}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("&dtIni=");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${dtIni}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("&dtFim=");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${dtFim}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("&cdOficioResposta=");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${cdOficioResposta}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("\">\r\n");
         out.write("                                                    <i class=\"ace-icon fa fa-angle-double-right\"></i></a>\r\n");
         out.write("                                            </li>\r\n");

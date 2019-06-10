@@ -28,6 +28,15 @@
             <c:set var="qtdPg" value="${param.qtdPg}" />
             <c:set var="totalRes" value="${param.totalRes}" />
 
+            <c:set var="nmOrigem" value="${param.nmOrigem}"/>
+            <c:set var="dsEndereco" value="${param.dsEndereco}"/>
+            <c:set var="dsAssunto" value="${param.dsAssunto}"/>
+            <c:set var="nmSolicitado" value="${param.nmSolicitado}"/>
+            <c:set var="nrProcedimento" value="${param.nrProcedimento}"/>
+            <c:set var="dtIni" value="${param.dtIni}"/>
+            <c:set var="dtFim" value="${param.dtFim}"/>
+            <c:set var="cdOficioResposta" value="${param.cdOficioResposta}"/>
+
             <div class="breadcrumbs ace-save-state" id="breadcrumbs">
                 <ul class="breadcrumb">
                     <li><i class="ace-icon fa fa-list"></i> Informações </li>
@@ -176,7 +185,7 @@
                                             </c:choose>
                                         </td>
 
-                                        <td title="${listMp.nrProcedimento}">
+                                        <td class="hidden-480" title="${listMp.nrProcedimento}">
                                             <c:choose>
                                                 <c:when test="${listMp.nrProcedimento.length() > 10}">
                                                     ${listMp.nrProcedimento.substring(0,10)}...
@@ -242,7 +251,7 @@
                                     <c:forEach var="i" begin="${pi}" end="${pf}">
                                         <c:if test="${pi != 0 && pi == i}">
                                             <li>
-                                                <a href="ControllerServlet?acao=MinisterioPublicoLista&pg=${i}&pi=${pi}&pf=${pf}&nmOrigem=${nmOrigem}&dsEndereco=${dsEndereco}&cdProcesso=${cdProcesso}&dsAssunto=${dsAssunto}&nrProcedimento=${nrProcedimento}">
+                                                <a href="ControllerServlet?acao=MinisterioPublicoLista&pg=${i}&pi=${pi}&pf=${pf}&nmOrigem=${nmOrigem}&dsEndereco=${dsEndereco}&dsAssunto=${dsAssunto}&nmSolicitado=${nmSolicitado}&nrProcedimento=${nrProcedimento}&dtIni=${dtIni}&dtFim=${dtFim}&cdOficioResposta=${cdOficioResposta}">
                                                     <i class="ace-icon fa fa-angle-double-left"></i></a>
                                             </li>
                                         </c:if>    
@@ -255,14 +264,14 @@
                                                 </c:when>
                                                 <c:otherwise>
                                                     <li>
-                                                        <a href="ControllerServlet?acao=MinisterioPublicoLista&pg=${i}&pi=${pi}&pf=${pf}&nmOrigem=${nmOrigem}&dsEndereco=${dsEndereco}&cdProcesso=${cdProcesso}&dsAssunto=${dsAssunto}&nrProcedimento=${nrProcedimento}">${i}</a>
+                                                        <a href="ControllerServlet?acao=MinisterioPublicoLista&pg=${i}&pi=${pi}&pf=${pf}&nmOrigem=${nmOrigem}&dsEndereco=${dsEndereco}&dsAssunto=${dsAssunto}&nmSolicitado=${nmSolicitado}&nrProcedimento=${nrProcedimento}&dtIni=${dtIni}&dtFim=${dtFim}&cdOficioResposta=${cdOficioResposta}">${i}</a>
                                                     </li>
                                                 </c:otherwise>
                                             </c:choose>
                                         </c:if>
                                         <c:if test="${i == pf && pf != qtdPg && i <= qtdPg  }">
                                             <li>
-                                                <a href="ControllerServlet?acao=MinisterioPublicoLista&pg=${i}&pi=${pi}&pf=${pf}&nmOrigem=${nmOrigem}&dsEndereco=${dsEndereco}&cdProcesso=${cdProcesso}&dsAssunto=${dsAssunto}&nrProcedimento=${nrProcedimento}">
+                                                <a href="ControllerServlet?acao=MinisterioPublicoLista&pg=${i}&pi=${pi}&pf=${pf}&nmOrigem=${nmOrigem}&dsEndereco=${dsEndereco}&dsAssunto=${dsAssunto}&nmSolicitado=${nmSolicitado}&nrProcedimento=${nrProcedimento}&dtIni=${dtIni}&dtFim=${dtFim}&cdOficioResposta=${cdOficioResposta}">
                                                     <i class="ace-icon fa fa-angle-double-right"></i></a>
                                             </li>
                                         </c:if>    
@@ -277,10 +286,11 @@
                                 Voltar
                             </button>    
                         </div>
-                        <jsp:include page = "include/footer.jsp" />
                     </div>
                 </div>
             </div>
         </div><!-- /.main-container --> 
+        <jsp:include page = "include/footer.jsp" />
+
     </body>
 </html>

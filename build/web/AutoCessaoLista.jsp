@@ -192,7 +192,7 @@
                                                 </c:otherwise>
                                             </c:choose>
                                         </td>
-                                        <td title="${autolist.tipoAutoCessao.nmTipoAutoCessao}">
+                                        <td title="${autolist.tipoAutoCessao.nmTipoAutoCessao}" id="tpCessaoTeste">
                                             <c:choose >
                                                 <c:when test="${autolist.tipoAutoCessao.nmTipoAutoCessao.length() > 17 }">
                                                     ${autolist.tipoAutoCessao.nmTipoAutoCessao.substring(0,16)}...
@@ -306,6 +306,7 @@
                                                                     <span class="green">
                                                                         <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
                                                                     </span>
+                                                                    teste
                                                                 </a>
                                                             </li>
 
@@ -342,43 +343,43 @@
                                 <label class="lead">Total <strong><c:out value="${totalRes}" /></strong></label>
                             </div>
                         </div>
-                        <div class="col-xs-6">
-                            <div class="dataTables_paginate paging_simple_numbers" id="dynamic-table_paginate">
-                                <ul class="pagination">
+                        
+                                <div class="col-xs-6">
+                                    <div class="dataTables_paginate paging_simple_numbers" id="dynamic-table_paginate">
+                                        <ul class="pagination">
 
-                                    <c:forEach var="i" begin="${pi}" end="${pf}">
-                                        <c:set var="qCessionario" value="${qCessionario}" />
-                                        <c:if test="${pi != 0 && pi == i}">
-                                            <li>
-                                                <a href="ControllerServlet?acao=AutoCessaoLista&pg=${i}&pi=${pi}&pf=${pf}&qAC=${qAC}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCedente=${qCedente}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}&ter=${ter}">
-                                                    <i class="ace-icon fa fa-angle-double-left"></i></a>
-                                            </li>
-                                        </c:if>    
-                                        <c:if test="${i != 0 && i != pf && i <= qtdPg || i == qtdPg}">
-                                            <c:choose>
-                                                <c:when test="${i==pg}">
-                                                    <li class="active">
-                                                        <a href="#"> ${i}</a>
-                                                    </li>
-                                                </c:when>
-                                                <c:otherwise>
+                                            <c:forEach var="i" begin="${pi}" end="${pf}">
+                                                <c:set var="qCessionario" value="${qCessionario}" />
+                                                <c:if test="${pi != 0 && pi == i}">
                                                     <li>
-                                                        <a href="ControllerServlet?acao=AutoCessaoLista&pg=${i}&pi=${pi}&pf=${pf}&qAC=${qAC}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCedente=${qCedente}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}&ter=${ter}">${i}</a>
+                                                        <a href="ControllerServlet?acao=AutoCessaoLista&pg=${i}&pi=${pi}&pf=${pf}&qAC=${qAC}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCedente=${qCedente}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}&ter=${ter}">
+                                                            <i class="ace-icon fa fa-angle-double-left"></i></a>
                                                     </li>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </c:if>
-                                        <c:if test="${i == pf && pf != qtdPg && i <= qtdPg  }">
-                                            <li>
-                                                <a href="ControllerServlet?acao=AutoCessaoLista&pg=${i}&pi=${pi}&pf=${pf}&qAC=${qAC}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCedente=${qCedente}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}&ter=${ter}">
-                                                    <i class="ace-icon fa fa-angle-double-right"></i></a>
-                                            </li>
-                                        </c:if>    
-                                    </c:forEach>
-                                </ul>
-                            </div>
-                        </div>
-
+                                                </c:if>    
+                                                <c:if test="${i != 0 && i != pf && i <= qtdPg || i == qtdPg}">
+                                                    <c:choose>
+                                                        <c:when test="${i==pg}">
+                                                            <li class="active">
+                                                                <a href="#"> ${i}</a>
+                                                            </li>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <li>
+                                                                <a href="ControllerServlet?acao=AutoCessaoLista&pg=${i}&pi=${pi}&pf=${pf}&qAC=${qAC}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCedente=${qCedente}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}&ter=${ter}">${i}</a>
+                                                            </li>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </c:if>
+                                                <c:if test="${i == pf && pf != qtdPg && i <= qtdPg  }">
+                                                    <li>
+                                                        <a href="ControllerServlet?acao=AutoCessaoLista&pg=${i}&pi=${pi}&pf=${pf}&qAC=${qAC}&qTpcessao=${qTpcessao}&qProcesso=${qProcesso}&qCedente=${qCedente}&qCessionario=${qCessionario}&qEndereco=${qEndereco}&qCroqui=${qCroqui}&qVigor=${qVigor}&ter=${ter}">
+                                                            <i class="ace-icon fa fa-angle-double-right"></i></a>
+                                                    </li>
+                                                </c:if>    
+                                            </c:forEach>
+                                        </ul>
+                                    </div>
+                                </div>
                         <div class="col-sm-12 " >
                             <button class="btn btn-yellow right" type="reset" onclick=" location.href = 'AutoCessao.jsp';">
                                 <i class="ace-icon fa fa-undo bigger-110"></i>

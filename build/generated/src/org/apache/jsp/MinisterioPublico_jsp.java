@@ -133,8 +133,6 @@ public final class MinisterioPublico_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                                    </button>\r\n");
       out.write("                                </div>\r\n");
       out.write("\r\n");
-      out.write("                                <br/>\r\n");
-      out.write("\r\n");
       out.write("                                <div class=\"btn-group-lg infobox \">\r\n");
       out.write("                                    <button class=\"btn btn-primary btn-white btn-block\" onclick=\" location.href = 'MinisterioPublicoCRU.jsp?execucao=insert'\">\r\n");
       out.write("                                        <i class=\"ace-icon fa fa-plus\"></i>\r\n");
@@ -145,10 +143,11 @@ public final class MinisterioPublico_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                        </div>\r\n");
       out.write("                    </div>\r\n");
       out.write("                </div>\r\n");
-      out.write("            ");
+      out.write("            </div><!-- /.main-container --> \r\n");
+      out.write("\r\n");
+      out.write("        ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "include/footer.jsp", out, false);
       out.write("\r\n");
-      out.write("        </div><!-- /.main-container --> \r\n");
       out.write("    </body>\r\n");
       out.write("</html>");
     } catch (Throwable t) {

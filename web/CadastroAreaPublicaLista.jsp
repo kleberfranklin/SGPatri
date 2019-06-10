@@ -27,6 +27,9 @@
             <c:set var="qtdPg" value="${param.qtdPg}" />
             <c:set var="totalRes" value="${param.totalRes}" />
             <c:set var="q" value="${param.q}"/>
+            
+            <c:set var="cdCap" value="${param.cdCap}"/>
+            
 
             <div class="breadcrumbs ace-save-state" id="breadcrumbs">
                 <ul class="breadcrumb">
@@ -137,7 +140,7 @@
                                     <c:forEach var="i" begin="${pi}" end="${pf}">
                                         <c:if test="${pi != 0 && pi == i}">
                                             <li>
-                                                <a href="ControllerServlet?acao=CadastroAreaPublicaLista&pg=${i}&pi=${pi}&pf=${pf}&nmOrigem=${nmOrigem}&cdCap=${cdCap}&stCap=${stCap}">
+                                                <a href="ControllerServlet?acao=CadastroAreaPublicaLista&pg=${i}&pi=${pi}&pf=${pf}&cdCap=${cdCap}">
                                                     <i class="ace-icon fa fa-angle-double-left"></i></a>
                                             </li>
                                         </c:if>    
@@ -150,14 +153,14 @@
                                                 </c:when>
                                                 <c:otherwise>
                                                     <li>
-                                                        <a href="ControllerServlet?acao=CadastroAreaPublicaLista&pg=${i}&pi=${pi}&pf=${pf}&nmOrigem=${nmOrigem}&cdCap=${cdCap}&stCap=${stCap}">${i}</a>
+                                                        <a href="ControllerServlet?acao=CadastroAreaPublicaLista&pg=${i}&pi=${pi}&pf=${pf}&cdCap=${cdCap}">${i}</a>
                                                     </li>
                                                 </c:otherwise>
                                             </c:choose>
                                         </c:if>
                                         <c:if test="${i == pf && pf != qtdPg && i <= qtdPg  }">
                                             <li>
-                                                <a href="ControllerServlet?acao=CadastroAreaPublicaLista&pg=${i}&pi=${pi}&pf=${pf}&nmOrigem=${nmOrigem}&cdCap=${cdCap}&stCap=${stCap}">
+                                                <a href="ControllerServlet?acao=CadastroAreaPublicaLista&pg=${i}&pi=${pi}&pf=${pf}&cdCap=${cdCap}">
                                                     <i class="ace-icon fa fa-angle-double-right"></i></a>
                                             </li>
                                         </c:if>    

@@ -31,7 +31,7 @@ public class MinisterioPublicoUC implements Logica {
 //Atributo       
         int pkMinisterioPublico = 0;
         String nmOrigem, cdOficioEntrada, cdProcessoIni, cdProcesso, nmInteressado, nmSolicitado, dsAssunto, dsEndereco, nrInfoDgpi,
-                cdOficioResposta, nrProcedimento, dsObservacao, nmLogin, dthrAtualizacao, execucao, dtRespostaTxt, dtEntradaTxt;
+                cdOficioResposta, nrProcedimento, dsObservacao, nmLogin, dthrAtualizacao, execucao, dtRespostaTxt, dtEntradaTxt, nmTipoProcesso;
         Date dtResposta, dtEntrada;
 
 //Carregando os atributos com as informações do formulário
@@ -40,7 +40,7 @@ public class MinisterioPublicoUC implements Logica {
         cdOficioEntrada = req.getParameter("cdOficioEntrada");
         cdProcessoIni = req.getParameter("cdProcessoIni");
         cdProcesso = req.getParameter("cdProcesso");
-//        nmTipoProcesso = req.getParameter("nmTipoProcesso");
+        nmTipoProcesso = req.getParameter("nmTipoProcesso");
         nmInteressado = req.getParameter("nmInteressado");
         nmSolicitado = req.getParameter("nmSolicitado");
         dsAssunto = req.getParameter("dsAssunto");
