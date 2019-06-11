@@ -29,7 +29,7 @@
                 <div class="row">
 
 
-                    <div class="col-xs-10" >
+                    <div class="col-sm-12 col-xs-12" >
                         <h3 class="header smaller lighter blue"><strong>Controle de Usuários</strong></h3>
                         <div class="col-sm-12 infobox-chart" style=" padding-top:30px">
                             <div class="infobox btn-group-lg">
@@ -72,7 +72,7 @@
 
 
                     <c:if test="${ ('DDPI' == sessionSgDivisao && sessionSgSetor == 'SCL')  || sessionPerfil == 'Administrador'}">    
-                        <div class="col-xs-10" > 
+                        <div class="col-sm-12 col-xs-12" > 
                             <h3 class="header smaller lighter blue"><strong>DDPI / SCL - Núcleo de Controle de Lavratura de Cessão</strong></h3>
                             <div class=" infobox-chart col-xs-10" style=" padding-top:30px">
                                 <div class="btn-group-lg infobox" title="Realizar alterações no campo Tipo de Auto de Cessão dos formulários de cadastro de Auto de Cessão">
@@ -144,26 +144,27 @@
                     </c:if>  
 
                     <c:if test="${ ('DIPI' == sessionSgDivisao && sessionSgSetor == 'SIC')  || sessionPerfil == 'Administrador'}">    
-
-                        <div class="col-xs-10" >
+                        <div class="col-sm-12 col-xs-12" >
                             <h3 class="header smaller lighter blue"><strong>DIPI/SIC - Divisao de Informação de Patrimonio Imobiliário</strong></h3>
                             <div class="col-sm-12 infobox-chart" style=" padding-top:30px">
                                 <div class="infobox btn-group-lg ">
                                     <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=TipoAssuntoLista';">
-                                        <i class="ace-icon fa fa-user"></i>
                                         Tipo de Assunto
                                     </button>
                                 </div>
                                 <div class="infobox btn-group-lg">
                                     <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=TipoExpedienteLista';">
-                                        <i class="ace-icon fa fa-user"></i>
                                         Tipo de Expediente
                                     </button>
                                 </div>
                                 <div class="infobox btn-group-lg ">
                                     <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=TipoDespachoLista';">
-                                        <i class="ace-icon fa fa-user"></i>
                                         Tipo de Despacho
+                                    </button>
+                                </div>
+                                <div class="infobox btn-group-lg ">
+                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=TipoAnexoLista';">
+                                        Tipo de Anexo
                                     </button>
                                 </div>
                             </div>

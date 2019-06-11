@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -50,7 +51,7 @@ public class AutoCessaoDAO {
                 + "LIMIT ? OFFSET ?");
         try {
             stmt = connection.prepareStatement(sql);
-            stmt.setString(1, qTpcessao +'%' );
+            stmt.setString(1, '%' + qTpcessao + '%');
             stmt.setString(2, qAC + '%');
             stmt.setString(3, qProcesso + '%');
             stmt.setString(4, '%' + qCessionario + '%');
@@ -458,6 +459,7 @@ public class AutoCessaoDAO {
     public AutoCessao detalheAutoCessao(int pkAutoStage) throws SQLException {
         PreparedStatement stmt = null;
         ResultSet rs = null;
+        AutoCessao auto = new AutoCessao();
         String sql = ("SELECT id_autocessao, cod_ac ,fk_tipocessao ,fk_categoriaentidade, fk_categoriauto, fk_categoriafinalidade, "
                 + "fk_subcatfinalidade, fk_niveladm, fk_subprefeitura, fk_catcontrapartida, fk_validacao, dt_lavratura, nm_processo, nm_tipo_processo, "
                 + "nm_cessionario, nm_cedente, nm_planta, nm_croqui, nr_area, nr_setor, nr_quadra, nr_lote, nm_tipoendereco, nm_tituloendereco, "
@@ -471,7 +473,7 @@ public class AutoCessaoDAO {
             stmt = connection.prepareStatement(sql);
             stmt.setInt(1, pkAutoStage);
             rs = stmt.executeQuery();
-            AutoCessao auto = new AutoCessao();
+            
             if (rs.next()) {
                 auto.setPkAutoCessao(rs.getInt("id_autocessao"));
                 auto.setNmCodAc(rs.getString("cod_ac"));

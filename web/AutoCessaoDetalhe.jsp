@@ -11,11 +11,14 @@
 
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.5.0/dist/leaflet.js" integrity="sha512-3Wcxp7F9bV2pl+MBgrL6Pz7AJASLpemmQPIiPA0lDs3ImF0z4JuuMIBPeirLbgIuhfH2gJyGWZjvm6M+Zr7L6Q==" crossorigin=""></script>
 
+=======
+>>>>>>> 6bdfb37c59a8fbfac7d8177a454625dd10e4db48
     <jsp:include page = "include/head.jsp" />
-
+    
     <body class="no-skin">
         <jsp:include page = "include/top.jsp"/>
         <div class="main-container ace-save-state" id="main-container">
@@ -26,7 +29,11 @@
             <jsp:include page = "javaScritp/maskProcesso.html" />
             <jsp:include page = "javaScritp/somenteNum.html" />
             <jsp:include page = "javaScritp/alertEffect.html" />
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> 6bdfb37c59a8fbfac7d8177a454625dd10e4db48
 
             <!--Verificação de acesso  -->
             <c:set var="acessoPerfil" value="${sessionPerfil}" />
@@ -40,7 +47,15 @@
             <c:set var="pf" value="${param.pf}" />
             <c:set var="pi" value="${param.pi}" />
             <c:set var="execucao" value="${param.execucao}" />
-
+            
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+              integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+              crossorigin=""/>
+            
+            <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+              integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+              crossorigin=""></script>
+              
             <div class="breadcrumbs ace-save-state" id="breadcrumbs">
                 <ul class="breadcrumb">
                     <li><i class="ace-icon fa fa-list"></i> Auto de Cessão </li>
@@ -1762,7 +1777,7 @@
                                                                 <div class="inline col-md-2 col-xs-12">
                                                                     <div class="inline col-md-8 col-xs-12">
                                                                         <a href="/SGPatri/${ar.nmTipo}/${ar.nmArquivo}" target="_blank"><img class="img-thumbnail" src="img/${ar.nmTipo}.png" title="${ar.nmNomeclatura}" width="100%" height="100%"/></a>
-                                                                </div>
+                                                                    </div>
                                                                 <c:if test="${execucao=='insert' || execucao=='edit' && (sessionSgDivisao == 'DDPI' && sessionSgSetor == 'SCL')}">
                                                                     <div class="inline col-md-1 col-md-12">
                                                                         <button class="btn btn-danger btn-xs">
@@ -1770,14 +1785,24 @@
                                                                         </button>
                                                                     </div>
                                                                 </c:if>
-                                                            </div>
+                                                                </div>
                                                         </form>
                                                     </c:forEach>
                                                 </label>            
                                             </div>
                                         </div>
 
+<<<<<<< HEAD
 
+=======
+                                        <!--Inicico da tab-pane Poígio -->
+                                        <div id="poligono" class="tab-pane " >
+                                            <h5 class="header smaller lbl"><strong>POLÍGONO</strong></h5>
+                                            <label >
+                                                
+                                            </labe>
+                                        </div>
+>>>>>>> 6bdfb37c59a8fbfac7d8177a454625dd10e4db48
 
                                         <!-- Inicio do formulario Validação -->                             
                                         <div id="validacao" class="tab-pane 
@@ -1965,7 +1990,11 @@
                             </div>    
                         </div>        
 
+<<<<<<< HEAD
                         <jsp:include page="include/leaflet.jsp" />
+=======
+                        
+>>>>>>> 6bdfb37c59a8fbfac7d8177a454625dd10e4db48
                         <jsp:include page = "include/footer.jsp" />
                         <jsp:include page = "javaScritp/carregado.html" />
 

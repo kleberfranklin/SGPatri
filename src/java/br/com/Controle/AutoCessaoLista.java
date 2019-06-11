@@ -108,7 +108,6 @@ public class AutoCessaoLista implements Logica{
             qCroqui = Transformar.getRemoveAccents(qCroqui).toUpperCase().trim();
         }
         
-        
         if (qVigor == null){
             qVigor="";
         }

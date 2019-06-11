@@ -25,25 +25,46 @@ public class TipoExpedienteDAO {
         this.connection = new FabricaConexao().getConnetion();
     }
 
+
+    public int pesquisaPorNome(String sgTpExpediente) throws SQLException{
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        int pkTpExpediente = 0;
+            String sql = ("SELECT id_tipo_expediente FROM tbl_tipo_expediente "
+                        + "WHERE sg_tipo_expediente = ? ");
+            try{
+                stmt = connection.prepareStatement(sql);
+                    stmt.setString(1, sgTpExpediente);  
+                rs = stmt.executeQuery();
+                    if (rs.next()){
+                        pkTpExpediente = rs.getInt("id_tipo_expediente");
+                    }
+                return pkTpExpediente;
+            }catch(SQLException e){
+                throw new RuntimeException (e);
+            }finally{
+//                rs.close();
+//                stmt.close();
+//                connection.close();
+            }
+    }
+    
+    
 //Metodo de quantidade de linhas
     public int qdTipoExpediente(String q) throws SQLException {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-
+        int total = 0;
         String sql = ("SELECT COUNT(*) as total FROM tbl_tipo_expediente "
                 + "WHERE (sg_tipo_expediente ILIKE ? or nm_tipo_expediente ILIKE ? ) ");
-
         try {
             stmt = connection.prepareStatement(sql);
-            stmt.setString(1, '%' + q + '%');
-            stmt.setString(2, '%' + q + '%');
+                stmt.setString(1, '%' + q + '%');
+                stmt.setString(2, '%' + q + '%');
             rs = stmt.executeQuery();
-            int total = 0;
             if (rs.next()) {
                 total = rs.getInt("total");
             }
-            stmt.execute();
-            stmt.close();
             return total;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -119,9 +140,9 @@ public class TipoExpedienteDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            rs.close();
-            stmt.close();
-            connection.close();
+//            rs.close();
+//            stmt.close();
+//            connection.close();
         }
     }
 //METODO utilizado para inserir um novo Expediente no BANCO
@@ -143,9 +164,9 @@ public class TipoExpedienteDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            rs.close();
-            stmt.close();
-            connection.close();
+//            rs.close();
+//            stmt.close();
+//            connection.close();
         }
     }
 
@@ -177,13 +198,13 @@ public class TipoExpedienteDAO {
             stmt.setTimestamp(4, java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
             stmt.setInt(5, tpEx.getPkTipoExpediente());
             stmt.execute();
-            stmt.close();
+            
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            rs.close();
-            stmt.close();
-            connection.close();
+//            rs.close();
+//            stmt.close();
+//            connection.close();
         }
     }
 
@@ -200,13 +221,11 @@ public class TipoExpedienteDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                TipoExpediente tpEx = new TipoExpediente();
+            TipoExpediente tpEx = new TipoExpediente();
                 tpEx.setPkTipoExpediente(rs.getInt("id_tipo_expediente"));
                 tpEx.setSgTipoExpediente(rs.getString("sg_tipo_expediente"));
                 tpEx.setNmTipoExpediente(rs.getString("nm_tipo_expediente"));
-                tpEx.setNmLogin(rs.getString("nm_login"));
-                tpEx.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
-                lisTpEx.add(tpEx);
+            lisTpEx.add(tpEx);
             }
             stmt.execute();
             stmt.close();
@@ -215,9 +234,9 @@ public class TipoExpedienteDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            rs.close();
-            stmt.close();
-            connection.close();
+//            rs.close();
+//            stmt.close();
+//            connection.close();
         }
     }
 

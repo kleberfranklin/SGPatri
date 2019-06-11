@@ -1,11 +1,8 @@
 package br.com.Controle;
 
-import br.com.Modelo.AnotacaoCroqui;
-import br.com.Modelo.AnotacaoCroquiTesteDAO;
 import br.com.Modelo.Logica;
 import br.com.Modelo.MinisterioPublico;
 import br.com.Modelo.MinisterioPublicoDAO;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

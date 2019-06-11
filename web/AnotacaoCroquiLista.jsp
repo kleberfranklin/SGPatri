@@ -19,26 +19,14 @@
             <!--Verificação de acesso  -->
             <c:set var="acessoPerfil" value="${sessionPerfil}" />
             <jsp:directive.include file="include/ControleAcesso.jsp" />
+            <jsp:include page = "include/maskProcessoSelect.jsp" />
 
-            <!-- Beans -->               
-            <jsp:useBean id="expe" class= "br.com.Modelo.AnotacaoCroquiDAO"/>
-
-
-            <!--Pegando os paremetros -->
+            
             <c:set var="pg" value="${param.pg}" />
             <c:set var="pf" value="${param.pf}" />
             <c:set var="pi" value="${param.pi}" />
             <c:set var="qtdPg" value="${param.qtdPg}" />
             <c:set var="totalRes" value="${param.totalRes}" />
-            <c:set var="qCroqui" value="${param.qCroqui}" />
-            <c:set var="qArea" value="${param.qArea}" />
-            <c:set var="qNome" value="${param.qNome}" />
-            <c:set var="qInteressado" value="${param.qInteressado}" />
-            <c:set var="qEndereco" value="${param.qEndereco}" />
-            <c:set var="qAssunto" value="${param.qAssunto}" />
-            <c:set var="dtIni" value="${param.dtIni}" />
-            <c:set var="dtFim" value="${param.dtFim}" />
-
 
             <div class="breadcrumbs ace-save-state" id="breadcrumbs">
                 <ul class="breadcrumb">
@@ -51,49 +39,80 @@
                     <div class="col-xs-12 col-md-12">
 
 
-                        <div class="form-actions col-sm-12 col-xs-12">
+                        <div class="form-actions col-md-12 col-xs-12">
                             <h4 class="widget-title "><strong>Filtros</strong></h4>
                             <form class="form-search" action="ControllerServlet?acao=AnotacaoCroquiLista" method="POST">
 
-                                <label class="col-sm-2 col-xs-12 "> Croqui:</label>
-                                <div class="input-group col-sm-4 col-xs-12">
-                                    <input type="text" name="qCroqui" placeholder="${qCroqui}" class="col-sm-3 col-xs-12" />
+                                <label class="col-md-2 col-xs-12 "> Croqui:</label>
+                                <div class="input-group col-md-3 col-xs-12">
+                                    <input type="text" name="qCroqui" placeholder="${qCroqui}" class="col-md-3 col-xs-12" 
+                                           maxlength="6"/>
                                 </div>
 
-                                <label class="col-sm-1 col-xs-12 "> Área:</label>
-                                <div class="input-group col-sm-2 col-xs-12">
-                                    <input type="text" name="qArea" placeholder="${qArea}" class="col-sm-7 col-xs-12" />
-                                </div>
-
-                                <br /> <br />
-
-                                <label class="col-sm-2 col-xs-12 "> Endereço:</label>
-                                <div class="input-group col-sm-4 col-xs-12">
-                                    <input type="text" name="qEndereco" placeholder="${qEndereco}" class="col-sm-12 col-xs-12" />
+                                <label class="col-md-2 col-xs-12 "> Área:</label>
+                                <div class="input-group col-md-5 col-xs-12">
+                                    <input type="text" name="qArea" placeholder="${qArea}" class="col-md-2 col-xs-12" 
+                                           maxlength="4"/>
                                 </div>
 
                                 <br /> <br />
+                                <label class="inline col-md-2 col-xs-12">
+                                    <span class="lbl">Tipo de Expediente:</span>
+                                </label>
+                                <label class="input-group col-md-3 col-xs-12">
+                                    <select name="sgTpExpediente" id="sgTpExpediente" class="col-md-10 col-xs-12" 
+                                            onchange="limpaCampoNrProcesso(this)">
+                                        <option></option>
+                                        <c:forEach var="lis" items="${listaTpExp}">
+                                            <c:if test="${lis.sgTipoExpediente != ''}">
+                                                <option>${lis.sgTipoExpediente}</option>
+                                            </c:if>
+                                        </c:forEach>
+                                    </select>
+                                </label>
 
-                                <label class="col-sm-2 col-xs-12" >Assunto:</label>
-                                <div class="input-group col-sm-4 col-xs-12">
-                                    <input type="text" name="qAssunto" placeholder="${qAssunto}" class="col-sm-12 col-xs-12 " />
+                                <label class="input-group col-md-2 col-xs-12" >
+                                    <span class="lbl">Nº Expediente:</span>
+                                </label>
+                                <label class="input-group col-md-5 col-xs-12">
+                                    <input type="text" class="col-md-5 col-xs-12" name="cdExpediente" id="nrprocesso" value="${anotCroqui.cdExpediente}" 
+                                           placeholder="${cdExpediente}"  onblur="maskProcessoSelect(this);"> 
+                                    &nbsp;<span id="msgProcesso"></span>
+                                </label>
+                                
+                                <br /> <br />
+
+                                <label class="col-md-2 col-xs-12" >Assunto:</label>
+                                <div class="input-group col-md-3 col-xs-12">
+                                    <select name="qAssunto" id="assunto" placeholder="" class="col-md-10 col-xs-12" >
+                                        <option></option>
+                                        <c:forEach var="lis" items="${listTpAssunto}">
+                                            <c:if test="${lis.nmTipoAssunto != ''}">
+                                                <option title="${lis.nmTipoAssunto}">${lis.nmTipoAssunto}</option>
+                                            </c:if>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                
+                                <label class="col-md-2 col-xs-12 "> Interessado:</label>
+                                <div class="input-group col-md-5 col-xs-12">
+                                    <input type="text" name="qInteressado" placeholder="${qInteressado}" class="col-md-8 col-xs-12" />
                                 </div>
                                 <br /> <br />
 
-                                <label class="col-sm-2 col-xs-12 "> Interessado:</label>
-                                <div class="input-group col-sm-6 col-xs-12">
-                                    <input type="text" name="qInteressado" placeholder="${qInteressado}" class="col-sm-8 col-xs-12" />
+                                <label class="col-md-2 col-xs-12 "> Endereço:</label>
+                                <div class="input-group col-md-10 col-xs-12">
+                                    <input type="text" name="qLocal" placeholder="${qLocal}" class="col-md-5 col-xs-12" />
                                 </div>
-
-
+                                <br/><br/>
                                 <!--Botoes-->
-                                <div class="input-group-btn col-sm-4 col-sm-offset-1 col-xs-12">
-                                    <button type="submit" class="btn btn-inverse btn-white">
+                                <div class="input-group-btn col-md-4 col-md-offset-7 col-xs-12">
+                                    <button type="submit" class="btn btn-inverse btn-white" id="btnExecutarAcao">
                                         <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
                                         Pesquisa
                                     </button>
                                 </div>     
-                                <br/><br/>
+                                
                             </form>    
                         </div>
 
@@ -105,183 +124,84 @@
                                     <th class="center detail-col">Detalhes</th>
                                     <th>Croqui</th>
                                     <th>Área </th>
-                                    <th>Endereço </th>
-                                    <th>Processo</th>
-                                    <th class="hidden-480">Assunto </th>
+                                    <th>Expediente </th>
+                                    <th>Assunto </th>
                                     <th class="hidden-480">Interessado </th>
-                                    <th>Relatório</th>
+                                    <th class="hidden-480">Endereço</th>
+                                    <th></th>
                                 </tr>
                             </thead>
 
-                            <c:forEach var="lcroqui" items="${listCroqui}">
+                            <c:forEach var="a" items="${listAntCroqui}">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class=" center action-buttons">
+                                                <a href="ControllerServlet?acao=AnotacaoCroquiDetalhe&pkAnotacaoExpediente=${a.pkAnotacaoExpediente}&execucao=view"><i class="ace-icon fa fa-search-plus"></i></a>
+                                            </div>
+                                        </td>
 
+                                        <td title="${a.cdCroqui}">
+                                            ${a.cdCroqui}
+                                        </td>
+                                        <td title="${a.cdArea}">
+                                            ${a.cdArea}
+                                        </td>
+                                        <td title="${a.tpExpediente.sgTipoExpediente} ${a.cdExpediente}">
+                                             <c:choose >
+                                                <c:when test="${a.cdExpediente.length() > 13 }">
+                                                    ${a.tpExpediente.sgTipoExpediente} ${a.cdExpediente.substring(0,13)}...
+                                                </c:when>
+                                                <c:otherwise>
+                                                   ${a.tpExpediente.sgTipoExpediente} ${a.cdExpediente}
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </td>
+                                        <td title="${a.tpAssunto.nmTipoAssunto}">
+                                            <c:choose >
+                                                <c:when test="${a.tpAssunto.nmTipoAssunto.length() > 18 }">
+                                                     ${a.tpAssunto.nmTipoAssunto.substring(0,18)}...
+                                                </c:when>
+                                                <c:otherwise>
+                                                    ${a.tpAssunto.nmTipoAssunto}
+                                                </c:otherwise>
+                                            </c:choose>
+                                            
+                                        </td>
+                                        <td class="hidden-480" title=" ${a.nmInteressado}">
+                                            <c:choose >
+                                                <c:when test="${a.nmInteressado.length() > 18 }">
+                                                    ${a.nmInteressado.substring(0,18)}...
+                                                </c:when>
+                                                <c:otherwise>
+                                                     ${a.nmInteressado}
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </td>
+                                        <td class="hidden-480" title="${a.dsLocal}">
+                                            <c:choose >
+                                                <c:when test="${a.dsLocal.length() > 25 }">
+                                                    ${a.dsLocal.substring(0,25)}...
+                                                </c:when>
+                                                <c:otherwise>
+                                                    ${a.dsLocal}
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </td>
+                                        <td>
+                                            <c:if test="${sessionSgDivisao == 'DDPI' &&  sessionSgSetor == 'SCL' || sessionPerfil == 'Administrador'}">
+                                                <div class="hidden-sm hidden-xs btn-group">
+                                                    <button class="btn btn-xs btn-info"  onclick="location.href = 'ControllerServlet?acao=AnotacaoCroquiDetalhe&pkAnotacaoExpediente=${a.pkAnotacaoExpediente}&execucao=edit'">
+                                                        <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                                        Editar
+                                                    </button>                                                                                                                                
+                                                </div>
+                                            </c:if>
+                                        </td>
+                                    </tr>
+                                </tbody>
                             </c:forEach>
-
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class=" center action-buttons">
-                                            <!-- pagina apenas com os historicos-->  
-                                            <a href="AnotacaoCroquiDetalhes.jsp"><i class="ace-icon fa fa-search-plus"></i></a>
-                                        </div>
-                                    </td>
-
-                                    <td title="${lcroqui.cdCroqui}">
-                                        <c:choose >
-                                            <c:when test="${lcroqui.cdCroqui.length() > 8 }">
-                                                ${lcroqui.cdCroqui.substring(0,7)}...
-                                            </c:when>
-                                            <c:otherwise>
-                                                ${lcroqui.cdCroqui} 100265
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </td>
-                                    <td title="${lcroqui.cdArea}">
-                                        <c:choose >
-                                            <c:when test="${lcroqui.cdArea.length() > 10 }">
-                                                ${lcroqui.cdArea.substring(0,10)}...
-                                            </c:when>
-                                            <c:otherwise>
-                                                ${lcroqui.cdArea} 8M
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </td>
-                                    <td title="${lcroqui.nmReferenciaEndereco}">
-                                        <c:choose >
-                                            <c:when test="${lcroqui.nmReferenciaEndereco.length() > 30 }">
-                                                ${lcroqui.nmReferenciaEndereco.substring(0,30)}...
-                                            </c:when>
-                                            <c:otherwise>
-                                                ${lcroqui.nmReferenciaEndereco} R. Faustino Paganini nº 647 
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </td>
-                                    <td>
-                                        <c:choose >
-                                            <c:when test="${lcroqui.cdProcesso.length() > 10 }">
-                                                ${lcroqui.cdProcesso.substring(0,10)}...
-                                            </c:when>
-
-                                            <c:otherwise>
-                                                ${lcroqui.cdProcesso} Ofício 49 GV nº 311/2017
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </td>
-                                    <td class="hidden-480" title="${lcroqui.dsAssunto}">
-                                        <c:choose >
-                                            <c:when test="${lcroqui.dsAssunto.length() > 20 }">
-                                                ${lcroqui.dsAssunto.substring(0,20)}...
-                                            </c:when>
-                                            <c:otherwise>
-                                                ${lcroqui.dsAssunto} Solicita incoorporação de praça à escola
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </td>
-                                    <td class="hidden-480" title="${lcroqui.nmInteressado}">
-                                        <c:choose>
-                                            <c:when test="${lcroqui.nmInteressado.length() > 20}">
-                                                ${lcroqui.nmInteressado.substring(0,20)}...
-                                            </c:when>
-                                            <c:otherwise>
-                                                ${lcroqui.nmInteressado} C.M.S.P. - Vereador Toninho Vespoli
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </td>
-
-                                    <td>
-                                        <div class="hidden-sm hidden-xs btn-group">
-                                            <!-- pagina com a parte de inserir um historico para o croqui/area selecionado-->
-                                            <label class="col-sm-2 col-xs-12" >
-                                                <input id="id-button-borders"  type="checkbox" id="relatorio" name="relatorio" value="enviar" class="ace ace-switch ace-switch-5" >
-                                                <span class="lbl middle"></span>
-                                            </label>                                                                                                                               
-                                        </div>
-                                    </td>  
-
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class=" center action-buttons">
-                                            <!-- pagina apenas com os historicos-->  
-                                            <a href="AnotacaoCroquiDetalhes.jsp"><i class="ace-icon fa fa-search-plus"></i></a>
-                                        </div>
-                                    </td>
-
-                                    <td title="${lcroqui.cdCroqui}">
-                                        <c:choose >
-                                            <c:when test="${lcroqui.cdCroqui.length() > 8 }">
-                                                ${lcroqui.cdCroqui.substring(0,7)}...
-                                            </c:when>
-
-                                            <c:otherwise>
-                                                ${lcroqui.cdCroqui} 100265
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </td>
-                                    <td title="${lcroqui.cdArea}">
-                                        <c:choose >
-                                            <c:when test="${lcroqui.cdArea.length() > 10 }">
-                                                ${lcroqui.cdArea.substring(0,10)}...
-                                            </c:when>
-                                            <c:otherwise>
-                                                ${lcroqui.cdArea} 8M
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </td>
-                                    <td title="${lcroqui.nmReferenciaEndereco}">
-                                        <c:choose >
-                                            <c:when test="${lcroqui.nmReferenciaEndereco.length() > 30 }">
-                                                ${lcroqui.nmReferenciaEndereco.substring(0,30)}...
-                                            </c:when>
-                                            <c:otherwise>
-                                                ${lcroqui.nmReferenciaEndereco} R. Faustino Paganini nº 647 
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </td>
-                                    <td>
-                                        <c:choose >
-                                            <c:when test="${lcroqui.cdProcesso.length() > 10 }">
-                                                ${lcroqui.cdProcesso.substring(0,10)}...
-                                            </c:when>
-
-                                            <c:otherwise>
-                                                ${lcroqui.cdProcesso} Ofício 49 GV nº 311/2017
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </td>
-                                    <td class="hidden-480" title="${lcroqui.dsAssunto}">
-                                        <c:choose >
-                                            <c:when test="${lcroqui.dsAssunto.length() > 20 }">
-                                                ${lcroqui.dsAssunto.substring(0,20)}...
-                                            </c:when>
-                                            <c:otherwise>
-                                                ${lcroqui.dsAssunto} Solicita incoorporação de praça à escola
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </td>
-                                    <td class="hidden-480" title="${lcroqui.nmInteressado}">
-                                        <c:choose>
-                                            <c:when test="${lcroqui.nmInteressado.length() > 20}">
-                                                ${lcroqui.nmInteressado.substring(0,20)}...
-                                            </c:when>
-                                            <c:otherwise>
-                                                ${lcroqui.nmInteressado} C.M.S.P. - Vereador Toninho Vespoli
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </td>
-
-                                    <td>
-                                        <div class="hidden-sm hidden-xs btn-group">
-                                            <!-- pagina com a parte de inserir um historico para o croqui/area selecionado-->
-                                            <label class="col-sm-2 col-xs-12" >
-                                                <input id="id-button-borders"  type="checkbox" id="relatorio" name="relatorio" value="enviar" class="ace ace-switch ace-switch-5">
-                                                <span class="lbl middle"></span>
-                                            </label>                                                                                                                               
-                                        </div>
-                                    </td>  
-
-                                </tr>
-                            </tbody>
+                            
                         </table>
 
                         <hr> <!--linha de separação -->
@@ -296,10 +216,9 @@
                                 <ul class="pagination">
 
                                     <c:forEach var="i" begin="${pi}" end="${pf}">
-                                        <c:set var="qCessionario" value="${qCessionario}" />
                                         <c:if test="${pi != 0 && pi == i}">
                                             <li>
-                                                <a href="ControllerServlet?acao=AnotacaoCroquiLista&pg=${i}&pi=${pi}&pf=${pf}&qCroqui=${qCroqui}&qArea=${qArea}&qInteressado=${qInteressado}&qNome=${qNome}&qEndereco=${qEndereco}&qAssunto=${qAssunto}&dtIni=${dtIni}&dtFim=${dtFim}">
+                                                <a href="ControllerServlet?acao=AnotacaoCroquiLista&pg=${i}&pi=${pi}&pf=${pf}&qCroqui=${qCroqui}&qArea=${qArea}&sgTpExpediente=${sgTpExpediente}&cdExpediente=${cdExpediente}&qAssunto=${qAssunto}&qInteressado=${qInteressado}&qLocal=${qLocal}">
                                                     <i class="ace-icon fa fa-angle-double-left"></i></a>
                                             </li>
                                         </c:if>    
@@ -312,14 +231,14 @@
                                                 </c:when>
                                                 <c:otherwise>
                                                     <li>
-                                                        <a href="ControllerServlet?acao=AnotacaoCroquiLista&pg=${i}&pi=${pi}&pf=${pf}&qCroqui=${qCroqui}&qArea=${qArea}&qInteressado=${qInteressado}&qNome=${qNome}&qEndereco=${qEndereco}&qAssunto=${qAssunto}&dtIni=${dtIni}&dtFim=${dtFim}">${i}</a>
+                                                        <a href="ControllerServlet?acao=AnotacaoCroquiLista&pg=${i}&pi=${pi}&pf=${pf}&qCroqui=${qCroqui}&qArea=${qArea}&sgTpExpediente=${sgTpExpediente}&cdExpediente=${cdExpediente}&qAssunto=${qAssunto}&qInteressado=${qLocal}&dtIni=${qLocal}">${i}</a>
                                                     </li>
                                                 </c:otherwise>
                                             </c:choose>
                                         </c:if>
                                         <c:if test="${i == pf && pf != qtdPg && i <= qtdPg  }">
                                             <li>
-                                                <a href="ControllerServlet?acao=AnotacaoCroquiLista&pg=${i}&pi=${pi}&pf=${pf}&qCroqui=${qCroqui}&qArea=${qArea}&qInteressado=${qInteressado}&qNome=${qNome}&qEndereco=${qEndereco}&qAssunto=${qAssunto}&dtIni=${dtIni}&dtFim=${dtFim}">
+                                                <a href="ControllerServlet?acao=AnotacaoCroquiLista&pg=${i}&pi=${pi}&pf=${pf}&qCroqui=${qCroqui}&qArea=${qArea}&sgTpExpediente=${sgTpExpediente}&cdExpediente=${cdExpediente}&qAssunto=${qAssunto}&qInteressado=${qInteressado}&qLocal=${qLocal}">
                                                     <i class="ace-icon fa fa-angle-double-right"></i></a>
                                             </li>
                                         </c:if>    

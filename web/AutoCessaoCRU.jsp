@@ -30,33 +30,6 @@
     <c:set var="acessoPerfil" value="${sessionPerfil}" />
     <jsp:directive.include file="include/ControleAcesso.jsp" />
     
-    
-      
-    <jsp:useBean id="TpCessao" class= "br.com.Modelo.TipoAutoCessaoDAO" />
-    <jsp:useBean id="CatFin" class= "br.com.Modelo.CatFinalidadeDAO" />
-    <jsp:useBean id="CatSubFin" class= "br.com.Modelo.CatSubFinalidadeDAO" />
-    <jsp:useBean id="CatAuto" class= "br.com.Modelo.CatAutoCessaoDAO" />
-    <jsp:useBean id="CatContra" class= "br.com.Modelo.CatContrapartidaDAO" />
-    <jsp:useBean id="TpDis" class= "br.com.Modelo.TipoDispositivoLegalDAO" />
-    <jsp:useBean id="subPref" class= "br.com.Modelo.SubPrefeituraDAO" />
-    <jsp:useBean id="Disp" class= "br.com.Modelo.DispositivoLegalDAO"/>
-    <jsp:useBean id="Arquivo" class= "br.com.Modelo.ArquivoDAO" />
-    <jsp:useBean id="NivelAdm" class= "br.com.Modelo.NivelAdministracaoDAO" />
-    <jsp:useBean id="CatEnt" class= "br.com.Modelo.CatEntidadeDAO" />
-    <jsp:useBean id="Divisao" class= "br.com.Modelo.DivisaoDAO" />
-    <jsp:useBean id="Val" class= "br.com.Modelo.ValidacaoDAO" />
-    <jsp:useBean id="Usuario" class= "br.com.Modelo.UsuarioDAO" />
-    
-    <c:set var="selTpCessao" value="${TpCessao.detalheTpCessao(auto.fkTipoCessaoStage)}" />
-    <c:set var="selCatAuto" value="${CatAuto.detalheCatAuto(auto.fkCatAutoStage)}" />
-    <c:set var="selCatFin" value="${CatFin.detalheCatFinalidade(auto.fkCatFinalidadeStage)}" />
-    <c:set var="selNvAdm" value="${NivelAdm.detalheNivelAdm(auto.fkNivelAdm)}" />
-    <c:set var="selCatEnt" value="${CatEnt.detalheCatEnt(auto.fkCatEntidadeStage)}" />
-    <c:set var="selSubPref" value="${subPref.detalheSubPref(auto.fkSubpref)}" />
-    <c:set var="selCatContra" value="${CatContra.detalheCatContra(auto.fkCatContrapartida)}"/>
-    <c:set var="selCatSubFin" value="${CatSubFin.detalheCatSubFinalidade(auto.fkSubcatfinalidade)}"  />
-    <c:set var="selVal" value="${Val.detalheValidacaoAutoCessao(auto.pkAutoStage)}" />
-   
    
     <c:set var="qAC" value="${param.qAC}" />
     <c:set var="qProcesso" value="${param.qProcesso}" />

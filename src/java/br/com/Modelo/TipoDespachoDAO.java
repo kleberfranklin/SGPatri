@@ -29,21 +29,20 @@ public class TipoDespachoDAO {
     public int qdTipoDespacho(String q) throws SQLException {
         PreparedStatement stmt = null;
         ResultSet rs = null;
+        int total = 0;
 
         String sql = ("SELECT COUNT(*) as total FROM tbl_tipo_despacho_expediente "
                 + "WHERE (sg_despacho ILIKE ? or nm_despacho ILIKE ? ) ");
 
         try {
             stmt = connection.prepareStatement(sql);
-            stmt.setString(1, '%' + q + '%');
-            stmt.setString(2, '%' + q + '%');
+                stmt.setString(1, '%' + q + '%');
+                stmt.setString(2, '%' + q + '%');
             rs = stmt.executeQuery();
-            int total = 0;
+            
             if (rs.next()) {
                 total = rs.getInt("total");
             }
-            stmt.execute();
-            stmt.close();
             return total;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -51,6 +50,7 @@ public class TipoDespachoDAO {
 //            rs.close();
             stmt.close();
             connection.close();
+
         }
     }
 
@@ -67,10 +67,10 @@ public class TipoDespachoDAO {
         try {
             List<TipoDespacho> lisTpDes = new ArrayList<TipoDespacho>();
             stmt = connection.prepareStatement(sql);
-            stmt.setString(1, '%' + q + '%');
-            stmt.setString(2, '%' + q + '%');
-            stmt.setInt(3, qtLinha);
-            stmt.setInt(4, offset);
+                stmt.setString(1, '%' + q + '%');
+                stmt.setString(2, '%' + q + '%');
+                stmt.setInt(3, qtLinha);
+                stmt.setInt(4, offset);
 
             rs = stmt.executeQuery();
             while (rs.next()) {
@@ -81,6 +81,7 @@ public class TipoDespachoDAO {
                 tpDes.setNmLogin(rs.getString("nm_login"));
                 tpDes.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
                 lisTpDes.add(tpDes);
+
             }
             stmt.close();
             return lisTpDes;
@@ -114,6 +115,7 @@ public class TipoDespachoDAO {
                 tpDes.setNmTipoDespacho(rs.getString("nm_despacho"));
                 tpDes.setNmLogin(rs.getString("nm_login"));
                 tpDes.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
+
             }
             stmt.close();
             return tpDes;
@@ -123,6 +125,7 @@ public class TipoDespachoDAO {
 //            rs.close();
             stmt.close();
             connection.close();
+
         }
     }
 //METODO utilizado para inserir um novo Despacho no BANCO
@@ -140,14 +143,15 @@ public class TipoDespachoDAO {
             stmt.setString(2, tpDes.getNmTipoDespacho());
             stmt.setString(3, tpDes.getNmLogin());
             stmt.setTimestamp(4, java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
+
             stmt.execute();
-            stmt.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
 //            rs.close();
             stmt.close();
             connection.close();
+
         }
     }
 
@@ -166,14 +170,16 @@ public class TipoDespachoDAO {
             stmt.setString(3, tpDes.getNmLogin());
             stmt.setTimestamp(4, java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
             stmt.setInt(5, tpDes.getPkTipoDespacho());
+
             stmt.execute();
-            stmt.close();
+            
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
 //            rs.close();
             stmt.close();
             connection.close();
+
         }
     }
 
@@ -197,6 +203,7 @@ public class TipoDespachoDAO {
                 tpDes.setNmLogin(rs.getString("nm_login"));
                 tpDes.setDthrAtualizacao(rs.getString("dthr_atualizacao"));
                 lisTpDes.add(tpDes);
+
             }
             stmt.execute();
             stmt.close();
@@ -208,6 +215,7 @@ public class TipoDespachoDAO {
 //            rs.close();
             stmt.close();
             connection.close();
+
         }
     }
 

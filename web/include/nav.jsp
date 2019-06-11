@@ -24,7 +24,7 @@
             </a>
             <b class="arrow"></b>
             <ul class="submenu">
-                <li class="">
+                <li class="disabled-li-menu">
                     <a href="#" title="Gestão de Pessoas">
                         <i class="menu-icon fa fa-caret-right"></i> Gestão de Pessoas
                     </a>    
@@ -36,13 +36,13 @@
                     </a>
                     <b class="arrow"></b>
                 </li>
-                <li class="">
-                    <a href="#" title="Protocolo">
+                <li class="disabled-li-menu">
+                    <a href="#" title="Protocolo" >
                         <i class="menu-icon fa fa-caret-right"></i> Protocolo 
                     </a>
                     <b class="arrow"></b>
                 </li>
-                <li class="">
+                <li class="disabled-li-menu">
                     <a href="#" title="Comissão Municipal do Patrimônio Imobiliário">
                         <i class="menu-icon fa fa-caret-right"></i> CMPT
                     </a>
@@ -97,12 +97,6 @@
                             <a href="AutoCessao.jsp" title="Auto de Cessão">Autos de Cessão</a>
                             <b class="arrow"></b>
                         </li>
-                        <c:if test="${sessionSgDivisao == 'DDPI' && sessionSgSetor == 'SCL' || sessionPerfil == 'Administrador'}">
-                            <li class="">
-                                <a href="ControllerServlet?acao=AutoCessaoValidacaoLista" title="Auto de Cessão Validação">Validação Auto Cessão</a>
-                                <b class="arrow"></b>
-                            </li>
-                        </c:if>   
                     </ul>
                 </li>
             </ul>
@@ -125,7 +119,7 @@
                     <b class="arrow"></b>
 
                     <!--  PAGINAS DO CAP JA ESTAO QUASE PRONTA APENAS ATIVAR O MENU PARA VÊ-LAS -->
-                    <ul class="submenu">
+                    <ul class="submenu disabled-li-menu">
                         <li class="">
                             <a href="CadastroAreaPublica.jsp" title="Cadastro de Área Publica">CAP</a>
                             <b class="arrow"></b>

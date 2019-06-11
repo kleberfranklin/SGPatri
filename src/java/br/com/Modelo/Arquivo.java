@@ -112,5 +112,5 @@ public class Arquivo {
     public void setNmLogin(String nmLogin) {
         this.nmLogin = nmLogin;
     }
-    
+   
 }
