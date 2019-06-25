@@ -18,14 +18,14 @@
             <!--Verificação de acesso  -->
             <c:set var="acessoPerfil" value="${sessionPerfil}" />
             <jsp:directive.include file="include/ControleAcesso.jsp" />
-            
-        <!--Include ação ajax e javaScritp -->        
+
+            <!--Include ação ajax e javaScritp -->        
             <jsp:include page = "include/maskProcessoSelect.jsp" />
             <jsp:include page = "javaScritp/somenteNum.html" />
             <jsp:include page = "include/adicionarCampoArea.jsp" />
             <jsp:include page = "javaScritp/alertEffect.html" />
 
-            
+
             <div class="breadcrumbs ace-save-state" id="breadcrumbs">
                 <ul class="breadcrumb">
                     <li><i class="ace-icon fa fa-list"></i> Anotação Croqui</li>
@@ -36,7 +36,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="col-sm-offset-1 col-sm-10">
-                            
+
                             <c:if test="${msg=='true'}">
                                 <div class="alert alert-${typeAlert}">
                                     <button type="button" class="close" data-dismiss="alert">
@@ -50,7 +50,7 @@
                                     <br>
                                 </div>
                             </c:if> 
-                            
+
                             <h2>Anotação Croqui</h2>
                             <div class="space-14"></div>
                             <div class="form-horizontal">
@@ -62,11 +62,11 @@
                                                 <c:choose>
                                                     <c:when test="${anotCroqui.pkAnotacaoExpediente == ''}">
                                                         <span class="badge badge-transparent" title="Pendente Validação"><i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i></span>
-                                                    </c:when>
-                                                    <c:otherwise>
+                                                        </c:when>
+                                                        <c:otherwise>
                                                         <span class="badge badge-transparent" title="Validado"><i class="ace-icon fa fa-check-square-o green bigger-130"></i></span>
-                                                    </c:otherwise>    
-                                                </c:choose>
+                                                        </c:otherwise>    
+                                                    </c:choose>
                                             </a>
                                         </li>
                                         <li class="${tabAnexoActive}">
@@ -75,17 +75,17 @@
                                                 <c:choose>
                                                     <c:when test="${empty listAnexo}">
                                                         <span class="badge badge-transparent" title="Pendente Validação"><i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i></span>
-                                                    </c:when>
-                                                    <c:otherwise>
+                                                        </c:when>
+                                                        <c:otherwise>
                                                         <span class="badge badge-transparent" title="Validado"><i class="ace-icon fa fa-check-square-o green bigger-130"></i></span>
-                                                    </c:otherwise>    
-                                                </c:choose>
+                                                        </c:otherwise>    
+                                                    </c:choose>
                                             </a>
                                         </li>
                                     </ul>
                                     <div class="tab-content profile-edit-tab-content" >
-                                
-                                <!--Inicio da tab-pane Cadastro Croqui-->
+
+                                        <!--Inicio da tab-pane Cadastro Croqui-->
                                         <div id="cad-croqui" class="tab-pane ${tabCroquiActive}"  >
                                             <form action="ControllerServlet?acao=AnotacaoCroquiUC" method="POST" >
                                                 <input type="hidden" name="pkAnotacaoExpediente" value="${anotCroqui.pkAnotacaoExpediente}" />
@@ -130,12 +130,12 @@
                                                         <c:choose>
                                                             <c:when test="${execucao == 'edit' || execucao == 'duplicate'}">
                                                                 <input type="text" class="col-md-5 col-xs-12" name="cdExpediente" id="nrprocesso" 
-                                                                    value="${anotCroqui.cdExpediente}" required="required" onblur="maskProcessoSelect(this);" >
+                                                                       value="${anotCroqui.cdExpediente}" required="required" onblur="maskProcessoSelect(this);" >
                                                                 &nbsp;<span id="msgProcesso"></span>
                                                             </c:when>
                                                             <c:when test="${execucao == 'insert'}">
                                                                 <input type="text" class="col-md-5 col-xs-12" name="cdExpediente" id="nrprocesso"  
-                                                                     value="${cdExpediente}"  placeholder="Nº do Expediente"  required="required" readonly="readonly">
+                                                                       value="${cdExpediente}"  placeholder="Nº do Expediente"  required="required" readonly="readonly">
                                                             </c:when>
                                                             <c:otherwise>
                                                                 <span class="lbl">${anotCroqui.cdExpediente}</span>
@@ -146,7 +146,7 @@
                                                 <div class="tab-content" >
                                                     <div class="form-group">
                                                         <label class="inline col-md-2 col-xs-12">
-                                                               <span class="lbl"><strong>Croqui:</strong></span>
+                                                            <span class="lbl"><strong>Croqui:</strong></span>
                                                         </label>
                                                         <label class="col-md-3 col-xs-12">
                                                             <c:choose>
@@ -175,7 +175,7 @@
                                                                 </c:when>
                                                                 <c:when test="${execucao == 'insert'}">
                                                                     <input type="text" class="col-md-4 col-xs-12" name="cdArea"  onKeyPress="return somenteNum(event);" 
-                                                                        maxlength="4" placeholder="Código Área inserir" required="required">
+                                                                           maxlength="4" placeholder="Código Área inserir" required="required">
                                                                 </c:when>
                                                                 <c:otherwise>
                                                                     <span class="lbl">${anotCroqui.cdArea}</span> 
@@ -795,10 +795,10 @@
                                                             </c:choose>
 
                                                         </label>
-                                                        <label class="inline col-md-1 col-xs-12" >
+                                                        <label class="inline col-md-2 col-xs-12" >
                                                             <span class="lbl"><strong>número:</strong></span>
                                                         </label>
-                                                        <label class="inline col-md-2 col-xs-12" >
+                                                        <label class="inline col-md-1 col-xs-12" >
                                                             <c:choose>
                                                                 <c:when test="${execucao == 'edit' || execucao == 'duplicate'}">
                                                                     <input type="text" id="form-field-1" class="col-xs-12 col-md-12" name="nrnumeroend" 
@@ -821,7 +821,7 @@
                                                         <label class="inline col-md-2 col-xs-12" >
                                                             <span class="lbl"><strong>Complemento:</strong></span>
                                                         </label>
-                                                        <label class="inline col-md-3 col-xs-12" >
+                                                        <label class="inline col-sm-3 col-xs-12" >
                                                             <c:choose>
                                                                 <c:when test="${execucao == 'edit' || execucao == 'duplicate'}">
                                                                     <input type="text" id="form-field-1" class="col-xs-12 col-md-12" name="nmcomplementoend" 
@@ -839,7 +839,7 @@
 
                                                     </div>
 
-                                                     <div class="space-1"></div>
+                                                    <div class="space-1"></div>
 
                                                     <div class="form-group">
                                                         <label class="inline col-md-2 col-xs-12" >  
@@ -862,7 +862,7 @@
                                                         </label>
                                                     </div>
                                                 </div>
-                                            <!--Abaixo div onde add o novo campo área -->
+                                                <!--Abaixo div onde add o novo campo área -->
                                                 <br /><div class="input_fields_wrap col-md-12 col-xs-12"></div>
 
                                                 <c:if test="${execucao == 'insert' || execucao == 'duplicate'}">
@@ -1093,151 +1093,151 @@
                                                         </button>
                                                     </c:if>
                                                 </div>
-                                                </form>
+                                            </form>
                                         </div>
 
-                                <!--Inicio da tab-pane Documento Anexo -->        
+                                        <!--Inicio da tab-pane Documento Anexo -->        
                                         <div id="doc-anexo" class="${disabled} tab-pane ${tabAnexoActive} ">
                                             <form action="ControllerServlet?acao=AnotacaoCroquiUploadArquivo" enctype="multipart/form-data" method="POST" >
                                                 <h4 class="header smaller lbl "><strong>Documentos Anexo</strong></h4>
                                                 <input type="hidden" name="pkAnotCroqui" value="${anotCroqui.pkAnotacaoExpediente}" />
                                                 <c:if test="${execucao!='view' && (sessionSgDivisao == 'DIPI' && sessionSgSetor == 'SIC' || sessionPerfil == 'Administrador')}">
-                                                    
-                                                <div class="form-group">
-                                                    <label class="inline col-md-2 col-xs-12">
-                                                        <strong>Tipo de documento:</strong>
-                                                    </label>
-                                                    <label class="inline col-md-3 col-xs-12">
-                                                        <select name="fktipoArquivo"  placeholder="" class="col-xs-12 col-md-8" 
-                                                             required="required">
-                                                            <option></option>
-                                                            <c:forEach var="anexo" items="${listTpAnexo}">
-                                                                <c:if test="${anexo.nmTipoAnexo != ''}">
-                                                                    <option value="${anexo.pkTipoAnexo}">${anexo.nmTipoAnexo}</option>
-                                                                </c:if>
-                                                            </c:forEach>
-                                                        </select>
-                                                    </label>
-                                                    <label class="inline col-md-4 col-xs-12">
-                                                        <input type="file"  id="id-input-file-2" name="UploadCroqui" required="required"><span class="ace-file-container" data-title="Choose"><span class="ace-file-name" data-title="No File ..."></span></span>
-                                                    </label>
-                                                </div>
-                                               <div class="form-group">
-                                                    <label class="inline col-md-2 col-xs-12">
-                                                        <strong>Descrição:</strong>
-                                                    </label >                                                        
-                                                    <label class="inline col-md-7 col-xs-12">
-                                                        <input type="text" name="nomeDoArquivo" placeholder="Nome do arquivo" class="col-xs-12 col-md-12" required="required" >
-                                                    </label>
-                                                    <label class="inline col-md-2 col-xs-12">
-                                                        <button class="btn btn-success"  type="submit">
-                                                            <i class="ace-icon fa fa-save bigger-110"></i>
+
+                                                    <div class="form-group">
+                                                        <label class="inline col-md-2 col-xs-12">
+                                                            <strong>Tipo de documento:</strong>
+                                                        </label>
+                                                        <label class="inline col-md-3 col-xs-12">
+                                                            <select name="fktipoArquivo"  placeholder="" class="col-xs-12 col-md-8" 
+                                                                    required="required">
+                                                                <option></option>
+                                                                <c:forEach var="anexo" items="${listTpAnexo}">
+                                                                    <c:if test="${anexo.nmTipoAnexo != ''}">
+                                                                        <option value="${anexo.pkTipoAnexo}">${anexo.nmTipoAnexo}</option>
+                                                                    </c:if>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </label>
+                                                        <label class="inline col-md-4 col-xs-12">
+                                                            <input type="file"  id="id-input-file-2" name="UploadCroqui" required="required"><span class="ace-file-container" data-title="Choose"><span class="ace-file-name" data-title="No File ..."></span></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="inline col-md-2 col-xs-12">
+                                                            <strong>Descrição:</strong>
+                                                        </label >                                                        
+                                                        <label class="inline col-md-7 col-xs-12">
+                                                            <input type="text" name="nomeDoArquivo" placeholder="Nome do arquivo" class="col-xs-12 col-md-12" required="required" >
+                                                        </label>
+                                                        <label class="inline col-md-2 col-xs-12">
+                                                            <button class="btn btn-success"  type="submit">
+                                                                <i class="ace-icon fa fa-save bigger-110"></i>
                                                                 Anexar
-                                                        </button
-                                                    </label> 
-                                                </div>
-                                                
-                                                <c:if test="${not empty lisAnotCroquiCriado}">
-                                                    <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Croqui </th>
-                                                                <th>Área</th>
-                                                                <th>Vincular</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <c:forEach var="a" items="${lisAnotCroquiCriado}">
-                                                            <tbody>
+                                                            </button
+                                                        </label> 
+                                                    </div>
+
+                                                    <c:if test="${not empty lisAnotCroquiCriado}">
+                                                        <table class="table">
+                                                            <thead>
                                                                 <tr>
-                                                                    <td title="${a.cdCroqui}">
-                                                                        ${a.cdCroqui}
-                                                                    </td>
-                                                                    <td title="${a.cdArea}">
-                                                                        ${a.cdArea}
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="hidden-sm hidden-xs btn-group">
-                                                                            <label class="col-sm-2 col-xs-12" >
-                                                                                <input id="id-button-borders" type="checkbox" id="relatorio" name="listPkAnotCroqui" 
-                                                                                       value="${a.pkAnotacaoExpediente}" class="ace ace-switch ace-switch-5"/>
-                                                                                <span class="lbl middle"></span>
-                                                                            </label>                                                                                                                               
-                                                                        </div>
-                                                                    </td>
+                                                                    <th>Croqui </th>
+                                                                    <th>Área</th>
+                                                                    <th>Vincular</th>
                                                                 </tr>
-                                                            </tbody>
-                                                        </c:forEach>
-                                                    </table>
-                                                </c:if>
-                                            </form>  
-                                            
-                                            <div class="hr hr-18 dotted hr-double"></div>
+                                                            </thead>
+                                                            <c:forEach var="a" items="${lisAnotCroquiCriado}">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td title="${a.cdCroqui}">
+                                                                            ${a.cdCroqui}
+                                                                        </td>
+                                                                        <td title="${a.cdArea}">
+                                                                            ${a.cdArea}
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="hidden-sm hidden-xs btn-group">
+                                                                                <label class="col-sm-2 col-xs-12" >
+                                                                                    <input id="id-button-borders" type="checkbox" id="relatorio" name="listPkAnotCroqui" 
+                                                                                           value="${a.pkAnotacaoExpediente}" class="ace ace-switch ace-switch-5"/>
+                                                                                    <span class="lbl middle"></span>
+                                                                                </label>                                                                                                                               
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </c:forEach>
+                                                        </table>
+                                                    </c:if>
+                                                </form>  
+
+                                                <div class="hr hr-18 dotted hr-double"></div>
                                             </c:if>
                                             <c:forEach var="anexo" items="${listAnexo}"> 
-                                            <div class="form-group">
-                                                <form action="" method="POST">
-                                                    <div class="inline col-md-12 col-xs-12">
-                                                        <div class="inline col-md-1 col-xs-12">
-                                                            <a href="/SGPatri/Croqui/${anexo.nmAnexo}" target="_blank"><img class="img-thumbnail" src="img/AC.png" title="${anexo.nmAnexo}" width="80%" height="80%"/></a>
-                                                        </div>
-                                                        <div class="inline col-md-3 col-xs-12">
-                                                            <label class="inline col-md-12 col-xs-12">
-                                                                <strong>Tipo:</strong> ${anexo.tpAnexo.nmTipoAnexo}
-                                                            </label>
-                                                        </div>
-                                                            <div class="inline col-md-7 col-xs-12">
-                                                            <label class="inline col-md-12 col-xs-12">
-                                                                <strong>Descrição:</strong> ${anexo.dsAnexo}
-                                                            </label>
-                                                        </div>
-                                                        <c:if test="${execucao!='view' && (sessionSgDivisao == 'DIPI' && sessionSgSetor == 'SIC' || sessionPerfil == 'Administrador')}">
-                                                            <div class="inline col-md-1 col-md-12 disabled-li-menu">
-                                                                <button class="btn btn-danger btn-xs">
-                                                                    <i class="ace-icon fa fa-trash-o bigger-130 icon-only"></i>
-                                                                </button>
+                                                <div class="form-group">
+                                                    <form action="" method="POST">
+                                                        <div class="inline col-md-12 col-xs-12">
+                                                            <div class="inline col-md-1 col-xs-12">
+                                                                <a href="/SGPatri/Croqui/${anexo.nmAnexo}" target="_blank"><img class="img-thumbnail" src="img/AC.png" title="${anexo.nmAnexo}" width="80%" height="80%"/></a>
                                                             </div>
-                                                        </c:if> 
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="hr hr-16 hr-dotted"></div>
+                                                            <div class="inline col-md-3 col-xs-12">
+                                                                <label class="inline col-md-12 col-xs-12">
+                                                                    <strong>Tipo:</strong> ${anexo.tpAnexo.nmTipoAnexo}
+                                                                </label>
+                                                            </div>
+                                                            <div class="inline col-md-7 col-xs-12">
+                                                                <label class="inline col-md-12 col-xs-12">
+                                                                    <strong>Descrição:</strong> ${anexo.dsAnexo}
+                                                                </label>
+                                                            </div>
+                                                            <c:if test="${execucao!='view' && (sessionSgDivisao == 'DIPI' && sessionSgSetor == 'SIC' || sessionPerfil == 'Administrador')}">
+                                                                <div class="inline col-md-1 col-md-12 disabled-li-menu">
+                                                                    <button class="btn btn-danger btn-xs">
+                                                                        <i class="ace-icon fa fa-trash-o bigger-130 icon-only"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </c:if> 
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="hr hr-16 hr-dotted"></div>
                                             </c:forEach>
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                         </div>    
-                                </div>
-                                
+                                    </div>
+
+                                </div>    
+                                <jsp:include page = "include/footer.jsp" />
+                                <jsp:include page = "javaScritp/carregado.html" />
                             </div>    
-                            <jsp:include page = "include/footer.jsp" />
-                            <jsp:include page = "javaScritp/carregado.html" />
-                        </div>    
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </body>
 </html>
 

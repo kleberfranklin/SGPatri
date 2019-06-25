@@ -36,6 +36,12 @@
                     </a>
                     <b class="arrow"></b>
                 </li>
+                <li class="">
+                    <a href="AgendamentoSala.jsp" title="Ministerio Publico">
+                        <i class="menu-icon fa fa-caret-right"></i> Sala de Reunião
+                    </a>
+                    <b class="arrow"></b>
+                </li>
                 <li class="disabled-li-menu">
                     <a href="#" title="Protocolo" >
                         <i class="menu-icon fa fa-caret-right"></i> Protocolo 
@@ -119,7 +125,7 @@
                     <b class="arrow"></b>
 
                     <!--  PAGINAS DO CAP JA ESTAO QUASE PRONTA APENAS ATIVAR O MENU PARA VÊ-LAS -->
-                    <ul class="submenu disabled-li-menu">
+                    <ul class="submenu">
                         <li class="">
                             <a href="CadastroAreaPublica.jsp" title="Cadastro de Área Publica">CAP</a>
                             <b class="arrow"></b>

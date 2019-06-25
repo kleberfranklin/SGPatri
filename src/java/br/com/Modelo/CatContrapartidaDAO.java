@@ -82,7 +82,7 @@ public class CatContrapartidaDAO {
             }catch (SQLException e){
                 throw new RuntimeException(e);
             }finally{
-                rs.close();
+//                rs.close();
                 stmt.close();
                 connection.close();
             }
@@ -112,7 +112,7 @@ public class CatContrapartidaDAO {
             }catch (SQLException e){
                 throw new RuntimeException(e);
             }finally{
-                rs.close();
+//                rs.close();
                 stmt.close();
 //                connection.close();
             }
@@ -187,7 +187,7 @@ public class CatContrapartidaDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }finally{
-            rs.close();
+//            rs.close();
             stmt.close();
             connection.close();
         }

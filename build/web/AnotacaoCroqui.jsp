@@ -21,7 +21,6 @@
             <jsp:directive.include file="include/ControleAcesso.jsp" />
 
 
-            <!--Parametro para diferenciar entre os Auto Cessão e Auto Cessão Terceiros -->    
             <div class="breadcrumbs ace-save-state" id="breadcrumbs">
                 <ul class="breadcrumb">
                     <li><i class="ace-icon fa fa-list"></i> Anotação de Croqui</li>
@@ -44,30 +43,29 @@
                                         <i class="ace-icon fa fa-plus"></i>
                                         Anotacao Croqui
                                     </button>
-                                    <br/>
+                                </div>
 
-                                    <div class="btn-group-lg infobox">
-                                        <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=AnotacaoCroquiLista';"> 
-                                            <i class="ace-icon fa fa-search"></i>
-                                            Pesquisa Expediente
-                                        </button>
-                                    </div> 
+                                <div class="btn-group-lg infobox">
+                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=AnotacaoCroquiLista';"> 
+                                        <i class="ace-icon fa fa-search"></i>
+                                        Pesquisa Expediente
+                                    </button>
+                                </div> 
 
+                                <div class="btn-group-lg infobox disabled-li-menu">
+                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'AnotacaoCroquiRelatorioLista.jsp';"> 
+                                        <i class="ace-icon fa fa-list"></i>
+                                        Pesquisa Relatório
+                                    </button>
+                                </div> 
+                            </c:if>
 
-                                    <div class="btn-group-lg infobox disabled-li-menu">
-                                        <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'AnotacaoCroquiRelatorioLista.jsp';"> 
-                                            <i class="ace-icon fa fa-list"></i>
-                                            Pesquisa Relatório
-                                        </button>
-                                    </div> 
-                                </c:if>
-
-                                <jsp:include page = "include/footer.jsp" />
-                            </div>
+                            <jsp:include page = "include/footer.jsp" />
                         </div>
                     </div>
                 </div>
             </div>
-        </div><!-- /.main-container --> 
-    </body>
+        </div>
+    </div><!-- /.main-container --> 
+</body>
 </html>

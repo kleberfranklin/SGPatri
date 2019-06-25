@@ -8,15 +8,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <script>
-$(document).ready(function() {
-	var max_fields      = 10; //maximum input boxes allowed
-	var wrapper   		= $(".input_fields_wrap"); //Fields wrapper
-	var add_button      = $(".add_field_button"); //Add button ID
-	
-	var x = 0; //initlal text box count
-	$(add_button).click(function(e){ //on add input button click
+    $(document).ready(function () {
+        var max_fields = 10; //maximum input boxes allowed
+        var wrapper = $(".input_fields_wrap"); //Fields wrapper
+        var add_button = $(".add_field_button"); //Add button ID
+
+        var x = 0; //initlal text box count
+        $(add_button).click(function (e) { //on add input button click
             e.preventDefault();
-            if(max_fields > x){ //max input box allowed
+            if (max_fields > x) { //max input box allowed
                 x++; //text box increment
                 //$(wrapper).append('<div class="form-group input_fields_wrap"><label class="inline col-md-offset-5 col-md-1 col-xs-12"><span class="lbl"><strong>Área:</strong></span></label><label class="col-md-2 col-xs-12"><input type="text" class="col-md-12 col-xs-12" name="cdArea" onKeyPress="return somenteNum(event);" maxlength="4" placeholder="Código Área"></label><a href="#" class="red remove_field" title="remover campos"><span class="label label-danger arrowed-right"><i class=" glyphicon glyphicon-minus-sign"></i></span></a></div>'); //add input box
                 $(wrapper).append('<div class="form-group tab-content">\n\
@@ -333,10 +333,10 @@ $(document).ready(function() {
                                         <label class="inline col-md-6 col-xs-12" >\n\
                                             <input type="text" id="form-field-1" class="col-xs-12 col-md-12" name="nmendereco" placeholder="nome do endereço" required="required">\n\
                                         </label>\n\
-                                            <label class="inline col-md-1 col-xs-12" >\n\
+                                            <label class="inline col-md-2 col-xs-12" >\n\
                                                 <span class="lbl"><strong>número:</strong></span>\n\
                                             </label>\n\
-                                        <label class="inline col-md-2 col-xs-12" >\n\
+                                        <label class="inline col-md-1 col-xs-12" >\n\
                                             <input type="text" id="form-field-1" class="col-xs-12 col-md-12" name="nrnumeroend" placeholder="nº">\n\
                                         </label>\n\
                                     </div>\n\
@@ -366,10 +366,11 @@ $(document).ready(function() {
                                     </a>\n\
                             </div>'); //add input box
             }
-	});
-	$(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-            e.preventDefault(); $(this).parent('div').remove();
+        });
+        $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
+            e.preventDefault();
+            $(this).parent('div').remove();
             x--;
-	})
-});
+        })
+    });
 </script>

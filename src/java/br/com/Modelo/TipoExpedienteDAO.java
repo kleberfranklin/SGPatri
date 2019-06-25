@@ -69,7 +69,7 @@ public class TipoExpedienteDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            rs.close();
+//            rs.close();
             stmt.close();
             connection.close();
         }
@@ -108,7 +108,7 @@ public class TipoExpedienteDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            rs.close();
+//            rs.close();
             stmt.close();
             connection.close();
         }

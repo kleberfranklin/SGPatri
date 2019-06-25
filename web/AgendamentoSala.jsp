@@ -1,9 +1,8 @@
 <%-- 
-    Document   : AnotacaoCroqui
-    Created on : 23/01/2019, 17:08:15
+    Document   : AgendamentoSala
+    Created on : 12/06/2019, 12:59:49
     Author     : x369482
 --%>
-
 <%@page contentType="text/html charset=UTF-8;" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -37,27 +36,20 @@
                         </div>
                         <div class="form-group" style=" padding-top:30px">
                             <c:if test="${(sessionSgDivisao == 'DIPI' && sessionSgSetor == 'SIC')  || sessionPerfil == 'Administrador'}"> 
-
                                 <div class="btn-group-lg infobox">
-                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=AnotacaoCroquiPesquisa&primeiro=true';"> 
+                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'AgendamentoSalaCRU.jsp?execucao=insert';"> 
                                         <i class="ace-icon fa fa-plus"></i>
-                                        Anotacao Croqui
+                                        Agendar Sala
                                     </button>
                                 </div>
 
                                 <div class="btn-group-lg infobox">
-                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=AnotacaoCroquiLista';"> 
+                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'ControllerServlet?acao=AgendamentoSalaLista';"> 
                                         <i class="ace-icon fa fa-search"></i>
-                                        Pesquisa Expediente
+                                        Horarios Agendados
                                     </button>
                                 </div> 
 
-                                <div class="btn-group-lg infobox disabled-li-menu">
-                                    <button class="btn btn-primary btn-white btn-block" onclick=" location.href = 'AnotacaoCroquiRelatorioLista.jsp';"> 
-                                        <i class="ace-icon fa fa-list"></i>
-                                        Pesquisa Relatório
-                                    </button>
-                                </div> 
                             </c:if>
 
                             <jsp:include page = "include/footer.jsp" />
